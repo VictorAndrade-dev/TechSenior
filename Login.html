@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TechSênior - Login</title>
+
+    <!-- Fonte -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@500;600;700&display=swap"
+    rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="Estilos - CSS/Padrão.css">
+    <link rel="stylesheet" href="Estilos - CSS/Login.css">
+
+    <!-- Ícones -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+
+<body>
+
+
+<main class="login">
+
+    <section class="login-container">
+
+
+        <!-- VOLTAR -->
+
+        <a href="Início.html" class="voltar">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Voltar para o início
+
+        </a>
+
+
+
+        <!-- LOGO -->
+
+        <div class="login-logo">
+
+            <img src="Imagens/Logotipo Sem Fundo.png" alt="Logo TechSênior">
+
+        </div>
+
+
+
+
+        <!-- TÍTULO -->
+
+        <div class="login-titulo">
+
+            <h1>Bem-vindo de volta!</h1>
+
+            <p>
+                Entre na sua conta e continue aprendendo.
+            </p>
+
+        </div>
+
+
+
+
+        <!-- FORMULÁRIO -->
+
+        <form class="form-login" id="formLogin">
+
+
+            <div class="campo">
+
+                <label for="email">
+                    E-mail
+                </label>
+
+
+                <div class="input-box">
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                    <input 
+                    type="email"
+                    id="email"
+                    placeholder="Digite seu e-mail"
+                    required>
+
+                </div>
+
+            </div>
+
+
+
+
+            <div class="campo">
+
+                <label for="senha">
+                    Senha
+                </label>
+
+
+                <div class="input-box">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input 
+                    type="password"
+                    id="senha"
+                    placeholder="Digite sua senha"
+                    required>
+
+
+                    <button 
+                    type="button"
+                    class="mostrar-senha"
+                    id="mostrarSenha">
+
+                        <i class="fa-solid fa-eye"></i>
+
+                    </button>
+
+
+                </div>
+
+            </div>
+
+
+
+
+            <div class="opcoes">
+
+                <a href="#">
+                    Esqueceu sua senha?
+                </a>
+
+            </div>
+
+
+
+
+            <button 
+            type="submit"
+            class="btn-login-form">
+
+                Entrar
+
+            </button>
+
+
+
+        </form>
+
+
+
+
+        <!-- CADASTRO -->
+
+        <div class="cadastro">
+
+            <p>
+                Ainda não possui uma conta?
+            </p>
+
+
+            <a href="Cadastro.html">
+                Fazer cadastro
+            </a>
+
+
+        </div>
+
+
+    </section>
+
+</main>
+
+<script src="Script - Java/Login.js"></script>
+
+
+</body>
+
+</html>

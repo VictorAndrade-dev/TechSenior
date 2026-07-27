@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TechSênior - Cursos</title>
+
+    <!-- Fonte -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="Estilos - CSS/Cursos.css">
+    <link rel="stylesheet" href="Estilos - CSS/Padrão.css">
+
+    <!-- Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <div class="logo">
+            <img src="Imagens/Logotipo Sem Fundo.png" alt="Logo TechSênior">
+        </div>
+
+        <nav>
+            <a href="Início.html">Início</a>
+            <a href="Cursos.html">Cursos</a>
+            <a href="Comunidade.html">Comunidade</a>
+            <a href="Sobre Nós.html">Sobre Nós</a>
+        </nav>
+
+        <a class="btn-login" id="btnUsuario" href="Login.html">
+            <i class="fa-regular fa-user"></i>
+            Entrar
+        </a>
+    </header>
+
+    <!-- MENU LATERAL -->
+    <div class="sidebar" id="sidebar">
+
+        <button class="close-menu" id="closeMenu">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <nav class="sidebar-nav">
+
+            <a href="Início.html">Início</a>
+
+            <a href="Cursos.html">Cursos</a>
+
+            <a href="Comunidade.html">Comunidade</a>
+
+            <a href="Sobre Nós.html">Sobre Nós</a>
+
+        </nav>
+
+    </div>
+
+    <!-- FUNDO ESCURO -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+
+        <div class="hero-texto">
+
+            <h1>Aprenda tecnologia<br>no seu ritmo</h1>
+
+            <p>
+                Cursos simples e práticos para ajudar você a usar celulares,
+                computadores e internet com mais segurança e confiança.
+            </p>
+
+            <button class="btn-principal" id="btnCursos">
+                <i class="fa-solid fa-arrow-down"></i>
+
+                Conheça nossos cursos
+
+            </button>
+
+        </div>
+
+        <div class="hero-img">
+
+            <img src="Imagens/Avô e neto usando um notebook.jpg" alt="Casal de idosos utilizando um celular">
+
+        </div>
+
+    </section>
+
+    <!-- CURSOS -->
+    <section class="cursos" id="cursos">
+
+        <h2>Escolha por onde quer começar</h2>
+
+        <div class="cards">
+
+            <div class="card">
+                <i class="fa-solid fa-mobile-screen"></i>
+                <h3>Celular</h3>
+                <p>Aprenda as funções básicas do seu celular.</p>
+                <button class="btn-card" data-modal="modalCelular">Ver Curso</button>
+            </div>
+
+            <div class="card">
+                <i class="fa-solid fa-globe"></i>
+                <h3>Internet</h3>
+                <p>Navegue pela internet com segurança.</p>
+                <button class="btn-card" data-modal="modalInternet">Ver Curso</button>
+            </div>
+
+            <div class="card">
+                <i class="fa-brands fa-whatsapp"></i>
+                <h3>Redes Sociais</h3>
+                <p>WhatsApp, Instagram e Facebook.</p>
+                <button class="btn-card" data-modal="modalRedesSociais">Ver Curso</button>
+            </div>
+
+            <div class="card">
+                <i class="fa-solid fa-envelope"></i>
+                <h3>E-mail</h3>
+                <p>Aprenda a criar e usar e-mails.</p>
+                <button class="btn-card" data-modal="modalEmail">Ver Curso</button>
+            </div>
+
+            <div class="card">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <h3>Compras Online</h3>
+                <p>Compre pela internet com segurança.</p>
+                <button class="btn-card" data-modal="modalComprasOnline">Ver Curso</button>
+            </div>
+
+            <div class="card">
+                <i class="fa-solid fa-shield-halved"></i>
+                <h3>Segurança Digital</h3>
+                <p>Proteja seus dados e evite golpes.</p>
+                <button class="btn-card" data-modal="modalSegurancaDigital">Ver Curso</button>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ==================================
+     MODAL - CELULAR
+    ================================== -->
+
+    <div class="modal" id="modalCelular">
+
+        <div class="modal-conteudo-curso">
+
+            <button class="fechar-modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <h2>
+                <i class="fa-solid fa-mobile-screen"></i>
+                Utilizando o Celular
+            </h2>
+
+            <p>
+                Este curso foi desenvolvido para ensinar, de forma simples e prática,
+                como utilizar as principais funções do celular no dia a dia.
+            </p>
+
+            <div class="info-curso">
+
+                <div class="info-item">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span>6 módulos</span>
+                </div>
+
+                <div class="info-item">
+                    <i class="fa-solid fa-signal"></i>
+                    <span>Iniciante</span>
+                </div>
+
+                <div class="info-item">
+                    <i class="fa-regular fa-clock"></i>
+                    <span>30 minutos</span>
+                </div>
+
+            </div>
+
+            <h3>Neste curso você aprenderá:</h3>
+
+            <ul class="lista-curso">
+
+                <li>✔ Ligar e desligar o celular.</li>
+
+                <li>✔ Fazer ligações.</li>
+
+                <li>✔ Enviar mensagens.</li>
+
+                <li>✔ Tirar fotos.</li>
+
+                <li>✔ Instalar aplicativos.</li>
+
+                <li>✔ Organizar o aparelho.</li>
+
+            </ul>
+
+            <a href="CursoCelular.html" class="btn-principal">
+
+                <i class="fa-solid fa-play"></i>
+
+                Iniciar Curso
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="modal" id="modalInternet">
+        <div class="modal-conteudo-curso">
+            <button class="fechar-modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h2>
+                <i class="fa-solid fa-globe"></i>
+                Navegando na Internet
+            </h2>
+            <p>
+                Descubra como pesquisar informações, ler notícias e navegar por sites de forma simples, sem medo e
+                entendendo o que está na tela.
+            </p>
+            <div class="info-curso">
+                <div class="info-item">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span>4 módulos</span>
+                </div>
+                <div class="info-item">
+                    <i class="fa-solid fa-signal"></i>
+                    <span>Iniciante</span>
+                </div>
+                <div class="info-item">
+                    <i class="fa-regular fa-clock"></i>
+                    <span>25 minutos</span>
+                </div>
+            </div>
+            <h3>Neste curso você aprenderá:</h3>
+            <ul class="lista-curso">
+                <li>✔ O que é e como usar o Google.</li>
+                <li>✔ Como pesquisar receitas, notícias e vídeos.</li>
+                <li>✔ O que são os links e as abas do navegador.</li>
+                <li>✔ Cuidados básicos ao abrir páginas novas.</li>
+            </ul>
+            <a href="CursoInternet.html" class="btn-principal">
+                <i class="fa-solid fa-play"></i>
+                Iniciar Curso
+            </a>
+        </div>
+    </div>
+
+    <div class="modal" id="modalRedesSociais">
+        <div class="modal-conteudo-curso">
+            <button class="fechar-modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h2>
+                <i class="fa-brands fa-whatsapp"></i>
+                Redes Sociais
+            </h2>
+            <p>
+                Fique mais perto da sua família e amigos! Aprenda a usar as principais funções do WhatsApp, Instagram e
+                Facebook no seu dia a dia.
+            </p>
+            <div class="info-curso">
+                <div class="info-item">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span>5 módulos</span>
+                </div>
+                <div class="info-item">
+                    <i class="fa-solid fa-signal"></i>
+                    <span>Iniciante</span>
+                </div>
+                <div class="info-item">
+                    <i class="fa-regular fa-clock"></i>
+                    <span>40 minutos</span>
+                </div>
+            </div>
+            <h3>Neste curso você aprenderá:</h3>
+            <ul class="lista-curso">
+                <li>✔ Mandar áudios e mensagens no WhatsApp.</li>
+                <li>✔ Fazer chamadas de vídeo com a família.</li>
+                <li>✔ Ver fotos e interagir no Instagram.</li>
+                <li>✔ Encontrar velhos amigos no Facebook.</li>
+                <li>✔ Compartilhar fotos e mensagens de forma segura.</li>
+            </ul>
+            <a href="CursoRedesSociais.html" class="btn-principal">
+                <i class="fa-solid fa-play"></i>
+                Iniciar Curso
+            </a>
+        </div>
+    </div>
+
+    <div class="modal" id="modalEmail">
+        <div class="modal-conteudo-curso">
+            <button class="fechar-modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h2>
+                <i class="fa-solid fa-envelope"></i>
+                Usando o E-mail
+            </h2>
+            <p>
+                O e-mail é a sua carta digital. Aprenda a criar a sua conta e a enviar mensagens formais para serviços,
+                empresas ou contatos importantes.
+            </p>
+            <div class="info-curso">
+                <div class="info-item">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span>3 módulos</span>
+                </div>
+                <div class="info-item">
+                    <i class="fa-solid fa-signal"></i>
+                    <span>Iniciante</span>
+                </div>
+                <div class="info-item">
+                    <i class="fa-regular fa-clock"></i>
+                    <span>20 minutes</span>
+                </div>
+            </div>
+            <h3>Neste curso você aprenderá:</h3>
+            <ul class="lista-curso">
+                <li>✔ Criar uma conta de e-mail gratuita (Gmail).</li>
+                <li>✔ Como ler e organizar as mensagens recebidas.</li>
+                <li>✔ Escrever e enviar um e-mail para alguém.</li>
+                <li>✔ Como anexar e baixar fotos ou documentos recebidos.</li>
+            </ul>
+            <a href="CursoEmail.html" class="btn-principal">
+                <i class="fa-solid fa-play"></i>
+                Iniciar Curso
+            </a>
+        </div>
+    </div>
+
+    <div class="modal" id="modalComprasOnline">
+        <div class="modal-conteudo-curso">
+            <button class="fechar-modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h2>
+                <i class="fa-solid fa-cart-shopping"></i>
+                Compras Online
+            </h2>
+            <p>
+                Aprenda a fazer compras em supermercados, farmácias ou grandes lojas da internet com total autonomia,
+                sem precisar sair de casa.
+            </p>
+            <div class="info-curso">
+                <div class="info-item">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span>4 módulos</span>
+                </div>
+                <div class="info-item">
+                    <i class="fa-solid fa-signal"></i>
+                    <span>Intermediário</span>
+                </div>
+                <div class="info-item">
+                    <i class="fa-regular fa-clock"></i>
+                    <span>35 minutos</span>
+                </div>
+            </div>
+            <h3>Neste curso você aprenderá:</h3>
+            <ul class="lista-curso">
+                <li>✔ Como pesquisar e comparar preços em sites confiáveis.</li>
+                <li>✔ Como funciona o carrinho virtual de compras.</li>
+                <li>✔ Entender as formas de pagamento (Pix, boleto e cartão).</li>
+                <li>✔ Como acompanhar a entrega do seu produto até em casa.</li>
+            </ul>
+            <a href="CursoComprasOnline.html" class="btn-principal">
+                <i class="fa-solid fa-play"></i>
+                Iniciar Curso
+            </a>
+        </div>
+    </div>
+
+    <div class="modal" id="modalSegurancaDigital">
+        <div class="modal-conteudo-curso">
+            <button class="fechar-modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h2>
+                <i class="fa-solid fa-shield-halved"></i>
+                Segurança Digital
+            </h2>
+            <p>
+                O curso mais importante! Aprenda a identificar perigos na internet, proteger seus dados pessoais e usar
+                as tecnologias com total tranquilidade.
+            </p>
+            <div class="info-curso">
+                <div class="info-item">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span>5 módulos</span>
+                </div>
+                <div class="info-item">
+                    <i class="fa-solid fa-signal"></i>
+                    <span>Intermediário</span>
+                </div>
+                <div class="info-item">
+                    <i class="fa-regular fa-clock"></i>
+                    <span>45 minutos</span>
+                </div>
+            </div>
+            <h3>Neste curso você aprenderá:</h3>
+            <ul class="lista-curso">
+                <li>✔ Como criar senhas fortes e fáceis de lembrar.</li>
+                <li>✔ Identificar mensagens falsas (golpes de sorteios ou bancos).</li>
+                <li>✔ Cuidados ao clicar em links recebidos por WhatsApp.</li>
+                <li>✔ O que fazer caso suspeite de alguma atividade estranha.</li>
+            </ul>
+            <a href="CursoSegurancaDigital.html" class="btn-principal">
+                <i class="fa-solid fa-play"></i>
+                Iniciar Curso
+            </a>
+        </div>
+    </div>
+
+    <!-- BENEFÍCIOS -->
+    <section class="beneficios" id="beneficios">
+
+        <h2>O que você vai encontrar nos cursos</h2>
+
+        <div class="beneficios-grid">
+
+            <div class="beneficio">
+                <i class="fa-solid fa-video"></i>
+                <h3>Vídeos Simples</h3>
+                <p>Aulas em vídeo com linguagem fácil.</p>
+            </div>
+
+            <div class="beneficio">
+                <i class="fa-regular fa-clock"></i>
+                <h3>Aprenda no seu tempo</h3>
+                <p>Sem pressa e sem complicação.</p>
+            </div>
+
+            <div class="beneficio">
+                <i class="fa-solid fa-shield"></i>
+                <h3>Navegue com segurança</h3>
+                <p>Aprenda a evitar golpes e fraudes.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+
+        <h2>Ficou com alguma dúvida?</h2>
+
+        <div class="pergunta">
+            <button class="accordion">
+                <span>Como faço para me cadastrar?</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+
+            <div class="resposta">
+                Basta clicar em Entrar e criar sua conta gratuitamente.
+            </div>
+        </div>
+
+        <div class="pergunta">
+            <button class="accordion">
+                Os cursos são gratuitos?
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+
+            <div class="resposta">
+                Sim. Todos os cursos do TechSênior são gratuitos.
+            </div>
+        </div>
+
+        <div class="pergunta">
+            <button class="accordion">
+                Posso assistir pelo celular?
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+
+            <div class="resposta">
+                Sim. Os cursos funcionam em celulares, tablets e computadores.
+            </div>
+        </div>
+
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+
+        <div>
+
+            <h2>Está pronto para aprender?</h2>
+
+            <p>
+                No TechSênior, você aprende de forma simples, prática e segura.
+            </p>
+
+        </div>
+
+        <button class="btn-principal" id="btnComecar">
+            <i class="fa-solid fa-play"></i>
+            Começar agora
+        </button>
+
+    </section>
+
+    <!-- RODAPÉ -->
+    <footer>
+
+        <div class="coluna">
+            <h3>TechSênior</h3>
+            <p>Tecnologia ao seu alcance.</p>
+
+            <div class="footer-linha logo">
+                <div class="logo-footer">
+                    <img src="Imagens/Logotipo Sem Fundo.png" alt="Logotipo TechSênior">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="coluna">
+            <h4>Navegação</h4>
+            <a href="Início.html">Início</a>
+            <a href="Cursos.html">Cursos</a>
+            <a href="Comunidade.html">Comunidade</a>
+            <a href="Sobre Nós.html">Sobre Nós</a>
+        </div>
+
+        <div class="coluna">
+            <h4>Institucional</h4>
+            <a href="Termos de Uso.html">Termos de Uso</a>
+            <a href="Política de Privacidade.html">Política de Privacidade</a>
+            <a href="Declaração de Acessibilidade.html">Declaração de Acessibilidade</a>
+        </div>
+
+        <div class="coluna">
+            <h4>Comunidade</h4>
+            <a href="Regras da Comunidade.html">Regras da Comunidade</a>
+            <a href="Sobre Nós.html">Fale Conosco</a>
+
+            <div class="footer-linha redes">
+
+                <div class="coluna">
+                    <h4>Redes Sociais</h4>
+
+                    <a href="https://www.instagram.com/techsenior_tcc/"><i class="fa-brands fa-instagram"></i>
+                        Instagram</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="copyright">
+        © 2026 TechSênior • Projeto desenvolvido para o Trabalho de Conclusão de Curso (TCC) do Curso Técnico em
+        Desenvolvimento de Sistemas.<br>
+        Desenvolvido por: Equipe do TechSênior
+    </div>
+
+    <script src="Script - Java/Cursos.js"></script>
+    <script src="Script - Java/Padrão.js"></script>
+
+</body>
+
+</html>

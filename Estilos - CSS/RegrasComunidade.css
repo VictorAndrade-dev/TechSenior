@@ -1,0 +1,347 @@
+/* ==========================================
+   REGRAS DA COMUNIDADE
+========================================== */
+
+
+.regras {
+
+    background: var(--fundo);
+
+    padding: 80px 8%;
+
+}
+
+
+
+/* CONTAINER PRINCIPAL */
+
+
+.regras-container {
+
+    max-width: 900px;
+
+    margin: auto;
+
+    background: var(--branco);
+
+    padding: 55px;
+
+    border-radius: 30px;
+
+    border: 1px solid var(--borda);
+
+    box-shadow: var(--sombra);
+
+    opacity: 0;
+
+    transform: translateY(40px);
+
+    animation: aparecerRegras 0.8s ease forwards;
+
+}
+
+
+
+
+
+/* ANIMAÇÃO */
+
+
+@keyframes aparecerRegras {
+
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(40px);
+
+    }
+
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+
+}
+
+
+
+
+
+/* TÍTULO PRINCIPAL */
+
+
+.regras-container h1 {
+
+    text-align: center;
+
+    color: var(--titulo);
+
+    margin-bottom: 10px;
+
+}
+
+
+
+
+
+/* SUBTÍTULO */
+
+
+.subtitulo {
+
+    text-align: center;
+
+    color: var(--titulo);
+
+    font-size: 25px;
+
+    margin-bottom: 40px;
+
+}
+
+
+
+
+
+/* INTRODUÇÃO */
+
+
+.introducao {
+
+    text-align: center;
+
+    font-size: 20px;
+
+    line-height: 1.8;
+
+    color: var(--texto);
+
+    margin-bottom: 35px;
+
+}
+
+
+
+
+
+/* SEÇÕES DAS REGRAS */
+
+
+.regra {
+
+    border-top: 1px solid var(--borda);
+
+    padding-top: 30px;
+
+    margin-top: 30px;
+
+}
+
+
+
+
+
+/* TÍTULOS DAS REGRAS */
+
+
+.regra h2 {
+
+    color: var(--titulo);
+
+    font-size: 24px;
+
+    margin-bottom: 20px;
+
+}
+
+
+
+
+
+/* TEXTOS */
+
+
+.regra p {
+
+    color: var(--texto);
+
+    font-size: 18px;
+
+    line-height: 1.8;
+
+    margin-bottom: 20px;
+
+}
+
+
+
+
+
+/* LISTAS */
+
+
+.regra ul {
+
+    margin: 15px 0 25px 25px;
+
+}
+
+
+
+
+
+.regra li {
+
+    color: var(--texto);
+
+    font-size: 18px;
+
+    line-height: 1.8;
+
+    margin-bottom: 8px;
+
+}
+
+
+
+
+
+/* FINAL DA PÁGINA */
+
+
+.final-regras {
+
+    border-top: 1px solid var(--borda);
+
+    margin-top: 35px;
+
+    padding-top: 35px;
+
+    text-align: center;
+
+}
+
+
+
+
+
+.final-regras strong {
+
+    color: var(--titulo);
+
+    font-size: 22px;
+
+}
+
+
+
+
+
+.final-regras p {
+
+    color: var(--texto);
+
+    font-size: 18px;
+
+    line-height: 1.8;
+
+    margin-top: 15px;
+
+}
+
+
+
+
+
+/* ==========================================
+   RESPONSIVIDADE
+========================================== */
+
+
+@media(max-width:768px){
+
+
+    .regras {
+
+        padding: 50px 5%;
+
+    }
+
+
+
+    .regras-container {
+
+        padding: 35px 25px;
+
+        border-radius: 20px;
+
+    }
+
+
+
+    .regras-container h1 {
+
+        font-size: 35px;
+
+    }
+
+
+
+    .subtitulo {
+
+        font-size: 22px;
+
+    }
+
+
+
+    .introducao,
+    .regra p,
+    .regra li {
+
+        font-size: 16px;
+
+    }
+
+
+
+    .regra h2 {
+
+        font-size: 21px;
+
+    }
+
+
+}
+
+
+
+
+
+@media(max-width:480px){
+
+
+    .regras-container {
+
+        padding: 25px 18px;
+
+    }
+
+
+
+    .regras-container h1 {
+
+        font-size: 30px;
+
+    }
+
+
+
+}

@@ -1,0 +1,508 @@
+/* ==========================================
+   PÁGINA CADASTRO
+========================================== */
+
+
+.cadastro {
+
+    min-height: 100vh;
+
+    background: var(--fundo);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 40px 20px;
+
+}
+
+
+
+
+
+/* ==========================================
+   CONTAINER PRINCIPAL
+========================================== */
+
+
+.cadastro-container {
+
+    width: 100%;
+
+    max-width: 500px;
+
+    background: var(--branco);
+
+    padding: 45px;
+
+    border-radius: 30px;
+
+    box-shadow: var(--sombra);
+
+    border: 1px solid var(--borda);
+
+    text-align: center;
+
+
+    opacity: 0;
+
+    transform: translateY(30px);
+
+    animation: aparecerCadastro .8s ease forwards;
+
+}
+
+
+
+
+
+/* ANIMAÇÃO */
+
+
+@keyframes aparecerCadastro {
+
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(30px);
+
+    }
+
+
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+
+}
+
+
+
+
+
+/* ==========================================
+   VOLTAR
+========================================== */
+
+
+.voltar {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: var(--azul);
+
+    font-size: 15px;
+
+    text-decoration: none;
+
+    margin-bottom: 25px;
+
+    transition: .3s;
+
+}
+
+
+
+.voltar:hover {
+
+    transform: translateX(-5px);
+
+}
+
+
+
+
+
+/* ==========================================
+   LOGO
+========================================== */
+
+
+.cadastro-logo img {
+
+    width: 150px;
+
+    margin-bottom: 20px;
+
+}
+
+
+
+
+
+/* ==========================================
+   TÍTULO
+========================================== */
+
+
+.cadastro-titulo h1 {
+
+    font-family: 'Poppins', sans-serif;
+
+    color: var(--titulo);
+
+    font-size: 30px;
+
+    margin-bottom: 10px;
+
+}
+
+
+
+
+
+.cadastro-titulo p {
+
+    color: var(--texto);
+
+    font-size: 16px;
+
+    margin-bottom: 30px;
+
+}
+
+
+
+
+
+/* ==========================================
+   CAMPOS
+========================================== */
+
+
+.campo {
+
+    text-align: left;
+
+    margin-bottom: 20px;
+
+}
+
+
+
+.campo label {
+
+    display: block;
+
+    color: var(--titulo);
+
+    font-weight: 600;
+
+    margin-bottom: 8px;
+
+}
+
+
+
+
+
+.input-box {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    border: 1px solid var(--borda);
+
+    border-radius: 15px;
+
+    padding: 14px 16px;
+
+    transition: .3s;
+
+}
+
+
+
+
+
+.input-box:focus-within {
+
+    border-color: var(--azul);
+
+    box-shadow: 0 0 0 3px rgba(36,99,235,.12);
+
+}
+
+
+
+
+
+.input-box i {
+
+    color: var(--azul);
+
+}
+
+
+
+
+
+.input-box input {
+
+    width: 100%;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    font-size: 16px;
+
+    color: var(--texto);
+
+}
+
+
+
+
+
+/* BOTÃO MOSTRAR SENHA */
+
+
+.mostrar-senha {
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    color: var(--texto);
+
+}
+
+
+
+
+
+/* ==========================================
+   TERMOS
+========================================== */
+
+
+.termos {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
+    text-align: left;
+
+    margin: 20px 0;
+
+}
+
+
+
+
+
+.termos input {
+
+    margin-top: 5px;
+
+    cursor: pointer;
+
+}
+
+
+
+
+
+.termos label {
+
+    font-size: 14px;
+
+    color: var(--texto);
+
+    line-height: 1.5;
+
+}
+
+
+
+
+
+.termos a {
+
+    color: var(--azul);
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+}
+
+
+
+
+
+.termos a:hover {
+
+    text-decoration: underline;
+
+}
+
+
+
+
+
+/* ==========================================
+   BOTÃO CADASTRO
+========================================== */
+
+
+.btn-cadastro {
+
+    width: 100%;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 30px;
+
+    background: var(--azul);
+
+    color: white;
+
+    font-size: 18px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .3s;
+
+}
+
+
+
+
+
+.btn-cadastro:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow: var(--sombra);
+
+}
+
+
+
+
+
+/* ==========================================
+   LOGIN
+========================================== */
+
+
+.login-link {
+
+    margin-top: 25px;
+
+    color: var(--texto);
+
+}
+
+
+
+
+
+.login-link a {
+
+    color: var(--azul);
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+}
+
+
+
+
+
+.login-link a:hover {
+
+    text-decoration: underline;
+
+}
+
+
+
+
+
+/* ==========================================
+   RESPONSIVIDADE
+========================================== */
+
+
+@media(max-width:600px) {
+
+
+    .cadastro {
+
+        padding: 25px 15px;
+
+    }
+
+
+
+
+    .cadastro-container {
+
+        padding: 35px 25px;
+
+        border-radius: 22px;
+
+    }
+
+
+
+
+    .cadastro-titulo h1 {
+
+        font-size: 25px;
+
+    }
+
+
+
+
+    .cadastro-logo img {
+
+        width: 120px;
+
+    }
+
+
+
+
+    .termos label {
+
+        font-size: 13px;
+
+    }
+
+
+}

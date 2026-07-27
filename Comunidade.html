@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TechSênior - Comunidade</title>
+
+
+    <!-- Fontes -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+
+
+    <!-- CSS -->
+
+    <link rel="stylesheet" href="Estilos - CSS/Padrão.css">
+
+    <link rel="stylesheet" href="Estilos - CSS/Comunidade.css">
+
+
+
+    <!-- Ícones -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+</head>
+
+
+<body>
+
+
+
+    <!-- ==================================
+        HEADER
+    ================================== -->
+
+
+    <header>
+
+
+        <button class="menu-toggle" id="menuToggle">
+
+            <i class="fa-solid fa-bars"></i>
+
+        </button>
+
+
+
+        <div class="logo">
+
+            <img src="Imagens/Logotipo Sem Fundo.png" alt="Logo TechSênior">
+
+        </div>
+
+
+
+
+        <nav>
+
+            <a href="Início.html">
+                Início
+            </a>
+
+
+            <a href="Cursos.html">
+                Cursos
+            </a>
+
+
+            <a href="Comunidade.html">
+                Comunidade
+            </a>
+
+
+            <a href="Sobre Nós.html">
+                Sobre Nós
+            </a>
+
+
+        </nav>
+
+
+
+
+        <a class="btn-login" id="btnUsuario" href="Login.html">
+            <i class="fa-regular fa-user"></i>
+            Entrar
+        </a>
+
+    </header>
+
+
+
+
+
+    <!-- MENU MOBILE -->
+
+
+    <div class="sidebar" id="sidebar">
+
+
+        <button class="close-menu" id="closeMenu">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+
+
+        <nav class="sidebar-nav">
+
+
+            <a href="Início.html">
+                Início
+            </a>
+
+
+            <a href="Cursos.html">
+                Cursos
+            </a>
+
+
+            <a href="Comunidade.html">
+                Comunidade
+            </a>
+
+
+            <a href="Sobre Nós.html">
+                Sobre Nós
+            </a>
+
+
+        </nav>
+
+
+    </div>
+
+
+
+    <div class="overlay" id="overlay"></div>
+
+
+
+
+
+
+
+    <!-- ==================================
+        HERO COMUNIDADE
+    ================================== -->
+
+
+    <main>
+
+
+        <section class="hero-comunidade">
+
+            <div class="hero-comunidade-container">
+
+
+                <div class="hero-comunidade-texto">
+
+
+                    <h1>
+
+                        Comunidade
+                        <br>
+                        TechSênior
+
+                    </h1>
+
+
+
+                    <p>
+
+                        Um espaço para compartilhar experiências,
+                        tirar dúvidas e ajudar a construir uma
+                        comunidade digital mais inclusiva.
+
+                    </p>
+
+
+
+                </div>
+
+                <div class="hero-comunidade-imagem">
+                    <img src="Imagens/Idosa utilizando um notebook com seu neto.webp"
+                        alt="Idosa utilizando um notebook com seu neto">
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+
+
+
+        <!-- ==================================
+            OPÇÕES DA COMUNIDADE
+        ================================== -->
+
+
+        <section class="opcoes-comunidade">
+
+
+            <h2>
+
+                Como podemos ajudar?
+
+            </h2>
+
+
+            <!-- ==================================
+                CARDS DA COMUNIDADE
+            ================================== -->
+
+
+            <div class="cards-comunidade">
+
+
+
+                <!-- ================================
+                ESPAÇO DE CONVERSA
+            ================================ -->
+
+
+                <div class="card-comunidade">
+
+
+                    <div class="icone-comunidade">
+
+                        <i class="fa-solid fa-comments"></i>
+
+                    </div>
+
+
+
+                    <h3>
+
+                        Espaço de Conversa
+
+                    </h3>
+
+
+
+                    <p>
+
+                        Converse com outros usuários,
+                        compartilhe experiências e tire
+                        suas dúvidas.
+
+                    </p>
+
+
+
+                    <button class="btn-card" id="abrirConversa">
+
+                        Acessar comunidade
+
+                    </button>
+
+
+
+                </div>
+
+
+                <!-- ================================
+                AVALIAÇÕES
+            ================================ -->
+
+
+                <div class="card-comunidade">
+
+
+                    <div class="icone-comunidade">
+
+                        <i class="fa-solid fa-star"></i>
+
+                    </div>
+
+
+
+                    <h3>
+
+                        Avaliações
+
+                    </h3>
+
+
+
+                    <p>
+
+                        Conte sua experiência e ajude
+                        o TechSênior a melhorar.
+
+                    </p>
+
+
+
+                    <button class="btn-card" id="abrirAvaliacao">
+
+                        Deixar avaliação
+
+                    </button>
+
+
+
+                </div>
+
+
+                <!-- ================================
+                CONTATO
+            ================================ -->
+
+
+                <div class="card-comunidade">
+
+
+                    <div class="icone-comunidade">
+
+                        <i class="fa-solid fa-headset"></i>
+
+                    </div>
+
+
+
+                    <h3>
+
+                        Ajuda e Contato
+
+                    </h3>
+
+
+
+                    <p>
+
+                        Encontrou algum problema?
+                        Envie uma mensagem para nossa equipe.
+
+                    </p>
+
+
+
+                    <button class="btn-card" id="abrirContato">
+
+                        Entrar em contato
+
+                    </button>
+
+
+
+                </div>
+
+
+
+
+            </div>
+
+
+        </section>
+
+        <!-- ==================================
+            MODAL CONVERSA
+        ================================== -->
+
+
+        <div class="modal" id="modalConversa">
+
+
+            <div class="modal-conteudo">
+
+
+                <button class="fechar-modal">
+
+                    <i class="fa-solid fa-xmark"></i>
+
+                </button>
+
+
+
+                <h2>
+
+                    Comunidade TechSênior
+
+                </h2>
+
+
+
+                <p>
+
+                    Compartilhe suas experiências
+                    e converse com outros usuários.
+
+                </p>
+
+
+
+
+                <div class="area-mensagens">
+
+
+                    <div class="mensagem">
+
+                        <strong>
+                            Maria:
+                        </strong>
+
+                        Aprendi bastante com os cursos
+                        do TechSênior!
+
+                    </div>
+
+
+
+                    <div class="mensagem">
+
+                        <strong>
+                            João:
+                        </strong>
+
+                        Também gostei muito das aulas
+                        sobre celular.
+
+                    </div>
+
+
+
+                </div>
+
+
+
+
+
+                <div class="campo-mensagem">
+
+
+                    <input type="text" placeholder="Digite sua mensagem">
+
+
+                    <button>
+
+                        Enviar
+
+                    </button>
+
+
+                </div>
+
+
+
+            </div>
+
+
+        </div>
+
+        <!-- ==================================
+            MODAL AVALIAÇÃO
+        ================================== -->
+
+
+        <div class="modal" id="modalAvaliacao">
+
+
+            <div class="modal-conteudo">
+
+
+                <button class="fechar-modal">
+
+                    <i class="fa-solid fa-xmark"></i>
+
+                </button>
+
+
+
+                <h2>
+
+                    Avalie sua experiência
+
+                </h2>
+
+
+
+                <p>
+
+                    Sua opinião ajuda o TechSênior
+                    a continuar melhorando.
+
+                </p>
+
+
+
+
+                <div class="estrelas">
+
+
+                    <i class="fa-solid fa-star"></i>
+
+                    <i class="fa-solid fa-star"></i>
+
+                    <i class="fa-solid fa-star"></i>
+
+                    <i class="fa-solid fa-star"></i>
+
+                    <i class="fa-regular fa-star"></i>
+
+
+                </div>
+
+
+
+
+                <textarea placeholder="Digite sua avaliação"></textarea>
+
+
+
+                <button class="btn-principal">
+
+                    Enviar avaliação
+
+                </button>
+
+
+
+            </div>
+
+
+        </div>
+
+        <!-- ==================================
+            MODAL CONTATO
+        ================================== -->
+
+
+        <div class="modal" id="modalContato">
+
+
+            <div class="modal-conteudo">
+
+
+                <button class="fechar-modal">
+
+                    <i class="fa-solid fa-xmark"></i>
+
+                </button>
+
+
+
+
+                <h2>
+
+                    Ajuda e Contato
+
+                </h2>
+
+
+
+                <p>
+
+                    Encontrou algum problema ou tem alguma dúvida?
+                    Envie uma mensagem para nossa equipe.
+
+                </p>
+
+
+
+
+
+                <div class="campo-form">
+
+
+                    <label>
+
+                        Nome
+
+                    </label>
+
+
+                    <input type="text" placeholder="Digite seu nome">
+
+                </div>
+
+
+
+
+
+
+                <div class="campo-form">
+
+
+                    <label>
+
+                        E-mail
+
+                    </label>
+
+
+                    <input type="email" placeholder="Digite seu e-mail">
+
+                </div>
+
+
+
+
+
+
+
+                <div class="campo-form">
+
+
+                    <label>
+
+                        Motivo do contato
+
+                    </label>
+
+
+
+                    <select>
+
+
+                        <option>
+
+                            Selecione uma opção
+
+                        </option>
+
+
+                        <option>
+
+                            Erro no site
+
+                        </option>
+
+
+                        <option>
+
+                            Dúvida sobre cursos
+
+                        </option>
+
+
+                        <option>
+
+                            Sugestão
+
+                        </option>
+
+
+                        <option>
+
+                            Outro
+
+                        </option>
+
+
+                    </select>
+
+
+                </div>
+
+
+
+
+
+
+
+                <div class="campo-form">
+
+
+                    <label>
+
+                        Mensagem
+
+                    </label>
+
+
+                    <textarea placeholder="Digite sua mensagem">
+</textarea>
+
+
+                </div>
+
+
+
+
+
+
+
+                <button class="btn-principal">
+
+                    Enviar mensagem
+
+                </button>
+
+
+
+
+            </div>
+
+
+        </div>
+
+        <!-- CTA -->
+        <section class="cta">
+
+            <div>
+
+                <h2>Quer aprender mais?</h2>
+
+                <p>
+                    No TechSênior, você aprende de forma simples, prática e segura.
+                </p>
+
+            </div>
+
+            <button class="btn-principal" id="btnComecar">
+                <i class="fa-solid fa-play"></i>
+                Começar agora
+            </button>
+
+        </section>
+
+        <!-- ==================================
+            FOOTER
+        ================================== -->
+
+
+        <footer>
+
+
+            <div class="coluna">
+
+
+                <h3>
+
+                    TechSênior
+
+                </h3>
+
+
+
+                <p>
+
+                    Tecnologia ao seu alcance.
+
+                </p>
+
+
+
+                <div class="footer-linha logo">
+
+
+                    <div class="logo-footer">
+
+
+                        <img src="Imagens/Logotipo Sem Fundo.png" alt="Logotipo TechSênior">
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+
+
+
+
+            <div class="coluna">
+
+
+                <h4>
+
+                    Navegação
+
+                </h4>
+
+
+
+                <a href="Início.html">
+
+                    Início
+
+                </a>
+
+
+
+                <a href="Cursos.html">
+
+                    Cursos
+
+                </a>
+
+
+
+                <a href="Comunidade.html">
+
+                    Comunidade
+
+                </a>
+
+
+
+                <a href="Sobre Nós.html">
+
+                    Sobre Nós
+
+                </a>
+
+
+
+            </div>
+
+
+
+
+
+
+
+            <div class="coluna">
+
+
+                <h4>
+
+                    Institucional
+
+                </h4>
+
+
+
+                <a href="Termos de Uso.html">
+
+                    Termos de Uso
+
+                </a>
+
+
+
+                <a href="Política de Privacidade.html">
+
+                    Política de Privacidade
+
+                </a>
+
+
+
+                <a href="Declaração de Acessibilidade.html">
+
+                    Declaração de Acessibilidade
+
+                </a>
+
+
+
+            </div>
+
+
+
+
+
+
+
+            <div class="coluna">
+
+
+                <h4>
+
+                    Comunidade
+
+                </h4>
+
+
+
+                <a href="Regras da Comunidade.html">
+
+                    Regras da Comunidade
+
+                </a>
+
+
+
+                <a href="Comunidade.html">
+
+                    Fale Conosco
+
+                </a>
+
+
+
+
+
+                <div class="footer-linha redes">
+
+                    <div class="coluna">
+                        <h4>Redes Sociais</h4>
+
+                        <a href="https://www.instagram.com/techsenior_tcc/"><i class="fa-brands fa-instagram"></i>
+                            Instagram</a>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+        </footer>
+
+
+
+
+
+
+
+        <div class="copyright">
+
+
+            © 2026 TechSênior • Projeto desenvolvido para o Trabalho de Conclusão de Curso (TCC) do Curso Técnico em
+            Desenvolvimento de Sistemas.
+
+
+            <br>
+
+
+            Desenvolvido por: Equipe do TechSênior
+
+
+        </div>
+
+
+
+
+
+
+        <!-- ==================================
+            SCRIPTS
+        ================================== -->
+
+
+        <script src="Script - Java/Padrão.js"></script>
+
+        <script src="Script - Java/Comunidade.js"></script>
+
+
+
+</body>
+
+
+</html>

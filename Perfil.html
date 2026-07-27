@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TechSênior - Meu Perfil</title>
+
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+
+    <!-- CSS -->
+
+    <link rel="stylesheet" href="Estilos - CSS/Padrão.css">
+
+    <link rel="stylesheet" href="Estilos - CSS/Perfil.css">
+
+
+    <!-- Ícones -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+</head>
+
+
+<body>
+
+
+    <!-- ==================================
+        HEADER
+    ================================== -->
+
+
+    <header>
+
+
+        <button class="menu-toggle" id="menuToggle">
+
+            <i class="fa-solid fa-bars"></i>
+
+        </button>
+
+
+
+        <div class="logo">
+
+            <img src="Imagens/Logotipo Sem Fundo.png" alt="Logo TechSênior">
+
+        </div>
+
+
+
+
+        <nav>
+
+            <a href="Início.html">Início</a>
+
+            <a href="Cursos.html">Cursos</a>
+
+            <a href="Comunidade.html">Comunidade</a>
+
+            <a href="Sobre Nós.html">Sobre Nós</a>
+
+        </nav>
+
+
+
+        <button class="btn-login" id="btnUsuario">
+
+            <i class="fa-solid fa-user"></i>
+
+            Perfil
+
+        </button>
+
+
+
+    </header>
+
+
+
+
+
+    <!-- MENU MOBILE -->
+
+
+    <div class="sidebar" id="sidebar">
+
+
+        <button class="close-menu" id="closeMenu">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+
+
+        <nav class="sidebar-nav">
+
+
+            <a href="Início.html">
+                Início
+            </a>
+
+
+            <a href="Cursos.html">
+                Cursos
+            </a>
+
+
+            <a href="Comunidade.html">
+                Comunidade
+            </a>
+
+
+            <a href="Sobre Nós.html">
+                Sobre Nós
+            </a>
+
+
+
+        </nav>
+
+
+    </div>
+
+
+    <div class="overlay" id="overlay"></div>
+
+
+
+
+
+    <!-- ==================================
+        PERFIL
+    ================================== -->
+
+
+    <main>
+
+
+        <section class="perfil">
+
+
+            <div class="perfil-container">
+
+
+
+                <!-- CABEÇALHO DO PERFIL -->
+
+
+                <div class="perfil-header">
+
+
+                    <div class="foto-perfil">
+
+                        <i class="fa-solid fa-user"></i>
+
+                    </div>
+
+
+
+                    <h1>
+
+                        Olá, <span id="nomePerfil">Usuário</span>!
+
+                    </h1>
+
+
+                    <p>
+
+                        Continue aprendendo tecnologia
+                        no seu ritmo.
+
+                    </p>
+
+
+                </div>
+
+
+
+
+
+                <!-- INFORMAÇÕES -->
+
+
+                <section class="informacoes">
+
+
+                    <h2>
+
+                        Minha conta
+
+                    </h2>
+
+
+                    <div class="info-card">
+
+
+                        <div>
+
+                            <i class="fa-solid fa-user"></i>
+
+                            <p>
+
+                                <strong>
+                                    Nome:
+                                </strong>
+
+                                <span id="nomeUsuario">
+                                    Usuário
+                                </span>
+
+                            </p>
+
+                        </div>
+
+
+
+                        <div>
+
+                            <i class="fa-solid fa-envelope"></i>
+
+                            <p>
+
+                                <strong>
+                                    Email:
+                                </strong>
+
+                                <span id="emailUsuario">
+                                    email@email.com
+                                </span>
+
+                            </p>
+
+                        </div>
+
+                        <div>
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            <p>
+
+                                <strong>
+                                    Senha:
+                                </strong>
+
+                                <span id="senhaUsuario">
+                                    ********
+                                </span>
+
+                            </p>
+
+
+                            <button class="mostrar-senha" id="mostrarSenha">
+
+                                <i class="fa-solid fa-eye"></i>
+
+                            </button>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </section>
+
+                <!-- ==================================
+                MEUS CURSOS
+                ================================== -->
+
+
+                <section class="meus-cursos">
+
+
+                    <h2>
+
+                        Meus cursos
+
+                    </h2>
+
+
+                    <div class="cards-cursos">
+
+
+                        <!-- CURSO INICIADO -->
+
+
+                        <div class="card-curso">
+
+
+                            <div class="icone-curso">
+
+                                <i class="fa-solid fa-mobile-screen"></i>
+
+                            </div>
+
+
+                            <h3>
+
+                                Celular
+
+                            </h3>
+
+
+                            <p>
+
+                                Aprenda as funções básicas
+                                do seu smartphone.
+
+                            </p>
+
+
+
+                            <div class="progresso">
+
+
+                                <span>
+
+                                    Progresso: 60%
+
+                                </span>
+
+
+                                <div class="barra">
+
+
+                                    <div class="barra-preenchida" style="width:60%;"></div>
+
+
+                                </div>
+
+
+                            </div>
+
+
+
+                            <button class="btn-card">
+
+                                Continuar aprendendo
+
+                            </button>
+
+
+
+                        </div>
+
+
+
+
+
+
+                        <!-- CURSO INICIADO -->
+
+
+                        <div class="card-curso">
+
+
+                            <div class="icone-curso">
+
+                                <i class="fa-solid fa-globe"></i>
+
+                            </div>
+
+
+                            <h3>
+
+                                Internet
+
+                            </h3>
+
+
+                            <p>
+
+                                Aprenda a navegar pela internet
+                                com segurança.
+
+                            </p>
+
+
+
+                            <div class="progresso">
+
+
+                                <span>
+
+                                    Progresso: 30%
+
+                                </span>
+
+
+                                <div class="barra">
+
+
+                                    <div class="barra-preenchida" style="width:30%;"></div>
+
+
+                                </div>
+
+
+                            </div>
+
+
+
+                            <button class="btn-card">
+
+                                Continuar aprendendo
+
+                            </button>
+
+
+
+                        </div>
+
+
+
+                    </div>
+
+
+                </section>
+
+
+
+
+
+
+
+                <!-- ==================================
+                TODOS OS CURSOS
+                ================================== -->
+
+
+                <section class="todos-cursos">
+
+
+                    <h2>
+
+                        Explore novos cursos
+
+                    </h2>
+
+
+
+                    <div class="cards-cursos">
+
+
+
+                        <div class="card-curso">
+
+
+                            <div class="icone-curso">
+
+                                <i class="fa-brands fa-whatsapp"></i>
+
+                            </div>
+
+
+                            <h3>
+
+                                Redes Sociais
+
+                            </h3>
+
+
+                            <p>
+
+                                Aprenda a utilizar WhatsApp,
+                                Instagram e Facebook.
+
+                            </p>
+
+
+                            <button class="btn-card">
+
+                                Começar curso
+
+                            </button>
+
+
+                        </div>
+
+
+
+
+
+
+
+                        <div class="card-curso">
+
+
+                            <div class="icone-curso">
+
+                                <i class="fa-solid fa-envelope"></i>
+
+                            </div>
+
+
+                            <h3>
+
+                                E-mail
+
+                            </h3>
+
+
+                            <p>
+
+                                Aprenda a criar e utilizar
+                                seu e-mail.
+
+                            </p>
+
+
+                            <button class="btn-card">
+
+                                Começar curso
+
+                            </button>
+
+
+                        </div>
+
+
+
+
+
+
+
+                        <div class="card-curso">
+
+
+                            <div class="icone-curso">
+
+                                <i class="fa-solid fa-cart-shopping"></i>
+
+                            </div>
+
+
+                            <h3>
+
+                                Compras Online
+
+                            </h3>
+
+
+                            <p>
+
+                                Aprenda a realizar compras
+                                pela internet.
+
+                            </p>
+
+
+                            <button class="btn-card">
+
+                                Começar curso
+
+                            </button>
+
+
+                        </div>
+
+
+
+
+
+
+
+                        <div class="card-curso">
+
+
+                            <div class="icone-curso">
+
+                                <i class="fa-solid fa-shield-halved"></i>
+
+                            </div>
+
+
+                            <h3>
+
+                                Segurança Digital
+
+                            </h3>
+
+
+                            <p>
+
+                                Proteja seus dados e evite
+                                golpes digitais.
+
+                            </p>
+
+
+                            <button class="btn-card">
+
+                                Começar curso
+
+                            </button>
+
+
+                        </div>
+
+
+
+                    </div>
+
+
+                </section>
+
+                <!-- ==================================
+                    CONFIGURAÇÕES
+                ================================== -->
+
+
+                <section class="configuracoes">
+
+
+                    <h2>
+
+                        Configurações
+
+                    </h2>
+
+
+
+                    <div class="config-card">
+
+
+                        <div>
+
+                            <i class="fa-solid fa-gear"></i>
+
+                            <p>
+
+                                Editar informações da conta
+
+                            </p>
+
+                        </div>
+
+
+
+                        <button class="btn-editar">
+
+                            Editar
+
+                        </button>
+
+
+                    </div>
+
+
+
+
+
+                    <div class="config-card">
+
+
+                        <div>
+
+                            <i class="fa-solid fa-right-from-bracket"></i>
+
+                            <p>
+
+                                Sair da conta
+
+                            </p>
+
+                        </div>
+
+
+
+                        <button class="btn-sair" id="btnSair">
+
+                            Sair
+
+                        </button>
+
+
+                    </div>
+
+
+
+                </section>
+
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+
+
+    <!-- ==================================
+        FOOTER
+    ================================== -->
+
+
+    <footer>
+
+
+        <div class="coluna">
+
+
+            <h3>
+
+                TechSênior
+
+            </h3>
+
+
+            <p>
+
+                Tecnologia ao seu alcance.
+
+            </p>
+
+
+
+            <div class="footer-linha logo">
+
+
+                <div class="logo-footer">
+
+
+                    <img src="Imagens/Logotipo Sem Fundo.png" alt="Logotipo TechSênior">
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+
+        <div class="coluna">
+
+
+            <h4>
+
+                Navegação
+
+            </h4>
+
+
+            <a href="Início.html">
+                Início
+            </a>
+
+
+            <a href="Cursos.html">
+                Cursos
+            </a>
+
+
+            <a href="Comunidade.html">
+                Comunidade
+            </a>
+
+
+            <a href="Sobre Nós.html">
+                Sobre Nós
+            </a>
+
+
+        </div>
+
+
+
+
+
+
+
+        <div class="coluna">
+
+
+            <h4>
+
+                Institucional
+
+            </h4>
+
+
+            <a href="Termos de Uso.html">
+                Termos de Uso
+            </a>
+
+
+            <a href="Política de Privacidade.html">
+                Política de Privacidade
+            </a>
+
+
+            <a href="Declaração de Acessibilidade.html">
+                Declaração de Acessibilidade
+            </a>
+
+
+        </div>
+
+
+
+
+
+
+
+        <div class="coluna">
+
+
+            <h4>
+
+                Comunidade
+
+            </h4>
+
+
+            <a href="Regras da Comunidade.html">
+                Regras da Comunidade
+            </a>
+
+
+            <a href="Sobre Nós.html">
+                Fale Conosco
+            </a>
+
+
+            <div class="footer-linha redes">
+                <div class="coluna">
+
+                    <h4>
+                        Redes Sociais
+                    </h4>
+
+                    <a href="https://www.instagram.com/techsenior_tcc/">
+                        <i class="fa-brands fa-instagram"></i>
+                        Instagram
+                    </a>
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+    </footer>
+
+
+
+
+    <div class="copyright">
+
+
+        © 2026 TechSênior • Projeto desenvolvido para o Trabalho de Conclusão de Curso (TCC) do Curso Técnico em
+        Desenvolvimento de Sistemas.
+
+        <br>
+
+        Desenvolvido por: Equipe do TechSênior
+
+
+    </div>
+
+
+
+
+
+    <!-- SCRIPTS -->
+
+
+    <script src="Script - Java/Perfil.js"></script>
+
+    <script src="Script - Java/Padrão.js"></script>
+
+
+
+</body>
+
+</html>

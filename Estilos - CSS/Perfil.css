@@ -1,0 +1,576 @@
+/* ==========================================
+   PERFIL DO USUÁRIO
+========================================== */
+
+
+.perfil {
+
+    background: var(--fundo);
+
+    padding: 70px 8%;
+
+}
+
+
+
+/* CONTAINER PRINCIPAL */
+
+
+.perfil-container {
+
+    max-width: 1100px;
+
+    margin: auto;
+
+}
+
+
+
+
+
+/* ==========================================
+   CABEÇALHO DO PERFIL
+========================================== */
+
+
+.perfil-header {
+
+    background: var(--branco);
+
+    text-align: center;
+
+    padding: 45px 30px;
+
+    border-radius: 30px;
+
+    box-shadow: var(--sombra);
+
+    border: 1px solid var(--borda);
+
+    margin-bottom: 40px;
+
+}
+
+
+
+.foto-perfil {
+
+    width: 100px;
+
+    height: 100px;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: var(--azul);
+
+    color: white;
+
+    border-radius: 50%;
+
+    font-size: 45px;
+
+    margin-bottom: 20px;
+
+}
+
+
+
+.perfil-header h1 {
+
+    color: var(--titulo);
+
+    margin-bottom: 10px;
+
+}
+
+
+
+.perfil-header p {
+
+    color: var(--texto);
+
+    font-size: 18px;
+
+}
+
+
+
+
+
+/* ==========================================
+   TÍTULOS DAS SEÇÕES
+========================================== */
+
+
+.informacoes h2,
+.meus-cursos h2,
+.todos-cursos h2,
+.configuracoes h2 {
+
+    color: var(--titulo);
+
+    margin-bottom: 25px;
+
+}
+
+
+
+
+
+/* ==========================================
+   INFORMAÇÕES DA CONTA
+========================================== */
+
+
+.info-card {
+
+    background: var(--branco);
+
+    padding: 30px;
+
+    border-radius: 25px;
+
+    box-shadow: var(--sombra);
+
+    border: 1px solid var(--borda);
+
+    margin-bottom: 50px;
+
+}
+
+
+
+.info-card div {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+
+}
+
+
+
+.info-card i {
+
+    color: var(--azul);
+
+    font-size: 22px;
+
+}
+
+
+
+.info-card p {
+
+    color: var(--texto);
+
+    font-size: 18px;
+
+}
+
+.mostrar-senha {
+
+    background: none;
+
+    border: none;
+
+    cursor: pointer;
+
+    color: var(--azul);
+
+    font-size: 18px;
+
+}
+
+
+.mostrar-senha:hover {
+
+    transform: scale(1.1);
+
+}
+
+
+
+/* ==========================================
+   CARDS DE CURSOS
+========================================== */
+
+
+.cards-cursos {
+
+    display: grid;
+
+    grid-template-columns: repeat(3,1fr);
+
+    gap: 25px;
+
+    margin-bottom: 50px;
+
+}
+
+
+
+
+
+.card-curso {
+
+    background: var(--branco);
+
+    padding: 30px;
+
+    border-radius: 25px;
+
+    border: 1px solid var(--borda);
+
+    box-shadow: var(--sombra);
+
+    text-align: center;
+
+    transition: .3s;
+
+}
+
+
+
+.card-curso:hover {
+
+    transform: translateY(-8px);
+
+}
+
+
+
+
+
+.icone-curso {
+
+    width: 70px;
+
+    height: 70px;
+
+    margin: auto;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    border-radius: 50%;
+
+    background: var(--azul);
+
+    color: white;
+
+    font-size: 30px;
+
+    margin-bottom: 20px;
+
+}
+
+
+
+
+
+.card-curso h3 {
+
+    color: var(--titulo);
+
+    margin-bottom: 15px;
+
+}
+
+
+
+
+
+.card-curso p {
+
+    color: var(--texto);
+
+    line-height: 1.6;
+
+    margin-bottom: 20px;
+
+}
+
+
+
+
+
+/* ==========================================
+   PROGRESSO
+========================================== */
+
+
+.progresso {
+
+    margin: 20px 0;
+
+}
+
+
+
+.progresso span {
+
+    color: var(--titulo);
+
+    font-weight: 600;
+
+}
+
+
+
+
+
+.barra {
+
+    height: 12px;
+
+    background: var(--borda);
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    margin-top: 10px;
+
+}
+
+
+
+
+
+.barra-preenchida {
+
+    height: 100%;
+
+    background: var(--verde);
+
+    border-radius: 20px;
+
+}
+
+
+
+
+
+/* ==========================================
+   CONFIGURAÇÕES
+========================================== */
+
+
+.configuracoes {
+
+    margin-top: 30px;
+
+}
+
+
+
+.config-card {
+
+    background: var(--branco);
+
+    padding: 25px 30px;
+
+    border-radius: 20px;
+
+    border: 1px solid var(--borda);
+
+    box-shadow: var(--sombra);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+
+}
+
+
+
+.config-card div {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+}
+
+
+
+.config-card i {
+
+    color: var(--azul);
+
+    font-size: 22px;
+
+}
+
+
+
+.config-card p {
+
+    color: var(--texto);
+
+    font-size: 18px;
+
+}
+
+.btn-editar {
+
+    background: var(--azul);
+
+    color: var(--branco);
+
+    border: none;
+
+    padding: 10px 25px;
+
+    border-radius: 12px;
+
+    font-size: 16px;
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+    transition: .3s;
+
+}
+
+
+
+.btn-editar:hover {
+
+    transform: translateY(-3px);
+
+    opacity: .9;
+
+}
+
+
+
+.btn-sair {
+    background: #ef4444;
+    color: var(--branco);
+    border: none;
+    padding: 10px 25px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: .3s;
+}
+
+
+.btn-sair:hover {
+    transform: translateY(-3px);
+    opacity: .9;
+}
+
+
+
+
+
+/* ==========================================
+   RESPONSIVIDADE
+========================================== */
+
+
+@media(max-width:900px){
+
+
+    .cards-cursos {
+
+        grid-template-columns: repeat(2,1fr);
+
+    }
+
+
+}
+
+
+
+
+
+@media(max-width:768px){
+
+
+    .perfil {
+
+        padding: 50px 5%;
+
+    }
+
+
+
+    .cards-cursos {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+
+    .config-card {
+
+        flex-direction: column;
+
+        gap: 20px;
+
+        align-items: flex-start;
+
+    }
+
+
+
+    .perfil-header {
+
+        padding: 35px 20px;
+
+    }
+
+
+}
+
+
+
+
+
+@media(max-width:480px){
+
+
+    .perfil-header h1 {
+
+        font-size: 30px;
+
+    }
+
+
+
+    .info-card p,
+    .card-curso p,
+    .config-card p {
+
+        font-size: 16px;
+
+    }
+
+
+}

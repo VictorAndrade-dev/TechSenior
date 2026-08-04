@@ -3,48 +3,48 @@
 ===================================== */
 
 .hero {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 80px;
-    padding: 60px 8%;
-    min-height: 80vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 80px;
+  padding: 60px 8%;
+  min-height: 80vh;
 }
 
 .hero-texto {
-    flex: 1;
+  flex: 1;
 }
 
 .hero-texto h1 {
-    line-height: 1.2;
-    color: var(--titulo);
-    margin-bottom: 25px;
+  line-height: 1.2;
+  color: var(--titulo);
+  margin-bottom: 25px;
 }
 
 .hero-texto p {
-    font-size: 20px;
-    line-height: 1.8;
-    color: var(--texto);
-    margin-bottom: 40px;
-    max-width: 650px;
+  font-size: 20px;
+  line-height: 1.8;
+  color: var(--texto);
+  margin-bottom: 40px;
+  max-width: 650px;
 }
 
 .hero-img {
-    flex: 1;
-    display: flex;
-    justify-content: center;
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }
 
 .hero-img img {
-    width: 100%;
-    max-width: 550px;
-    border-radius: 30px;
-    box-shadow: var(--sombra);
-    transition: .4s;
+  width: 100%;
+  max-width: 550px;
+  border-radius: 30px;
+  box-shadow: var(--sombra);
+  transition: 0.4s;
 }
 
 .hero-img img:hover {
-    transform: scale(1.03);
+  transform: scale(1.03);
 }
 
 /* =====================================
@@ -52,37 +52,37 @@
 ===================================== */
 
 .missao {
-    padding: 80px 8%;
-    scroll-margin-top: 110px;
+  padding: 80px 8%;
+  scroll-margin-top: 110px;
 }
 
 .missao-card {
-    display: flex;
-    align-items: center;
-    gap: 50px;
-    background: #fff;
-    padding: 50px;
-    border-radius: 30px;
-    box-shadow: var(--sombra);
-    border-left: 8px solid var(--verde);
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  background: #fff;
+  padding: 50px;
+  border-radius: 30px;
+  box-shadow: var(--sombra);
+  border-left: 8px solid var(--verde);
 }
 
 .missao-icone {
-    flex-shrink: 0;
+  flex-shrink: 0;
 }
 
 .missao-icone img {
-    width: 140px;
+  width: 140px;
 }
 
 .missao-texto h2 {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .missao-texto p {
-    font-size: 20px;
-    line-height: 1.8;
-    color: var(--texto);
+  font-size: 20px;
+  line-height: 1.8;
+  color: var(--texto);
 }
 
 /* =====================================
@@ -91,122 +91,122 @@
 
 /* --- SEÇÃO: NOSSA HISTÓRIA (CORRIGIDO SEM ESPAÇO VAZIO) --- */
 .historia {
-    background-color: #ffffff;
-    padding: 80px 8%;
+  background-color: #ffffff;
+  padding: 80px 8%;
 }
 
 .historia-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: block;
-    /* Remove o flexbox para permitir o encaixe perfeito */
+  max-width: 1200px;
+  margin: 0 auto;
+  display: block;
+  /* Remove o flexbox para permitir o encaixe perfeito */
 }
 
 /* Faz a imagem flutuar na direita e o texto ocupar o resto */
 .historia-imagem {
-    float: right;
-    width: 42%;
-    /* Define o tamanho ideal para a foto */
-    margin-left: 50px;
-    /* Afasta o texto da imagem */
-    margin-bottom: 30px;
-    /* Afasta os elementos de baixo */
-    margin-top: 300px;
+  float: right;
+  width: 42%;
+  /* Define o tamanho ideal para a foto */
+  margin-left: 50px;
+  /* Afasta o texto da imagem */
+  margin-bottom: 30px;
+  /* Afasta os elementos de baixo */
+  margin-top: 300px;
 }
 
 .historia-imagem img {
-    width: 100%;
-    height: auto;
-    max-height: 450px;
-    object-fit: cover;
-    border-radius: 30px;
-    box-shadow: var(--sombra);
+  width: 100%;
+  height: auto;
+  max-height: 450px;
+  object-fit: cover;
+  border-radius: 30px;
+  box-shadow: var(--sombra);
 }
 
 .historia-texto .titulo-secao {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--verde);
-    font-size: 18px;
-    font-weight: 600;
-    text-transform: uppercase;
-    margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--verde);
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 15px;
 }
 
 .historia-texto h2 {
-    color: var(--titulo);
-    margin-bottom: 25px;
+  color: var(--titulo);
+  margin-bottom: 25px;
 }
 
 .linha {
-    width: 60px;
-    height: 4px;
-    background-color: var(--azul);
-    margin-bottom: 25px;
-    border-radius: 2px;
+  width: 60px;
+  height: 4px;
+  background-color: var(--azul);
+  margin-bottom: 25px;
+  border-radius: 2px;
 }
 
 .historia-texto p {
-    font-size: 20px;
-    color: var(--texto);
-    margin-bottom: 20px;
-    line-height: 1.8;
+  font-size: 20px;
+  color: var(--texto);
+  margin-bottom: 20px;
+  line-height: 1.8;
 }
 
 /* Garante que os cards fiquem bem posicionados abaixo de tudo */
 .historia-destaques {
-    clear: both;
-    /* Limpa o float para os cards começarem na linha de baixo */
-    display: flex;
-    gap: 25px;
-    margin-top: 40px;
-    padding-top: 10px;
+  clear: both;
+  /* Limpa o float para os cards começarem na linha de baixo */
+  display: flex;
+  gap: 25px;
+  margin-top: 40px;
+  padding-top: 10px;
 }
 
 .destaque {
-    flex: 1;
-    background: #ffffff;
-    border-left: 6px solid var(--azul);
-    padding: 25px;
-    border-radius: 0 20px 20px 0;
-    display: flex;
-    align-items: flex-start;
-    gap: 15px;
-    box-shadow: var(--sombra);
-    transition: .35s;
+  flex: 1;
+  background: #ffffff;
+  border-left: 6px solid var(--azul);
+  padding: 25px;
+  border-radius: 0 20px 20px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  box-shadow: var(--sombra);
+  transition: 0.35s;
 }
 
 .destaque:nth-child(2) {
-    border-left-color: var(--verde);
+  border-left-color: var(--verde);
 }
 
 .destaque:hover {
-    transform: translateY(-5px);
+  transform: translateY(-5px);
 }
 
 .destaque i {
-    font-size: 26px;
-    color: var(--azul);
-    margin-top: 2px;
+  font-size: 26px;
+  color: var(--azul);
+  margin-top: 2px;
 }
 
 .destaque:nth-child(2) i {
-    color: var(--verde);
+  color: var(--verde);
 }
 
 .destaque h4 {
-    font-size: 20px;
-    color: var(--titulo);
-    margin-bottom: 6px;
-    font-weight: 700;
+  font-size: 20px;
+  color: var(--titulo);
+  margin-bottom: 6px;
+  font-weight: 700;
 }
 
 .destaque span {
-    font-size: 16px;
-    color: var(--texto);
-    display: block;
-    line-height: 1.5;
+  font-size: 16px;
+  color: var(--texto);
+  display: block;
+  line-height: 1.5;
 }
 
 /* =====================================
@@ -214,55 +214,55 @@
 ===================================== */
 
 .projeto {
-    padding: 80px 8%;
+  padding: 80px 8%;
 }
 
 .projeto-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 70px;
 }
 
 .projeto-texto {
-    flex: 1;
+  flex: 1;
 }
 
 .projeto-texto .subtitulo {
-    display: inline-block;
-    color: var(--verde);
-    font-weight: 600;
-    margin-bottom: 15px;
+  display: inline-block;
+  color: var(--verde);
+  font-weight: 600;
+  margin-bottom: 15px;
 }
 
 .projeto-texto h2 {
-    color: var(--titulo);
-    margin-bottom: 25px;
+  color: var(--titulo);
+  margin-bottom: 25px;
 }
 
 .projeto-texto p {
-    font-size: 20px;
-    color: var(--texto);
-    line-height: 1.8;
-    margin-bottom: 20px;
+  font-size: 20px;
+  color: var(--texto);
+  line-height: 1.8;
+  margin-bottom: 20px;
 }
 
 .projeto-imagem {
-    flex: 1;
-    display: flex;
-    justify-content: center;
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }
 
 .projeto-imagem img {
-    width: 100%;
-    max-width: 500px;
-    border-radius: 30px;
-    box-shadow: var(--sombra);
-    transition: .4s;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 30px;
+  box-shadow: var(--sombra);
+  transition: 0.4s;
 }
 
 .projeto-imagem img:hover {
-    transform: scale(1.03);
+  transform: scale(1.03);
 }
 
 /* =====================================
@@ -270,195 +270,194 @@
 ===================================== */
 
 .valores {
-    padding: 80px 8%;
-    text-align: center;
+  padding: 80px 8%;
+  text-align: center;
 }
 
 .titulo-secao {
-    max-width: 750px;
-    margin: 0 auto 60px;
+  max-width: 750px;
+  margin: 0 auto 60px;
 }
 
 .subtitulo {
-    display: inline-block;
-    color: var(--verde);
-    font-weight: 600;
-    font-size: 18px;
-    margin-bottom: 15px;
+  display: inline-block;
+  color: var(--verde);
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 15px;
 }
 
 .titulo-secao h2 {
-    color: var(--titulo);
-    margin-bottom: 20px;
+  color: var(--titulo);
+  margin-bottom: 20px;
 }
 
 .titulo-secao p {
-    font-size: 20px;
-    color: var(--texto);
-    line-height: 1.8;
+  font-size: 20px;
+  color: var(--texto);
+  line-height: 1.8;
 }
 
 .valores-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
 }
 
 .valor-card {
-    background: white;
-    padding: 40px 30px;
-    border-radius: 25px;
-    box-shadow: var(--sombra);
-    transition: .35s;
+  background: white;
+  padding: 40px 30px;
+  border-radius: 25px;
+  box-shadow: var(--sombra);
+  transition: 0.35s;
 }
 
 .valor-card:hover {
-    transform: translateY(-10px);
+  transform: translateY(-10px);
 }
 
 .valor-card i {
-    font-size: 52px;
-    color: var(--azul);
-    margin-bottom: 25px;
+  font-size: 52px;
+  color: var(--azul);
+  margin-bottom: 25px;
 }
 
 .valor-card h3 {
-    margin-bottom: 20px;
-    color: var(--titulo);
+  margin-bottom: 20px;
+  color: var(--titulo);
 }
 
 .valor-card p {
-    color: var(--texto);
-    line-height: 1.7;
+  color: var(--texto);
+  line-height: 1.7;
 }
 
 .valores {
-    padding: 90px 8%;
-    background: #f8fbfc;
+  padding: 90px 8%;
+  background: #f8fbfc;
 }
 
 .valores-cards {
-    margin-top: 60px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
+  margin-top: 60px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
 }
 
 .valor-card {
-    background: white;
-    padding: 40px 30px;
-    border-radius: 25px;
-    box-shadow: var(--sombra);
-    text-align: center;
-    transition: .35s;
+  background: white;
+  padding: 40px 30px;
+  border-radius: 25px;
+  box-shadow: var(--sombra);
+  text-align: center;
+  transition: 0.35s;
 }
 
 .valor-card:hover {
-    transform: translateY(-10px);
+  transform: translateY(-10px);
 }
 
 .valor-card i {
-    font-size: 42px;
-    color: var(--verde);
-    margin-bottom: 20px;
+  font-size: 42px;
+  color: var(--verde);
+  margin-bottom: 20px;
 }
 
 .valor-card h3 {
-    color: var(--titulo);
-    margin-bottom: 18px;
+  color: var(--titulo);
+  margin-bottom: 18px;
 }
 
 .valor-card p {
-    color: var(--texto);
-    line-height: 1.8;
+  color: var(--texto);
+  line-height: 1.8;
 }
-
 
 /* =====================================
    ODS
 ===================================== */
 
 .ods {
-    padding: 90px 8%;
+  padding: 90px 8%;
 }
 
 .ods-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 80px;
 }
 
 .ods-texto {
-    flex: 1;
+  flex: 1;
 }
 
 .ods-texto h2 {
-    color: var(--titulo);
-    margin-bottom: 20px;
+  color: var(--titulo);
+  margin-bottom: 20px;
 }
 
 .ods-texto p {
-    font-size: 20px;
-    color: var(--texto);
-    line-height: 1.8;
-    margin-bottom: 35px;
+  font-size: 20px;
+  color: var(--texto);
+  line-height: 1.8;
+  margin-bottom: 35px;
 }
 
 .ods-cards {
-    display: flex;
-    gap: 25px;
-    flex-wrap: wrap;
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
 }
 
 .ods-card {
-    background: white;
-    width: 220px;
-    padding: 30px;
-    text-align: center;
-    border-radius: 25px;
-    box-shadow: var(--sombra);
-    transition: .35s;
+  background: white;
+  width: 220px;
+  padding: 30px;
+  text-align: center;
+  border-radius: 25px;
+  box-shadow: var(--sombra);
+  transition: 0.35s;
 }
 
 .ods-card:first-child {
-    border-top: 6px solid #C5192D;
+  border-top: 6px solid #c5192d;
 }
 
 .ods-card:last-child {
-    border-top: 6px solid #FD9D24;
+  border-top: 6px solid #fd9d24;
 }
 
 .ods-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 18px 35px rgba(0, 0, 0, .12);
+  transform: translateY(-8px);
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.12);
 }
 
 .ods-card img {
-    width: 110px;
-    margin-bottom: 20px;
+  width: 110px;
+  margin-bottom: 20px;
 }
 
 .ods-card h3 {
-    color: var(--titulo);
-    margin-bottom: 10px;
+  color: var(--titulo);
+  margin-bottom: 10px;
 }
 
 .ods-card p {
-    font-size: 16px;
-    color: var(--texto);
-    line-height: 1.6;
+  font-size: 16px;
+  color: var(--texto);
+  line-height: 1.6;
 }
 
 .ods-ilustracao {
-    flex: 1;
-    display: flex;
-    justify-content: center;
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }
 
 .ods-ilustracao img {
-    width: 100%;
-    max-width: 420px;
+  width: 100%;
+  max-width: 420px;
 }
 
 /* =====================================
@@ -466,153 +465,149 @@
 ===================================== */
 
 .equipe {
-    padding: 90px 8%;
-    text-align: center;
+  padding: 90px 8%;
+  text-align: center;
 }
 
 .integrantes {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 35px;
-    margin-top: 60px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 35px;
+  margin-top: 60px;
 }
 
 .membro {
-    background: white;
-    padding: 35px 25px;
-    border-radius: 25px;
-    box-shadow: var(--sombra);
-    transition: .35s;
+  background: white;
+  padding: 35px 25px;
+  border-radius: 25px;
+  box-shadow: var(--sombra);
+  transition: 0.35s;
 }
 
 .membro:hover {
-    transform: translateY(-10px);
+  transform: translateY(-10px);
 }
 
 .membro img {
-    width: 170px;
-    height: 170px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 5px solid var(--verde);
-    margin-bottom: 25px;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid var(--verde);
+  margin-bottom: 25px;
 }
 
 .membro h3 {
-    color: var(--titulo);
-    margin-bottom: 10px;
+  color: var(--titulo);
+  margin-bottom: 10px;
 }
 
 .membro .cargo {
-    display: inline-block;
-    color: var(--azul);
-    font-weight: 600;
-    margin-bottom: 18px;
+  display: inline-block;
+  color: var(--azul);
+  font-weight: 600;
+  margin-bottom: 18px;
 }
 
 .membro p {
-    color: var(--texto);
-    line-height: 1.7;
+  color: var(--texto);
+  line-height: 1.7;
 }
-
 
 /* =====================================
    NOSSO IMPACTO
 ===================================== */
 
 .impacto {
-    padding: 90px 8%;
-    background: #f8fbfc;
+  padding: 90px 8%;
+  background: #f8fbfc;
 }
 
 .impacto-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    margin-top: 60px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 60px;
 }
 
 .impacto-card {
-    background: white;
-    padding: 40px 30px;
-    border-radius: 25px;
-    text-align: center;
-    box-shadow: var(--sombra);
-    transition: .35s;
+  background: white;
+  padding: 40px 30px;
+  border-radius: 25px;
+  text-align: center;
+  box-shadow: var(--sombra);
+  transition: 0.35s;
 }
 
 .impacto-card:hover {
-    transform: translateY(-10px);
+  transform: translateY(-10px);
 }
 
 .impacto-card i {
-    font-size: 52px;
-    color: var(--verde);
-    margin-bottom: 25px;
+  font-size: 52px;
+  color: var(--verde);
+  margin-bottom: 25px;
 }
 
 .impacto-card h3 {
-    color: var(--titulo);
-    margin-bottom: 15px;
+  color: var(--titulo);
+  margin-bottom: 15px;
 }
 
 .impacto-card p {
-    color: var(--texto);
-    line-height: 1.8;
+  color: var(--texto);
+  line-height: 1.8;
 }
-
 
 /* =========================
 CTA
 ========================= */
 
 .cta {
-    margin: 100px 8%;
-    padding: 60px;
-    border-radius: 30px;
+  margin: 100px 8%;
+  padding: 60px;
+  border-radius: 30px;
 
-    background: linear-gradient(90deg,
-            var(--azul),
-            var(--verde));
+  background: linear-gradient(90deg, var(--azul), var(--verde));
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    color: white;
+  color: white;
 }
 
 .cta h2 {
-    margin-bottom: 15px;
-    color: white;
+  margin-bottom: 15px;
+  color: white;
 }
 
 .cta p {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .cta button {
-    background: white;
-    color: var(--azul);
+  background: white;
+  color: var(--azul);
 }
 
 .valor-card,
 .membro,
 .impacto-card {
-    position: relative;
-    overflow: hidden;
+  position: relative;
+  overflow: hidden;
 }
 
 .valor-card::before,
 .membro::before,
 .impacto-card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 6px;
-    background: linear-gradient(90deg, var(--azul), var(--verde));
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, var(--azul), var(--verde));
 }
 
 /* ========================================
@@ -620,402 +615,400 @@ CTA
 ======================================== */
 
 @media (max-width: 768px) {
+  /* ===== HERO ===== */
 
-    /* ===== HERO ===== */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 
-    .hero {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
+    gap: 45px;
+    padding: 70px 6%;
+    min-height: auto;
+  }
 
-        gap: 45px;
-        padding: 70px 6%;
-        min-height: auto;
-    }
+  .hero-texto {
+    width: 100%;
+    order: 1;
+  }
 
-    .hero-texto {
-        width: 100%;
-        order: 1;
-    }
+  .hero-texto h1 {
+    font-size: 42px;
+    line-height: 1.2;
+    margin-bottom: 25px;
+  }
 
-    .hero-texto h1 {
-        font-size: 42px;
-        line-height: 1.2;
-        margin-bottom: 25px;
-    }
+  .hero-texto p {
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 35px;
+  }
 
-    .hero-texto p {
-        font-size: 18px;
-        line-height: 1.8;
-        margin-bottom: 35px;
-    }
+  .hero-texto .btn-principal {
+    width: 100%;
+    max-width: 290px;
+    margin: auto;
+  }
 
-    .hero-texto .btn-principal {
-        width: 100%;
-        max-width: 290px;
-        margin: auto;
-    }
+  .hero-imagem {
+    order: 2;
+    margin-top: 20px;
+  }
 
-    .hero-imagem {
-        order: 2;
-        margin-top: 20px;
-    }
+  .hero-imagem img {
+    width: 100%;
+    max-width: 340px;
+    display: block;
+    margin: auto;
+  }
 
-    .hero-imagem img {
-        width: 100%;
-        max-width: 340px;
-        display: block;
-        margin: auto;
-    }
-
-
-    /* ========================================
+  /* ========================================
     NOSSA MISSÃO - MOBILE
     ======================================== */
 
-    .missao {
-        width: 100%;
-        padding: 0 6%;
-        margin: 60px 0;
-    }
+  .missao {
+    width: 100%;
+    padding: 0 6%;
+    margin: 60px 0;
+  }
 
-    .missao-card {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+  .missao-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 
-        padding: 35px 25px;
-        gap: 25px;
+    padding: 35px 25px;
+    gap: 25px;
 
-        border-radius: 24px;
-    }
+    border-radius: 24px;
+  }
 
-    .missao-icone img {
-        width: 100px;
-        height: auto;
-    }
+  .missao-icone img {
+    width: 100px;
+    height: auto;
+  }
 
-    .missao-texto {
-        width: 100%;
-    }
+  .missao-texto {
+    width: 100%;
+  }
 
-    .missao-texto h2 {
-        font-size: 32px;
-        margin-bottom: 18px;
-    }
+  .missao-texto h2 {
+    font-size: 32px;
+    margin-bottom: 18px;
+  }
 
-    .missao-texto p {
-        font-size: 18px;
-        line-height: 1.8;
-    }
+  .missao-texto p {
+    font-size: 18px;
+    line-height: 1.8;
+  }
 
-    /* ========================================
+  /* ========================================
     NOSSA HISTÓRIA - MOBILE
     ======================================== */
 
-    .historia {
-        padding: 60px 6%;
-    }
+  .historia {
+    padding: 60px 6%;
+  }
 
-    .historia-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+  .historia-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-    .historia-imagem {
-        width: 100%;
-        margin: 0 0 35px;
-        float: none;
-    }
+  .historia-imagem {
+    width: 100%;
+    margin: 0 0 35px;
+    float: none;
+  }
 
-    .historia-imagem img {
-        width: 100%;
-        max-width: 340px;
-        display: block;
-        margin: auto;
-        border-radius: 22px;
-    }
+  .historia-imagem img {
+    width: 100%;
+    max-width: 340px;
+    display: block;
+    margin: auto;
+    border-radius: 22px;
+  }
 
-    .historia-texto {
-        width: 100%;
-        text-align: center;
-    }
+  .historia-texto {
+    width: 100%;
+    text-align: center;
+  }
 
-    .historia-texto .titulo-secao {
-        justify-content: center;
-    }
+  .historia-texto .titulo-secao {
+    justify-content: center;
+  }
 
-    .historia-texto h2 {
-        font-size: 34px;
-    }
+  .historia-texto h2 {
+    font-size: 34px;
+  }
 
-    .historia-texto p {
-        font-size: 18px;
-        line-height: 1.8;
-    }
+  .historia-texto p {
+    font-size: 18px;
+    line-height: 1.8;
+  }
 
-    .linha {
-        margin: 20px auto 30px;
-    }
+  .linha {
+    margin: 20px auto 30px;
+  }
 
-    .historia-destaques {
-        display: flex;
-        flex-direction: column;
-        gap: 18px;
+  .historia-destaques {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
 
-        margin-top: 35px;
+    margin-top: 35px;
 
-        clear: none;
-    }
+    clear: none;
+  }
 
-    .destaque {
-        width: 100%;
-        padding: 22px;
-    }
+  .destaque {
+    width: 100%;
+    padding: 22px;
+  }
 
-    /* ========================================
+  /* ========================================
     NOSSOS VALORES - MOBILE
     ======================================== */
 
-    .valores {
-        padding: 60px 6%;
-    }
+  .valores {
+    padding: 60px 6%;
+  }
 
-    .valores h2 {
-        font-size: 34px;
-    }
+  .valores h2 {
+    font-size: 34px;
+  }
 
-    .valores-subtitulo {
-        font-size: 18px;
-        line-height: 1.7;
-        margin-bottom: 40px;
-    }
+  .valores-subtitulo {
+    font-size: 18px;
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
 
-    .valores-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
+  .valores-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
 
-    .valor-card {
-        width: 100%;
-        padding: 30px 25px;
-    }
+  .valor-card {
+    width: 100%;
+    padding: 30px 25px;
+  }
 
-    .valor-card i {
-        font-size: 34px;
-    }
+  .valor-card i {
+    font-size: 34px;
+  }
 
-    .valor-card h3 {
-        font-size: 24px;
-        margin: 18px 0 12px;
-    }
+  .valor-card h3 {
+    font-size: 24px;
+    margin: 18px 0 12px;
+  }
 
-    .valor-card p {
-        font-size: 17px;
-        line-height: 1.8;
-    }
+  .valor-card p {
+    font-size: 17px;
+    line-height: 1.8;
+  }
 
-    /* ========================================
+  /* ========================================
     ODS - MOBILE
     ======================================== */
 
-    .ods {
-        padding: 60px 6%;
-    }
+  .ods {
+    padding: 60px 6%;
+  }
 
-    .ods-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 40px;
-    }
+  .ods-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 40px;
+  }
 
-    .ods-texto {
-        width: 100%;
-    }
+  .ods-texto {
+    width: 100%;
+  }
 
-    .ods-texto h2 {
-        font-size: 34px;
-    }
+  .ods-texto h2 {
+    font-size: 34px;
+  }
 
-    .ods-texto p {
-        font-size: 18px;
-        line-height: 1.8;
-    }
+  .ods-texto p {
+    font-size: 18px;
+    line-height: 1.8;
+  }
 
-    .ods-cards {
-        width: 100%;
+  .ods-cards {
+    width: 100%;
 
-        display: flex;
-        justify-content: center;
-        align-items: stretch;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
 
-        gap: 20px;
-    }
+    gap: 20px;
+  }
 
-    .ods-card {
-        flex: 1;
-        max-width: 180px;
+  .ods-card {
+    flex: 1;
+    max-width: 180px;
 
-        padding: 25px 20px;
-    }
+    padding: 25px 20px;
+  }
 
-    .ods-card img {
-        width: 90px;
-        margin-bottom: 15px;
-    }
+  .ods-card img {
+    width: 90px;
+    margin-bottom: 15px;
+  }
 
-    .ods-card h3 {
-        font-size: 22px;
-    }
+  .ods-card h3 {
+    font-size: 22px;
+  }
 
-    .ods-card p {
-        font-size: 16px;
-    }
+  .ods-card p {
+    font-size: 16px;
+  }
 
-    /* ========================================
+  /* ========================================
     EQUIPE - MOBILE
     ======================================== */
 
-    .equipe {
-        padding: 60px 6%;
-    }
+  .equipe {
+    padding: 60px 6%;
+  }
 
-    .equipe .titulo-secao {
-        text-align: center;
-        margin-bottom: 45px;
-    }
+  .equipe .titulo-secao {
+    text-align: center;
+    margin-bottom: 45px;
+  }
 
-    .equipe .titulo-secao h2 {
-        font-size: 34px;
-    }
+  .equipe .titulo-secao h2 {
+    font-size: 34px;
+  }
 
-    .equipe .titulo-secao p {
-        font-size: 18px;
-        line-height: 1.8;
-        max-width: 600px;
-        margin: 20px auto 0;
-    }
+  .equipe .titulo-secao p {
+    font-size: 18px;
+    line-height: 1.8;
+    max-width: 600px;
+    margin: 20px auto 0;
+  }
 
-    .integrantes {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 30px;
-    }
+  .integrantes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
 
-    .membro {
-        width: 100%;
-        max-width: 360px;
-    }
+  .membro {
+    width: 100%;
+    max-width: 360px;
+  }
 
-    .membro img {
-        width: 160px;
-        height: 160px;
-    }
+  .membro img {
+    width: 160px;
+    height: 160px;
+  }
 
-    .membro h3 {
-        font-size: 26px;
-    }
+  .membro h3 {
+    font-size: 26px;
+  }
 
-    .cargo {
-        font-size: 17px;
-    }
+  .cargo {
+    font-size: 17px;
+  }
 
-    .membro p {
-        font-size: 17px;
-        line-height: 1.7;
-    }
+  .membro p {
+    font-size: 17px;
+    line-height: 1.7;
+  }
 
-    /* ========================================
+  /* ========================================
     NOSSO IMPACTO - MOBILE
     ======================================== */
 
-    .impacto {
-        padding: 60px 6%;
-    }
+  .impacto {
+    padding: 60px 6%;
+  }
 
-    .impacto .titulo-secao {
-        text-align: center;
-        margin-bottom: 45px;
-    }
+  .impacto .titulo-secao {
+    text-align: center;
+    margin-bottom: 45px;
+  }
 
-    .impacto .titulo-secao h2 {
-        font-size: 34px;
-    }
+  .impacto .titulo-secao h2 {
+    font-size: 34px;
+  }
 
-    .impacto .titulo-secao p {
-        font-size: 18px;
-        line-height: 1.8;
-        max-width: 600px;
-        margin: 20px auto 0;
-    }
+  .impacto .titulo-secao p {
+    font-size: 18px;
+    line-height: 1.8;
+    max-width: 600px;
+    margin: 20px auto 0;
+  }
 
-    .impacto-cards {
-        display: flex;
-        flex-direction: column;
-        gap: 25px;
-    }
+  .impacto-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
 
-    .impacto-card {
-        width: 100%;
-        padding: 30px 25px;
-    }
+  .impacto-card {
+    width: 100%;
+    padding: 30px 25px;
+  }
 
-    .impacto-card i {
-        font-size: 42px;
-        margin-bottom: 18px;
-    }
+  .impacto-card i {
+    font-size: 42px;
+    margin-bottom: 18px;
+  }
 
-    .impacto-card h3 {
-        font-size: 24px;
-        margin-bottom: 12px;
-    }
+  .impacto-card h3 {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
 
-    .impacto-card p {
-        font-size: 17px;
-        line-height: 1.8;
-    }
+  .impacto-card p {
+    font-size: 17px;
+    line-height: 1.8;
+  }
 
-    /* ========================================
+  /* ========================================
     CTA - MOBILE
     ======================================== */
 
-    .cta {
-        padding: 60px 6%;
+  .cta {
+    padding: 60px 6%;
 
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-        text-align: center;
-        gap: 35px;
-    }
+    text-align: center;
+    gap: 35px;
+  }
 
-    .cta h2 {
-        font-size: 34px;
-        line-height: 1.3;
-        margin-bottom: 18px;
-    }
+  .cta h2 {
+    font-size: 34px;
+    line-height: 1.3;
+    margin-bottom: 18px;
+  }
 
-    .cta p {
-        font-size: 18px;
-        line-height: 1.8;
-        max-width: 500px;
-        margin: 0 auto;
-    }
+  .cta p {
+    font-size: 18px;
+    line-height: 1.8;
+    max-width: 500px;
+    margin: 0 auto;
+  }
 
-    .cta .btn-principal {
-        width: 100%;
-        max-width: 320px;
-        padding: 18px 30px;
-        font-size: 18px;
-    }
+  .cta .btn-principal {
+    width: 100%;
+    max-width: 320px;
+    padding: 18px 30px;
+    font-size: 18px;
+  }
 }

@@ -1,283 +1,287 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-
-<head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>TechSênior - Curso: Conhecendo seu Celular</title>
 
     <!-- Fonte -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- CSS -->
-    <link rel="stylesheet" href="Estilos - CSS/CursoCelular.css">
-    <link rel="stylesheet" href="Estilos - CSS/Padrão.css">
+    <link rel="stylesheet" href="Estilos - CSS/CursoCelular.css" />
+    <link rel="stylesheet" href="Estilos - CSS/Padrão.css" />
 
     <!-- Ícones -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
 
-</head>
-
-<body>
-
+  <body>
     <!-- HEADER -->
     <header>
+      <button class="menu-toggle" id="menuToggle">
+        <i class="fa-solid fa-bars"></i>
+      </button>
 
-        <button class="menu-toggle" id="menuToggle">
-            <i class="fa-solid fa-bars"></i>
-        </button>
+      <div class="logo">
+        <img src="Imagens/Logotipo Sem Fundo.png" alt="Logo TechSênior" />
+      </div>
 
-        <div class="logo">
-            <img src="Imagens/Logotipo Sem Fundo.png" alt="Logo TechSênior">
-        </div>
+      <nav>
+        <a href="Início.html">Início</a>
+        <a href="Cursos.html">Cursos</a>
+        <a href="Comunidade.html">Comunidade</a>
+        <a href="Sobre Nós.html">Sobre Nós</a>
+      </nav>
 
-        <nav>
-            <a href="Início.html">Início</a>
-            <a href="Cursos.html">Cursos</a>
-            <a href="Comunidade.html">Comunidade</a>
-            <a href="Sobre Nós.html">Sobre Nós</a>
-        </nav>
-
-        <a class="btn-login" id="btnUsuario" href="Login.html">
-            <i class="fa-regular fa-user"></i>
-            Entrar
-        </a>
+      <a class="btn-login" id="btnUsuario" href="Login.html">
+        <i class="fa-regular fa-user"></i>
+        Entrar
+      </a>
     </header>
 
     <!-- MENU LATERAL -->
     <div class="sidebar" id="sidebar">
+      <button class="close-menu" id="closeMenu">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
 
-        <button class="close-menu" id="closeMenu">
-            <i class="fa-solid fa-xmark"></i>
-        </button>
+      <nav class="sidebar-nav">
+        <a href="Início.html">Início</a>
 
-        <nav class="sidebar-nav">
+        <a href="Cursos.html">Cursos</a>
 
-            <a href="Início.html">Início</a>
+        <a href="Comunidade.html">Comunidade</a>
 
-            <a href="Cursos.html">Cursos</a>
-
-            <a href="Comunidade.html">Comunidade</a>
-
-            <a href="Sobre Nós.html">Sobre Nós</a>
-
-        </nav>
-
+        <a href="Sobre Nós.html">Sobre Nós</a>
+      </nav>
     </div>
 
     <!-- FUNDO ESCURO -->
     <div class="overlay" id="overlay"></div>
 
     <section class="barra-curso-topo">
-        <div class="container-barra">
-            <a href="Cursos.html" class="btn-voltar-cursos">
-                <i class="fa-solid fa-arrow-left"></i>
-                Voltar para Cursos
-            </a>
+      <div class="container-barra">
+        <a href="Cursos.html" class="btn-voltar-cursos">
+          <i class="fa-solid fa-arrow-left"></i>
+          Voltar para Cursos
+        </a>
 
-            <div class="titulo-curso-topo">
-                <i class="fa-solid fa-mobile-screen"></i>
-                <h2>Curso: Utilizando o Celular</h2>
-            </div>
-
-            <div class="progresso-container">
-                <div class="progresso-texto">
-                    <span>Módulo 1 de 6</span>
-                    <span class="porcentagem">16% concluído</span>
-                </div>
-                <div class="barra-progresso-fundo">
-                    <div class="barra-progresso-preenchimento" style="width: 16%;"></div>
-                </div>
-            </div>
+        <div class="titulo-curso-topo">
+          <i class="fa-solid fa-mobile-screen"></i>
+          <h2>Curso: Utilizando o Celular</h2>
         </div>
+
+        <div class="progresso-container">
+          <div class="progresso-texto">
+            <span>Módulo 1 de 6</span>
+            <span class="porcentagem">16% concluído</span>
+          </div>
+          <div class="barra-progresso-fundo">
+            <div class="barra-progresso-preenchimento" style="width: 16%"></div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <main class="container-aula-principal">
+      <aside class="sidebar-curso">
+        <div class="card-sidebar">
+          <h3>Módulos do curso</h3>
 
-        <aside class="sidebar-curso">
+          <ul class="lista-modulos">
+            <li class="modulo-item ativo">
+              <div class="modulo-num">1</div>
+              <div class="modulo-info">
+                <span class="modulo-titulo">Conhecendo o seu celular</span>
+                <span class="tag-status">Atual</span>
+              </div>
+            </li>
 
-            <div class="card-sidebar">
-                <h3>Módulos do curso</h3>
+            <li class="modulo-item bloqueado">
+              <div class="modulo-num">2</div>
+              <div class="modulo-info">
+                <span class="modulo-titulo">Ligações e contatos</span>
+              </div>
+              <i class="fa-solid fa-lock icone-status"></i>
+            </li>
 
-                <ul class="lista-modulos">
-                    <li class="modulo-item ativo">
-                        <div class="modulo-num">1</div>
-                        <div class="modulo-info">
-                            <span class="modulo-titulo">Conhecendo o seu celular</span>
-                            <span class="tag-status">Atual</span>
-                        </div>
-                    </li>
+            <li class="modulo-item bloqueado">
+              <div class="modulo-num">3</div>
+              <div class="modulo-info">
+                <span class="modulo-titulo">Mensagens</span>
+              </div>
+              <i class="fa-solid fa-lock icone-status"></i>
+            </li>
 
-                    <li class="modulo-item bloqueado">
-                        <div class="modulo-num">2</div>
-                        <div class="modulo-info">
-                            <span class="modulo-titulo">Ligações e contatos</span>
-                        </div>
-                        <i class="fa-solid fa-lock icone-status"></i>
-                    </li>
+            <li class="modulo-item bloqueado">
+              <div class="modulo-num">4</div>
+              <div class="modulo-info">
+                <span class="modulo-titulo">Câmera e fotos</span>
+              </div>
+              <i class="fa-solid fa-lock icone-status"></i>
+            </li>
 
-                    <li class="modulo-item bloqueado">
-                        <div class="modulo-num">3</div>
-                        <div class="modulo-info">
-                            <span class="modulo-titulo">Mensagens</span>
-                        </div>
-                        <i class="fa-solid fa-lock icone-status"></i>
-                    </li>
+            <li class="modulo-item bloqueado">
+              <div class="modulo-num">5</div>
+              <div class="modulo-info">
+                <span class="modulo-titulo">Aplicativos úteis</span>
+              </div>
+              <i class="fa-solid fa-lock icone-status"></i>
+            </li>
 
-                    <li class="modulo-item bloqueado">
-                        <div class="modulo-num">4</div>
-                        <div class="modulo-info">
-                            <span class="modulo-titulo">Câmera e fotos</span>
-                        </div>
-                        <i class="fa-solid fa-lock icone-status"></i>
-                    </li>
+            <li class="modulo-item bloqueado">
+              <div class="modulo-num">6</div>
+              <div class="modulo-info">
+                <span class="modulo-titulo"
+                  >Dicas de organização e segurança</span
+                >
+              </div>
+              <i class="fa-solid fa-lock icone-status"></i>
+            </li>
+          </ul>
+        </div>
 
-                    <li class="modulo-item bloqueado">
-                        <div class="modulo-num">5</div>
-                        <div class="modulo-info">
-                            <span class="modulo-titulo">Aplicativos úteis</span>
-                        </div>
-                        <i class="fa-solid fa-lock icone-status"></i>
-                    </li>
+        <div class="card-sidebar card-ajuda">
+          <div class="ajuda-header">
+            <i class="fa-solid fa-circle-question"></i>
+            <h3>Precisa de ajuda?</h3>
+          </div>
+          <p>Fale com nossa comunidade e tire suas dúvidas.</p>
+          <a href="Comunidade.html" class="btn-secundario-ajuda"
+            >Ir para Comunidade</a
+          >
+        </div>
+      </aside>
 
-                    <li class="modulo-item bloqueado">
-                        <div class="modulo-num">6</div>
-                        <div class="modulo-info">
-                            <span class="modulo-titulo">Dicas de organização e segurança</span>
-                        </div>
-                        <i class="fa-solid fa-lock icone-status"></i>
-                    </li>
-                </ul>
+      <article class="conteudo-aula">
+        <div class="card-aula-corpo">
+          <span class="badge-modulo">Módulo 1</span>
+
+          <div class="bloco-introducao">
+            <div class="texto-introducao">
+              <h1>Conhecendo o seu celular</h1>
             </div>
 
-            <div class="card-sidebar card-ajuda">
-                <div class="ajuda-header">
-                    <i class="fa-solid fa-circle-question"></i>
-                    <h3>Precisa de ajuda?</h3>
-                </div>
-                <p>Fale com nossa comunidade e tire suas dúvidas.</p>
-                <a href="Comunidade.html" class="btn-secundario-ajuda">Ir para Comunidade</a>
+            <div class="imagem-ilustration">
+              <img
+                src="Imagens/CelularCurso.png"
+                alt="Celular exibindo tela principal com ícones amigáveis"
+              />
             </div>
+          </div>
 
-        </aside>
-
-        <article class="conteudo-aula">
-
-            <div class="card-aula-corpo">
-                <span class="badge-modulo">Módulo 1</span>
-
-                <div class="bloco-introducao">
-                    <div class="texto-introducao">
-                        <h1>Conhecendo o seu celular</h1>
-                    </div>
-
-                    <div class="imagem-ilustration">
-                        <img src="Imagens/CelularCurso.png" alt="Celular exibindo tela principal com ícones amigáveis">
-                    </div>
-                </div>
-
-                <div class="card-destaque card-importante">
-                    <div class="icone-destaque">
-                        <i class="fa-regular fa-lightbulb"></i>
-                    </div>
-                    <div class="texto-destaque">
-                        <strong>Importante</strong>
-                        <p>Nem todos os celulares são iguais. Alguns podem ter botões em lugares diferentes, mas as funções são praticamente as mesmas.</p>
-                    </div>
-                </div>
-
-                <div class="card-destaque card-dica">
-                    <div class="icone-destaque">
-                        <i class="fa-solid fa-circle-check"></i>
-                    </div>
-                    <div class="texto-destaque">
-                        <strong>Dica</strong>
-                        <p>Se tocar em algum botão errado, não se preocupe. Na maioria das vezes basta apertar o botão Voltar para retornar à tela anterior.</p>
-                    </div>
-                </div>
-
-                <div class="navegacao-aula">
-                    <button class="btn-navegacao desabilitado" disabled>
-                        <i class="fa-solid fa-arrow-left"></i>
-                        Aula anterior
-                    </button>
-
-                    <span class="indicador-modulo-bottom">Módulo 1 de 6</span>
-
-                    <a href="AulaCelular2.html" class="btn-navegacao btn-proxima">
-                        Próxima aula
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                </div>
-
+          <div class="card-destaque card-importante">
+            <div class="icone-destaque">
+              <i class="fa-regular fa-lightbulb"></i>
             </div>
+            <div class="texto-destaque">
+              <strong>Importante</strong>
+              <p>
+                Nem todos os celulares são iguais. Alguns podem ter botões em
+                lugares diferentes, mas as funções são praticamente as mesmas.
+              </p>
+            </div>
+          </div>
 
-        </article>
+          <div class="card-destaque card-dica">
+            <div class="icone-destaque">
+              <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <div class="texto-destaque">
+              <strong>Dica</strong>
+              <p>
+                Se tocar em algum botão errado, não se preocupe. Na maioria das
+                vezes basta apertar o botão Voltar para retornar à tela
+                anterior.
+              </p>
+            </div>
+          </div>
 
+          <div class="navegacao-aula">
+            <button class="btn-navegacao desabilitado" disabled>
+              <i class="fa-solid fa-arrow-left"></i>
+              Aula anterior
+            </button>
+
+            <span class="indicador-modulo-bottom">Módulo 1 de 6</span>
+
+            <a href="AulaCelular2.html" class="btn-navegacao btn-proxima">
+              Próxima aula
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </article>
     </main>
 
     <!-- RODAPÉ -->
     <footer>
+      <div class="coluna">
+        <h3>TechSênior</h3>
+        <p>Tecnologia ao seu alcance.</p>
 
-        <div class="coluna">
-            <h3>TechSênior</h3>
-            <p>Tecnologia ao seu alcance.</p>
-
-            <div class="footer-linha logo">
-                <div class="logo-footer">
-                    <img src="Imagens/Logotipo Sem Fundo.png" alt="Logotipo TechSênior">
-                </div>
-            </div>
-
+        <div class="footer-linha logo">
+          <div class="logo-footer">
+            <img
+              src="Imagens/Logotipo Sem Fundo.png"
+              alt="Logotipo TechSênior"
+            />
+          </div>
         </div>
+      </div>
 
-        <div class="coluna">
-            <h4>Navegação</h4>
-            <a href="Início.html">Início</a>
-            <a href="Cursos.html">Cursos</a>
-            <a href="Comunidade.html">Comunidade</a>
-            <a href="Sobre Nós.html">Sobre Nós</a>
+      <div class="coluna">
+        <h4>Navegação</h4>
+        <a href="Início.html">Início</a>
+        <a href="Cursos.html">Cursos</a>
+        <a href="Comunidade.html">Comunidade</a>
+        <a href="Sobre Nós.html">Sobre Nós</a>
+      </div>
+
+      <div class="coluna">
+        <h4>Institucional</h4>
+        <a href="Termos de Uso.html">Termos de Uso</a>
+        <a href="Política de Privacidade.html">Política de Privacidade</a>
+        <a href="Declaração de Acessibilidade.html"
+          >Declaração de Acessibilidade</a
+        >
+      </div>
+
+      <div class="coluna">
+        <h4>Comunidade</h4>
+        <a href="Regras da Comunidade.html">Regras da Comunidade</a>
+        <a href="Sobre Nós.html">Fale Conosco</a>
+
+        <div class="footer-linha redes">
+          <div class="coluna">
+            <h4>Redes Sociais</h4>
+
+            <a href="https://www.instagram.com/techsenior_tcc/"
+              ><i class="fa-brands fa-instagram"></i> Instagram</a
+            >
+          </div>
         </div>
-
-        <div class="coluna">
-            <h4>Institucional</h4>
-            <a href="Termos de Uso.html">Termos de Uso</a>
-            <a href="Política de Privacidade.html">Política de Privacidade</a>
-            <a href="Declaração de Acessibilidade.html">Declaração de Acessibilidade</a>
-        </div>
-
-        <div class="coluna">
-            <h4>Comunidade</h4>
-            <a href="Regras da Comunidade.html">Regras da Comunidade</a>
-            <a href="Sobre Nós.html">Fale Conosco</a>
-
-            <div class="footer-linha redes">
-
-                <div class="coluna">
-                    <h4>Redes Sociais</h4>
-
-                    <a href="https://www.instagram.com/techsenior_tcc/"><i class="fa-brands fa-instagram"></i>
-                        Instagram</a>
-                </div>
-            </div>
-        </div>
+      </div>
     </footer>
 
     <div class="copyright">
-        © 2026 TechSênior • Projeto desenvolvido para o Trabalho de Conclusão de Curso (TCC) do Curso Técnico em
-        Desenvolvimento de Sistemas.<br>
-        Desenvolvido por: Equipe do TechSênior
+      © 2026 TechSênior • Projeto desenvolvido para o Trabalho de Conclusão de
+      Curso (TCC) do Curso Técnico em Desenvolvimento de Sistemas.<br />
+      Desenvolvido por: Equipe do TechSênior
     </div>
 
     <script src="Script - Java/CursoCelular.js"></script>
     <script src="Script - Java/Padrão.js"></script>
-
-</body>
-
+  </body>
 </html>

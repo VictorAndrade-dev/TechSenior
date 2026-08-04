@@ -2,101 +2,51 @@
 // MOSTRAR / OCULTAR SENHA
 // ==========================================
 
-
 const mostrarSenha = document.getElementById("mostrarSenha");
 
 const senha = document.getElementById("senha");
 
-
-
 if (mostrarSenha) {
+  mostrarSenha.addEventListener("click", () => {
+    if (senha.type === "password") {
+      senha.type = "text";
 
-
-    mostrarSenha.addEventListener("click", () => {
-
-
-
-        if (senha.type === "password") {
-
-
-            senha.type = "text";
-
-
-            mostrarSenha.innerHTML = `
+      mostrarSenha.innerHTML = `
                 <i class="fa-solid fa-eye-slash"></i>
             `;
+    } else {
+      senha.type = "password";
 
-
-        } else {
-
-
-            senha.type = "password";
-
-
-            mostrarSenha.innerHTML = `
+      mostrarSenha.innerHTML = `
                 <i class="fa-solid fa-eye"></i>
             `;
-
-
-        }
-
-
-    });
-
-
+    }
+  });
 }
-
-
-
-
-
 
 // ==========================================
 // LOGIN
 // ==========================================
 
-
 const formLogin = document.getElementById("formLogin");
 
-
-
 if (formLogin) {
+  formLogin.addEventListener("submit", (evento) => {
+    evento.preventDefault();
 
+    const email = document.getElementById("email").value;
 
+    const senhaUsuario = document.getElementById("senha").value;
 
-    formLogin.addEventListener("submit", (evento) => {
+    // Validação simples
 
+    if (email === "" || senhaUsuario === "") {
+      alert("Preencha todos os campos antes de continuar.");
 
-        evento.preventDefault();
+      return;
+    }
 
-
-
-        const email = document.getElementById("email").value;
-
-        const senhaUsuario = document.getElementById("senha").value;
-
-
-
-
-
-        // Validação simples
-
-
-        if (email === "" || senhaUsuario === "") {
-
-
-            alert("Preencha todos os campos antes de continuar.");
-
-            return;
-
-
-        }
-
-
-
-
-
-        /*
+    /*
         
         Aqui futuramente entraria a consulta
         ao banco de dados.
@@ -106,39 +56,12 @@ if (formLogin) {
 
         */
 
+    localStorage.setItem("usuarioLogado", "true");
 
+    localStorage.setItem("usuarioEmail", email);
 
+    alert("Login realizado com sucesso!");
 
-
-        localStorage.setItem(
-            "usuarioLogado",
-            "true"
-        );
-
-
-
-        localStorage.setItem(
-            "usuarioEmail",
-            email
-        );
-
-
-
-
-
-
-        alert("Login realizado com sucesso!");
-
-
-
-
-
-        window.location.href = "Cursos.html#cursos";
-
-
-
-    });
-
-
-
+    window.location.href = "Cursos.html#cursos";
+  });
 }

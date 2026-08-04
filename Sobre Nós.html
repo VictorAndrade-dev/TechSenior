@@ -1,133 +1,111 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-
-<head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>TechSênior - Sobre Nós</title>
 
     <!-- Fonte -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- CSS -->
-    <link rel="stylesheet" href="Estilos - CSS/Padrão.css">
-    <link rel="stylesheet" href="Estilos - CSS/SobreNós.css">
+    <link rel="stylesheet" href="Estilos - CSS/Padrão.css" />
+    <link rel="stylesheet" href="Estilos - CSS/SobreNós.css" />
 
     <!-- Ícones -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+    />
+  </head>
 
-</head>
-
-<body>
-
+  <body>
     <!-- ===================================== -->
     <!-- HEADER -->
     <!-- ===================================== -->
 
     <header>
+      <button class="menu-toggle" id="menuToggle">
+        <i class="fa-solid fa-bars"></i>
+      </button>
 
-        <button class="menu-toggle" id="menuToggle">
-            <i class="fa-solid fa-bars"></i>
-        </button>
+      <div class="logo">
+        <img src="Imagens/Logotipo Sem Fundo.png" alt="Logo TechSênior" />
+      </div>
 
-        <div class="logo">
-            <img src="Imagens/Logotipo Sem Fundo.png" alt="Logo TechSênior">
-        </div>
+      <nav>
+        <a href="Início.html">Início</a>
+        <a href="Cursos.html">Cursos</a>
+        <a href="Comunidade.html">Comunidade</a>
+        <a href="Sobre Nós.html">Sobre Nós</a>
+      </nav>
 
-        <nav>
-
-            <a href="Início.html">Início</a>
-            <a href="Cursos.html">Cursos</a>
-            <a href="Comunidade.html">Comunidade</a>
-            <a href="Sobre Nós.html">Sobre Nós</a>
-
-        </nav>
-
-        <a class="btn-login" id="btnUsuario" href="Login.html">
-            <i class="fa-regular fa-user"></i>
-            Entrar
-        </a>
-
+      <a class="btn-login" id="btnUsuario" href="Login.html">
+        <i class="fa-regular fa-user"></i>
+        Entrar
+      </a>
     </header>
-
 
     <!-- ===================================== -->
     <!-- MENU MOBILE -->
     <!-- ===================================== -->
 
     <div class="sidebar" id="sidebar">
+      <button class="close-menu" id="closeMenu">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
 
-        <button class="close-menu" id="closeMenu">
+      <nav class="sidebar-nav">
+        <a href="Inicio.html">Início</a>
 
-            <i class="fa-solid fa-xmark"></i>
+        <a href="Cursos.html">Cursos</a>
 
-        </button>
+        <a href="Comunidade.html">Comunidade</a>
 
-        <nav class="sidebar-nav">
-
-            <a href="Inicio.html">Início</a>
-
-            <a href="Cursos.html">Cursos</a>
-
-            <a href="Comunidade.html">Comunidade</a>
-
-            <a href="Sobre Nós.html">Sobre Nós</a>
-
-        </nav>
-
+        <a href="Sobre Nós.html">Sobre Nós</a>
+      </nav>
     </div>
 
     <div class="overlay" id="overlay"></div>
-
-
 
     <!-- ===================================== -->
     <!-- HERO -->
     <!-- ===================================== -->
 
     <section class="hero">
+      <div class="hero-texto">
+        <h1>
+          Conheça o
+          <br />
+          TechSênior
+        </h1>
 
-        <div class="hero-texto">
+        <p>
+          O TechSênior é um projeto desenvolvido para promover a inclusão
+          digital da população idosa, oferecendo conteúdos gratuitos, acessíveis
+          e fáceis de compreender.
+        </p>
 
-            <h1>
+        <button class="btn-principal" id="btnMissao">
+          <i class="fa-solid fa-arrow-down"></i>
 
-                Conheça o
-                <br>
-                TechSênior
+          Conheça nossa missão
+        </button>
+      </div>
 
-            </h1>
-
-            <p>
-
-                O TechSênior é um projeto desenvolvido para promover a inclusão
-                digital da população idosa, oferecendo conteúdos gratuitos,
-                acessíveis e fáceis de compreender.
-
-            </p>
-
-            <button class="btn-principal" id="btnMissao">
-
-                <i class="fa-solid fa-arrow-down"></i>
-
-                Conheça nossa missão
-
-            </button>
-
-        </div>
-
-
-        <div class="hero-img">
-
-            <img src="Imagens/Idoso com gupo de jovens.jpg" alt="Idoso com jovens">
-
-        </div>
-
+      <div class="hero-img">
+        <img
+          src="Imagens/Idoso com gupo de jovens.jpg"
+          alt="Idoso com jovens"
+        />
+      </div>
     </section>
 
     <!-- ===================================== -->
@@ -135,109 +113,85 @@
     <!-- ===================================== -->
 
     <section class="missao" id="missao">
-
-        <div class="missao-card">
-
-            <div class="missao-icone">
-                <i class="fa-solid fa-bullseye"></i>
-            </div>
-
-            <div class="missao-texto">
-
-                <h2>Nossa Missão</h2>
-
-                <p>
-                    Promover a inclusão digital da população idosa, oferecendo
-                    conteúdos simples, gratuitos e acessíveis para que cada pessoa
-                    possa utilizar a tecnologia com mais autonomia, segurança e
-                    confiança no dia a dia.
-                </p>
-
-            </div>
-
+      <div class="missao-card">
+        <div class="missao-icone">
+          <i class="fa-solid fa-bullseye"></i>
         </div>
 
+        <div class="missao-texto">
+          <h2>Nossa Missão</h2>
+
+          <p>
+            Promover a inclusão digital da população idosa, oferecendo conteúdos
+            simples, gratuitos e acessíveis para que cada pessoa possa utilizar
+            a tecnologia com mais autonomia, segurança e confiança no dia a dia.
+          </p>
+        </div>
+      </div>
     </section>
 
-
-
     <section class="historia">
-
-        <div class="historia-container">
-
-            <div class="historia-imagem">
-
-                <img src="Imagens/Idoso mandando mensagem.jpg" alt="Idosa utilizando um celular">
-
-            </div>
-
-            <div class="historia-texto">
-
-                <span class="titulo-secao">
-                    <i class="fa-solid fa-book-open"></i>
-                    Nossa História
-                </span>
-
-                <h2>Como surgiu o TechSênior?</h2>
-
-                <div class="linha"></div>
-
-                <p>
-                    O <strong>TechSênior</strong> nasceu durante o desenvolvimento do
-                    Trabalho de Conclusão de Curso (TCC) do Curso Técnico em
-                    Desenvolvimento de Sistemas.
-                </p>
-
-                <p>
-                    Durante nossas pesquisas, percebemos que muitos idosos enfrentam
-                    dificuldades para utilizar celulares, computadores e serviços
-                    digitais que hoje fazem parte da rotina das pessoas.
-                </p>
-
-                <p>
-                    Pensando nisso, desenvolvemos uma plataforma que ensina tecnologia
-                    de forma simples, acessível e acolhedora, aproximando as pessoas
-                    do mundo digital e incentivando a inclusão.
-                </p>
-
-                <!-- AGORA OS DESTAQUES FICAM AQUI DENTRO -->
-
-                <div class="historia-destaques">
-
-                    <div class="destaque">
-
-                        <i class="fa-solid fa-users"></i>
-
-                        <div>
-
-                            <h4>Inclusão Digital</h4>
-
-                            <span>Tecnologia para todos.</span>
-
-                        </div>
-
-                    </div>
-
-                    <div class="destaque">
-
-                        <i class="fa-solid fa-heart"></i>
-
-                        <div>
-
-                            <h4>Aprendizado Humanizado</h4>
-
-                            <span>Conteúdo simples e acolhedor.</span>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
+      <div class="historia-container">
+        <div class="historia-imagem">
+          <img
+            src="Imagens/Idoso mandando mensagem.jpg"
+            alt="Idosa utilizando um celular"
+          />
         </div>
 
+        <div class="historia-texto">
+          <span class="titulo-secao">
+            <i class="fa-solid fa-book-open"></i>
+            Nossa História
+          </span>
+
+          <h2>Como surgiu o TechSênior?</h2>
+
+          <div class="linha"></div>
+
+          <p>
+            O <strong>TechSênior</strong> nasceu durante o desenvolvimento do
+            Trabalho de Conclusão de Curso (TCC) do Curso Técnico em
+            Desenvolvimento de Sistemas.
+          </p>
+
+          <p>
+            Durante nossas pesquisas, percebemos que muitos idosos enfrentam
+            dificuldades para utilizar celulares, computadores e serviços
+            digitais que hoje fazem parte da rotina das pessoas.
+          </p>
+
+          <p>
+            Pensando nisso, desenvolvemos uma plataforma que ensina tecnologia
+            de forma simples, acessível e acolhedora, aproximando as pessoas do
+            mundo digital e incentivando a inclusão.
+          </p>
+
+          <!-- AGORA OS DESTAQUES FICAM AQUI DENTRO -->
+
+          <div class="historia-destaques">
+            <div class="destaque">
+              <i class="fa-solid fa-users"></i>
+
+              <div>
+                <h4>Inclusão Digital</h4>
+
+                <span>Tecnologia para todos.</span>
+              </div>
+            </div>
+
+            <div class="destaque">
+              <i class="fa-solid fa-heart"></i>
+
+              <div>
+                <h4>Aprendizado Humanizado</h4>
+
+                <span>Conteúdo simples e acolhedor.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ===================================== -->
@@ -245,60 +199,49 @@
     <!-- ===================================== -->
 
     <section class="valores">
+      <div class="titulo-secao">
+        <h2>Nossos Valores</h2>
 
-        <div class="titulo-secao">
+        <p>
+          Os princípios que orientam o desenvolvimento do TechSênior e tornam
+          nossa plataforma acolhedora para todos.
+        </p>
+      </div>
 
-            <h2>Nossos Valores</h2>
+      <div class="valores-cards">
+        <div class="valor-card">
+          <i class="fa-solid fa-heart"></i>
 
-            <p>
-                Os princípios que orientam o desenvolvimento do TechSênior
-                e tornam nossa plataforma acolhedora para todos.
-            </p>
+          <h3>Respeito</h3>
 
+          <p>
+            Acreditamos que aprender não tem idade. Toda pessoa merece ser
+            acolhida e respeitada durante sua jornada.
+          </p>
         </div>
 
-        <div class="valores-cards">
+        <div class="valor-card">
+          <i class="fa-solid fa-handshake"></i>
 
-            <div class="valor-card">
+          <h3>Acolhimento</h3>
 
-                <i class="fa-solid fa-heart"></i>
-
-                <h3>Respeito</h3>
-
-                <p>
-                    Acreditamos que aprender não tem idade. Toda pessoa merece ser acolhida e respeitada durante sua
-                    jornada.
-                </p>
-
-            </div>
-
-            <div class="valor-card">
-
-                <i class="fa-solid fa-handshake"></i>
-
-                <h3>Acolhimento</h3>
-
-                <p>
-                    Produzimos conteúdos simples, claros e acessíveis para que qualquer pessoa consiga aprender com
-                    tranquilidade.
-                </p>
-
-            </div>
-
-            <div class="valor-card">
-
-                <i class="fa-solid fa-lightbulb"></i>
-
-                <h3>Inovação</h3>
-
-                <p>
-                    Utilizamos a tecnologia como ferramenta para aproximar pessoas e promover inclusão digital.
-                </p>
-
-            </div>
-
+          <p>
+            Produzimos conteúdos simples, claros e acessíveis para que qualquer
+            pessoa consiga aprender com tranquilidade.
+          </p>
         </div>
 
+        <div class="valor-card">
+          <i class="fa-solid fa-lightbulb"></i>
+
+          <h3>Inovação</h3>
+
+          <p>
+            Utilizamos a tecnologia como ferramenta para aproximar pessoas e
+            promover inclusão digital.
+          </p>
+        </div>
+      </div>
     </section>
 
     <!-- ===================================== -->
@@ -306,56 +249,41 @@
     <!-- ===================================== -->
 
     <section class="ods">
+      <div class="ods-container">
+        <div class="ods-texto">
+          <span class="subtitulo"> Desenvolvimento Sustentável </span>
 
-        <div class="ods-container">
+          <h2>Nosso compromisso com a sociedade</h2>
 
-            <div class="ods-texto">
-
-                <span class="subtitulo">
-                    Desenvolvimento Sustentável
-                </span>
-
-                <h2>Nosso compromisso com a sociedade</h2>
-
-                <p>
-                    O TechSênior foi desenvolvido pensando em reduzir as barreiras
-                    tecnológicas enfrentadas pelos idosos. Nosso projeto está alinhado
-                    aos Objetivos de Desenvolvimento Sustentável (ODS) da ONU,
-                    incentivando a educação inclusiva e a redução das desigualdades.
-                </p>
-
-            </div>
-
-            <div class="ods-cards">
-
-                <div class="ods-card">
-
-                    <img src="Imagens/ODS 4.png" alt="ODS 4 - Educação de Qualidade">
-
-                    <h3>ODS 4</h3>
-
-                    <p>
-                        Educação de Qualidade
-                    </p>
-
-                </div>
-
-                <div class="ods-card">
-
-                    <img src="Imagens/ODS 10.png" alt="ODS 10 - Redução das Desigualdades">
-
-                    <h3>ODS 10</h3>
-
-                    <p>
-                        Redução das Desigualdades
-                    </p>
-
-                </div>
-
-            </div>
-
+          <p>
+            O TechSênior foi desenvolvido pensando em reduzir as barreiras
+            tecnológicas enfrentadas pelos idosos. Nosso projeto está alinhado
+            aos Objetivos de Desenvolvimento Sustentável (ODS) da ONU,
+            incentivando a educação inclusiva e a redução das desigualdades.
+          </p>
         </div>
 
+        <div class="ods-cards">
+          <div class="ods-card">
+            <img src="Imagens/ODS 4.png" alt="ODS 4 - Educação de Qualidade" />
+
+            <h3>ODS 4</h3>
+
+            <p>Educação de Qualidade</p>
+          </div>
+
+          <div class="ods-card">
+            <img
+              src="Imagens/ODS 10.png"
+              alt="ODS 10 - Redução das Desigualdades"
+            />
+
+            <h3>ODS 10</h3>
+
+            <p>Redução das Desigualdades</p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ===================================== -->
@@ -363,100 +291,75 @@
     <!-- ===================================== -->
 
     <section class="equipe">
+      <div class="titulo-secao">
+        <span class="subtitulo"> Nossa Equipe </span>
 
-        <div class="titulo-secao">
+        <h2>Conheça quem desenvolveu o TechSênior</h2>
 
-            <span class="subtitulo">
-                Nossa Equipe
-            </span>
+        <p>
+          Somos estudantes do Curso Técnico em Desenvolvimento de Sistemas e
+          desenvolvemos o TechSênior como Trabalho de Conclusão de Curso (TCC),
+          com o objetivo de promover a inclusão digital da população idosa por
+          meio da tecnologia.
+        </p>
+      </div>
 
-            <h2>Conheça quem desenvolveu o TechSênior</h2>
+      <div class="integrantes">
+        <!-- Samuel -->
+        <div class="membro">
+          <img src="Imagens/Integrante 1.JPG" alt="Samuel" />
 
-            <p>
-                Somos estudantes do Curso Técnico em Desenvolvimento de Sistemas
-                e desenvolvemos o TechSênior como Trabalho de Conclusão de Curso
-                (TCC), com o objetivo de promover a inclusão digital da população
-                idosa por meio da tecnologia.
-            </p>
+          <h3>Samuel</h3>
 
+          <span class="cargo"> Desenvolvedor Front-end </span>
+
+          <p>
+            Responsável pelo desenvolvimento das interfaces, organização visual
+            e experiência do usuário.
+          </p>
         </div>
 
-        <div class="integrantes">
+        <!-- Integrante 2 -->
+        <div class="membro">
+          <img src="Imagens/Integrante 2.jpeg" alt="Integrante 2" />
 
-            <!-- Samuel -->
-            <div class="membro">
+          <h3>Victor Hugo</h3>
 
-                <img src="Imagens/Integrante 1.JPG" alt="Samuel">
+          <span class="cargo"> Designer UI/UX </span>
 
-                <h3>Samuel</h3>
-
-                <span class="cargo">
-                    Desenvolvedor Front-end
-                </span>
-
-                <p>
-                    Responsável pelo desenvolvimento das interfaces,
-                    organização visual e experiência do usuário.
-                </p>
-
-            </div>
-
-            <!-- Integrante 2 -->
-            <div class="membro">
-
-                <img src="Imagens/Integrante 2.jpeg" alt="Integrante 2">
-
-                <h3>Victor Hugo</h3>
-
-                <span class="cargo">
-                    Designer UI/UX
-                </span>
-
-                <p>
-                    Responsável pelo design da plataforma,
-                    identidade visual e divulgação da plataforma
-                </p>
-
-            </div>
-
-            <!-- Integrante 3 -->
-            <div class="membro">
-
-                <img src="Imagens/Integrante 3.jpeg" alt="Integrante 3">
-
-                <h3>Luis Miguel</h3>
-
-                <span class="cargo">
-                    Desenvolvedor Back-end
-                </span>
-
-                <p>
-                    Responsável pela estrutura lógica da aplicação
-                    e integração das funcionalidades.
-                </p>
-
-            </div>
-
-            <!-- Integrante 4 -->
-            <div class="membro">
-
-                <img src="Imagens/Integrante 4.jpeg" alt="Integrante 4">
-
-                <h3>Marcela</h3>
-
-                <span class="cargo">
-                    Pesquisa e Documentação
-                </span>
-
-                <p>
-                    Responsável pela pesquisa, documentação
-                    e organização do projeto.
-                </p>
-
-            </div>
-
+          <p>
+            Responsável pelo design da plataforma, identidade visual e
+            divulgação da plataforma
+          </p>
         </div>
 
+        <!-- Integrante 3 -->
+        <div class="membro">
+          <img src="Imagens/Integrante 3.jpeg" alt="Integrante 3" />
+
+          <h3>Luis Miguel</h3>
+
+          <span class="cargo"> Desenvolvedor Back-end </span>
+
+          <p>
+            Responsável pela estrutura lógica da aplicação e integração das
+            funcionalidades.
+          </p>
+        </div>
+
+        <!-- Integrante 4 -->
+        <div class="membro">
+          <img src="Imagens/Integrante 4.jpeg" alt="Integrante 4" />
+
+          <h3>Marcela</h3>
+
+          <span class="cargo"> Pesquisa e Documentação </span>
+
+          <p>
+            Responsável pela pesquisa, documentação e organização do projeto.
+          </p>
+        </div>
+      </div>
     </section>
 
     <!-- ===================================== -->
@@ -464,188 +367,143 @@
     <!-- ===================================== -->
 
     <section class="impacto">
+      <div class="titulo-secao">
+        <span class="subtitulo"> O Futuro que Queremos Construir </span>
 
-        <div class="titulo-secao">
+        <h2>Mais do que ensinar tecnologia</h2>
 
-            <span class="subtitulo">
-                O Futuro que Queremos Construir
-            </span>
+        <p>
+          Nosso objetivo é proporcionar autonomia, confiança e inclusão digital
+          para que cada idoso possa utilizar a tecnologia com segurança no dia a
+          dia.
+        </p>
+      </div>
 
-            <h2>Mais do que ensinar tecnologia</h2>
+      <div class="impacto-cards">
+        <div class="impacto-card">
+          <i class="fa-solid fa-user-group"></i>
 
-            <p>
+          <h3>Inclusão</h3>
 
-                Nosso objetivo é proporcionar autonomia,
-                confiança e inclusão digital para que cada
-                idoso possa utilizar a tecnologia com
-                segurança no dia a dia.
-
-            </p>
-
+          <p>Aproximamos pessoas da tecnologia de forma simples e acessível.</p>
         </div>
 
-        <div class="impacto-cards">
+        <div class="impacto-card">
+          <i class="fa-solid fa-graduation-cap"></i>
 
-            <div class="impacto-card">
+          <h3>Aprendizado</h3>
 
-                <i class="fa-solid fa-user-group"></i>
-
-                <h3>Inclusão</h3>
-
-                <p>
-                    Aproximamos pessoas da tecnologia de forma
-                    simples e acessível.
-                </p>
-
-            </div>
-
-            <div class="impacto-card">
-
-                <i class="fa-solid fa-graduation-cap"></i>
-
-                <h3>Aprendizado</h3>
-
-                <p>
-                    Incentivamos o aprendizado contínuo,
-                    respeitando o ritmo de cada pessoa.
-                </p>
-
-            </div>
-
-            <div class="impacto-card">
-
-                <i class="fa-solid fa-shield-heart"></i>
-
-                <h3>Confiança</h3>
-
-                <p>
-                    Ensinamos práticas seguras para utilizar
-                    celulares, computadores e internet.
-                </p>
-
-            </div>
-
+          <p>
+            Incentivamos o aprendizado contínuo, respeitando o ritmo de cada
+            pessoa.
+          </p>
         </div>
 
+        <div class="impacto-card">
+          <i class="fa-solid fa-shield-heart"></i>
+
+          <h3>Confiança</h3>
+
+          <p>
+            Ensinamos práticas seguras para utilizar celulares, computadores e
+            internet.
+          </p>
+        </div>
+      </div>
     </section>
 
     <!-- CTA -->
 
     <section class="cta">
+      <div>
+        <h2>Pronto para aprender conosco?</h2>
 
-        <div>
+        <p>
+          Descubra conteúdos gratuitos e desenvolvidos especialmente para tornar
+          a tecnologia mais simples para você.
+        </p>
+      </div>
 
-            <h2>Pronto para aprender conosco?</h2>
-
-            <p>
-                Descubra conteúdos gratuitos e desenvolvidos especialmente
-                para tornar a tecnologia mais simples para você.
-            </p>
-
-        </div>
-
-        <button class="btn-principal" id="btnComecar">
-            <i class="fa-solid fa-play"></i>
-            Começar agora
-        </button>
-
+      <button class="btn-principal" id="btnComecar">
+        <i class="fa-solid fa-play"></i>
+        Começar agora
+      </button>
     </section>
-
-
 
     <!-- ===================================== -->
     <!-- FOOTER -->
     <!-- ===================================== -->
 
     <footer>
+      <div class="coluna">
+        <h3>TechSênior</h3>
 
-        <div class="coluna">
+        <p>Tecnologia ao seu alcance.</p>
 
-            <h3>TechSênior</h3>
-
-            <p>Tecnologia ao seu alcance.</p>
-
-            <div class="footer-linha logo">
-                <div class="logo-footer">
-                    <img src="Imagens/Logotipo Sem Fundo.png" alt="Logotipo TechSênior">
-                </div>
-            </div>
-
+        <div class="footer-linha logo">
+          <div class="logo-footer">
+            <img
+              src="Imagens/Logotipo Sem Fundo.png"
+              alt="Logotipo TechSênior"
+            />
+          </div>
         </div>
+      </div>
 
+      <div class="coluna">
+        <h4>Navegação</h4>
 
-        <div class="coluna">
+        <a href="Início.html">Início</a>
 
-            <h4>Navegação</h4>
+        <a href="Cursos.html">Cursos</a>
 
-            <a href="Início.html">Início</a>
+        <a href="Comunidade.html">Comunidade</a>
 
-            <a href="Cursos.html">Cursos</a>
+        <a href="Sobre Nós.html">Sobre Nós</a>
+      </div>
 
-            <a href="Comunidade.html">Comunidade</a>
+      <div class="coluna">
+        <h4>Institucional</h4>
 
-            <a href="Sobre Nós.html">Sobre Nós</a>
+        <a href="Termos de Uso.html">Termos de Uso</a>
 
+        <a href="Política de Privacidade.html">Política de Privacidade</a>
+
+        <a href="Declaração de Acessibilidade.html"
+          >Declaração de Acessibilidade</a
+        >
+      </div>
+
+      <div class="coluna">
+        <h4>Comunidade</h4>
+
+        <a href="Regras da Comunidade.html">Regras da Comunidade</a>
+
+        <a href="Sobre Nós.html">Fale Conosco</a>
+
+        <div class="footer-linha redes">
+          <div class="coluna">
+            <h4>Redes Sociais</h4>
+
+            <a href="https://www.instagram.com/techsenior_tcc/">
+              <i class="fa-brands fa-instagram"></i>
+              Instagram
+            </a>
+          </div>
         </div>
-
-
-        <div class="coluna">
-
-            <h4>Institucional</h4>
-
-            <a href="Termos de Uso.html">Termos de Uso</a>
-
-            <a href="Política de Privacidade.html">Política de Privacidade</a>
-
-            <a href="Declaração de Acessibilidade.html">Declaração de Acessibilidade</a>
-
-        </div>
-
-
-        <div class="coluna">
-
-            <h4>Comunidade</h4>
-
-            <a href="Regras da Comunidade.html">Regras da Comunidade</a>
-
-            <a href="Sobre Nós.html">Fale Conosco</a>
-
-            <div class="footer-linha redes">
-
-                <div class="coluna">
-
-                    <h4>Redes Sociais</h4>
-
-                    <a href="https://www.instagram.com/techsenior_tcc/">
-                        <i class="fa-brands fa-instagram"></i>
-                        Instagram
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
+      </div>
     </footer>
 
-
     <div class="copyright">
+      © 2026 TechSênior • Projeto desenvolvido para o Trabalho de Conclusão de
+      Curso (TCC) do Curso Técnico em Desenvolvimento de Sistemas.
 
-        © 2026 TechSênior • Projeto desenvolvido para o Trabalho de
-        Conclusão de Curso (TCC) do Curso Técnico em Desenvolvimento de
-        Sistemas.
+      <br />
 
-        <br>
-
-        Desenvolvido pela equipe TechSênior.
-
+      Desenvolvido pela equipe TechSênior.
     </div>
-
 
     <script src="Script - Java/SobreNós.js"></script>
     <script src="Script - Java/Padrão.js"></script>
-
-</body>
-
+  </body>
 </html>

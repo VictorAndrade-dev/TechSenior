@@ -1,79 +1,77 @@
-
 /* =========================
 HERO
 ========================= */
 
-.hero{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:80px;
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 80px;
 }
 
-.hero-texto{
-    width:50%;
+.hero-texto {
+  width: 50%;
 }
 
-.hero-texto p{
-    font-size:20px;
-    color:var(--texto);
-    line-height:35px;
-    margin-bottom:35px;
+.hero-texto p {
+  font-size: 20px;
+  color: var(--texto);
+  line-height: 35px;
+  margin-bottom: 35px;
 }
 
-.hero-img img{
-    width:550px;
-    border-radius:35px;
+.hero-img img {
+  width: 550px;
+  border-radius: 35px;
 }
-
 
 /* =========================
 CURSOS
 ========================= */
 
-.cursos h2{
-    text-align:center;
-    margin-bottom:60px;
+.cursos h2 {
+  text-align: center;
+  margin-bottom: 60px;
 }
 
-.cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-    gap:30px;
-    align-items:stretch;
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  align-items: stretch;
 }
 
-.card{
-    background: white;
-    border-radius: 25px;
-    box-shadow: var(--sombra);
-    transition: .4s;
+.card {
+  background: white;
+  border-radius: 25px;
+  box-shadow: var(--sombra);
+  transition: 0.4s;
 
-    padding: 40px;
-    height:100%;
+  padding: 40px;
+  height: 100%;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
-.card i{
-    font-size:55px;
-    color:var(--azul);
-    margin-bottom:25px;
+.card i {
+  font-size: 55px;
+  color: var(--azul);
+  margin-bottom: 25px;
 }
 
-.card h3{
-    margin-bottom:20px;
+.card h3 {
+  margin-bottom: 20px;
 }
 
-.card p{
-    color:var(--texto);
-    line-height:30px;
-    margin-bottom:25px;
+.card p {
+  color: var(--texto);
+  line-height: 30px;
+  margin-bottom: 25px;
 }
 
-.card .btn-card{
-    margin-top: auto;
+.card .btn-card {
+  margin-top: auto;
 }
 
 /* =========================
@@ -81,310 +79,301 @@ MODAIS DOS CURSOS (Corrigido)
 ========================= */
 
 .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Fundo escurecido suave */
-    display: none; /* Começa escondido para o JS funcionar */
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    z-index: 1000; /* Garante que fica por cima de tudo */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Fundo escurecido suave */
+  display: none; /* Começa escondido para o JS funcionar */
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 1000; /* Garante que fica por cima de tudo */
 }
 
 .modal-conteudo-curso {
-    background: var(--branco);
-    width: 100%;
-    max-width: 650px;
-    max-height: 85vh;
-    overflow-y: auto;
-    padding: 40px;
-    border-radius: 30px;
-    box-shadow: var(--sombra);
-    position: relative;
-    animation: aparecerModalCurso .3s ease;
+  background: var(--branco);
+  width: 100%;
+  max-width: 650px;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 40px;
+  border-radius: 30px;
+  box-shadow: var(--sombra);
+  position: relative;
+  animation: aparecerModalCurso 0.3s ease;
 }
 
 @keyframes aparecerModalCurso {
-    from {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Corrigido para bater com a classe do HTML */
 .fechar-modal {
-    position: absolute;
-    top: 20px;
-    right: 25px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 24px;
-    color: var(--texto);
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: var(--texto);
 }
 
 .modal-conteudo-curso h2 {
-    text-align: center;
-    color: var(--titulo);
-    margin-bottom: 20px;
+  text-align: center;
+  color: var(--titulo);
+  margin-bottom: 20px;
 }
 
 .modal-conteudo-curso p {
-    color: var(--texto);
-    line-height: 30px;
-    margin-bottom: 30px;
+  color: var(--texto);
+  line-height: 30px;
+  margin-bottom: 30px;
 }
 
 .info-curso {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    margin: 35px 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin: 35px 0;
 }
 
 .info-item {
-    background: var(--fundo);
-    border-radius: 20px;
-    padding: 20px;
-    text-align: center;
+  background: var(--fundo);
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
 }
 
 .info-item i {
-    font-size: 28px;
-    color: var(--azul);
-    margin-bottom: 10px;
+  font-size: 28px;
+  color: var(--azul);
+  margin-bottom: 10px;
 }
 
 .info-item span {
-    display: block;
-    color: var(--texto);
-    font-weight: 600;
+  display: block;
+  color: var(--texto);
+  font-weight: 600;
 }
 
 .lista-curso {
-    margin: 25px 0;
-    padding-left: 20px;
+  margin: 25px 0;
+  padding-left: 20px;
 }
 
 .lista-curso li {
-    color: var(--texto);
-    line-height: 28px;
-    margin-bottom: 12px;
+  color: var(--texto);
+  line-height: 28px;
+  margin-bottom: 12px;
 }
 
 .modal-conteudo-curso .btn-principal {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 260px;
-    margin: 35px auto 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 260px;
+  margin: 35px auto 0;
 }
 
-@media(max-width:768px) {
-    .modal-conteudo-curso {
-        padding: 30px 20px;
-        max-height: 90vh;
-    }
+@media (max-width: 768px) {
+  .modal-conteudo-curso {
+    padding: 30px 20px;
+    max-height: 90vh;
+  }
 
-    .info-curso {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
+  .info-curso {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
 
-    .modal-conteudo-curso .btn-principal {
-        width: 100%;
-    }
+  .modal-conteudo-curso .btn-principal {
+    width: 100%;
+  }
 }
 
 /* =========================
 BENEFÍCIOS
 ========================= */
 
-.beneficios h2{
-    text-align:center;
-    margin-bottom:60px;
+.beneficios h2 {
+  text-align: center;
+  margin-bottom: 60px;
 }
 
-.beneficios-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-    gap:30px;
+.beneficios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
 }
 
-.beneficio{
-    background:white;
-    padding:40px;
-    border-radius:25px;
-    box-shadow:var(--sombra);
-    transition:.4s;
+.beneficio {
+  background: white;
+  padding: 40px;
+  border-radius: 25px;
+  box-shadow: var(--sombra);
+  transition: 0.4s;
 }
 
-.beneficio:hover{
-    transform:translateY(-10px);
+.beneficio:hover {
+  transform: translateY(-10px);
 }
 
-.beneficio i{
-    font-size:50px;
-    color:var(--verde);
-    margin-bottom:20px;
+.beneficio i {
+  font-size: 50px;
+  color: var(--verde);
+  margin-bottom: 20px;
 }
 
-.beneficio h3{
-    margin-bottom:20px;
+.beneficio h3 {
+  margin-bottom: 20px;
 }
 
-.beneficio p{
-    color:var(--texto);
-    line-height:30px;
+.beneficio p {
+  color: var(--texto);
+  line-height: 30px;
 }
-
 
 /* =========================
 FAQ
 ========================= */
 
-.faq h2{
-    text-align:center;
-    margin-bottom:50px;
+.faq h2 {
+  text-align: center;
+  margin-bottom: 50px;
 }
 
-.pergunta{
-    margin-bottom:20px;
+.pergunta {
+  margin-bottom: 20px;
 }
 
-.accordion{
-    width:100%;
-    border:none;
-    background:white;
-    padding:25px;
-    text-align:left;
-    font-size:18px;
-    cursor:pointer;
-    border-radius:20px;
-    box-shadow:var(--sombra);
+.accordion {
+  width: 100%;
+  border: none;
+  background: white;
+  padding: 25px;
+  text-align: left;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 20px;
+  box-shadow: var(--sombra);
 
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    transition:.3s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.3s;
 }
 
-.accordion.active{
-    border-radius:20px 20px 0 0;
+.accordion.active {
+  border-radius: 20px 20px 0 0;
 }
 
-.accordion i{
-    transition: transform .3s ease;
+.accordion i {
+  transition: transform 0.3s ease;
 }
 
-.accordion.active i{
-    transform: rotate(180deg);
+.accordion.active i {
+  transform: rotate(180deg);
 }
 
-.resposta{
-    background:white;
-    max-height:0;
-    overflow:hidden;
+.resposta {
+  background: white;
+  max-height: 0;
+  overflow: hidden;
 
-    transition:max-height .4s ease, padding .4s ease;
+  transition:
+    max-height 0.4s ease,
+    padding 0.4s ease;
 
-    padding:0 25px;
-    border-radius:0 0 20px 20px;
+  padding: 0 25px;
+  border-radius: 0 0 20px 20px;
 
-    line-height:28px;
-    color:var(--texto);
+  line-height: 28px;
+  color: var(--texto);
 }
-
 
 /* =========================
 CTA
 ========================= */
 
-.cta{
-    margin:100px 8%;
-    padding:60px;
-    border-radius:30px;
+.cta {
+  margin: 100px 8%;
+  padding: 60px;
+  border-radius: 30px;
 
-    background:linear-gradient(
-        90deg,
-        var(--azul),
-        var(--verde)
-    );
+  background: linear-gradient(90deg, var(--azul), var(--verde));
 
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    color:white;
+  color: white;
 }
 
-.cta h2{
-    margin-bottom:15px;
-    color: white;
+.cta h2 {
+  margin-bottom: 15px;
+  color: white;
 }
 
-.cta p{
-    font-size:20px;
+.cta p {
+  font-size: 20px;
 }
 
-.cta button{
-    background:white;
-    color:var(--azul);
+.cta button {
+  background: white;
+  color: var(--azul);
 }
-
 
 /* =========================
 RESPONSIVO
 ========================= */
 
-@media(max-width:1000px){
+@media (max-width: 1000px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
 
-    .hero{
-        flex-direction:column;
-        text-align:center;
-    }
+  .hero-texto {
+    width: 100%;
+  }
 
-    .hero-texto{
-        width:100%;
-    }
+  .hero-texto h1 {
+    font-size: 50px;
+    line-height: 60px;
+  }
 
-    .hero-texto h1{
-        font-size:50px;
-        line-height:60px;
-    }
+  .hero-img img {
+    width: 100%;
+  }
 
-    .hero-img img{
-        width:100%;
-    }
-
-    .cta{
-        flex-direction:column;
-        gap:30px;
-        text-align:center;
-    }
-
+  .cta {
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
+  }
 }
 
-@media(max-width:768px){
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 42px;
+    line-height: 52px;
+  }
 
-    .hero h1{
-        font-size:42px;
-        line-height:52px;
-    }
+  .hero p {
+    font-size: 18px;
+  }
 
-    .hero p{
-        font-size:18px;
-    }
-
-    .cta h2{
-        font-size:35px;
-    }
-
+  .cta h2 {
+    font-size: 35px;
+  }
 }

@@ -2,212 +2,135 @@
    DECLARAÇÃO DE ACESSIBILIDADE
 ========================================== */
 
-
 .acessibilidade {
-
-    background: var(--fundo);
-    padding: 80px 8%;
-
+  background: var(--fundo);
+  padding: 80px 8%;
 }
-
 
 /* CONTAINER PRINCIPAL */
 
 .acessibilidade-container {
+  max-width: 900px;
+  margin: auto;
 
-    max-width: 900px;
-    margin: auto;
+  background: var(--branco);
 
-    background: var(--branco);
+  padding: 60px;
 
-    padding: 60px;
+  border-radius: 30px;
 
-    border-radius: 30px;
+  box-shadow: var(--sombra);
 
-    box-shadow: var(--sombra);
+  border: 1px solid var(--borda);
 
-    border: 1px solid var(--borda);
+  opacity: 0;
 
-    opacity: 0;
+  transform: translateY(40px);
 
-    transform: translateY(40px);
-
-    animation: aparecerAcessibilidade 0.8s ease forwards;
-
+  animation: aparecerAcessibilidade 0.8s ease forwards;
 }
-
-
 
 /* ANIMAÇÃO */
 
 @keyframes aparecerAcessibilidade {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
 
-    from {
-
-        opacity: 0;
-        transform: translateY(40px);
-
-    }
-
-
-    to {
-
-        opacity: 1;
-        transform: translateY(0);
-
-    }
-
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-
-
 
 /* TÍTULO PRINCIPAL */
 
 .acessibilidade-container h1 {
-
-    text-align: center;
-
+  text-align: center;
 }
-
-
 
 /* LINHAS DE SEPARAÇÃO */
 
 .acessibilidade-container hr {
+  border: none;
 
-    border: none;
+  border-top: 2px solid var(--borda);
 
-    border-top: 2px solid var(--borda);
-
-    margin: 35px 0;
-
+  margin: 35px 0;
 }
-
-
 
 /* TÍTULOS DAS SEÇÕES */
 
 .acessibilidade-container h2 {
+  margin-top: 35px;
 
-    margin-top: 35px;
-
-    margin-bottom: 20px;
-
+  margin-bottom: 20px;
 }
-
-
 
 /* TEXTOS */
 
 .acessibilidade-container p {
+  font-size: 18px;
 
-    font-size: 18px;
+  line-height: 1.8;
 
-    line-height: 1.8;
+  color: var(--texto);
 
-    color: var(--texto);
-
-    margin-bottom: 25px;
-
+  margin-bottom: 25px;
 }
-
-
 
 /* LISTAS */
 
 .acessibilidade-container ul {
-
-    margin: 20px 0 30px 25px;
-
+  margin: 20px 0 30px 25px;
 }
-
-
 
 .acessibilidade-container li {
+  font-size: 18px;
 
-    font-size: 18px;
+  color: var(--texto);
 
-    color: var(--texto);
+  line-height: 1.8;
 
-    line-height: 1.8;
-
-    margin-bottom: 10px;
-
+  margin-bottom: 10px;
 }
-
-
 
 /* ==========================================
    RESPONSIVIDADE
 ========================================== */
 
+@media (max-width: 768px) {
+  .acessibilidade {
+    padding: 50px 5%;
+  }
 
-@media(max-width:768px){
+  .acessibilidade-container {
+    padding: 35px 25px;
 
+    border-radius: 20px;
+  }
 
-    .acessibilidade {
+  .acessibilidade-container h1 {
+    font-size: 35px;
+  }
 
-        padding: 50px 5%;
+  .acessibilidade-container h2 {
+    font-size: 25px;
+  }
 
-    }
-
-
-
-    .acessibilidade-container {
-
-        padding: 35px 25px;
-
-        border-radius: 20px;
-
-    }
-
-
-
-    .acessibilidade-container h1 {
-
-        font-size: 35px;
-
-    }
-
-
-
-    .acessibilidade-container h2 {
-
-        font-size: 25px;
-
-    }
-
-
-
-    .acessibilidade-container p,
-    .acessibilidade-container li {
-
-        font-size: 16px;
-
-    }
-
-
+  .acessibilidade-container p,
+  .acessibilidade-container li {
+    font-size: 16px;
+  }
 }
 
+@media (max-width: 480px) {
+  .acessibilidade-container {
+    padding: 25px 18px;
+  }
 
-
-
-@media(max-width:480px){
-
-
-    .acessibilidade-container {
-
-        padding: 25px 18px;
-
-    }
-
-
-
-    .acessibilidade-container h1 {
-
-        font-size: 30px;
-
-    }
-
-
+  .acessibilidade-container h1 {
+    font-size: 30px;
+  }
 }

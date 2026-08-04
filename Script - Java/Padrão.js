@@ -3,80 +3,55 @@ const closeMenu = document.getElementById("closeMenu");
 const sidebar = document.getElementById("sidebar");
 const overlay = document.getElementById("overlay");
 
-if(menuToggle){
-
-    menuToggle.addEventListener("click", () => {
-
-        sidebar.classList.add("active");
-        overlay.classList.add("active");
-
-    });
-
+if (menuToggle) {
+  menuToggle.addEventListener("click", () => {
+    sidebar.classList.add("active");
+    overlay.classList.add("active");
+  });
 }
 
-if(closeMenu){
-
-    closeMenu.addEventListener("click", () => {
-
-        sidebar.classList.remove("active");
-        overlay.classList.remove("active");
-
-    });
-
+if (closeMenu) {
+  closeMenu.addEventListener("click", () => {
+    sidebar.classList.remove("active");
+    overlay.classList.remove("active");
+  });
 }
 
-if(overlay){
-
-    overlay.addEventListener("click", () => {
-        sidebar.classList.remove("active");
-        overlay.classList.remove("active");
-
-    });
-
+if (overlay) {
+  overlay.addEventListener("click", () => {
+    sidebar.classList.remove("active");
+    overlay.classList.remove("active");
+  });
 }
 
-document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach(link => {
+document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach((link) => {
+  link.addEventListener("click", function (e) {
+    e.preventDefault();
 
-    link.addEventListener("click", function(e){
+    const alvo = document.querySelector(this.getAttribute("href"));
 
-        e.preventDefault();
-
-        const alvo = document.querySelector(this.getAttribute("href"));
-
-        if(alvo){
-
-            alvo.scrollIntoView({
-                behavior:"smooth"
-            });
-
-        }
-
-    });
-
+    if (alvo) {
+      alvo.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  });
 });
 
 const linksSidebar = document.querySelectorAll(".sidebar-nav a");
 
-linksSidebar.forEach(link => {
-
-    link.addEventListener("click", () => {
-
-        sidebar.classList.remove("active");
-        overlay.classList.remove("active");
-
-    });
-
+linksSidebar.forEach((link) => {
+  link.addEventListener("click", () => {
+    sidebar.classList.remove("active");
+    overlay.classList.remove("active");
+  });
 });
 
 window.addEventListener("resize", () => {
-
-    if(window.innerWidth > 1000){
-
-        sidebar.classList.remove("active");
-        overlay.classList.remove("active");
-
-    }
-
+  if (window.innerWidth > 1000) {
+    sidebar.classList.remove("active");
+    overlay.classList.remove("active");
+  }
 });
 
 // ===========================
@@ -104,49 +79,33 @@ voltarTopo.style.boxShadow = "0 5px 15px rgba(0,0,0,.3)";
 voltarTopo.style.display = "none";
 
 window.addEventListener("scroll", () => {
-
-    if(window.scrollY > 300){
-        voltarTopo.style.display = "block";
-    } else {
-        voltarTopo.style.display = "none";
-    }
-
+  if (window.scrollY > 300) {
+    voltarTopo.style.display = "block";
+  } else {
+    voltarTopo.style.display = "none";
+  }
 });
 
 voltarTopo.addEventListener("click", () => {
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
 });
 
 // ==========================================
 // ALTERAÇÃO DO BOTÃO DE LOGIN/PERFIL
 // ==========================================
 
-
 const btnUsuario = document.getElementById("btnUsuario");
 
-
-
 if (btnUsuario) {
+  const usuarioLogado = localStorage.getItem("usuarioLogado") === "true";
 
+  if (usuarioLogado) {
+    const nome = localStorage.getItem("usuarioNome");
 
-    const usuarioLogado = localStorage.getItem("usuarioLogado") === "true";
-
-
-
-    if (usuarioLogado) {
-
-
-
-        const nome = localStorage.getItem("usuarioNome");
-
-
-
-        btnUsuario.innerHTML = `
+    btnUsuario.innerHTML = `
 
             <i class="fa-solid fa-user"></i>
 
@@ -154,32 +113,12 @@ if (btnUsuario) {
 
         `;
 
-
-
-        btnUsuario.onclick = () => {
-
-
-            window.location.href = "Perfil.html";
-
-
-        };
-
-
-
-    } else {
-
-
-
-        btnUsuario.onclick = () => {
-
-
-            window.location.href = "Login.html";
-
-
-        };
-
-
-    }
-
-
+    btnUsuario.onclick = () => {
+      window.location.href = "Perfil.html";
+    };
+  } else {
+    btnUsuario.onclick = () => {
+      window.location.href = "Login.html";
+    };
+  }
 }

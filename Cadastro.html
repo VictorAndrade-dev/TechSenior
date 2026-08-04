@@ -1,385 +1,158 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
 
-<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-    <title>
-        TechSênior - Cadastro
-    </title>
-
-
+    <title>TechSênior - Cadastro</title>
 
     <!-- Fonte -->
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
 
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@500;600;700&display=swap"
-    rel="stylesheet">
-
-
-
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- CSS -->
 
-    <link rel="stylesheet" href="Estilos - CSS/Padrão.css">
+    <link rel="stylesheet" href="Estilos - CSS/Padrão.css" />
 
-    <link rel="stylesheet" href="Estilos - CSS/Cadastro.css">
-
-
-
+    <link rel="stylesheet" href="Estilos - CSS/Cadastro.css" />
 
     <!-- Ícones -->
 
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
 
+  <body>
+    <main class="cadastro">
+      <section class="cadastro-container">
+        <!-- VOLTAR -->
 
-</head>
+        <a href="Início.html" class="voltar">
+          <i class="fa-solid fa-arrow-left"></i>
 
+          Voltar para o início
+        </a>
 
+        <!-- LOGO -->
 
-<body>
+        <div class="cadastro-logo">
+          <img src="Imagens/Logotipo Sem Fundo.png" alt="Logo TechSênior" />
+        </div>
 
+        <!-- TÍTULO -->
 
+        <div class="cadastro-titulo">
+          <h1>Crie sua conta</h1>
 
-<main class="cadastro">
+          <p>Faça seu cadastro e comece a aprender tecnologia.</p>
+        </div>
 
+        <!-- FORMULÁRIO -->
 
-<section class="cadastro-container">
-
-
-
-    <!-- VOLTAR -->
-
-
-    <a href="Início.html" class="voltar">
-
-        <i class="fa-solid fa-arrow-left"></i>
-
-        Voltar para o início
-
-    </a>
-
-
-
-
-
-    <!-- LOGO -->
-
-
-    <div class="cadastro-logo">
-
-
-        <img src="Imagens/Logotipo Sem Fundo.png"
-        alt="Logo TechSênior">
-
-
-    </div>
-
-
-
-
-
-    <!-- TÍTULO -->
-
-
-    <div class="cadastro-titulo">
-
-
-        <h1>
-
-            Crie sua conta
-
-        </h1>
-
-
-        <p>
-
-            Faça seu cadastro e comece a aprender tecnologia.
-
-        </p>
-
-
-    </div>
-
-
-
-
-
-
-    <!-- FORMULÁRIO -->
-
-
-    <form id="formCadastro" class="form-cadastro">
-
-
-
-
-
-        <div class="campo">
-
-
-            <label for="nome">
-
-                Nome completo
-
-            </label>
-
-
+        <form id="formCadastro" class="form-cadastro">
+          <div class="campo">
+            <label for="nome"> Nome completo </label>
 
             <div class="input-box">
+              <i class="fa-solid fa-user"></i>
 
-
-                <i class="fa-solid fa-user"></i>
-
-
-                <input
+              <input
                 type="text"
                 id="nome"
                 placeholder="Digite seu nome"
-                required>
-
-
+                required
+              />
             </div>
+          </div>
 
-
-        </div>
-
-
-
-
-
-
-
-        <div class="campo">
-
-
-            <label for="email">
-
-                E-mail
-
-            </label>
-
-
+          <div class="campo">
+            <label for="email"> E-mail </label>
 
             <div class="input-box">
+              <i class="fa-solid fa-envelope"></i>
 
-
-                <i class="fa-solid fa-envelope"></i>
-
-
-                <input
+              <input
                 type="email"
                 id="email"
                 placeholder="Digite seu e-mail"
-                required>
-
-
+                required
+              />
             </div>
+          </div>
 
-
-        </div>
-
-
-
-
-
-
-
-
-        <div class="campo">
-
-
-            <label for="senha">
-
-                Senha
-
-            </label>
-
-
+          <div class="campo">
+            <label for="senha"> Senha </label>
 
             <div class="input-box">
+              <i class="fa-solid fa-lock"></i>
 
-
-                <i class="fa-solid fa-lock"></i>
-
-
-                <input
+              <input
                 type="password"
                 id="senha"
                 placeholder="Crie uma senha"
-                required>
+                required
+              />
 
-
-
-                <button
-                type="button"
-                class="mostrar-senha"
-                id="mostrarSenha">
-
-
-                    <i class="fa-solid fa-eye"></i>
-
-
-                </button>
-
-
+              <button type="button" class="mostrar-senha" id="mostrarSenha">
+                <i class="fa-solid fa-eye"></i>
+              </button>
             </div>
+          </div>
 
-
-        </div>
-
-
-
-
-
-
-
-        <div class="campo">
-
-
-            <label for="confirmarSenha">
-
-                Confirmar senha
-
-            </label>
-
-
+          <div class="campo">
+            <label for="confirmarSenha"> Confirmar senha </label>
 
             <div class="input-box">
+              <i class="fa-solid fa-lock"></i>
 
-
-                <i class="fa-solid fa-lock"></i>
-
-
-                <input
+              <input
                 type="password"
                 id="confirmarSenha"
                 placeholder="Confirme sua senha"
-                required>
-
-
+                required
+              />
             </div>
+          </div>
 
-
-        </div>
-
-
-
-
-
-
-
-        <div class="termos">
-
-
-            <input
-            type="checkbox"
-            id="aceitarTermos">
-
-
+          <div class="termos">
+            <input type="checkbox" id="aceitarTermos" />
 
             <label for="aceitarTermos">
+              Eu aceito os
 
+              <a href="Termos de Uso.html"> Termos de Uso </a>
 
-                Eu aceito os
+              e a
 
-                <a href="Termos de Uso.html">
-                    Termos de Uso
-                </a>
-
-                e a
-
-                <a href="Política de Privacidade.html">
-                    Política de Privacidade
-                </a>
-
-
+              <a href="Política de Privacidade.html">
+                Política de Privacidade
+              </a>
             </label>
+          </div>
 
+          <button type="submit" class="btn-cadastro">Criar conta</button>
+        </form>
 
+        <!-- LOGIN -->
+
+        <div class="login-link">
+          <p>Já possui uma conta?</p>
+
+          <a href="Login.html"> Entrar </a>
         </div>
+      </section>
+    </main>
 
-
-
-
-
-
-
-
-        <button
-        type="submit"
-        class="btn-cadastro">
-
-
-            Criar conta
-
-
-        </button>
-
-
-
-
-
-    </form>
-
-
-
-
-
-
-
-
-    <!-- LOGIN -->
-
-
-    <div class="login-link">
-
-
-        <p>
-
-            Já possui uma conta?
-
-        </p>
-
-
-
-        <a href="Login.html">
-
-            Entrar
-
-        </a>
-
-
-    </div>
-
-
-
-
-</section>
-
-
-</main>
-
-
-
-
-
-
-
-<script src="Script - Java/Cadastro.js"></script>
-
-
-
-</body>
-
+    <script src="Script - Java/Cadastro.js"></script>
+  </body>
 </html>

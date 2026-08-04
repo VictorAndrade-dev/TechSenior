@@ -3,48 +3,31 @@
 // ==========================================
 
 const elementos = document.querySelectorAll(
-
-    ".missao, .porque, .oferecemos, .ods, .equipe, .card, .membro"
-
+  ".missao, .porque, .oferecemos, .ods, .equipe, .card, .membro",
 );
-
 
 const observador = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = "1";
+        entry.target.style.transform = "translateY(0)";
+      }
+    });
+  },
 
-    (entries) => {
-
-        entries.forEach((entry) => {
-
-            if (entry.isIntersecting) {
-
-                entry.target.style.opacity = "1";
-                entry.target.style.transform = "translateY(0)";
-
-            }
-
-        });
-
-    },
-
-    {
-        threshold: 0.2
-    }
-
+  {
+    threshold: 0.2,
+  },
 );
 
-
 elementos.forEach((elemento) => {
+  elemento.style.opacity = "0";
+  elemento.style.transform = "translateY(40px)";
+  elemento.style.transition = ".8s";
 
-    elemento.style.opacity = "0";
-    elemento.style.transform = "translateY(40px)";
-    elemento.style.transition = ".8s";
-
-    observador.observe(elemento);
-
+  observador.observe(elemento);
 });
-
-
-
 
 // ==========================================
 // HOVER DOS MEMBROS DA EQUIPE
@@ -53,25 +36,15 @@ elementos.forEach((elemento) => {
 const membros = document.querySelectorAll(".membro");
 
 membros.forEach((membro) => {
+  membro.addEventListener("mouseenter", () => {
+    membro.style.transform = "translateY(-12px)";
+    membro.style.transition = ".4s";
+  });
 
-    membro.addEventListener("mouseenter", () => {
-
-        membro.style.transform = "translateY(-12px)";
-        membro.style.transition = ".4s";
-
-    });
-
-
-    membro.addEventListener("mouseleave", () => {
-
-        membro.style.transform = "translateY(0px)";
-
-    });
-
+  membro.addEventListener("mouseleave", () => {
+    membro.style.transform = "translateY(0px)";
+  });
 });
-
-
-
 
 // ==========================================
 // EFEITO DE CONTADOR
@@ -81,79 +54,63 @@ membros.forEach((membro) => {
 const contadores = document.querySelectorAll(".contador");
 
 contadores.forEach((contador) => {
+  contador.innerText = "0";
 
-    contador.innerText = "0";
+  const atualizar = () => {
+    const alvo = +contador.getAttribute("data-target");
 
-    const atualizar = () => {
+    const atual = +contador.innerText;
 
-        const alvo = +contador.getAttribute("data-target");
+    const incremento = alvo / 100;
 
-        const atual = +contador.innerText;
+    if (atual < alvo) {
+      contador.innerText = `${Math.ceil(atual + incremento)}`;
 
-        const incremento = alvo / 100;
-
-        if (atual < alvo) {
-
-            contador.innerText = `${Math.ceil(atual + incremento)}`;
-
-            setTimeout(atualizar, 20);
-
-        }
-
-        else {
-
-            contador.innerText = alvo;
-
-        }
-
+      setTimeout(atualizar, 20);
+    } else {
+      contador.innerText = alvo;
     }
+  };
 
-    atualizar();
-
+  atualizar();
 });
-
 
 //BOTÃO CONHEÇA NOSSA MISSÃO
 
 const btnMissao = document.querySelector(".btn-principal");
 
 btnMissao.addEventListener("click", () => {
-
-    scrollSuave(document.getElementById("missao"));
-
+  scrollSuave(document.getElementById("missao"));
 });
 
 function scrollSuave(destino, duracao = 2000) {
+  const inicio = window.pageYOffset;
+  const fim = destino.offsetTop - 80;
+  const distancia = fim - inicio;
 
-    const inicio = window.pageYOffset;
-    const fim = destino.offsetTop - 80;
-    const distancia = fim - inicio;
+  let inicioTempo = null;
 
-    let inicioTempo = null;
+  function animacao(tempoAtual) {
+    if (!inicioTempo) inicioTempo = tempoAtual;
 
-    function animacao(tempoAtual) {
+    const tempoDecorrido = tempoAtual - inicioTempo;
 
-        if (!inicioTempo) inicioTempo = tempoAtual;
+    const progresso = Math.min(tempoDecorrido / duracao, 1);
 
-        const tempoDecorrido = tempoAtual - inicioTempo;
+    // Ease In Out
+    const ease =
+      progresso < 0.5
+        ? 2 * progresso * progresso
+        : 1 - Math.pow(-2 * progresso + 2, 2) / 2;
 
-        const progresso = Math.min(tempoDecorrido / duracao, 1);
+    window.scrollTo(0, inicio + distancia * ease);
 
-        // Ease In Out
-        const ease = progresso < 0.5
-            ? 2 * progresso * progresso
-            : 1 - Math.pow(-2 * progresso + 2, 2) / 2;
-
-        window.scrollTo(0, inicio + distancia * ease);
-
-        if (progresso < 1) {
-            requestAnimationFrame(animacao);
-        }
-
+    if (progresso < 1) {
+      requestAnimationFrame(animacao);
     }
+  }
 
-    requestAnimationFrame(animacao);
-
+  requestAnimationFrame(animacao);
 }
 
 //Botão Comecar (CTA)
@@ -161,34 +118,24 @@ function scrollSuave(destino, duracao = 2000) {
 const btnComecar = document.getElementById("btnComecar");
 
 if (btnComecar) {
+  // Verifica se o usuário está logado
+  const usuarioLogado = localStorage.getItem("usuarioLogado") === "true";
 
-    // Verifica se o usuário está logado
-    const usuarioLogado = localStorage.getItem("usuarioLogado") === "true";
-
-    // Altera o texto do botão caso esteja logado
-    if (usuarioLogado) {
-
-        btnComecar.innerHTML = `
+  // Altera o texto do botão caso esteja logado
+  if (usuarioLogado) {
+    btnComecar.innerHTML = `
             <i class="fa-solid fa-graduation-cap"></i>
             Continuar aprendendo
         `;
+  }
 
+  // Define a ação do botão
+
+  btnComecar.addEventListener("click", () => {
+    if (usuarioLogado) {
+      window.location.href = "Cursos.html#cursos";
+    } else {
+      window.location.href = "Login.html";
     }
-
-    // Define a ação do botão
-    
-    btnComecar.addEventListener("click", () => {
-
-        if (usuarioLogado) {
-
-            window.location.href = "Cursos.html#cursos";
-
-        } else {
-
-            window.location.href = "Login.html";
-
-        }
-
-    });
-
+  });
 }

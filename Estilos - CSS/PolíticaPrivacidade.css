@@ -2,324 +2,197 @@
    POLÍTICA DE PRIVACIDADE
 ========================================== */
 
-
 .politica {
+  background: var(--fundo);
 
-    background: var(--fundo);
+  padding: 60px 20px;
 
-    padding: 60px 20px;
-
-    min-height: 100vh;
-
+  min-height: 100vh;
 }
-
-
-
 
 /* CONTAINER PRINCIPAL */
 
 .politica-container {
+  max-width: 900px;
 
-    max-width: 900px;
+  margin: auto;
 
-    margin: auto;
+  background: var(--branco);
 
-    background: var(--branco);
+  padding: 60px;
 
-    padding: 60px;
+  border-radius: 30px;
 
-    border-radius: 30px;
+  box-shadow: var(--sombra);
 
-    box-shadow: var(--sombra);
+  border: 1px solid var(--borda);
 
-    border: 1px solid var(--borda);
+  opacity: 0;
 
-    opacity: 0;
+  transform: translateY(40px);
 
-    transform: translateY(40px);
-
-    animation: aparecerPolitica 0.8s ease forwards;
-
+  animation: aparecerPolitica 0.8s ease forwards;
 }
-
-
-
-
 
 /* ANIMAÇÃO */
 
 @keyframes aparecerPolitica {
+  from {
+    opacity: 0;
 
+    transform: translateY(40px);
+  }
 
-    from {
+  to {
+    opacity: 1;
 
-        opacity: 0;
-
-        transform: translateY(40px);
-
-    }
-
-
-
-    to {
-
-        opacity: 1;
-
-        transform: translateY(0);
-
-    }
-
-
+    transform: translateY(0);
+  }
 }
-
-
-
-
 
 /* ==========================================
    TÍTULOS
 ========================================== */
 
-
 .politica-container h1 {
+  font-family: "Poppins", sans-serif;
 
-    font-family: 'Poppins', sans-serif;
+  text-align: center;
 
-    text-align: center;
+  color: var(--titulo);
 
-    color: var(--titulo);
+  font-size: 42px;
 
-    font-size: 42px;
+  line-height: 1.2;
 
-    line-height: 1.2;
-
-    margin-bottom: 35px;
-
+  margin-bottom: 35px;
 }
-
-
-
-
 
 .politica-container h3 {
+  font-family: "Poppins", sans-serif;
 
-    font-family: 'Poppins', sans-serif;
+  color: var(--titulo);
 
-    color: var(--titulo);
+  font-size: 25px;
 
-    font-size: 25px;
+  margin-top: 35px;
 
-    margin-top: 35px;
-
-    margin-bottom: 20px;
-
+  margin-bottom: 20px;
 }
-
-
-
-
 
 .politica-container h2 {
+  font-family: "Poppins", sans-serif;
 
-    font-family: 'Poppins', sans-serif;
+  color: var(--azul);
 
-    color: var(--azul);
+  text-align: center;
 
-    text-align: center;
-
-    font-size: 28px;
-
+  font-size: 28px;
 }
-
-
-
-
 
 /* ==========================================
    TEXTOS
 ========================================== */
 
-
 .politica-container p {
+  font-size: 18px;
 
-    font-size: 18px;
+  line-height: 1.8;
 
-    line-height: 1.8;
+  color: var(--texto);
 
-    color: var(--texto);
+  margin-bottom: 20px;
 
-    margin-bottom: 20px;
-
-    text-align: justify;
-
+  text-align: justify;
 }
-
-
-
-
 
 /* ==========================================
    LISTAS
 ========================================== */
 
-
 .politica-container ul {
-
-    margin: 20px 0 30px 40px;
-
+  margin: 20px 0 30px 40px;
 }
-
-
-
 
 .politica-container li {
+  font-size: 18px;
 
-    font-size: 18px;
+  color: var(--texto);
 
-    color: var(--texto);
+  line-height: 1.8;
 
-    line-height: 1.8;
-
-    margin-bottom: 10px;
-
+  margin-bottom: 10px;
 }
-
-
-
-
 
 /* ==========================================
    LINHAS DE SEPARAÇÃO
 ========================================== */
 
-
 .politica-container hr {
+  border: none;
 
-    border: none;
+  height: 1px;
 
-    height: 1px;
+  background: var(--borda);
 
-    background: var(--borda);
-
-    margin: 40px 0;
-
+  margin: 40px 0;
 }
-
-
-
-
 
 /* ==========================================
    FINAL DA PÁGINA
 ========================================== */
 
-
 .politica-final {
+  text-align: center;
 
-    text-align: center;
-
-    margin-top: 40px;
-
+  margin-top: 40px;
 }
-
-
 
 .politica-final h2 {
-
-    margin-bottom: 15px;
-
+  margin-bottom: 15px;
 }
-
-
 
 .politica-final p {
+  text-align: center;
 
-    text-align: center;
-
-    font-size: 20px;
-
+  font-size: 20px;
 }
-
-
-
-
 
 /* ==========================================
    RESPONSIVIDADE
 ========================================== */
 
-
 @media (max-width: 768px) {
+  .politica {
+    padding: 40px 15px;
+  }
 
+  .politica-container {
+    padding: 35px 25px;
 
-    .politica {
+    border-radius: 20px;
+  }
 
-        padding: 40px 15px;
+  .politica-container h1 {
+    font-size: 32px;
+  }
 
-    }
+  .politica-container h3 {
+    font-size: 21px;
+  }
 
-
-
-
-    .politica-container {
-
-        padding: 35px 25px;
-
-        border-radius: 20px;
-
-    }
-
-
-
-
-    .politica-container h1 {
-
-        font-size: 32px;
-
-    }
-
-
-
-
-    .politica-container h3 {
-
-        font-size: 21px;
-
-    }
-
-
-
-
-    .politica-container p,
-    .politica-container li {
-
-        font-size: 16px;
-
-    }
-
-
+  .politica-container p,
+  .politica-container li {
+    font-size: 16px;
+  }
 }
 
-
-
-
 @media (max-width: 480px) {
+  .politica-container {
+    padding: 25px 18px;
+  }
 
-
-    .politica-container {
-
-        padding: 25px 18px;
-
-    }
-
-
-
-
-    .politica-container h1 {
-
-        font-size: 28px;
-
-    }
-
-
+  .politica-container h1 {
+    font-size: 28px;
+  }
 }

@@ -1,582 +1,410 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-
-<head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>TechSênior - Início</title>
 
-
     <!-- Fonte -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- CSS -->
-    <link rel="stylesheet" href="Estilos - CSS/Início.css">
-    <link rel="stylesheet" href="Estilos - CSS/Padrão.css">
-
+    <link rel="stylesheet" href="Estilos - CSS/Início.css" />
+    <link rel="stylesheet" href="Estilos - CSS/Padrão.css" />
 
     <!-- Ícones -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
 
-
-</head>
-
-
-<body>
-
-
+  <body>
     <!-- HEADER -->
 
     <header>
+      <button class="menu-toggle" id="menuToggle">
+        <i class="fa-solid fa-bars"></i>
+      </button>
 
-        <button class="menu-toggle" id="menuToggle">
-            <i class="fa-solid fa-bars"></i>
-        </button>
+      <div class="logo">
+        <img src="Imagens/Logotipo Sem Fundo.png" alt="Logo TechSênior" />
+      </div>
 
-        <div class="logo">
-            <img src="Imagens/Logotipo Sem Fundo.png" alt="Logo TechSênior">
-        </div>
+      <nav>
+        <a href="Início.html">Início</a>
+        <a href="Cursos.html">Cursos</a>
+        <a href="Comunidade.html">Comunidade</a>
+        <a href="Sobre Nós.html">Sobre Nós</a>
+      </nav>
 
-        <nav>
-
-            <a href="Início.html">Início</a>
-            <a href="Cursos.html">Cursos</a>
-            <a href="Comunidade.html">Comunidade</a>
-            <a href="Sobre Nós.html">Sobre Nós</a>
-
-        </nav>
-
-
-        <a class="btn-login" id="btnUsuario" href="Login.html">
-            <i class="fa-regular fa-user"></i>
-            Entrar
-        </a>
+      <a class="btn-login" id="btnUsuario" href="Login.html">
+        <i class="fa-regular fa-user"></i>
+        Entrar
+      </a>
     </header>
-
 
     <!-- MENU LATERAL -->
 
     <div class="sidebar" id="sidebar">
+      <button class="close-menu" id="closeMenu">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
 
-        <button class="close-menu" id="closeMenu">
-            <i class="fa-solid fa-xmark"></i>
-        </button>
+      <nav class="sidebar-nav">
+        <a href="Início.html"> Início </a>
 
-        <nav class="sidebar-nav">
+        <a href="Cursos.html"> Cursos </a>
 
-            <a href="Início.html">
-                Início
-            </a>
+        <a href="Comunidade.html"> Comunidade </a>
 
-            <a href="Cursos.html">
-                Cursos
-            </a>
-
-            <a href="Comunidade.html">
-                Comunidade
-            </a>
-
-            <a href="Sobre Nós.html">
-                Sobre Nós
-            </a>
-
-        </nav>
+        <a href="Sobre Nós.html"> Sobre Nós </a>
+      </nav>
     </div>
-
 
     <!-- FUNDO ESCURO -->
 
-
     <div class="overlay" id="overlay"></div>
-
 
     <!-- HERO -->
 
     <section class="hero">
+      <div class="hero-texto">
+        <span class="hero-tag"> Tecnologia ao seu alcance </span>
 
-        <div class="hero-texto">
+        <h1>
+          Aprenda tecnologia<br />
+          de forma simples e segura
+        </h1>
 
-            <span class="hero-tag">
-                Tecnologia ao seu alcance
-            </span>
+        <p>
+          O TechSênior ajuda pessoas idosas a utilizarem celulares, computadores
+          e a internet com mais confiança, autonomia e segurança.
+        </p>
 
-            <h1>
-                Aprenda tecnologia<br>
-                de forma simples e segura
-            </h1>
+        <div class="hero-botoes">
+          <button class="btn-principal" id="btnInicio">
+            <i class="fa-solid fa-arrow-down"></i>
+            Conheça nossa página
+          </button>
 
-            <p>
-                O TechSênior ajuda pessoas idosas a utilizarem
-                celulares, computadores e a internet com mais
-                confiança, autonomia e segurança.
-            </p>
-
-            <div class="hero-botoes">
-
-                <button class="btn-principal" id="btnInicio">
-                    <i class="fa-solid fa-arrow-down"></i>
-                    Conheça nossa página
-                </button>
-
-                <a href="Cursos.html" class="btn-secundario">
-                    Conhecer cursos
-                </a>
-
-            </div>
-
-
-            <div class="hero-info">
-
-                <div class="info-item">
-                    <i class="fa-solid fa-check"></i>
-
-                    <span>
-                        Conteúdo simples
-                    </span>
-
-                </div>
-
-                <div class="info-item">
-                    <i class="fa-solid fa-check"></i>
-
-                    <span>
-                        Aprenda no seu ritmo
-                    </span>
-                </div>
-
-                <div class="info-item">
-                    <i class="fa-solid fa-check"></i>
-
-                    <span>
-                        Totalmente gratuito
-                    </span>
-                </div>
-
-            </div>
+          <a href="Cursos.html" class="btn-secundario"> Conhecer cursos </a>
         </div>
 
-        <div class="hero-img">
-            <img src="Imagens/Casal de idosos utilizando um celular.avif" alt="Casal de idosos utilizando um celular">
+        <div class="hero-info">
+          <div class="info-item">
+            <i class="fa-solid fa-check"></i>
 
-            <div class="card-experiencia">
-                <i class="fa-solid fa-users"></i>
+            <span> Conteúdo simples </span>
+          </div>
 
-                <div>
-                    <strong>
-                        +1000
-                    </strong>
+          <div class="info-item">
+            <i class="fa-solid fa-check"></i>
 
-                    <p>
-                        Pessoas aprendendo
-                    </p>
-                </div>
+            <span> Aprenda no seu ritmo </span>
+          </div>
 
-            </div>
+          <div class="info-item">
+            <i class="fa-solid fa-check"></i>
+
+            <span> Totalmente gratuito </span>
+          </div>
         </div>
+      </div>
+
+      <div class="hero-img">
+        <img
+          src="Imagens/Casal de idosos utilizando um celular.avif"
+          alt="Casal de idosos utilizando um celular"
+        />
+
+        <div class="card-experiencia">
+          <i class="fa-solid fa-users"></i>
+
+          <div>
+            <strong> +1000 </strong>
+
+            <p>Pessoas aprendendo</p>
+          </div>
+        </div>
+      </div>
     </section>
-
 
     <!-- SOBRE O TECHSÊNIOR -->
 
     <section class="sobre-inicio" id="sobre">
-        <div class="sobre-container">
-            <div class="sobre-texto">
+      <div class="sobre-container">
+        <div class="sobre-texto">
+          <span class="secao-tag"> Sobre o TechSênior </span>
 
-                <span class="secao-tag">
-                    Sobre o TechSênior
-                </span>
+          <h2>Tecnologia mais simples, acessível e segura para todos</h2>
 
-                <h2>
-                    Tecnologia mais simples,
-                    acessível e segura para todos
-                </h2>
+          <p>
+            O TechSênior nasceu com o objetivo de aproximar pessoas idosas da
+            tecnologia, oferecendo conteúdos simples e explicativos sobre
+            celulares, computadores e internet.
+          </p>
 
-                <p>
-                    O TechSênior nasceu com o objetivo de aproximar
-                    pessoas idosas da tecnologia, oferecendo conteúdos
-                    simples e explicativos sobre celulares, computadores
-                    e internet.
-                </p>
+          <p>
+            Nosso propósito é ajudar cada pessoa a conquistar mais autonomia no
+            dia a dia, permitindo que ela utilize a tecnologia com confiança e
+            segurança.
+          </p>
 
-                <p>
-                    Nosso propósito é ajudar cada pessoa a conquistar
-                    mais autonomia no dia a dia, permitindo que ela
-                    utilize a tecnologia com confiança e segurança.
-                </p>
-
-
-                <a href="Sobre Nós.html" class="btn-principal">
-                    Conheça nosso projeto
-                </a>
-            </div>
-
-            <div class="sobre-imagem">
-                <img src="Imagens/Idoso utilizando um computador.jpg" alt="Pessoa idosa utilizando um notebook">
-            </div>
-
+          <a href="Sobre Nós.html" class="btn-principal">
+            Conheça nosso projeto
+          </a>
         </div>
-    </section>
 
+        <div class="sobre-imagem">
+          <img
+            src="Imagens/Idoso utilizando um computador.jpg"
+            alt="Pessoa idosa utilizando um notebook"
+          />
+        </div>
+      </div>
+    </section>
 
     <!-- CURSOS EM DESTAQUE -->
 
     <section class="cursos-destaque">
-        
-        <div class="titulo-secao">
+      <div class="titulo-secao">
+        <span class="secao-tag"> Nossos cursos </span>
 
-            <span class="secao-tag">
-                Nossos cursos
-            </span>
+        <h2>Aprenda aquilo que você precisa</h2>
 
-            <h2>
-                Aprenda aquilo que você precisa
-            </h2>
+        <p>Escolha um assunto e comece sua jornada no mundo da tecnologia.</p>
+      </div>
 
-            <p>
-                Escolha um assunto e comece sua jornada
-                no mundo da tecnologia.
-            </p>
+      <div class="cursos-preview">
+        <div class="curso-card">
+          <i class="fa-solid fa-mobile-screen"></i>
 
+          <h3>Celular</h3>
+
+          <p>Aprenda as principais funções do seu smartphone.</p>
+
+          <a href="Cursos.html#cursos"> Ver curso </a>
         </div>
 
-        <div class="cursos-preview">
+        <div class="curso-card">
+          <i class="fa-solid fa-globe"></i>
 
-            <div class="curso-card">
-                <i class="fa-solid fa-mobile-screen"></i>
+          <h3>Internet</h3>
 
-                <h3>
-                    Celular
-                </h3>
+          <p>Navegue pela internet com mais segurança.</p>
 
-                <p>
-                    Aprenda as principais funções
-                    do seu smartphone.
-                </p>
-
-                <a href="Cursos.html#cursos">
-                    Ver curso
-                </a>
-            </div>
-
-            <div class="curso-card">
-                <i class="fa-solid fa-globe"></i>
-
-                <h3>
-                    Internet
-                </h3>
-
-                <p>
-                    Navegue pela internet
-                    com mais segurança.
-                </p>
-
-                <a href="Cursos.html#cursos">
-                    Ver curso
-                </a>
-            </div>
-
-            <div class="curso-card">
-                <i class="fa-brands fa-whatsapp"></i>
-
-                <h3>
-                    Redes Sociais
-                </h3>
-
-                <p>
-                    Aprenda a conversar,
-                    compartilhar e se conectar.
-                </p>
-
-                <a href="Cursos.html#cursos">
-                    Ver curso
-                </a>
-            </div>
+          <a href="Cursos.html#cursos"> Ver curso </a>
         </div>
 
-        <a href="Cursos.html#cursos" class="btn-principal">
-            Ver todos os cursos
-        </a>
+        <div class="curso-card">
+          <i class="fa-brands fa-whatsapp"></i>
+
+          <h3>Redes Sociais</h3>
+
+          <p>Aprenda a conversar, compartilhar e se conectar.</p>
+
+          <a href="Cursos.html#cursos"> Ver curso </a>
+        </div>
+      </div>
+
+      <a href="Cursos.html#cursos" class="btn-principal">
+        Ver todos os cursos
+      </a>
     </section>
-
 
     <!-- ESTATÍSTICAS -->
 
     <section class="estatisticas">
+      <div class="estatistica-container">
+        <div class="estatistica">
+          <i class="fa-solid fa-users"></i>
 
-        <div class="estatistica-container">
+          <h3>+1000</h3>
 
-            <div class="estatistica">
-                <i class="fa-solid fa-users"></i>
-
-                <h3>
-                    +1000
-                </h3>
-
-                <p>
-                    Pessoas alcançadas
-                </p>
-            </div>
-
-            <div class="estatistica">
-                <i class="fa-solid fa-book-open"></i>
-
-                <h3>
-                    6
-                </h3>
-
-                <p>
-                    Cursos disponíveis
-                </p>
-            </div>
-
-            <div class="estatistica">
-                <i class="fa-solid fa-laptop"></i>
-
-                <h3>
-                    100%
-                </h3>
-
-                <p>
-                    Conteúdo acessível
-                </p>
-            </div>
-
-            <div class="estatistica">
-                <i class="fa-solid fa-heart"></i>
-
-                <h3>
-                    Fácil
-                </h3>
-
-                <p>
-                    Aprendizado simples
-                </p>
-            </div>
+          <p>Pessoas alcançadas</p>
         </div>
+
+        <div class="estatistica">
+          <i class="fa-solid fa-book-open"></i>
+
+          <h3>6</h3>
+
+          <p>Cursos disponíveis</p>
+        </div>
+
+        <div class="estatistica">
+          <i class="fa-solid fa-laptop"></i>
+
+          <h3>100%</h3>
+
+          <p>Conteúdo acessível</p>
+        </div>
+
+        <div class="estatistica">
+          <i class="fa-solid fa-heart"></i>
+
+          <h3>Fácil</h3>
+
+          <p>Aprendizado simples</p>
+        </div>
+      </div>
     </section>
 
-
-        <!-- DEPOIMENTOS -->
-
+    <!-- DEPOIMENTOS -->
 
     <section class="depoimentos">
-        <div class="titulo-secao">
+      <div class="titulo-secao">
+        <span class="secao-tag"> Depoimentos </span>
 
-            <span class="secao-tag">
-                Depoimentos
-            </span>
+        <h2>O que nossos alunos dizem</h2>
+      </div>
 
-            <h2>
-                O que nossos alunos dizem
-            </h2>
-        </div>
+      <div class="depoimentos-container">
+        <div class="depoimento-card">
+          <i class="fa-solid fa-quote-left"></i>
 
-        <div class="depoimentos-container">
-            <div class="depoimento-card">
-                <i class="fa-solid fa-quote-left"></i>
+          <p>
+            "Eu tinha dificuldade para mexer no celular, mas com as explicações
+            do TechSênior consegui aprender muitas coisas novas."
+          </p>
 
-                <p>
-                    "Eu tinha dificuldade para mexer no celular,
-                    mas com as explicações do TechSênior consegui
-                    aprender muitas coisas novas."
-                </p>
-
-
-                <div class="usuario">
-                    <div class="avatar">
-                        <i class="fa-solid fa-user"></i>
-                    </div>
-
-                    <div>
-                        <h3>
-                            Maria, 68 anos
-                        </h3>
-
-                        <span>
-                            Aluna TechSênior
-                        </span>
-                    </div>
-                </div>
+          <div class="usuario">
+            <div class="avatar">
+              <i class="fa-solid fa-user"></i>
             </div>
 
-            <div class="depoimento-card">
-                <i class="fa-solid fa-quote-left"></i>
+            <div>
+              <h3>Maria, 68 anos</h3>
 
-                <p>
-                    "Agora consigo conversar com minha família,
-                    pesquisar informações e utilizar a internet
-                    com muito mais segurança."
-                </p>
-
-                <div class="usuario">
-                    <div class="avatar">
-                        <i class="fa-solid fa-user"></i>
-                    </div>
-
-                    <div>
-                        <h3>
-                            João, 72 anos
-                        </h3>
-
-                        <span>
-                            Aluno TechSênior
-                        </span>
-                    </div>
-                </div>
+              <span> Aluna TechSênior </span>
             </div>
+          </div>
         </div>
+
+        <div class="depoimento-card">
+          <i class="fa-solid fa-quote-left"></i>
+
+          <p>
+            "Agora consigo conversar com minha família, pesquisar informações e
+            utilizar a internet com muito mais segurança."
+          </p>
+
+          <div class="usuario">
+            <div class="avatar">
+              <i class="fa-solid fa-user"></i>
+            </div>
+
+            <div>
+              <h3>João, 72 anos</h3>
+
+              <span> Aluno TechSênior </span>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
-
 
     <!-- CTA FINAL -->
 
-
     <section class="cta">
-        <div>
+      <div>
+        <h2>Pronto para começar?</h2>
 
-            <h2>
-                Pronto para começar?
-            </h2>
+        <p>
+          Aprenda tecnologia de forma simples, segura e no seu próprio ritmo.
+        </p>
+      </div>
 
-            <p>
-                Aprenda tecnologia de forma simples,
-                segura e no seu próprio ritmo.
-            </p>
-        </div>
-
-        <button class="btn-principal" id="btnComecar">
-            <i class="fa-solid fa-play"></i>
-            Começar agora
-        </button>
+      <button class="btn-principal" id="btnComecar">
+        <i class="fa-solid fa-play"></i>
+        Começar agora
+      </button>
     </section>
-
 
     <!-- RODAPÉ -->
 
     <footer>
+      <div class="coluna">
+        <h3>TechSênior</h3>
 
-        <div class="coluna">
+        <p>Tecnologia ao seu alcance.</p>
 
-            <h3>
-                TechSênior
-            </h3>
-
-            <p>
-                Tecnologia ao seu alcance.
-            </p>
-
-            <div class="footer-linha logo">
-
-                <div class="logo-footer">
-                    <img src="Imagens/Logotipo Sem Fundo.png" alt="Logotipo TechSênior">
-                </div>
-
-            </div>
+        <div class="footer-linha logo">
+          <div class="logo-footer">
+            <img
+              src="Imagens/Logotipo Sem Fundo.png"
+              alt="Logotipo TechSênior"
+            />
+          </div>
         </div>
+      </div>
 
+      <div class="coluna">
+        <h4>Navegação</h4>
 
-        <div class="coluna">
+        <a href="Início.html"> Início </a>
 
-            <h4>
-                Navegação
-            </h4>
+        <a href="Cursos.html"> Cursos </a>
 
-            <a href="Início.html">
-                Início
+        <a href="Comunidade.html"> Comunidade </a>
+
+        <a href="Sobre Nós.html"> Sobre Nós </a>
+      </div>
+
+      <div class="coluna">
+        <h4>Institucional</h4>
+
+        <a href="Termos de Uso.html"> Termos de Uso </a>
+
+        <a href="Política de Privacidade.html"> Política de Privacidade </a>
+
+        <a href="Declaração de Acessibilidade.html">
+          Declaração de Acessibilidade
+        </a>
+      </div>
+
+      <div class="coluna">
+        <h4>Comunidade</h4>
+
+        <a href="Regras da Comunidade.html"> Regras da Comunidade </a>
+
+        <a href="Sobre Nós.html"> Fale Conosco </a>
+
+        <div class="footer-linha redes">
+          <div class="coluna">
+            <h4>Redes Sociais</h4>
+
+            <a href="https://www.instagram.com/techsenior_tcc/">
+              <i class="fa-brands fa-instagram"></i>
+              Instagram
             </a>
-
-            <a href="Cursos.html">
-                Cursos
-            </a>
-
-            <a href="Comunidade.html">
-                Comunidade
-            </a>
-
-            <a href="Sobre Nós.html">
-                Sobre Nós
-            </a>
-
+          </div>
         </div>
-
-
-        <div class="coluna">
-
-            <h4>
-                Institucional
-            </h4>
-
-            <a href="Termos de Uso.html">
-                Termos de Uso
-            </a>
-
-            <a href="Política de Privacidade.html">
-                Política de Privacidade
-            </a>
-
-            <a href="Declaração de Acessibilidade.html">
-                Declaração de Acessibilidade
-            </a>
-
-        </div>
-
-
-        <div class="coluna">
-
-            <h4>
-                Comunidade
-            </h4>
-
-            <a href="Regras da Comunidade.html">
-                Regras da Comunidade
-            </a>
-
-            <a href="Sobre Nós.html">
-                Fale Conosco
-            </a>
-
-            <div class="footer-linha redes">
-                <div class="coluna">
-
-                    <h4>
-                        Redes Sociais
-                    </h4>
-
-                    <a href="https://www.instagram.com/techsenior_tcc/">
-                        <i class="fa-brands fa-instagram"></i>
-                        Instagram
-                    </a>
-
-                </div>
-            </div>
-        </div>
+      </div>
     </footer>
-
 
     <!-- COPYRIGHT -->
 
-
     <div class="copyright">
-        © 2026 TechSênior • Projeto desenvolvido para o Trabalho de Conclusão de Curso (TCC) do Curso Técnico em Desenvolvimento de Sistemas.
+      © 2026 TechSênior • Projeto desenvolvido para o Trabalho de Conclusão de
+      Curso (TCC) do Curso Técnico em Desenvolvimento de Sistemas.
 
-        <br>
+      <br />
 
-
-        Desenvolvido por: Equipe do TechSênior
+      Desenvolvido por: Equipe do TechSênior
     </div>
-
 
     <!-- SCRIPTS -->
 
     <script src="Script - Java/Início.js"></script>
     <script src="Script - Java/Padrão.js"></script>
-
-</body>
+  </body>
 </html>

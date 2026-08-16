@@ -1,7 +1,16 @@
-// ==========================================
-// MOSTRAR / OCULTAR SENHA
-// ==========================================
+import { auth, db } from "./Firebase-config.js";
 
+import { 
+  createUserWithEmailAndPassword 
+} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+import {
+  doc,
+  setDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+// MOSTRAR / OCULTAR SENHA
 const mostrarSenha = document.getElementById("mostrarSenha");
 
 const senha = document.getElementById("senha");
@@ -31,7 +40,7 @@ if (mostrarSenha) {
 const formCadastro = document.getElementById("formCadastro");
 
 if (formCadastro) {
-  formCadastro.addEventListener("submit", (evento) => {
+  formCadastro.addEventListener("submit", async (evento) => { 
     evento.preventDefault();
 
     const nome = document.getElementById("nome").value;
@@ -75,18 +84,40 @@ if (formCadastro) {
       return;
     }
 
-    // Salva dados simulando cadastro
+        try {
+      const resultado = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      senhaUsuario
+    );
 
-    localStorage.setItem("usuarioNome", nome);
+    const usuario = resultado.user;
 
-    localStorage.setItem("usuarioEmail", email);
+    await setDoc(doc(db, "usuarios", usuario.uid), {
+      nome: nome,
+      email: email,
+      tipo: "usuario",
+      criadoEm: serverTimestamp()
+    });
 
-    localStorage.setItem("usuarioSenha", senhaUsuario);
+    console.log("Usuário criado:", usuario.uid);
 
     alert("Cadastro realizado com sucesso!");
 
-    // Envia para login
+    window.location.href = "Login.html";  
 
-    window.location.href = "Login.html";
+    } catch (erro) {
+      console.error("Erro no cadastro:", erro);
+
+      if (erro.code === "auth/email-already-in-use") {
+        alert("Este e-mail já está cadastrado.");
+      } else if (erro.code === "auth/invalid-email") {
+        alert("Digite um e-mail válido.");
+      } else if (erro.code === "auth/weak-password") {
+        alert("A senha é muito fraca. Use pelo menos 6 caracteres.");
+      } else {
+        alert("Não foi possível realizar o cadastro. Tente novamente.");
+      }
+    }
   });
 }

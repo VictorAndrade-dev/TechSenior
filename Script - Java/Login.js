@@ -1,4 +1,7 @@
-// ==========================================
+import { auth } from "./Firebase-config.js";
+import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+
 // MOSTRAR / OCULTAR SENHA
 // ==========================================
 
@@ -31,7 +34,7 @@ if (mostrarSenha) {
 const formLogin = document.getElementById("formLogin");
 
 if (formLogin) {
-  formLogin.addEventListener("submit", (evento) => {
+  formLogin.addEventListener("submit", async (evento) => {  
     evento.preventDefault();
 
     const email = document.getElementById("email").value;
@@ -46,22 +49,31 @@ if (formLogin) {
       return;
     }
 
-    /*
-        
-        Aqui futuramente entraria a consulta
-        ao banco de dados.
+    try {
+      const resultado = await signInWithEmailAndPassword(
+        auth,
+        email,
+        senhaUsuario
+      );
 
-        Por enquanto vamos simular
-        um login realizado.
+      console.log("Login realizado:", resultado.user.uid);
 
-        */
+      alert("Login realizado com sucesso!");
 
-    localStorage.setItem("usuarioLogado", "true");
+      window.location.href = "Cursos.html#cursos";
 
-    localStorage.setItem("usuarioEmail", email);
+    } catch (erro) {
+      console.error("Erro no login:", erro);
 
-    alert("Login realizado com sucesso!");
-
-    window.location.href = "Cursos.html#cursos";
+      if (
+        erro.code === "auth/invalid-credential" ||
+        erro.code === "auth/wrong-password" ||
+        erro.code === "auth/user-not-found"
+      ) {
+        alert("E-mail ou senha incorretos.");
+      } else {
+        alert("Não foi possível realizar o login. Tente novamente.");
+      }
+    }
   });
 }

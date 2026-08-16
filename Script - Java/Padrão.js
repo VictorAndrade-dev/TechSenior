@@ -1,3 +1,10 @@
+import { auth, db } from "./Firebase-config.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+import {
+  doc,
+  getDoc
+} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
 const menuToggle = document.getElementById("menuToggle");
 const closeMenu = document.getElementById("closeMenu");
 const sidebar = document.getElementById("sidebar");
@@ -94,31 +101,66 @@ voltarTopo.addEventListener("click", () => {
 });
 
 // ==========================================
-// ALTERAÇÃO DO BOTÃO DE LOGIN/PERFIL
+// AUTENTICAÇÃO DO USUÁRIO
 // ==========================================
 
 const btnUsuario = document.getElementById("btnUsuario");
 
 if (btnUsuario) {
-  const usuarioLogado = localStorage.getItem("usuarioLogado") === "true";
+  onAuthStateChanged(auth, async (usuario) => {
 
-  if (usuarioLogado) {
-    const nome = localStorage.getItem("usuarioNome");
+    if (usuario) {
 
-    btnUsuario.innerHTML = `
+      try {
+        const referenciaUsuario = doc(db, "usuarios", usuario.uid);
+        const documentoUsuario = await getDoc(referenciaUsuario);
 
-            <i class="fa-solid fa-user"></i>
+        let nome = usuario.email;
 
-            ${nome}
+        if (documentoUsuario.exists()) {
+          const dados = documentoUsuario.data();
 
+          if (dados.nome) {
+            nome = dados.nome;
+          }
+        }
+
+        btnUsuario.innerHTML = `
+          <i class="fa-solid fa-user"></i>
+          ${nome}
         `;
 
-    btnUsuario.onclick = () => {
-      window.location.href = "Perfil.html";
-    };
-  } else {
-    btnUsuario.onclick = () => {
-      window.location.href = "Login.html";
-    };
-  }
+        btnUsuario.onclick = () => {
+          window.location.href = "Perfil.html";
+        };
+
+      } catch (erro) {
+
+        console.error(
+          "Erro ao carregar dados do usuário:",
+          erro
+        );
+
+        btnUsuario.innerHTML = `
+          <i class="fa-solid fa-user"></i>
+          ${usuario.email}
+        `;
+
+        btnUsuario.onclick = () => {
+          window.location.href = "Perfil.html";
+        };
+      }
+
+    } else {
+
+      btnUsuario.innerHTML = `
+        <i class="fa-solid fa-user"></i>
+        Entrar
+      `;
+
+      btnUsuario.onclick = () => {
+        window.location.href = "Login.html";
+      };
+    }
+  });
 }

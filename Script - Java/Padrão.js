@@ -166,15 +166,14 @@ if (btnUsuario) {
 }
 
 // =========================================
-// ==========================================
 // ACESSIBILIDADE - TAMANHO DA FONTE
 // ==========================================
 
 const tamanhoFonteSalvo =
   localStorage.getItem("tamanhoFonte") || "100";
 
-document.documentElement.style.fontSize =
-  `${tamanhoFonteSalvo}%`;
+document.documentElement.dataset.tamanhoFonte =
+  tamanhoFonteSalvo;
 
 
 // ==========================================
@@ -312,13 +311,11 @@ aumentarFonte.addEventListener("click", () => {
 // ==========================================
 
 function aplicarTamanhoFonte() {
-
-  document.documentElement.style.fontSize =
-    `${tamanhoFonte}%`;
+  document.documentElement.dataset.tamanhoFonte =
+    tamanhoFonte;
 
   localStorage.setItem(
     "tamanhoFonte",
     tamanhoFonte
   );
-
 }

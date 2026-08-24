@@ -164,3 +164,161 @@ if (btnUsuario) {
     }
   });
 }
+
+// =========================================
+// ==========================================
+// ACESSIBILIDADE - TAMANHO DA FONTE
+// ==========================================
+
+const tamanhoFonteSalvo =
+  localStorage.getItem("tamanhoFonte") || "100";
+
+document.documentElement.style.fontSize =
+  `${tamanhoFonteSalvo}%`;
+
+
+// ==========================================
+// CRIAR PAINEL DE ACESSIBILIDADE
+// ==========================================
+
+const acessibilidade = document.createElement("div");
+
+acessibilidade.id = "painelAcessibilidade";
+
+acessibilidade.innerHTML = `
+  <button
+    id="btnAcessibilidade"
+    aria-label="Abrir opções de acessibilidade"
+    title="Acessibilidade"
+  >
+    <i class="fa-solid fa-universal-access"></i>
+  </button>
+
+  <div id="opcoesAcessibilidade">
+
+    <span>Acessibilidade</span>
+
+    <div class="controle-fonte">
+
+      <button
+        id="diminuirFonte"
+        aria-label="Diminuir tamanho da fonte"
+        title="Diminuir fonte"
+      >
+        A−
+      </button>
+
+      <button
+        id="resetarFonte"
+        aria-label="Restaurar tamanho da fonte"
+        title="Tamanho normal"
+      >
+        A
+      </button>
+
+      <button
+        id="aumentarFonte"
+        aria-label="Aumentar tamanho da fonte"
+        title="Aumentar fonte"
+      >
+        A+
+      </button>
+
+    </div>
+
+  </div>
+`;
+
+document.body.appendChild(acessibilidade);
+
+
+// Nova Função
+
+// ABRIR / FECHAR PAINEL
+// ==========================================
+
+const btnAcessibilidade =
+  document.getElementById("btnAcessibilidade");
+
+const opcoesAcessibilidade =
+  document.getElementById("opcoesAcessibilidade");
+
+btnAcessibilidade.addEventListener("click", () => {
+
+  opcoesAcessibilidade.classList.toggle("ativo");
+
+});
+
+
+// ==========================================
+// ALTERAR TAMANHO DA FONTE
+// ==========================================
+
+const diminuirFonte =
+  document.getElementById("diminuirFonte");
+
+const resetarFonte =
+  document.getElementById("resetarFonte");
+
+const aumentarFonte =
+  document.getElementById("aumentarFonte");
+
+let tamanhoFonte = Number(tamanhoFonteSalvo);
+
+
+// DIMINUIR
+
+diminuirFonte.addEventListener("click", () => {
+
+  if (tamanhoFonte > 70) {
+
+    tamanhoFonte -= 10;
+
+    aplicarTamanhoFonte();
+
+  }
+
+});
+
+
+// NORMAL
+
+resetarFonte.addEventListener("click", () => {
+
+  tamanhoFonte = 100;
+
+  aplicarTamanhoFonte();
+
+});
+
+
+// AUMENTAR
+
+aumentarFonte.addEventListener("click", () => {
+
+  if (tamanhoFonte < 140) {
+
+    tamanhoFonte += 10;
+
+    aplicarTamanhoFonte();
+
+  }
+
+});
+
+
+// ==========================================
+// APLICAR TAMANHO
+// ==========================================
+
+function aplicarTamanhoFonte() {
+
+  document.documentElement.style.fontSize =
+    `${tamanhoFonte}%`;
+
+  localStorage.setItem(
+    "tamanhoFonte",
+    tamanhoFonte
+  );
+
+}

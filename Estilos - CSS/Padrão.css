@@ -464,3 +464,152 @@ RESPONSIVO
     gap: 10px;
   }
 }
+
+/* ========================================
+   ACESSIBILIDADE - TAMANHO DA FONTE
+======================================== */
+
+#painelAcessibilidade {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+/* Botão principal */
+
+#btnAcessibilidade {
+  width: 60px;
+  height: 60px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: var(--azul);
+  color: var(--branco);
+
+  font-size: 28px;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+
+  transition: 0.3s ease;
+}
+
+#btnAcessibilidade:hover {
+  transform: scale(1.08);
+}
+
+#btnAcessibilidade:focus-visible {
+  outline: 4px solid var(--verde);
+  outline-offset: 4px;
+}
+
+/* Painel */
+
+#opcoesAcessibilidade {
+  display: none;
+
+  background: var(--branco);
+
+  border: 2px solid var(--borda);
+  border-radius: 18px;
+
+  padding: 18px;
+
+  margin-bottom: 12px;
+
+  box-shadow: var(--sombra);
+
+  min-width: 210px;
+
+  text-align: center;
+}
+
+#opcoesAcessibilidade.ativo {
+  display: block;
+}
+
+#opcoesAcessibilidade span {
+  display: block;
+
+  color: var(--titulo);
+
+  font-size: 18px;
+  font-weight: 600;
+
+  margin-bottom: 15px;
+}
+
+/* Controles */
+
+.controle-fonte {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.controle-fonte button {
+  width: 50px;
+  height: 45px;
+
+  border: 2px solid var(--azul);
+  border-radius: 10px;
+
+  background: var(--branco);
+  color: var(--titulo);
+
+  font-size: 18px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.controle-fonte button:hover {
+  background: var(--azul);
+  color: var(--branco);
+}
+
+.controle-fonte button:focus-visible {
+  outline: 3px solid var(--verde);
+  outline-offset: 2px;
+}
+
+/* ========================================
+   ACESSIBILIDADE - MOBILE
+======================================== */
+
+@media (max-width: 768px) {
+
+  #painelAcessibilidade {
+    right: 15px;
+    bottom: 15px;
+  }
+
+  #btnAcessibilidade {
+    width: 55px;
+    height: 55px;
+    font-size: 25px;
+  }
+
+  #opcoesAcessibilidade {
+    min-width: 190px;
+    padding: 15px;
+  }
+
+  .controle-fonte button {
+    width: 45px;
+    height: 42px;
+  }
+}

@@ -1,27 +1,22 @@
-//Botão Comecar (CTA)
+import { auth } from "./Firebase-config.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+//Botão Começar (CTA)
 
 const btnComecar = document.getElementById("btnComecar");
 
 if (btnComecar) {
-  // Verifica se o usuário está logado
-  const usuarioLogado = localStorage.getItem("usuarioLogado") === "true";
-
-  // Altera o texto do botão caso esteja logado
-  if (usuarioLogado) {
-    btnComecar.innerHTML = `
-            <i class="fa-solid fa-graduation-cap"></i>
-            Continuar aprendendo
-        `;
-  }
-
-  // Define a ação do botão
-
-  btnComecar.addEventListener("click", () => {
-    if (usuarioLogado) {
-      window.location.href = "Cursos.html#cursos";
-    } else {
-      window.location.href = "Login.html";
+  onAuthStateChanged(auth, (usuario) => {
+    if (usuario) {
+      btnComecar.innerHTML = `
+        <i class="fa-solid fa-graduation-cap"></i>
+        Continuar aprendendo
+      `;
     }
+
+    btnComecar.onclick = () => {
+      window.location.href = usuario ? "Cursos.html#cursos" : "Login.html";
+    };
   });
 }
 
@@ -123,9 +118,11 @@ function scrollSuave(elemento, duracao = 1500) {
 
 const btnInicio = document.querySelector(".btn-principal");
 
-btnInicio.addEventListener("click", () => {
-  scrollSuave(document.getElementById("sobre"));
-});
+if (btnInicio) {
+  btnInicio.addEventListener("click", () => {
+    scrollSuave(document.getElementById("sobre"));
+  });
+}
 
 function scrollSuave(destino, duracao = 2000) {
   const inicio = window.pageYOffset;

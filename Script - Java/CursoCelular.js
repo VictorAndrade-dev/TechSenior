@@ -1,3 +1,6 @@
+import { auth } from "./Firebase-config.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
 /* ==========================================
             CURSO - CELULAR
 ========================================== */
@@ -404,6 +407,10 @@ function atualizarSidebar() {
         `;
 
     item.onclick = () => {
+      if (item.classList.contains("bloqueado")) {
+        return;
+      }
+
       carregarModulo(indice);
       window.scrollTo({ top: 0, behavior: "smooth" });
     };
@@ -439,6 +446,20 @@ function salvarProgresso() {
 /* ==========================================
             INICIALIZAÇÃO DA PÁGINA
 ========================================== */
-document.addEventListener("DOMContentLoaded", () => {
+function inicializarCurso() {
   carregarModulo(moduloAtual);
+}
+
+onAuthStateChanged(auth, (usuario) => {
+  if (!usuario) {
+    window.location.href = "Login.html";
+    return;
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", inicializarCurso, { once: true });
+    return;
+  }
+
+  inicializarCurso();
 });

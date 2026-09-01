@@ -1,3 +1,6 @@
+import { auth } from "./Firebase-config.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
 // ==========================================
 // CONTROLE UNIVERSAL DOS MODAIS DOS CURSOS
 // ==========================================
@@ -83,32 +86,24 @@ cards.forEach((card) => {
 const btnComecar = document.getElementById("btnComecar");
 
 if (btnComecar) {
-  // Verifica se o usuário está logado
-
-  const usuarioLogado = localStorage.getItem("usuarioLogado") === "true";
-
-  // Altera o texto do botão caso esteja logado
-
-  if (usuarioLogado) {
-    btnComecar.innerHTML = `
-
-            <i class="fa-solid fa-graduation-cap"></i>
-
-            Continuar aprendendo
-
-        `;
-  }
-
-  // Define a ação do botão
-
-  btnComecar.addEventListener("click", () => {
-    if (usuarioLogado) {
-      document.getElementById("cursos").scrollIntoView({
-        behavior: "smooth",
-      });
-    } else {
-      window.location.href = "Login.html";
+  onAuthStateChanged(auth, (usuario) => {
+    if (usuario) {
+      btnComecar.innerHTML = `
+        <i class="fa-solid fa-graduation-cap"></i>
+        Continuar aprendendo
+      `;
     }
+
+    btnComecar.onclick = () => {
+      if (usuario) {
+        document.getElementById("cursos")?.scrollIntoView({
+          behavior: "smooth",
+        });
+        return;
+      }
+
+      window.location.href = "Login.html";
+    };
   });
 }
 
@@ -214,9 +209,11 @@ function scrollSuave(destino, duracao = 2000) {
 
 const btnCursos = document.querySelector(".btn-principal");
 
-btnCursos.addEventListener("click", () => {
-  scrollSuave(document.getElementById("cursos"));
-});
+if (btnCursos) {
+  btnCursos.addEventListener("click", () => {
+    scrollSuave(document.getElementById("cursos"));
+  });
+}
 
 function scrollSuave(destino, duracao = 2000) {
   const inicio = window.pageYOffset;

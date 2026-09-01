@@ -1,3 +1,6 @@
+import { auth } from "./Firebase-config.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
 // ==========================================
 // ANIMAÇÃO AO APARECER
 // ==========================================
@@ -79,9 +82,11 @@ contadores.forEach((contador) => {
 
 const btnMissao = document.querySelector(".btn-principal");
 
-btnMissao.addEventListener("click", () => {
-  scrollSuave(document.getElementById("missao"));
-});
+if (btnMissao) {
+  btnMissao.addEventListener("click", () => {
+    scrollSuave(document.getElementById("missao"));
+  });
+}
 
 function scrollSuave(destino, duracao = 2000) {
   const inicio = window.pageYOffset;
@@ -118,24 +123,16 @@ function scrollSuave(destino, duracao = 2000) {
 const btnComecar = document.getElementById("btnComecar");
 
 if (btnComecar) {
-  // Verifica se o usuário está logado
-  const usuarioLogado = localStorage.getItem("usuarioLogado") === "true";
-
-  // Altera o texto do botão caso esteja logado
-  if (usuarioLogado) {
-    btnComecar.innerHTML = `
-            <i class="fa-solid fa-graduation-cap"></i>
-            Continuar aprendendo
-        `;
-  }
-
-  // Define a ação do botão
-
-  btnComecar.addEventListener("click", () => {
-    if (usuarioLogado) {
-      window.location.href = "Cursos.html#cursos";
-    } else {
-      window.location.href = "Login.html";
+  onAuthStateChanged(auth, (usuario) => {
+    if (usuario) {
+      btnComecar.innerHTML = `
+        <i class="fa-solid fa-graduation-cap"></i>
+        Continuar aprendendo
+      `;
     }
+
+    btnComecar.onclick = () => {
+      window.location.href = usuario ? "Cursos.html#cursos" : "Login.html";
+    };
   });
 }

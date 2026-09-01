@@ -1,3 +1,6 @@
+import { auth } from "./Firebase-config.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
 // ==========================================
 // MODAIS DA COMUNIDADE
 // ==========================================
@@ -81,25 +84,21 @@ window.addEventListener("click", (evento) => {
 const btnComecar = document.getElementById("btnComecar");
 
 if (btnComecar) {
-  // Verifica se o usuário está logado
-  const usuarioLogado = localStorage.getItem("usuarioLogado") === "true";
-
-  // Altera o texto do botão caso esteja logado
-  if (usuarioLogado) {
-    btnComecar.innerHTML = `
-            <i class="fa-solid fa-graduation-cap"></i>
-            Continuar aprendendo
-        `;
-  }
-
-  // Define a ação do botão
-  btnComecar.addEventListener("click", () => {
-    if (usuarioLogado) {
-      document.getElementById("cursos").scrollIntoView({
-        behavior: "smooth",
-      });
-    } else {
-      window.location.href = "Login.html";
+  onAuthStateChanged(auth, (usuario) => {
+    if (usuario) {
+      btnComecar.innerHTML = `
+        <i class="fa-solid fa-graduation-cap"></i>
+        Continuar aprendendo
+      `;
     }
+
+    btnComecar.onclick = () => {
+      if (usuario) {
+        window.location.href = "Cursos.html#cursos";
+        return;
+      }
+
+      window.location.href = "Login.html";
+    };
   });
 }

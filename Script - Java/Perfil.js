@@ -19,6 +19,7 @@ const senhaUsuario = document.getElementById("senhaUsuario");
 const mostrarSenha = document.getElementById("mostrarSenha");
 
 const nomePerfil = document.getElementById("nomePerfil");
+const nomeUsuario = document.getElementById("nomeUsuario");
 const emailUsuario = document.getElementById("emailUsuario");
 
 
@@ -98,10 +99,19 @@ onAuthStateChanged(auth, async (usuario) => {
           dados.nome || "Usuário";
       }
 
+      if (nomeUsuario) {
+        nomeUsuario.textContent =
+          dados.nome || "Usuário";
+      }
+
     } else {
 
       if (nomePerfil) {
         nomePerfil.textContent = "Usuário";
+      }
+
+      if (nomeUsuario) {
+        nomeUsuario.textContent = "Usuário";
       }
 
       console.warn(
@@ -118,6 +128,10 @@ onAuthStateChanged(auth, async (usuario) => {
 
     if (nomePerfil) {
       nomePerfil.textContent = "Usuário";
+    }
+
+    if (nomeUsuario) {
+      nomeUsuario.textContent = "Usuário";
     }
   }
 

@@ -638,23 +638,3 @@ html[data-tamanho-fonte="130"] {
 html[data-tamanho-fonte="140"] {
   font-size: 140%;
 }
-
-/* ==========================================
-   ESCALA DOS TEXTOS
-========================================== */
-
-html[data-tamanho-fonte="110"] body {
-  font-size: 110%;
-}
-
-html[data-tamanho-fonte="120"] body {
-  font-size: 120%;
-}
-
-html[data-tamanho-fonte="130"] body {
-  font-size: 130%;
-}
-
-html[data-tamanho-fonte="140"] body {
-  font-size: 140%;
-}

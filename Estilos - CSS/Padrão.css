@@ -59,7 +59,7 @@ header {
 }
 
 .logo img {
-  height: 100px;
+  height: 150px;
   width: auto;
   display: block;
 }
@@ -73,6 +73,7 @@ nav a {
   text-decoration: none;
   color: #1f2937;
   font-weight: 500;
+  font-size: 1rem;
   transition: 0.3s;
 }
 
@@ -93,7 +94,7 @@ BOTÕES
   padding: 18px 35px;
   border-radius: 18px;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 1.125rem;
   transition: 0.3s;
 }
 
@@ -145,7 +146,7 @@ TÍTULOS
 
 h1 {
   font-family: "Poppins", sans-serif;
-  font-size: 65px;
+  font-size: 4.0625rem;
   line-height: 1.2;
   color: var(--titulo);
   font-weight: 700;
@@ -154,7 +155,7 @@ h1 {
 
 h2 {
   font-family: "Poppins", sans-serif;
-  font-size: 42px;
+  font-size: 2.625rem;
   line-height: 1.3;
   color: var(--titulo);
   font-weight: 600;
@@ -162,7 +163,7 @@ h2 {
 
 h3 {
   font-family: "Poppins", sans-serif;
-  font-size: 30px;
+  font-size: 1.875rem;
   line-height: 1.3;
   color: var(--titulo);
   font-weight: 600;
@@ -170,7 +171,7 @@ h3 {
 
 h4 {
   font-family: "Poppins", sans-serif;
-  font-size: 20px;
+  font-size: 1.25rem;
   line-height: 1.3;
   color: var(--titulo);
   font-weight: 700;

@@ -1,0 +1,37 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function estaAutenticado() {
+      return request.auth != null;
+    }
+
+    function ehDonoDoPerfil(uid) {
+      return estaAutenticado() && request.auth.uid == uid;
+    }
+
+    match /usuarios/{uid} {
+      allow create: if ehDonoDoPerfil(uid)
+        && request.resource.data.tipo == "usuario"
+        && request.resource.data.email == request.auth.token.email;
+      allow read, delete: if ehDonoDoPerfil(uid);
+      allow update: if ehDonoDoPerfil(uid)
+        && request.resource.data.tipo == resource.data.tipo
+        && request.resource.data.email == resource.data.email;
+
+      match /progresso/{cursoId} {
+        allow read, write: if ehDonoDoPerfil(uid);
+      }
+    }
+
+    match /cursos/{cursoId} {
+      allow read: if resource.data.publicado == true;
+      allow write: if false;
+
+      match /modulos/{moduloId} {
+        allow read: if get(/databases/$(database)/documents/cursos/$(cursoId)).data.publicado == true;
+        allow write: if false;
+      }
+    }
+  }
+}

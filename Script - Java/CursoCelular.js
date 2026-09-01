@@ -1,5 +1,9 @@
 import { auth } from "./Firebase-config.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+import {
+  carregarProgressoCurso,
+  salvarProgressoCurso,
+} from "./ServicoProgresso.js";
 
 /* ==========================================
             CURSO - CELULAR
@@ -179,6 +183,7 @@ const modulos = [
 /* ==========================================
             ELEMENTOS DA PÁGINA
 ========================================== */
+const ID_CURSO = "celular";
 let moduloAtual = 0;
 
 const listaModulos = document.querySelector(".lista-modulos");
@@ -193,13 +198,10 @@ const indicadorModuloTopo = document.querySelector(
 );
 
 /* ==========================================
-            PROGRESSO NO LOCALSTORAGE
+            PROGRESSO DO USUÁRIO
 ========================================== */
-let progresso = JSON.parse(localStorage.getItem("cursoCelular"));
-
-if (!progresso || progresso.length !== modulos.length) {
-  progresso = new Array(modulos.length).fill(false);
-}
+let progresso = new Array(modulos.length).fill(false);
+let filaDeSalvamento = Promise.resolve();
 
 /* ==========================================
             CARREGAR CONTEÚDO DO MÓDULO
@@ -309,6 +311,7 @@ function carregarModulo(indice) {
 
   atualizarSidebar();
   atualizarProgresso();
+  salvarProgresso();
 }
 
 /* ==========================================
@@ -440,13 +443,47 @@ function atualizarProgresso() {
 }
 
 function salvarProgresso() {
-  localStorage.setItem("cursoCelular", JSON.stringify(progresso));
+  const usuario = auth.currentUser;
+
+  if (!usuario) {
+    return Promise.resolve();
+  }
+
+  const moduloParaSalvar = moduloAtual;
+  const progressoParaSalvar = [...progresso];
+
+  filaDeSalvamento = filaDeSalvamento
+    .catch(() => undefined)
+    .then(() => salvarProgressoCurso(
+      usuario.uid,
+      ID_CURSO,
+      moduloParaSalvar,
+      progressoParaSalvar,
+    ))
+    .catch((erro) => {
+      console.error("Não foi possível salvar o progresso do curso:", erro);
+    });
+
+  return filaDeSalvamento;
 }
 
 /* ==========================================
             INICIALIZAÇÃO DA PÁGINA
 ========================================== */
-function inicializarCurso() {
+async function inicializarCurso(usuario) {
+  try {
+    const progressoSalvo = await carregarProgressoCurso(
+      usuario.uid,
+      ID_CURSO,
+      modulos.length,
+    );
+
+    moduloAtual = progressoSalvo.moduloAtual;
+    progresso = progressoSalvo.modulosConcluidos;
+  } catch (erro) {
+    console.error("Não foi possível carregar o progresso do curso:", erro);
+  }
+
   carregarModulo(moduloAtual);
 }
 
@@ -457,9 +494,13 @@ onAuthStateChanged(auth, (usuario) => {
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", inicializarCurso, { once: true });
+    document.addEventListener(
+      "DOMContentLoaded",
+      () => inicializarCurso(usuario),
+      { once: true },
+    );
     return;
   }
 
-  inicializarCurso();
+  inicializarCurso(usuario);
 });

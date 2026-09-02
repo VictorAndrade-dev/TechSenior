@@ -253,13 +253,14 @@ FAQ
 }
 
 .pergunta {
+  width: 100%;
   margin-bottom: 20px;
 }
 
 .accordion {
   width: 100%;
   border: none;
-  background: white;
+  background: var(--branco);
   padding: 25px;
   text-align: left;
   font-size: 18px;
@@ -270,7 +271,8 @@ FAQ
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: 0.3s;
+
+  transition: border-radius 0.25s ease;
 }
 
 .accordion.active {
@@ -278,7 +280,7 @@ FAQ
 }
 
 .accordion i {
-  transition: transform 0.3s ease;
+  transition: transform 0.2s ease;
 }
 
 .accordion.active i {
@@ -286,19 +288,33 @@ FAQ
 }
 
 .resposta {
-  background: white;
+  width: 100%;
+  background: var(--branco);
+  color: var(--texto);
+
   max-height: 0;
   overflow: hidden;
 
-  transition:
-    max-height 0.4s ease,
-    padding 0.4s ease;
-
   padding: 0 25px;
+
+  border: none;
   border-radius: 0 0 20px 20px;
 
   line-height: 28px;
-  color: var(--texto);
+
+  transition:
+    max-height 0.25s ease,
+    padding 0.25s ease;
+}
+
+.resposta p {
+  margin: 0;
+}
+
+.resposta.aberta {
+  max-height: 120px;
+  padding: 18px 25px 20px;
+  border-top: 1px solid var(--borda);
 }
 
 /* =========================

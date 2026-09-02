@@ -1,52 +1,82 @@
 import { auth } from "./Firebase-config.js";
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+import {
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
 // ==========================================
 // CONTROLE UNIVERSAL DOS MODAIS DOS CURSOS
 // ==========================================
+
 const botoesVerCurso = document.querySelectorAll(".btn-card");
 
 botoesVerCurso.forEach((botao) => {
   botao.addEventListener("click", (e) => {
     e.preventDefault();
 
-    // Pega o ID do modal que está guardado no "data-modal" do botão
     const idModal = botao.getAttribute("data-modal");
     const modalTarget = document.getElementById(idModal);
 
-    if (modalTarget) {
-      modalTarget.style.display = "flex";
+    if (!modalTarget) return;
 
-      // Configura o botão de fechar DESTE modal específico
-      const botaoFechar = modalTarget.querySelector(".fechar-modal");
-      if (botaoFechar) {
-        botaoFechar.onclick = () => {
-          modalTarget.style.display = "none";
-        };
-      }
+    modalTarget.style.display = "flex";
 
-      // Configura o clique fora DESTE modal específico
-      modalTarget.onclick = (evento) => {
-        if (evento.target === modalTarget) {
-          modalTarget.style.display = "none";
-        }
+    const botaoFechar = modalTarget.querySelector(".fechar-modal");
+
+    if (botaoFechar) {
+      botaoFechar.onclick = () => {
+        modalTarget.style.display = "none";
       };
+    }
+
+    modalTarget.onclick = (evento) => {
+      if (evento.target === modalTarget) {
+        modalTarget.style.display = "none";
+      }
+    };
+  });
+});
+
+// ==========================================
+// VERIFICAÇÃO DE LOGIN PARA INICIAR CURSO
+// ==========================================
+
+let usuarioAtual = null;
+
+onAuthStateChanged(auth, (usuario) => {
+  usuarioAtual = usuario;
+});
+
+// Todos os links "Iniciar Curso" dos modais
+const botoesIniciarCurso = document.querySelectorAll(
+  ".modal .btn-principal"
+);
+
+botoesIniciarCurso.forEach((botao) => {
+  botao.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const destino = botao.getAttribute("href");
+
+    if (!destino) return;
+
+    if (usuarioAtual) {
+      window.location.href = destino;
+    } else {
+      window.location.href = "Login.html";
     }
   });
 });
 
-// ===========================
-
+// ==========================================
 // ANIMAÇÃO DOS CARDS
-
-// ===========================
+// ==========================================
 
 const cards = document.querySelectorAll(".card");
 
 cards.forEach((card) => {
   card.addEventListener("mouseenter", () => {
     card.style.transform = "translateY(-10px)";
-
     card.style.transition = "0.3s";
   });
 
@@ -55,17 +85,14 @@ cards.forEach((card) => {
   });
 });
 
-// ===========================
-
+// ==========================================
 // ANIMAÇÃO AO APARECER NA TELA
-
-// ===========================
+// ==========================================
 
 const observador = new IntersectionObserver((entradas) => {
   entradas.forEach((entrada) => {
     if (entrada.isIntersecting) {
       entrada.target.style.opacity = "1";
-
       entrada.target.style.transform = "translateY(0)";
     }
   });
@@ -73,15 +100,15 @@ const observador = new IntersectionObserver((entradas) => {
 
 cards.forEach((card) => {
   card.style.opacity = "0";
-
   card.style.transform = "translateY(40px)";
-
   card.style.transition = "0.8s";
 
   observador.observe(card);
 });
 
-//Botão Comecar (CTA)
+// ==========================================
+// BOTÃO COMEÇAR
+// ==========================================
 
 const btnComecar = document.getElementById("btnComecar");
 
@@ -97,8 +124,9 @@ if (btnComecar) {
     btnComecar.onclick = () => {
       if (usuario) {
         document.getElementById("cursos")?.scrollIntoView({
-          behavior: "smooth",
+          behavior: "smooth"
         });
+
         return;
       }
 
@@ -108,44 +136,31 @@ if (btnComecar) {
 }
 
 // ==========================================
-// FAQ (Accordion Corrigido para Responsivo)
+// FAQ
 // ==========================================
+
 const accordions = document.querySelectorAll(".accordion");
 
 accordions.forEach((accordion) => {
   accordion.addEventListener("click", () => {
-    accordion.classList.toggle("active");
     const resposta = accordion.nextElementSibling;
 
-    if (accordion.classList.contains("active")) {
-      // Define a altura exata para iniciar a animação suave
-      resposta.style.maxHeight = resposta.scrollHeight + "px";
-      resposta.style.padding = "20px 25px";
+    if (!resposta) return;
 
-      // Remédio para o celular: após terminar a animação (.4s = 400ms),
-      // liberamos a altura para se adaptar caso a tela mude de tamanho
-      setTimeout(() => {
-        if (accordion.classList.contains("active")) {
-          resposta.style.maxHeight = "max-content";
-        }
-      }, 400);
+    const estaAberto = accordion.classList.contains("active");
+
+    accordion.classList.toggle("active");
+
+    if (estaAberto) {
+      resposta.classList.remove("aberta");
     } else {
-      // Para fechar, precisamos voltar o scrollHeight rapidinho para a transição funcionar
-      resposta.style.maxHeight = resposta.scrollHeight + "px";
-
-      // Força o navegador a recalcular antes de zerar
-      setTimeout(() => {
-        resposta.style.maxHeight = null;
-        resposta.style.padding = "0 25px";
-      }, 10);
+      resposta.classList.add("aberta");
     }
   });
 });
 
 // ==========================================
-
 // SCROLL AUTOMÁTICO PARA A SEÇÃO DE CURSOS
-
 // ==========================================
 
 window.addEventListener("load", () => {
@@ -161,41 +176,43 @@ window.addEventListener("load", () => {
 });
 
 // ==========================================
-
-// FUNÇÃO DE SCROLL SUAVE (CORRIGIDA)
-
+// FUNÇÃO DE SCROLL SUAVE
 // ==========================================
 
 function scrollSuave(destino, duracao = 2000) {
-  const inicio = window.scrollY; // Atualizado de pageYOffset para scrollY
+  if (!destino) return;
 
-  // getBoundingClientRect().top pega a distância do elemento até a tela visível atual
+  const inicio = window.scrollY;
 
-  // Somando com window.scrollY, temos a posição real do elemento no topo da página
+  const posicaoDestino =
+    destino.getBoundingClientRect().top + window.scrollY;
 
-  const posicaoDestino = destino.getBoundingClientRect().top + window.scrollY;
-
-  const fim = posicaoDestino - 90; // Ajuste do seu header
-
+  const fim = posicaoDestino - 90;
   const distancia = fim - inicio;
 
   let inicioTempo = null;
 
   function animar(tempoAtual) {
-    if (!inicioTempo) inicioTempo = tempoAtual;
+    if (!inicioTempo) {
+      inicioTempo = tempoAtual;
+    }
 
     const tempoDecorrido = tempoAtual - inicioTempo;
 
-    const progresso = Math.min(tempoDecorrido / duracao, 1);
-
-    // Fórmula de Ease In Out
+    const progresso = Math.min(
+      tempoDecorrido / duracao,
+      1
+    );
 
     const ease =
       progresso < 0.5
         ? 2 * progresso * progresso
         : 1 - Math.pow(-2 * progresso + 2, 2) / 2;
 
-    window.scrollTo(0, inicio + distancia * ease);
+    window.scrollTo(
+      0,
+      inicio + distancia * ease
+    );
 
     if (progresso < 1) {
       requestAnimationFrame(animar);
@@ -205,45 +222,18 @@ function scrollSuave(destino, duracao = 2000) {
   requestAnimationFrame(animar);
 }
 
-//BOTÃO CONHEÇA NOSSOS CURSOS
+// ==========================================
+// BOTÃO "CONHEÇA NOSSOS CURSOS"
+// ==========================================
 
 const btnCursos = document.querySelector(".btn-principal");
 
 if (btnCursos) {
   btnCursos.addEventListener("click", () => {
-    scrollSuave(document.getElementById("cursos"));
-  });
-}
+    const cursos = document.getElementById("cursos");
 
-function scrollSuave(destino, duracao = 2000) {
-  const inicio = window.pageYOffset;
-
-  const fim = destino.offsetTop - 80;
-
-  const distancia = fim - inicio;
-
-  let inicioTempo = null;
-
-  function animacao(tempoAtual) {
-    if (!inicioTempo) inicioTempo = tempoAtual;
-
-    const tempoDecorrido = tempoAtual - inicioTempo;
-
-    const progresso = Math.min(tempoDecorrido / duracao, 1);
-
-    // Ease In Out
-
-    const ease =
-      progresso < 0.5
-        ? 2 * progresso * progresso
-        : 1 - Math.pow(-2 * progresso + 2, 2) / 2;
-
-    window.scrollTo(0, inicio + distancia * ease);
-
-    if (progresso < 1) {
-      requestAnimationFrame(animacao);
+    if (cursos) {
+      scrollSuave(cursos);
     }
-  }
-
-  requestAnimationFrame(animacao);
+  });
 }

@@ -1,5 +1,5 @@
 /* ========================================
-RESET E CONFIGURAÇÕES GERAIS
+   RESET E CONFIGURAÇÕES GERAIS
 ======================================== */
 
 * {
@@ -15,29 +15,24 @@ html {
 
 :root {
   --azul: #2463eb;
-
   --verde: #27d17f;
-
   --titulo: #0f2e7b;
-
   --texto: #666666;
-
   --fundo: #f5f8fa;
-
   --branco: #ffffff;
-
   --borda: #e8edf3;
-
   --sombra: 0 5px 15px rgba(0, 0, 0, 0.08);
 }
 
 body {
   background: var(--fundo);
   color: #1f2937;
+  font-size: 1.0625rem;
 }
 
+
 /* ========================================
-HEADER
+   HEADER
 ======================================== */
 
 header {
@@ -46,7 +41,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 8%;
+  padding: 4px 6%;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
   position: sticky;
   top: 0;
@@ -59,21 +54,21 @@ header {
 }
 
 .logo img {
-  height: 150px;
+  height: 125px;
   width: auto;
   display: block;
 }
 
 nav {
   display: flex;
-  gap: 35px;
+  gap: 28px;
 }
 
 nav a {
   text-decoration: none;
   color: #1f2937;
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 1.08rem;
   transition: 0.3s;
 }
 
@@ -81,8 +76,9 @@ nav a:hover {
   color: var(--azul);
 }
 
+
 /* ========================================
-BOTÕES
+   BOTÕES
 ======================================== */
 
 .btn-login,
@@ -94,7 +90,7 @@ BOTÕES
   padding: 18px 35px;
   border-radius: 18px;
   cursor: pointer;
-  font-size: 1.125rem;
+  font-size: 1.05rem;
   transition: 0.3s;
 }
 
@@ -106,42 +102,29 @@ BOTÕES
 
 .btn-principal {
   display: inline-flex;
-
   align-items: center;
-
   justify-content: center;
-
   gap: 10px;
-
   background: var(--azul);
-
   color: white;
-
   padding: 15px 32px;
-
   border-radius: 12px;
-
   border: none;
-
   font-size: 18px;
-
   font-weight: 600;
-
   cursor: pointer;
-
   text-decoration: none;
-
   transition: 0.3s ease;
 }
 
 .btn-principal:hover {
   transform: translateY(-4px);
-
   box-shadow: 0 8px 18px rgba(36, 99, 235, 0.25);
 }
 
+
 /* ========================================
-TÍTULOS
+   TÍTULOS
 ======================================== */
 
 h1 {
@@ -177,8 +160,9 @@ h4 {
   font-weight: 700;
 }
 
+
 /* ========================================
-CARDS
+   CARDS
 ======================================== */
 
 .card {
@@ -192,26 +176,26 @@ CARDS
   transform: translateY(-10px);
 }
 
+
 /* ========================================
-SEÇÕES
+   SEÇÕES
 ======================================== */
 
 section {
   padding: 100px 8%;
 }
 
+
 /* ========================================
-FOOTER
+   FOOTER
 ======================================== */
 
 footer {
   background: white;
   border-top: 2px solid var(--borda);
   padding: 80px 8%;
-
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-
   gap: 50px;
 }
 
@@ -261,8 +245,9 @@ footer {
   color: var(--azul);
 }
 
+
 /* ========================================
-ANIMAÇÕES
+   ANIMAÇÕES
 ======================================== */
 
 button,
@@ -271,8 +256,9 @@ a {
   transition: 0.3s;
 }
 
+
 /* ========================================
-MENU MOBILE
+   MENU MOBILE
 ======================================== */
 
 .menu-toggle {
@@ -288,18 +274,12 @@ MENU MOBILE
   position: fixed;
   top: 0;
   left: -300px;
-
   width: 280px;
   height: 100vh;
-
   background: white;
-
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-
   padding: 30px;
-
   transition: 0.3s;
-
   z-index: 999;
 }
 
@@ -337,17 +317,12 @@ MENU MOBILE
   position: fixed;
   top: 0;
   left: 0;
-
   width: 100%;
   height: 100%;
-
   background: rgba(0, 0, 0, 0.4);
-
   opacity: 0;
   visibility: hidden;
-
   transition: 0.3s;
-
   z-index: 998;
 }
 
@@ -356,8 +331,9 @@ MENU MOBILE
   visibility: visible;
 }
 
+
 /* ========================================
-CRÉDITOS TCC
+   CRÉDITOS TCC
 ======================================== */
 
 .copyright {
@@ -369,8 +345,163 @@ CRÉDITOS TCC
   border-top: 1px solid var(--borda);
 }
 
+
 /* ========================================
-RESPONSIVO
+   ACESSIBILIDADE
+======================================== */
+
+#painelAcessibilidade {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  transition: bottom 0.3s ease;
+}
+
+/* Quando o usuário desce a página,
+   o botão de acessibilidade sobe */
+#painelAcessibilidade.subir {
+  bottom: 95px;
+}
+
+
+/* ========================================
+   BOTÃO DE ACESSIBILIDADE
+======================================== */
+
+#btnAcessibilidade {
+  width: 60px;
+  height: 60px;
+  border: none;
+  border-radius: 50%;
+  background: var(--azul);
+  color: var(--branco);
+  font-size: 28px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: 0.3s ease;
+}
+
+#btnAcessibilidade:hover {
+  transform: scale(1.08);
+}
+
+#btnAcessibilidade:focus-visible {
+  outline: 4px solid var(--verde);
+  outline-offset: 4px;
+}
+
+
+/* ========================================
+   BOTÃO VOLTAR AO TOPO
+======================================== */
+
+#voltarTopo {
+  position: fixed !important;
+  right: 20px !important;
+  bottom: 20px !important;
+  z-index: 999;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+
+/* ========================================
+   PAINEL DE ACESSIBILIDADE
+======================================== */
+
+#opcoesAcessibilidade {
+  position: absolute;
+  right: 0;
+  bottom: 70px;
+  display: none;
+  background: var(--branco);
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: var(--sombra);
+  min-width: 220px;
+}
+
+#opcoesAcessibilidade.ativo {
+  display: block;
+}
+
+#opcoesAcessibilidade span {
+  display: block;
+  color: var(--titulo);
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+
+/* ========================================
+   CONTROLES DE FONTE
+======================================== */
+
+.controle-fonte {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.controle-fonte button {
+  width: 50px;
+  height: 45px;
+  border: 2px solid var(--azul);
+  border-radius: 10px;
+  background: var(--branco);
+  color: var(--titulo);
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.controle-fonte button:hover {
+  background: var(--azul);
+  color: var(--branco);
+}
+
+.controle-fonte button:focus-visible {
+  outline: 3px solid var(--verde);
+  outline-offset: 2px;
+}
+
+
+/* ========================================
+   TAMANHO DA FONTE
+======================================== */
+
+html {
+  font-size: 100%;
+}
+
+html[data-tamanho-fonte="110"] {
+  font-size: 110%;
+}
+
+html[data-tamanho-fonte="120"] {
+  font-size: 120%;
+}
+
+html[data-tamanho-fonte="130"] {
+  font-size: 130%;
+}
+
+html[data-tamanho-fonte="140"] {
+  font-size: 140%;
+}
+
+
+/* ========================================
+   RESPONSIVO
 ======================================== */
 
 @media (max-width: 1000px) {
@@ -383,22 +514,29 @@ RESPONSIVO
   }
 }
 
+
 @media (max-width: 768px) {
+
   section {
     padding: 80px 6%;
   }
 
   header {
-    padding: 20px 6%;
+    padding: 8px 6%;
+  }
+
+  .logo img {
+    height: 95px;
   }
 
   footer {
     gap: 40px;
   }
 
-  /* ========================================
-    FOOTER - MOBILE
-    ======================================== */
+
+  /* ======================================
+     FOOTER - MOBILE
+  ====================================== */
 
   footer {
     display: flex;
@@ -464,138 +602,24 @@ RESPONSIVO
     justify-content: center;
     gap: 10px;
   }
-}
 
-/* ========================================
-   ACESSIBILIDADE - TAMANHO DA FONTE
-======================================== */
 
-#painelAcessibilidade {
-  position: fixed;
-  right: 25px;
-  bottom: 25px;
-  z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-}
-
-/* Botão principal */
-
-#btnAcessibilidade {
-  width: 60px;
-  height: 60px;
-
-  border: none;
-  border-radius: 50%;
-
-  background: var(--azul);
-  color: var(--branco);
-
-  font-size: 28px;
-
-  cursor: pointer;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-
-  transition: 0.3s ease;
-}
-
-#btnAcessibilidade:hover {
-  transform: scale(1.08);
-}
-
-#btnAcessibilidade:focus-visible {
-  outline: 4px solid var(--verde);
-  outline-offset: 4px;
-}
-
-/* Painel */
-
-#opcoesAcessibilidade {
-  display: none;
-
-  background: var(--branco);
-
-  border: 2px solid var(--borda);
-  border-radius: 18px;
-
-  padding: 18px;
-
-  margin-bottom: 12px;
-
-  box-shadow: var(--sombra);
-
-  min-width: 210px;
-
-  text-align: center;
-}
-
-#opcoesAcessibilidade.ativo {
-  display: block;
-}
-
-#opcoesAcessibilidade span {
-  display: block;
-
-  color: var(--titulo);
-
-  font-size: 18px;
-  font-weight: 600;
-
-  margin-bottom: 15px;
-}
-
-/* Controles */
-
-.controle-fonte {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-
-.controle-fonte button {
-  width: 50px;
-  height: 45px;
-
-  border: 2px solid var(--azul);
-  border-radius: 10px;
-
-  background: var(--branco);
-  color: var(--titulo);
-
-  font-size: 18px;
-  font-weight: 600;
-
-  cursor: pointer;
-
-  transition: 0.3s ease;
-}
-
-.controle-fonte button:hover {
-  background: var(--azul);
-  color: var(--branco);
-}
-
-.controle-fonte button:focus-visible {
-  outline: 3px solid var(--verde);
-  outline-offset: 2px;
-}
-
-/* ========================================
-   ACESSIBILIDADE - MOBILE
-======================================== */
-
-@media (max-width: 768px) {
+  /* ======================================
+     ACESSIBILIDADE - MOBILE
+  ====================================== */
 
   #painelAcessibilidade {
     right: 15px;
     bottom: 15px;
+  }
+
+  #painelAcessibilidade.subir {
+    bottom: 82px;
+  }
+
+  #voltarTopo {
+    right: 15px !important;
+    bottom: 15px !important;
   }
 
   #btnAcessibilidade {
@@ -613,29 +637,4 @@ RESPONSIVO
     width: 45px;
     height: 42px;
   }
-}
-
-/* ==========================================
-   ACESSIBILIDADE - TAMANHO DA FONTE
-========================================== */
-
-html {
-  font-size: 100%;
-}
-
-/* Quando o usuário aumenta a fonte */
-html[data-tamanho-fonte="110"] {
-  font-size: 110%;
-}
-
-html[data-tamanho-fonte="120"] {
-  font-size: 120%;
-}
-
-html[data-tamanho-fonte="130"] {
-  font-size: 130%;
-}
-
-html[data-tamanho-fonte="140"] {
-  font-size: 140%;
 }

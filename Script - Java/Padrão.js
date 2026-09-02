@@ -1,9 +1,18 @@
 import { auth, db } from "./Firebase-config.js";
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+import {
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
 import {
   doc,
   getDoc
 } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+
+// ==========================================
+// MENU MOBILE
+// ==========================================
 
 const menuToggle = document.getElementById("menuToggle");
 const closeMenu = document.getElementById("closeMenu");
@@ -31,19 +40,31 @@ if (overlay) {
   });
 }
 
-document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach((link) => {
-  link.addEventListener("click", function (e) {
-    e.preventDefault();
 
-    const alvo = document.querySelector(this.getAttribute("href"));
+// ==========================================
+// LINKS INTERNOS
+// ==========================================
 
-    if (alvo) {
-      alvo.scrollIntoView({
-        behavior: "smooth",
-      });
-    }
+document
+  .querySelectorAll('a[href^="#"]:not([href="#"])')
+  .forEach((link) => {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      const alvo = document.querySelector(this.getAttribute("href"));
+
+      if (alvo) {
+        alvo.scrollIntoView({
+          behavior: "smooth",
+        });
+      }
+    });
   });
-});
+
+
+// ==========================================
+// LINKS DA SIDEBAR
+// ==========================================
 
 const linksSidebar = document.querySelectorAll(".sidebar-nav a");
 
@@ -54,6 +75,11 @@ linksSidebar.forEach((link) => {
   });
 });
 
+
+// ==========================================
+// FECHAR MENU AO REDIMENSIONAR
+// ==========================================
+
 window.addEventListener("resize", () => {
   if (window.innerWidth > 1000) {
     sidebar.classList.remove("active");
@@ -61,19 +87,23 @@ window.addEventListener("resize", () => {
   }
 });
 
-// ===========================
+
+// ==========================================
 // BOTÃO VOLTAR AO TOPO
-// ===========================
+// ==========================================
+
 const voltarTopo = document.createElement("button");
 
 voltarTopo.innerHTML = "↑";
-voltarTopo.id = "topo";
+voltarTopo.id = "voltarTopo";
+voltarTopo.setAttribute("aria-label", "Voltar ao topo");
+voltarTopo.setAttribute("title", "Voltar ao topo");
 
 document.body.appendChild(voltarTopo);
 
 voltarTopo.style.position = "fixed";
-voltarTopo.style.bottom = "30px";
-voltarTopo.style.right = "30px";
+voltarTopo.style.bottom = "20px";
+voltarTopo.style.right = "20px";
 voltarTopo.style.width = "55px";
 voltarTopo.style.height = "55px";
 voltarTopo.style.borderRadius = "50%";
@@ -84,12 +114,23 @@ voltarTopo.style.fontSize = "28px";
 voltarTopo.style.cursor = "pointer";
 voltarTopo.style.boxShadow = "0 5px 15px rgba(0,0,0,.3)";
 voltarTopo.style.display = "none";
+voltarTopo.style.zIndex = "999";
 
 window.addEventListener("scroll", () => {
+  const painelAcessibilidade = document.getElementById(
+    "painelAcessibilidade"
+  );
+
   if (window.scrollY > 300) {
-    voltarTopo.style.display = "block";
+    voltarTopo.style.display = "flex";
+    voltarTopo.style.alignItems = "center";
+    voltarTopo.style.justifyContent = "center";
+
+    painelAcessibilidade.classList.add("subir");
   } else {
     voltarTopo.style.display = "none";
+
+    painelAcessibilidade.classList.remove("subir");
   }
 });
 
@@ -100,6 +141,7 @@ voltarTopo.addEventListener("click", () => {
   });
 });
 
+
 // ==========================================
 // AUTENTICAÇÃO DO USUÁRIO
 // ==========================================
@@ -108,9 +150,7 @@ const btnUsuario = document.getElementById("btnUsuario");
 
 if (btnUsuario) {
   onAuthStateChanged(auth, async (usuario) => {
-
     if (usuario) {
-
       try {
         const referenciaUsuario = doc(db, "usuarios", usuario.uid);
         const documentoUsuario = await getDoc(referenciaUsuario);
@@ -135,7 +175,6 @@ if (btnUsuario) {
         };
 
       } catch (erro) {
-
         console.error(
           "Erro ao carregar dados do usuário:",
           erro
@@ -165,7 +204,8 @@ if (btnUsuario) {
   });
 }
 
-// =========================================
+
+// ==========================================
 // ACESSIBILIDADE - TAMANHO DA FONTE
 // ==========================================
 
@@ -194,7 +234,6 @@ acessibilidade.innerHTML = `
   </button>
 
   <div id="opcoesAcessibilidade">
-
     <span>Acessibilidade</span>
 
     <div class="controle-fonte">
@@ -224,15 +263,13 @@ acessibilidade.innerHTML = `
       </button>
 
     </div>
-
   </div>
 `;
 
 document.body.appendChild(acessibilidade);
 
 
-// Nova Função
-
+// ==========================================
 // ABRIR / FECHAR PAINEL
 // ==========================================
 
@@ -243,9 +280,7 @@ const opcoesAcessibilidade =
   document.getElementById("opcoesAcessibilidade");
 
 btnAcessibilidade.addEventListener("click", () => {
-
   opcoesAcessibilidade.classList.toggle("ativo");
-
 });
 
 
@@ -265,44 +300,37 @@ const aumentarFonte =
 let tamanhoFonte = Number(tamanhoFonteSalvo);
 
 
+// ==========================================
 // DIMINUIR
+// ==========================================
 
 diminuirFonte.addEventListener("click", () => {
-
   if (tamanhoFonte > 70) {
-
     tamanhoFonte -= 10;
-
     aplicarTamanhoFonte();
-
   }
-
 });
 
 
+// ==========================================
 // NORMAL
+// ==========================================
 
 resetarFonte.addEventListener("click", () => {
-
   tamanhoFonte = 100;
-
   aplicarTamanhoFonte();
-
 });
 
 
+// ==========================================
 // AUMENTAR
+// ==========================================
 
 aumentarFonte.addEventListener("click", () => {
-
   if (tamanhoFonte < 140) {
-
     tamanhoFonte += 10;
-
     aplicarTamanhoFonte();
-
   }
-
 });
 
 

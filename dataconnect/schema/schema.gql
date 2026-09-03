@@ -1,0 +1,74 @@
+type TipoUsuario @table {
+  nome: String!
+}
+
+type Usuario @table {
+  firebaseUid: String! @unique
+  nome: String!
+  email: String! @unique
+  dataNascimento: Date
+  tipoUsuario: TipoUsuario!
+  fotoPerfil: String
+  criadoEm: Timestamp @default(expr: "request.time")
+  atualizadoEm: Timestamp @default(expr: "request.time")
+}
+
+type Curso @table {
+  nome: String!
+  descricao: String
+  dificuldade: String!
+  cargaHoraria: Int!
+  imagem: String
+  ativo: Boolean @default(value: true)
+  criadoEm: Timestamp @default(expr: "request.time")
+  atualizadoEm: Timestamp @default(expr: "request.time")
+}
+
+type Modulo @table {
+  curso: Curso!
+  nome: String!
+  descricao: String
+  ordem: Int!
+  imagem: String
+  criadoEm: Timestamp @default(expr: "request.time")
+  atualizadoEm: Timestamp @default(expr: "request.time")
+}
+
+type ConteudoModulo @table {
+  modulo: Modulo!
+  tipo: String!
+  titulo: String!
+  conteudo: String
+  url: String
+  ordem: Int!
+  criadoEm: Timestamp @default(expr: "request.time")
+  atualizadoEm: Timestamp @default(expr: "request.time")
+}
+
+type StatusCurso @table {
+  nome: String!
+}
+
+type UsuarioCurso @table(key: ["usuario", "curso"]) {
+  usuario: Usuario!
+  curso: Curso!
+  status: StatusCurso!
+  progresso: Int @default(value: 0)
+  moduloAtual: Modulo
+  dataInicio: Timestamp
+  ultimoAcesso: Timestamp
+  dataConclusao: Timestamp
+}
+
+type StatusModulo @table {
+  nome: String!
+}
+
+type UsuarioModulo @table(key: ["usuario", "modulo"]) {
+  usuario: Usuario!
+  modulo: Modulo!
+  status: StatusModulo!
+  dataInicio: Timestamp
+  ultimoAcesso: Timestamp
+  dataConclusao: Timestamp
+}

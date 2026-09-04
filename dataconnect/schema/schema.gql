@@ -72,3 +72,10 @@ type UsuarioModulo @table(key: ["usuario", "modulo"]) {
   ultimoAcesso: Timestamp
   dataConclusao: Timestamp
 }
+
+type Certificado @table(key: ["usuario", "curso"]) {
+  usuario: Usuario!
+  curso: Curso!
+  dataEmissao: Timestamp @default(expr: "request.time")
+  hashVerificacao: String!
+}

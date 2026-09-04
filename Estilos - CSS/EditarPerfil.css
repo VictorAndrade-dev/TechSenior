@@ -1,0 +1,441 @@
+/* ========================================
+   PÁGINA DE EDIÇÃO
+======================================== */
+
+.pagina-edicao {
+    min-height: calc(100vh - 160px);
+    padding: 60px 20px;
+
+    background-color: #f5f8fa;
+}
+
+.container-edicao {
+    width: 100%;
+    max-width: 800px;
+
+    margin: 0 auto;
+
+    background-color: #ffffff;
+
+    border: 1px solid #e8edf3;
+    border-radius: 16px;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+
+    padding: 45px 50px;
+}
+
+
+/* ========================================
+   CABEÇALHO
+======================================== */
+
+.cabecalho-edicao {
+    margin-bottom: 35px;
+
+    padding-bottom: 25px;
+
+    border-bottom: 1px solid #e8edf3;
+}
+
+.cabecalho-edicao h1 {
+    font-family: "Poppins", sans-serif;
+
+    font-size: 30px;
+    font-weight: 600;
+
+    color: #0f2e7b;
+
+    margin-bottom: 8px;
+}
+
+.cabecalho-edicao p {
+    font-size: 16px;
+    line-height: 1.6;
+
+    color: #666666;
+}
+
+
+/* ========================================
+   FORMULÁRIO
+======================================== */
+
+#formEdicao {
+    width: 100%;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+
+    margin-bottom: 25px;
+}
+
+.campo label {
+    margin-bottom: 8px;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    color: #333333;
+}
+
+.campo input {
+    width: 100%;
+    min-height: 52px;
+
+    padding: 12px 15px;
+
+    border: 2px solid #e8edf3;
+    border-radius: 8px;
+
+    background-color: #ffffff;
+
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+
+    color: #333333;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.campo input::placeholder {
+    color: #888888;
+}
+
+.campo input:focus {
+    border-color: #2463eb;
+
+    box-shadow:
+        0 0 0 3px rgba(36, 99, 235, 0.15);
+}
+
+
+/* ========================================
+   SEÇÃO DE SENHA
+======================================== */
+
+.secao-senha {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 25px;
+
+    margin-top: 10px;
+    margin-bottom: 30px;
+
+    padding: 22px 24px;
+
+    background-color: #f5f8fa;
+
+    border: 1px solid #e8edf3;
+    border-radius: 10px;
+}
+
+.texto-senha h2 {
+    font-family: "Poppins", sans-serif;
+
+    font-size: 19px;
+    font-weight: 600;
+
+    color: #0f2e7b;
+
+    margin-bottom: 5px;
+}
+
+.texto-senha p {
+    font-size: 15px;
+
+    color: #666666;
+}
+
+
+/* ========================================
+   BOTÃO ALTERAR SENHA
+======================================== */
+
+.botao-alterar-senha {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 44px;
+
+    padding: 10px 18px;
+
+    border: 2px solid #2463eb;
+    border-radius: 8px;
+
+    background-color: #ffffff;
+
+    color: #2463eb;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    white-space: nowrap;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.botao-alterar-senha:hover {
+    background-color: #2463eb;
+
+    color: #ffffff;
+
+    transform: translateY(-1px);
+}
+
+.botao-alterar-senha:focus-visible {
+    outline: 3px solid rgba(36, 99, 235, 0.25);
+    outline-offset: 3px;
+}
+
+
+/* ========================================
+   MENSAGEM
+======================================== */
+
+.mensagem {
+    min-height: 24px;
+
+    margin-bottom: 20px;
+
+    font-size: 15px;
+    line-height: 1.5;
+
+    text-align: center;
+}
+
+.mensagem.erro {
+    color: #c62828;
+
+    font-weight: 600;
+}
+
+.mensagem.sucesso {
+    color: #187a3d;
+
+    font-weight: 600;
+}
+
+
+/* ========================================
+   AÇÕES
+======================================== */
+
+.acoes {
+    display: flex;
+
+    justify-content: flex-end;
+    align-items: center;
+
+    gap: 15px;
+
+    padding-top: 25px;
+
+    border-top: 1px solid #e8edf3;
+}
+
+
+/* ========================================
+   BOTÃO CANCELAR
+======================================== */
+
+.botao-cancelar {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 50px;
+
+    padding: 12px 22px;
+
+    border: 2px solid #d8dee6;
+    border-radius: 8px;
+
+    background-color: #ffffff;
+
+    color: #555555;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.botao-cancelar:hover {
+    background-color: #f5f8fa;
+
+    border-color: #bfc7d2;
+}
+
+.botao-cancelar:focus-visible {
+    outline: 3px solid rgba(36, 99, 235, 0.25);
+    outline-offset: 3px;
+}
+
+
+/* ========================================
+   BOTÃO SALVAR
+======================================== */
+
+#btnSalvar {
+    min-height: 50px;
+
+    padding: 12px 24px;
+
+    border: none;
+    border-radius: 8px;
+
+    background-color: #2463eb;
+
+    color: #ffffff;
+
+    font-family: "Open Sans", sans-serif;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#btnSalvar:hover {
+    background-color: #1954d1;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 4px 10px rgba(36, 99, 235, 0.20);
+}
+
+#btnSalvar:focus-visible {
+    outline: 3px solid rgba(36, 99, 235, 0.35);
+    outline-offset: 3px;
+}
+
+#btnSalvar:active {
+    transform: translateY(0);
+}
+
+#btnSalvar:disabled {
+    opacity: 0.7;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+    box-shadow: none;
+}
+
+
+/* ========================================
+   RESPONSIVIDADE
+======================================== */
+
+@media (max-width: 700px) {
+
+    .pagina-edicao {
+        padding: 40px 15px;
+    }
+
+    .container-edicao {
+        padding: 35px 25px;
+
+        border-radius: 12px;
+    }
+
+    .cabecalho-edicao h1 {
+        font-size: 26px;
+    }
+
+    .cabecalho-edicao p {
+        font-size: 15px;
+    }
+
+    .secao-senha {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 18px;
+    }
+
+    .botao-alterar-senha {
+        width: 100%;
+    }
+
+    .acoes {
+        flex-direction: column-reverse;
+
+        align-items: stretch;
+    }
+
+    .botao-cancelar,
+    #btnSalvar {
+        width: 100%;
+    }
+}
+
+
+/* ========================================
+   TELAS PEQUENAS
+======================================== */
+
+@media (max-width: 400px) {
+
+    .pagina-edicao {
+        padding: 25px 12px;
+    }
+
+    .container-edicao {
+        padding: 30px 20px;
+    }
+
+    .cabecalho-edicao {
+        margin-bottom: 28px;
+    }
+
+    .cabecalho-edicao h1 {
+        font-size: 23px;
+    }
+
+    .campo input {
+        min-height: 50px;
+    }
+
+    .secao-senha {
+        padding: 18px;
+    }
+
+    .texto-senha h2 {
+        font-size: 18px;
+    }
+
+    .texto-senha p {
+        font-size: 14px;
+    }
+}

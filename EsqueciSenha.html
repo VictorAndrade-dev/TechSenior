@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>TechSênior - Esqueci minha Senha</title>
+
+    <!-- Fonte -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="Estilos - CSS/EsqueciSenha.css" />
+    <link rel="stylesheet" href="Estilos - CSS/Padrão.css" />
+
+    <!-- Ícones -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+
+<body>
+
+    <main class="pagina-recuperacao">
+
+        <section class="card-recuperacao">
+
+            <!-- Logo / Nome -->
+            <div class="logo">
+                <h1>Tech<span>Sênior</span></h1>
+            </div>
+
+            <!-- Título -->
+            <div class="cabecalho-recuperacao">
+                <h2>Esqueceu sua senha?</h2>
+
+                <p>
+                    Não se preocupe! Informe seu e-mail e
+                    enviaremos as instruções para recuperar
+                    o acesso à sua conta.
+                </p>
+            </div>
+
+            <!-- Formulário -->
+            <form id="formRecuperacao">
+                <div class="campo">
+                    <label for="email">E-mail</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Digite seu e-mail"
+                        autocomplete="email"
+                        required
+                    >
+                </div>
+
+                <button type="submit" id="btnEnviar">
+                    Enviar instruções
+                </button>
+            </form>
+
+            <!-- Mensagem -->
+            <div id="mensagem" class="mensagem" aria-live="polite"></div>
+
+            <!-- Voltar -->
+            <div class="voltar-login">
+                <a href="Login.html">
+                    ← Voltar para o login
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- JavaScript -->
+    <script src="Script - Java/EsqueciSenha.js"></script>
+
+</body>
+</html>

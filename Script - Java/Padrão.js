@@ -1,13 +1,8 @@
-import { auth, db } from "./Firebase-config.js";
+import { auth } from "./Firebase-config.js";
 
 import {
   onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
-
-import {
-  doc,
-  getDoc
-} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
 
 // ==========================================
@@ -166,69 +161,67 @@ voltarTopo.addEventListener("click", () => {
 const btnUsuario =
   document.getElementById("btnUsuario");
 
+
+// ==========================================
+// CLIQUE DO BOTÃO
+// ==========================================
+
 if (btnUsuario) {
-  onAuthStateChanged(auth, async (usuario) => {
 
-    if (usuario) {
+  btnUsuario.addEventListener("click", (evento) => {
 
-      try {
-        const referenciaUsuario =
-          doc(db, "usuarios", usuario.uid);
+    evento.preventDefault();
 
-        const documentoUsuario =
-          await getDoc(referenciaUsuario);
+    if (auth.currentUser) {
 
-        let nome = usuario.email;
-
-        if (documentoUsuario.exists()) {
-          const dados =
-            documentoUsuario.data();
-
-          if (dados.nome) {
-            nome = dados.nome;
-          }
-        }
-
-        btnUsuario.innerHTML = `
-          <i class="fa-solid fa-user"></i>
-          ${nome}
-        `;
-
-        btnUsuario.onclick = () => {
-          window.location.href = "Perfil.html";
-        };
-
-      } catch (erro) {
-
-        console.error(
-          "Erro ao carregar dados do usuário:",
-          erro
-        );
-
-        btnUsuario.innerHTML = `
-          <i class="fa-solid fa-user"></i>
-          ${usuario.email}
-        `;
-
-        btnUsuario.onclick = () => {
-          window.location.href = "Perfil.html";
-        };
-      }
+      window.location.href =
+        "Perfil.html";
 
     } else {
 
-      btnUsuario.innerHTML = `
-        <i class="fa-solid fa-user"></i>
-        Entrar
-      `;
+      window.location.href =
+        "Login.html";
 
-      btnUsuario.onclick = () => {
-        window.location.href = "Login.html";
-      };
     }
+
   });
+
 }
 
+
+// ==========================================
+// ATUALIZAR APARÊNCIA DO BOTÃO
+// ==========================================
+
+onAuthStateChanged(auth, (usuario) => {
+
+  if (!btnUsuario) {
+    return;
+  }
+
+
+  if (usuario) {
+
+    const nome =
+      usuario.displayName || "Perfil";
+
+    btnUsuario.innerHTML = `
+      <i class="fa-solid fa-user"></i>
+      ${nome}
+    `;
+
+  }
+
+  else {
+
+    btnUsuario.innerHTML = `
+      <i class="fa-solid fa-user"></i>
+      Entrar
+    `;
+
+  }
+
+});
 
 // ==========================================
 // ACESSIBILIDADE - TAMANHO DA FONTE

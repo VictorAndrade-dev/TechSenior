@@ -1,1 +1,6 @@
 connectorId: "example"
+
+generate:
+  javascriptSdk:
+    outputDir: "../../dataconnect-generated"
+    package: "@dataconnect/generated"

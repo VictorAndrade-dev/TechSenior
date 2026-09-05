@@ -1,0 +1,51 @@
+mutation CadastrarUsuario(
+  $nome: String!
+  $email: String!
+) @auth(level: USER) @transaction {
+
+  query
+    @redact
+    @check(
+      expr: "response.query.tipoUsuarios.size() == 1"
+      message: "Tipo de usuário padrão não encontrado."
+    ) {
+    tipoUsuarios(
+      where: {
+        nome: { eq: "Usuário" }
+      }
+      limit: 1
+    ) {
+      id
+    }
+  }
+
+  usuario_insert(
+    data: {
+      firebaseUid_expr: "auth.uid"
+      nome: $nome
+      email: $email
+      tipoUsuarioId_expr: "response.query.tipoUsuarios[0].id"
+    }
+  )
+}
+
+query MeuPerfil @auth(level: USER) {
+  usuarios(
+    where: {
+      firebaseUid: { eq_expr: "auth.uid" }
+    }
+    limit: 1
+  ) {
+    id
+    firebaseUid
+    nome
+    email
+    dataNascimento
+    fotoPerfil
+
+    tipoUsuario {
+      id
+      nome
+    }
+  }
+}

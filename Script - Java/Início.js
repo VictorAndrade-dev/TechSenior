@@ -88,31 +88,6 @@ document.querySelectorAll('a[href*="#"]').forEach((link) => {
   });
 });
 
-function scrollSuave(elemento, duracao = 1500) {
-  const inicio = window.scrollY;
-
-  const destino = elemento.offsetTop;
-
-  const distancia = destino - inicio;
-
-  let inicioTempo = null;
-
-  function animar(tempoAtual) {
-    if (!inicioTempo) inicioTempo = tempoAtual;
-
-    const progresso = tempoAtual - inicioTempo;
-
-    const porcentagem = Math.min(progresso / duracao, 1);
-
-    window.scrollTo(0, inicio + distancia * porcentagem);
-
-    if (progresso < duracao) {
-      requestAnimationFrame(animar);
-    }
-  }
-
-  requestAnimationFrame(animar);
-}
 
 //BOTÃO CONHEÇA NOSSA PÁGINA
 

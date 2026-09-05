@@ -1,15 +1,12 @@
-import { auth, db } from "./Firebase-config.js";
+import { auth } from "./Firebase-config.js";
 
 import {
   onAuthStateChanged,
-  signOut
+  signOut,
+  updateProfile,
 } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
-import {
-  doc,
-  getDoc
-} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
-
+import { meuPerfil } from "../dataconnect-generated/esm/index.esm.js";
 
 // ==========================================
 // ELEMENTOS DO PERFIL
@@ -22,13 +19,16 @@ const nomePerfil = document.getElementById("nomePerfil");
 const nomeUsuario = document.getElementById("nomeUsuario");
 const emailUsuario = document.getElementById("emailUsuario");
 
+const btnSair = document.getElementById("btnSair");
 
 // ==========================================
 // SENHA
 // ==========================================
-
-// A senha não é recuperada do Firebase.
-// Apenas mostramos uma representação visual.
+//
+// A senha pertence ao Firebase Authentication.
+// Ela nunca é armazenada nem recuperada do
+// PostgreSQL.
+// ==========================================
 
 if (senhaUsuario) {
   senhaUsuario.textContent = "••••••••";
@@ -36,7 +36,6 @@ if (senhaUsuario) {
 
 if (mostrarSenha) {
   mostrarSenha.addEventListener("click", () => {
-
     senhaUsuario.textContent = "••••••••";
 
     mostrarSenha.innerHTML = `
@@ -47,64 +46,61 @@ if (mostrarSenha) {
   });
 }
 
-
 // ==========================================
 // CARREGAR USUÁRIO
 // ==========================================
 
 onAuthStateChanged(auth, async (usuario) => {
-
   // ========================================
-  // NENHUM USUÁRIO LOGADO
+  // USUÁRIO NÃO ESTÁ LOGADO
   // ========================================
 
   if (!usuario) {
     window.location.href = "Login.html";
+
     return;
   }
 
-
-  // ========================================
-  // E-MAIL DO AUTHENTICATION
-  // ========================================
-
-  if (emailUsuario) {
-    emailUsuario.textContent = usuario.email;
-  }
-
-
-  // ========================================
-  // BUSCAR DADOS NO FIRESTORE
-  // ========================================
-
   try {
+    // ======================================
+    // BUSCAR PERFIL NO POSTGRESQL
+    // ======================================
 
-    const referenciaUsuario = doc(
-      db,
-      "usuarios",
-      usuario.uid
-    );
+    const resposta = await meuPerfil();
 
-    const documentoUsuario = await getDoc(
-      referenciaUsuario
-    );
+    const dados = resposta.data.usuarios?.[0];
 
+    // ======================================
+    // PERFIL ENCONTRADO
+    // ======================================
 
-    if (documentoUsuario.exists()) {
-
-      const dados = documentoUsuario.data();
+    if (dados) {
+      if (dados.nome && usuario.displayName !== dados.nome) {
+        await updateProfile(usuario, {
+          displayName: dados.nome,
+        });
+      }
 
       if (nomePerfil) {
-        nomePerfil.textContent =
-          dados.nome || "Usuário";
+        nomePerfil.textContent = dados.nome || "Usuário";
       }
 
       if (nomeUsuario) {
-        nomeUsuario.textContent =
-          dados.nome || "Usuário";
+        nomeUsuario.textContent = dados.nome || "Usuário";
       }
 
-    } else {
+      if (emailUsuario) {
+        emailUsuario.textContent = dados.email || usuario.email || "";
+      }
+
+      console.log("Perfil carregado do PostgreSQL:", dados);
+    }
+
+    // ======================================
+    // PERFIL NÃO ENCONTRADO
+    // ======================================
+    else {
+      console.warn("Perfil não encontrado no PostgreSQL.");
 
       if (nomePerfil) {
         nomePerfil.textContent = "Usuário";
@@ -114,17 +110,16 @@ onAuthStateChanged(auth, async (usuario) => {
         nomeUsuario.textContent = "Usuário";
       }
 
-      console.warn(
-        "Documento do usuário não encontrado no Firestore."
-      );
+      if (emailUsuario) {
+        emailUsuario.textContent = usuario.email || "";
+      }
     }
-
   } catch (erro) {
+    console.error("Erro ao carregar perfil:", erro);
 
-    console.error(
-      "Erro ao carregar perfil:",
-      erro
-    );
+    // ======================================
+    // FALLBACK
+    // ======================================
 
     if (nomePerfil) {
       nomePerfil.textContent = "Usuário";
@@ -133,43 +128,35 @@ onAuthStateChanged(auth, async (usuario) => {
     if (nomeUsuario) {
       nomeUsuario.textContent = "Usuário";
     }
+
+    if (emailUsuario) {
+      emailUsuario.textContent = usuario.email || "";
+    }
   }
-
-  // ==========================================
-  // SAIR DA CONTA
-  // ==========================================
-
-  const btnSair = document.getElementById("btnSair");
-
-  if (btnSair) {
-    btnSair.addEventListener("click", async () => {
-
-      const confirmar = confirm(
-        "Tem certeza que deseja sair da sua conta?"
-      );
-
-      if (!confirmar) {
-        return;
-      }
-
-      try {
-
-        await signOut(auth);
-
-        alert("Você saiu da sua conta.");
-
-        window.location.href = "Login.html";
-
-      } catch (erro) {
-
-        console.error("Erro ao sair:", erro);
-
-        alert(
-          "Não foi possível sair da conta. Tente novamente."
-        );
-      }
-
-    });
-  }
-
 });
+
+// ==========================================
+// SAIR DA CONTA
+// ==========================================
+
+if (btnSair) {
+  btnSair.addEventListener("click", async () => {
+    const confirmar = confirm("Tem certeza que deseja sair da sua conta?");
+
+    if (!confirmar) {
+      return;
+    }
+
+    try {
+      await signOut(auth);
+
+      alert("Você saiu da sua conta.");
+
+      window.location.href = "Login.html";
+    } catch (erro) {
+      console.error("Erro ao sair:", erro);
+
+      alert("Não foi possível sair da conta. Tente novamente.");
+    }
+  });
+}

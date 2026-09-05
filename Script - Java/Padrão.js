@@ -1,13 +1,8 @@
-import { auth, db } from "./Firebase-config.js";
+import { auth } from "./Firebase-config.js";
 
 import {
   onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
-
-import {
-  doc,
-  getDoc
-} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
 
 // ==========================================
@@ -51,11 +46,13 @@ document
     link.addEventListener("click", function (e) {
       e.preventDefault();
 
-      const alvo = document.querySelector(this.getAttribute("href"));
+      const alvo = document.querySelector(
+        this.getAttribute("href")
+      );
 
       if (alvo) {
         alvo.scrollIntoView({
-          behavior: "smooth",
+          behavior: "smooth"
         });
       }
     });
@@ -66,7 +63,8 @@ document
 // LINKS DA SIDEBAR
 // ==========================================
 
-const linksSidebar = document.querySelectorAll(".sidebar-nav a");
+const linksSidebar =
+  document.querySelectorAll(".sidebar-nav a");
 
 linksSidebar.forEach((link) => {
   link.addEventListener("click", () => {
@@ -96,8 +94,16 @@ const voltarTopo = document.createElement("button");
 
 voltarTopo.innerHTML = "↑";
 voltarTopo.id = "voltarTopo";
-voltarTopo.setAttribute("aria-label", "Voltar ao topo");
-voltarTopo.setAttribute("title", "Voltar ao topo");
+
+voltarTopo.setAttribute(
+  "aria-label",
+  "Voltar ao topo"
+);
+
+voltarTopo.setAttribute(
+  "title",
+  "Voltar ao topo"
+);
 
 document.body.appendChild(voltarTopo);
 
@@ -112,32 +118,38 @@ voltarTopo.style.background = "#3bc6b8";
 voltarTopo.style.color = "white";
 voltarTopo.style.fontSize = "28px";
 voltarTopo.style.cursor = "pointer";
-voltarTopo.style.boxShadow = "0 5px 15px rgba(0,0,0,.3)";
+voltarTopo.style.boxShadow =
+  "0 5px 15px rgba(0,0,0,.3)";
 voltarTopo.style.display = "none";
 voltarTopo.style.zIndex = "999";
 
 window.addEventListener("scroll", () => {
-  const painelAcessibilidade = document.getElementById(
-    "painelAcessibilidade"
-  );
+  const painelAcessibilidade =
+    document.getElementById(
+      "painelAcessibilidade"
+    );
 
   if (window.scrollY > 300) {
     voltarTopo.style.display = "flex";
     voltarTopo.style.alignItems = "center";
     voltarTopo.style.justifyContent = "center";
 
-    painelAcessibilidade.classList.add("subir");
+    if (painelAcessibilidade) {
+      painelAcessibilidade.classList.add("subir");
+    }
   } else {
     voltarTopo.style.display = "none";
 
-    painelAcessibilidade.classList.remove("subir");
+    if (painelAcessibilidade) {
+      painelAcessibilidade.classList.remove("subir");
+    }
   }
 });
 
 voltarTopo.addEventListener("click", () => {
   window.scrollTo({
     top: 0,
-    behavior: "smooth",
+    behavior: "smooth"
   });
 });
 
@@ -146,64 +158,70 @@ voltarTopo.addEventListener("click", () => {
 // AUTENTICAÇÃO DO USUÁRIO
 // ==========================================
 
-const btnUsuario = document.getElementById("btnUsuario");
+const btnUsuario =
+  document.getElementById("btnUsuario");
+
+
+// ==========================================
+// CLIQUE DO BOTÃO
+// ==========================================
 
 if (btnUsuario) {
-  onAuthStateChanged(auth, async (usuario) => {
-    if (usuario) {
-      try {
-        const referenciaUsuario = doc(db, "usuarios", usuario.uid);
-        const documentoUsuario = await getDoc(referenciaUsuario);
 
-        let nome = usuario.email;
+  btnUsuario.addEventListener("click", (evento) => {
 
-        if (documentoUsuario.exists()) {
-          const dados = documentoUsuario.data();
+    evento.preventDefault();
 
-          if (dados.nome) {
-            nome = dados.nome;
-          }
-        }
+    if (auth.currentUser) {
 
-        btnUsuario.innerHTML = `
-          <i class="fa-solid fa-user"></i>
-          ${nome}
-        `;
-
-        btnUsuario.onclick = () => {
-          window.location.href = "Perfil.html";
-        };
-
-      } catch (erro) {
-        console.error(
-          "Erro ao carregar dados do usuário:",
-          erro
-        );
-
-        btnUsuario.innerHTML = `
-          <i class="fa-solid fa-user"></i>
-          ${usuario.email}
-        `;
-
-        btnUsuario.onclick = () => {
-          window.location.href = "Perfil.html";
-        };
-      }
+      window.location.href =
+        "Perfil.html";
 
     } else {
 
-      btnUsuario.innerHTML = `
-        <i class="fa-solid fa-user"></i>
-        Entrar
-      `;
+      window.location.href =
+        "Login.html";
 
-      btnUsuario.onclick = () => {
-        window.location.href = "Login.html";
-      };
     }
+
   });
+
 }
 
+
+// ==========================================
+// ATUALIZAR APARÊNCIA DO BOTÃO
+// ==========================================
+
+onAuthStateChanged(auth, (usuario) => {
+
+  if (!btnUsuario) {
+    return;
+  }
+
+
+  if (usuario) {
+
+    const nome =
+      usuario.displayName || "Perfil";
+
+    btnUsuario.innerHTML = `
+      <i class="fa-solid fa-user"></i>
+      ${nome}
+    `;
+
+  }
+
+  else {
+
+    btnUsuario.innerHTML = `
+      <i class="fa-solid fa-user"></i>
+      Entrar
+    `;
+
+  }
+
+});
 
 // ==========================================
 // ACESSIBILIDADE - TAMANHO DA FONTE
@@ -212,17 +230,34 @@ if (btnUsuario) {
 const tamanhoFonteSalvo =
   localStorage.getItem("tamanhoFonte") || "100";
 
+const tamanhosPermitidos = [
+  80,
+  90,
+  100,
+  110,
+  120
+];
+
+let tamanhoFonte =
+  Number(tamanhoFonteSalvo);
+
+if (!tamanhosPermitidos.includes(tamanhoFonte)) {
+  tamanhoFonte = 100;
+}
+
 document.documentElement.dataset.tamanhoFonte =
-  tamanhoFonteSalvo;
+  tamanhoFonte;
 
 
 // ==========================================
 // CRIAR PAINEL DE ACESSIBILIDADE
 // ==========================================
 
-const acessibilidade = document.createElement("div");
+const acessibilidade =
+  document.createElement("div");
 
-acessibilidade.id = "painelAcessibilidade";
+acessibilidade.id =
+  "painelAcessibilidade";
 
 acessibilidade.innerHTML = `
   <button
@@ -234,6 +269,7 @@ acessibilidade.innerHTML = `
   </button>
 
   <div id="opcoesAcessibilidade">
+
     <span>Acessibilidade</span>
 
     <div class="controle-fonte">
@@ -248,7 +284,7 @@ acessibilidade.innerHTML = `
 
       <button
         id="resetarFonte"
-        aria-label="Restaurar tamanho da fonte"
+        aria-label="Restaurar tamanho normal da fonte"
         title="Tamanho normal"
       >
         A
@@ -263,10 +299,13 @@ acessibilidade.innerHTML = `
       </button>
 
     </div>
+
   </div>
 `;
 
-document.body.appendChild(acessibilidade);
+document.body.appendChild(
+  acessibilidade
+);
 
 
 // ==========================================
@@ -274,64 +313,113 @@ document.body.appendChild(acessibilidade);
 // ==========================================
 
 const btnAcessibilidade =
-  document.getElementById("btnAcessibilidade");
+  document.getElementById(
+    "btnAcessibilidade"
+  );
 
 const opcoesAcessibilidade =
-  document.getElementById("opcoesAcessibilidade");
+  document.getElementById(
+    "opcoesAcessibilidade"
+  );
 
-btnAcessibilidade.addEventListener("click", () => {
-  opcoesAcessibilidade.classList.toggle("ativo");
-});
+btnAcessibilidade.addEventListener(
+  "click",
+  () => {
+    opcoesAcessibilidade.classList.toggle(
+      "ativo"
+    );
+  }
+);
 
 
 // ==========================================
-// ALTERAR TAMANHO DA FONTE
+// CONTROLES DE FONTE
 // ==========================================
 
 const diminuirFonte =
-  document.getElementById("diminuirFonte");
+  document.getElementById(
+    "diminuirFonte"
+  );
 
 const resetarFonte =
-  document.getElementById("resetarFonte");
+  document.getElementById(
+    "resetarFonte"
+  );
 
 const aumentarFonte =
-  document.getElementById("aumentarFonte");
-
-let tamanhoFonte = Number(tamanhoFonteSalvo);
+  document.getElementById(
+    "aumentarFonte"
+  );
 
 
 // ==========================================
 // DIMINUIR
 // ==========================================
 
-diminuirFonte.addEventListener("click", () => {
-  if (tamanhoFonte > 70) {
-    tamanhoFonte -= 10;
-    aplicarTamanhoFonte();
+diminuirFonte.addEventListener(
+  "click",
+  () => {
+
+    const indiceAtual =
+      tamanhosPermitidos.indexOf(
+        tamanhoFonte
+      );
+
+    if (indiceAtual > 0) {
+
+      tamanhoFonte =
+        tamanhosPermitidos[
+          indiceAtual - 1
+        ];
+
+      aplicarTamanhoFonte();
+    }
   }
-});
+);
 
 
 // ==========================================
 // NORMAL
 // ==========================================
 
-resetarFonte.addEventListener("click", () => {
-  tamanhoFonte = 100;
-  aplicarTamanhoFonte();
-});
+resetarFonte.addEventListener(
+  "click",
+  () => {
+
+    tamanhoFonte = 100;
+
+    aplicarTamanhoFonte();
+  }
+);
 
 
 // ==========================================
 // AUMENTAR
 // ==========================================
 
-aumentarFonte.addEventListener("click", () => {
-  if (tamanhoFonte < 140) {
-    tamanhoFonte += 10;
-    aplicarTamanhoFonte();
+aumentarFonte.addEventListener(
+  "click",
+  () => {
+
+    const indiceAtual =
+      tamanhosPermitidos.indexOf(
+        tamanhoFonte
+      );
+
+    if (
+      indiceAtual <
+      tamanhosPermitidos.length - 1
+    ) {
+
+      tamanhoFonte =
+        tamanhosPermitidos[
+          indiceAtual + 1
+        ];
+
+      aplicarTamanhoFonte();
+    }
   }
-});
+);
 
 
 // ==========================================
@@ -339,8 +427,9 @@ aumentarFonte.addEventListener("click", () => {
 // ==========================================
 
 function aplicarTamanhoFonte() {
-  document.documentElement.dataset.tamanhoFonte =
-    tamanhoFonte;
+
+  document.documentElement.dataset
+    .tamanhoFonte = tamanhoFonte;
 
   localStorage.setItem(
     "tamanhoFonte",

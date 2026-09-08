@@ -1,23 +1,40 @@
+import { auth } from "./Firebase-config.js";
+
+import {
+  sendPasswordResetEmail
+} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+
 // ========================================
-// RECUPERAÇÃO DE SENHA
+// ELEMENTOS
 // ========================================
 
-const formRecuperacao = document.getElementById("formRecuperacao");
-const emailInput = document.getElementById("email");
-const mensagem = document.getElementById("mensagem");
-const btnEnviar = document.getElementById("btnEnviar");
+const formRecuperacao =
+  document.getElementById("formRecuperacao");
+
+const emailInput =
+  document.getElementById("email");
+
+const mensagem =
+  document.getElementById("mensagem");
+
+const btnEnviar =
+  document.getElementById("btnEnviar");
 
 
 // ========================================
 // ENVIO DO FORMULÁRIO
 // ========================================
 
-formRecuperacao.addEventListener("submit", function (event) {
+formRecuperacao.addEventListener(
+  "submit",
+  async (event) => {
 
-    // Impede o formulário de recarregar a página
     event.preventDefault();
 
-    const email = emailInput.value.trim();
+    const email =
+      emailInput.value.trim();
+
 
     // Limpa mensagem anterior
     mensagem.textContent = "";
@@ -30,66 +47,136 @@ formRecuperacao.addEventListener("submit", function (event) {
 
     if (email === "") {
 
-        mostrarMensagem(
-            "Por favor, informe seu e-mail.",
-            "erro"
-        );
+      mostrarMensagem(
+        "Por favor, informe seu e-mail.",
+        "erro"
+      );
 
-        emailInput.focus();
+      emailInput.focus();
 
-        return;
+      return;
     }
 
 
-    // Verificação simples do formato do e-mail
-    const formatoEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const formatoEmail =
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 
     if (!formatoEmail.test(email)) {
 
-        mostrarMensagem(
-            "Digite um e-mail válido.",
-            "erro"
-        );
+      mostrarMensagem(
+        "Digite um e-mail válido.",
+        "erro"
+      );
 
-        emailInput.focus();
+      emailInput.focus();
 
-        return;
+      return;
     }
 
 
     // ========================================
-    // SIMULAÇÃO DO ENVIO
+    // FIREBASE AUTH
     // ========================================
 
-    btnEnviar.disabled = true;
-    btnEnviar.textContent = "Enviando...";
+    try {
+
+      btnEnviar.disabled = true;
+      btnEnviar.textContent =
+        "Enviando...";
 
 
-    setTimeout(() => {
+      await sendPasswordResetEmail(
+        auth,
+        email
+      );
+
+
+      mostrarMensagem(
+        "Se este e-mail estiver cadastrado, você receberá as instruções para recuperar sua senha.",
+        "sucesso"
+      );
+
+
+      emailInput.value = "";
+
+    } catch (erro) {
+
+      console.error(
+        "Erro ao recuperar senha:",
+        erro
+      );
+
+
+      // ======================================
+      // TRATAMENTO DE ERROS
+      // ======================================
+
+      if (erro.code === "auth/invalid-email") {
 
         mostrarMensagem(
-            "Se este e-mail estiver cadastrado, você receberá as instruções para recuperar sua senha.",
-            "sucesso"
+          "Digite um e-mail válido.",
+          "erro"
         );
 
-        emailInput.value = "";
+      }
 
-        btnEnviar.disabled = false;
-        btnEnviar.textContent = "Enviar instruções";
+      else if (
+        erro.code === "auth/too-many-requests"
+      ) {
 
-    }, 1000);
+        mostrarMensagem(
+          "Muitas tentativas foram realizadas. Aguarde alguns minutos e tente novamente.",
+          "erro"
+        );
 
-});
+      }
+
+      else if (
+        erro.code === "auth/network-request-failed"
+      ) {
+
+        mostrarMensagem(
+          "Não foi possível conectar ao serviço. Verifique sua internet e tente novamente.",
+          "erro"
+        );
+
+      }
+
+      else {
+
+        mostrarMensagem(
+          "Não foi possível enviar as instruções. Tente novamente.",
+          "erro"
+        );
+
+      }
+
+    } finally {
+
+      btnEnviar.disabled = false;
+
+      btnEnviar.textContent =
+        "Enviar instruções";
+
+    }
+
+  }
+);
 
 
 // ========================================
 // FUNÇÃO DE MENSAGEM
 // ========================================
 
-function mostrarMensagem(texto, tipo) {
+function mostrarMensagem(
+  texto,
+  tipo
+) {
 
-    mensagem.textContent = texto;
+  mensagem.textContent = texto;
 
-    mensagem.className = `mensagem ${tipo}`;
+  mensagem.className =
+    `mensagem ${tipo}`;
 
 }

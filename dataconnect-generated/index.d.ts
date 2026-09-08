@@ -10,6 +10,14 @@ export type DateString = string;
 
 
 
+export interface AtualizarNomeUsuarioData {
+  usuario_updateMany: number;
+}
+
+export interface AtualizarNomeUsuarioVariables {
+  nome: string;
+}
+
 export interface CadastrarUsuarioData {
   usuario_insert: Usuario_Key;
 }
@@ -33,6 +41,14 @@ export interface ConteudoModulo_Key {
 export interface Curso_Key {
   id: UUIDString;
   __typename?: 'Curso_Key';
+}
+
+export interface ExcluirUsuarioPorEmailData {
+  usuario_deleteMany: number;
+}
+
+export interface ExcluirUsuarioPorEmailVariables {
+  email: string;
 }
 
 export interface MeuPerfilData {
@@ -110,4 +126,28 @@ export const meuPerfilRef: MeuPerfilRef;
 
 export function meuPerfil(options?: ExecuteQueryOptions): QueryPromise<MeuPerfilData, undefined>;
 export function meuPerfil(dc: DataConnect, options?: ExecuteQueryOptions): QueryPromise<MeuPerfilData, undefined>;
+
+interface ExcluirUsuarioPorEmailRef {
+  /* Allow users to create refs without passing in DataConnect */
+  (vars: ExcluirUsuarioPorEmailVariables): MutationRef<ExcluirUsuarioPorEmailData, ExcluirUsuarioPorEmailVariables>;
+  /* Allow users to pass in custom DataConnect instances */
+  (dc: DataConnect, vars: ExcluirUsuarioPorEmailVariables): MutationRef<ExcluirUsuarioPorEmailData, ExcluirUsuarioPorEmailVariables>;
+  operationName: string;
+}
+export const excluirUsuarioPorEmailRef: ExcluirUsuarioPorEmailRef;
+
+export function excluirUsuarioPorEmail(vars: ExcluirUsuarioPorEmailVariables): MutationPromise<ExcluirUsuarioPorEmailData, ExcluirUsuarioPorEmailVariables>;
+export function excluirUsuarioPorEmail(dc: DataConnect, vars: ExcluirUsuarioPorEmailVariables): MutationPromise<ExcluirUsuarioPorEmailData, ExcluirUsuarioPorEmailVariables>;
+
+interface AtualizarNomeUsuarioRef {
+  /* Allow users to create refs without passing in DataConnect */
+  (vars: AtualizarNomeUsuarioVariables): MutationRef<AtualizarNomeUsuarioData, AtualizarNomeUsuarioVariables>;
+  /* Allow users to pass in custom DataConnect instances */
+  (dc: DataConnect, vars: AtualizarNomeUsuarioVariables): MutationRef<AtualizarNomeUsuarioData, AtualizarNomeUsuarioVariables>;
+  operationName: string;
+}
+export const atualizarNomeUsuarioRef: AtualizarNomeUsuarioRef;
+
+export function atualizarNomeUsuario(vars: AtualizarNomeUsuarioVariables): MutationPromise<AtualizarNomeUsuarioData, AtualizarNomeUsuarioVariables>;
+export function atualizarNomeUsuario(dc: DataConnect, vars: AtualizarNomeUsuarioVariables): MutationPromise<AtualizarNomeUsuarioData, AtualizarNomeUsuarioVariables>;
 

@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-
+<!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
@@ -28,61 +26,73 @@
     />
   </head>
 
-<body>
-
+  <body>
     <main class="pagina-recuperacao">
+      <section class="card-recuperacao">
 
-        <section class="card-recuperacao">
+        <!-- Logo / Nome -->
+        <div class="logo">
+          <h1>Tech<span>Sênior</span></h1>
+        </div>
 
-            <!-- Logo / Nome -->
-            <div class="logo">
-                <h1>Tech<span>Sênior</span></h1>
-            </div>
+        <!-- Título -->
+        <div class="cabecalho-recuperacao">
+          <h2>Esqueceu sua senha?</h2>
 
-            <!-- Título -->
-            <div class="cabecalho-recuperacao">
-                <h2>Esqueceu sua senha?</h2>
+          <p>
+            Não se preocupe! Informe seu e-mail e enviaremos
+            as instruções para recuperar o acesso à sua conta.
+          </p>
+        </div>
 
-                <p>
-                    Não se preocupe! Informe seu e-mail e
-                    enviaremos as instruções para recuperar
-                    o acesso à sua conta.
-                </p>
-            </div>
+        <!-- Formulário -->
+        <form id="formRecuperacao">
 
-            <!-- Formulário -->
-            <form id="formRecuperacao">
-                <div class="campo">
-                    <label for="email">E-mail</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="Digite seu e-mail"
-                        autocomplete="email"
-                        required
-                    >
-                </div>
+          <div class="campo">
+            <label for="email">
+              E-mail
+            </label>
 
-                <button type="submit" id="btnEnviar">
-                    Enviar instruções
-                </button>
-            </form>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Digite seu e-mail"
+              autocomplete="email"
+              required
+            />
+          </div>
 
-            <!-- Mensagem -->
-            <div id="mensagem" class="mensagem" aria-live="polite"></div>
+          <button
+            type="submit"
+            id="btnEnviar"
+          >
+            Enviar instruções
+          </button>
 
-            <!-- Voltar -->
-            <div class="voltar-login">
-                <a href="Login.html">
-                    ← Voltar para o login
-                </a>
-            </div>
-        </section>
+        </form>
+
+        <!-- Mensagem -->
+        <div
+          id="mensagem"
+          class="mensagem"
+          aria-live="polite"
+        ></div>
+
+        <!-- Voltar -->
+        <div class="voltar-login">
+          <a href="Login.html">
+            ← Voltar para o login
+          </a>
+        </div>
+
+      </section>
     </main>
 
     <!-- JavaScript -->
-    <script src="Script - Java/EsqueciSenha.js"></script>
-
-</body>
+    <script
+      type="module"
+      src="Script - Java/EsqueciSenha.js"
+    ></script>
+  </body>
 </html>

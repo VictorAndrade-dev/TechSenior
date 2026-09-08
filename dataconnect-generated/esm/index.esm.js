@@ -30,3 +30,27 @@ export function meuPerfil(dcOrOptions, options) {
   return executeQuery(meuPerfilRef(dcInstance, inputVars), inputOpts && { fetchPolicy: inputOpts.fetchPolicy });
 }
 
+export const excluirUsuarioPorEmailRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return mutationRef(dcInstance, 'ExcluirUsuarioPorEmail', inputVars);
+}
+excluirUsuarioPorEmailRef.operationName = 'ExcluirUsuarioPorEmail';
+
+export function excluirUsuarioPorEmail(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars } = validateArgs(connectorConfig, dcOrVars, vars, true);
+  return executeMutation(excluirUsuarioPorEmailRef(dcInstance, inputVars));
+}
+
+export const atualizarNomeUsuarioRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return mutationRef(dcInstance, 'AtualizarNomeUsuario', inputVars);
+}
+atualizarNomeUsuarioRef.operationName = 'AtualizarNomeUsuario';
+
+export function atualizarNomeUsuario(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars } = validateArgs(connectorConfig, dcOrVars, vars, true);
+  return executeMutation(atualizarNomeUsuarioRef(dcInstance, inputVars));
+}
+

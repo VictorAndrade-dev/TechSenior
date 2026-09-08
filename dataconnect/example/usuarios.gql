@@ -49,3 +49,27 @@ query MeuPerfil @auth(level: USER) {
     }
   }
 }
+
+mutation ExcluirUsuarioPorEmail(
+  $email: String!
+) @auth(level: NO_ACCESS) {
+  usuario_deleteMany(
+    where: {
+      email: { eq: $email }
+    }
+  )
+}
+
+mutation AtualizarNomeUsuario(
+  $nome: String!
+) @auth(level: USER) {  
+  usuario_updateMany(
+    where: {
+      firebaseUid: { eq_expr: "auth.uid" }
+    }
+    data: {
+      nome: $nome
+      atualizadoEm_expr: "request.time"
+    }
+  )
+}

@@ -1,113 +1,318 @@
+import { auth } from "./Firebase-config.js";
+
+import {
+  verifyPasswordResetCode,
+  confirmPasswordReset
+} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+
 // ========================================
-// REDEFINIÇÃO DE SENHA
+// ELEMENTOS
 // ========================================
 
-const formRedefinicao = document.getElementById("formRedefinicao");
-const novaSenhaInput = document.getElementById("novaSenha");
-const confirmarSenhaInput = document.getElementById("confirmarSenha");
-const mensagem = document.getElementById("mensagem");
-const btnRedefinir = document.getElementById("btnRedefinir");
+const formRedefinicao =
+  document.getElementById("formRedefinicao");
+
+const novaSenhaInput =
+  document.getElementById("novaSenha");
+
+const confirmarSenhaInput =
+  document.getElementById("confirmarSenha");
+
+const mensagem =
+  document.getElementById("mensagem");
+
+const btnRedefinir =
+  document.getElementById("btnRedefinir");
+
+
+// ========================================
+// PEGAR CÓDIGO DO LINK
+// ========================================
+
+const parametros =
+  new URLSearchParams(window.location.search);
+
+const modo =
+  parametros.get("mode");
+
+const oobCode =
+  parametros.get("oobCode");
+
+
+// ========================================
+// VALIDAR LINK DE RECUPERAÇÃO
+// ========================================
+
+async function validarLink() {
+
+  if (
+    modo !== "resetPassword" ||
+    !oobCode
+  ) {
+
+    bloquearFormulario();
+
+    mostrarMensagem(
+      "Este link de recuperação é inválido.",
+      "erro"
+    );
+
+    return;
+  }
+
+
+  try {
+
+    await verifyPasswordResetCode(
+      auth,
+      oobCode
+    );
+
+  } catch (erro) {
+
+    console.error(
+      "Erro ao validar link:",
+      erro
+    );
+
+    bloquearFormulario();
+
+
+    if (erro.code === "auth/expired-action-code") {
+
+      mostrarMensagem(
+        "Este link de recuperação expirou. Solicite um novo link.",
+        "erro"
+      );
+
+    } else {
+
+      mostrarMensagem(
+        "Este link de recuperação é inválido ou já foi utilizado.",
+        "erro"
+      );
+
+    }
+
+  }
+
+}
 
 
 // ========================================
 // ENVIO DO FORMULÁRIO
 // ========================================
 
-formRedefinicao.addEventListener("submit", function (event) {
+formRedefinicao.addEventListener(
+  "submit",
+  async (event) => {
 
-    // Impede o recarregamento da página
     event.preventDefault();
 
-    const novaSenha = novaSenhaInput.value;
-    const confirmarSenha = confirmarSenhaInput.value;
+    const novaSenha =
+      novaSenhaInput.value;
 
-    // Limpa mensagem anterior
+    const confirmarSenha =
+      confirmarSenhaInput.value;
+
+
     mensagem.textContent = "";
     mensagem.className = "mensagem";
 
 
-    // ========================================
-    // VALIDAÇÃO DOS CAMPOS
-    // ========================================
+    // ====================================
+    // VALIDAÇÃO
+    // ====================================
 
-    if (novaSenha === "" || confirmarSenha === "") {
+    if (
+      novaSenha === "" ||
+      confirmarSenha === ""
+    ) {
 
-        mostrarMensagem(
-            "Preencha todos os campos.",
-            "erro"
-        );
+      mostrarMensagem(
+        "Preencha todos os campos.",
+        "erro"
+      );
 
-        return;
+      return;
     }
 
-
-    // ========================================
-    // TAMANHO DA SENHA
-    // ========================================
 
     if (novaSenha.length < 6) {
 
-        mostrarMensagem(
-            "A senha deve ter pelo menos 6 caracteres.",
-            "erro"
-        );
+      mostrarMensagem(
+        "A senha deve ter pelo menos 6 caracteres.",
+        "erro"
+      );
 
-        novaSenhaInput.focus();
+      novaSenhaInput.focus();
 
-        return;
+      return;
     }
 
 
-    // ========================================
-    // CONFIRMAÇÃO DA SENHA
-    // ========================================
+    if (
+      novaSenha !== confirmarSenha
+    ) {
 
-    if (novaSenha !== confirmarSenha) {
+      mostrarMensagem(
+        "As senhas não coincidem.",
+        "erro"
+      );
 
-        mostrarMensagem(
-            "As senhas não coincidem.",
-            "erro"
-        );
+      confirmarSenhaInput.focus();
 
-        confirmarSenhaInput.focus();
-
-        return;
+      return;
     }
 
 
-    // ========================================
-    // SIMULAÇÃO DA REDEFINIÇÃO
-    // ========================================
+    if (!oobCode) {
 
-    btnRedefinir.disabled = true;
-    btnRedefinir.textContent = "Redefinindo...";
+      mostrarMensagem(
+        "O link de recuperação é inválido.",
+        "erro"
+      );
+
+      return;
+    }
 
 
-    setTimeout(() => {
+    // ====================================
+    // FIREBASE AUTH
+    // ====================================
+
+    try {
+
+      btnRedefinir.disabled = true;
+
+      btnRedefinir.textContent =
+        "Redefinindo...";
+
+
+      await confirmPasswordReset(
+        auth,
+        oobCode,
+        novaSenha
+      );
+
+
+      mostrarMensagem(
+        "Senha redefinida com sucesso! Você será redirecionado para o login.",
+        "sucesso"
+      );
+
+
+      formRedefinicao.reset();
+
+
+      setTimeout(() => {
+
+        window.location.href =
+          "Login.html";
+
+      }, 2000);
+
+
+    } catch (erro) {
+
+      console.error(
+        "Erro ao redefinir senha:",
+        erro
+      );
+
+
+      if (
+        erro.code ===
+        "auth/expired-action-code"
+      ) {
 
         mostrarMensagem(
-            "Senha redefinida com sucesso! Você será redirecionado para o login.",
-            "sucesso"
+          "Este link expirou. Solicite uma nova recuperação de senha.",
+          "erro"
         );
 
-        // Aguarda um pouco para o usuário ler a mensagem
-        setTimeout(() => {
-            window.location.href = "Login.html";
-        }, 2000);
+      }
 
-    }, 1000);
+      else if (
+        erro.code ===
+        "auth/invalid-action-code"
+      ) {
 
-});
+        mostrarMensagem(
+          "Este link é inválido ou já foi utilizado.",
+          "erro"
+        );
+
+      }
+
+      else if (
+        erro.code ===
+        "auth/weak-password"
+      ) {
+
+        mostrarMensagem(
+          "A nova senha é muito fraca.",
+          "erro"
+        );
+
+      }
+
+      else {
+
+        mostrarMensagem(
+          "Não foi possível redefinir sua senha. Tente novamente.",
+          "erro"
+        );
+
+      }
+
+
+      btnRedefinir.disabled = false;
+
+      btnRedefinir.textContent =
+        "Redefinir senha";
+
+    }
+
+  }
+);
 
 
 // ========================================
-// FUNÇÃO DE MENSAGEM
+// BLOQUEAR FORMULÁRIO
 // ========================================
 
-function mostrarMensagem(texto, tipo) {
+function bloquearFormulario() {
 
-    mensagem.textContent = texto;
+  novaSenhaInput.disabled = true;
 
-    mensagem.className = `mensagem ${tipo}`;
+  confirmarSenhaInput.disabled = true;
+
+  btnRedefinir.disabled = true;
 
 }
+
+
+// ========================================
+// MENSAGEM
+// ========================================
+
+function mostrarMensagem(
+  texto,
+  tipo
+) {
+
+  mensagem.textContent = texto;
+
+  mensagem.className =
+    `mensagem ${tipo}`;
+
+}
+
+
+// ========================================
+// INICIALIZAÇÃO
+// ========================================
+
+validarLink();

@@ -14,7 +14,7 @@ If a user is not using a supported framework, they can use the generated SDK dir
 Here's an example of how to use it with the first 5 operations:
 
 ```js
-import { cadastrarUsuario, meuPerfil } from '@dataconnect/generated';
+import { cadastrarUsuario, meuPerfil, excluirUsuarioPorEmail, atualizarNomeUsuario } from '@dataconnect/generated';
 
 
 // Operation CadastrarUsuario:  For variables, look at type CadastrarUsuarioVars in ../index.d.ts
@@ -22,6 +22,12 @@ const { data } = await CadastrarUsuario(dataConnect, cadastrarUsuarioVars);
 
 // Operation MeuPerfil: 
 const { data } = await MeuPerfil(dataConnect);
+
+// Operation ExcluirUsuarioPorEmail:  For variables, look at type ExcluirUsuarioPorEmailVars in ../index.d.ts
+const { data } = await ExcluirUsuarioPorEmail(dataConnect, excluirUsuarioPorEmailVars);
+
+// Operation AtualizarNomeUsuario:  For variables, look at type AtualizarNomeUsuarioVars in ../index.d.ts
+const { data } = await AtualizarNomeUsuario(dataConnect, atualizarNomeUsuarioVars);
 
 
 ```

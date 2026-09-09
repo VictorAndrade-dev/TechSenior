@@ -293,6 +293,33 @@
 }
 
 /* ==========================================
+   MENSAGENS
+========================================== */
+
+.mensagem {
+  min-height: 22px;
+  margin-bottom: 15px;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.mensagem.erro {
+  color: #b91c1c;
+}
+
+.mensagem.sucesso {
+  color: #15803d;
+}
+
+.btn-login-form:disabled,
+.btn-google:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ==========================================
    LOGIN COM GOOGLE
 ========================================== */
 

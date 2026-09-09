@@ -3,13 +3,15 @@ import { auth } from "./Firebase-config.js";
 import {
   createUserWithEmailAndPassword,
   deleteUser,
-  updateProfile
+  updateProfile,
+  GoogleAuthProvider,
+  signInWithPopup
 } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
 import {
-  cadastrarUsuario
+  cadastrarUsuario,
+  meuPerfil
 } from "../dataconnect-generated/esm/index.esm.js";
-
 
 // ==========================================
 // MOSTRAR / OCULTAR SENHA
@@ -247,5 +249,114 @@ if (formCadastro) {
     }
 
   });
+
+}
+
+// ==========================================
+// CADASTRO COM GOOGLE
+// ==========================================
+
+const btnGoogle =
+  document.getElementById("btnGoogle");
+
+const provedorGoogle =
+  new GoogleAuthProvider();
+
+if (btnGoogle) {
+
+  btnGoogle.addEventListener(
+    "click",
+    async () => {
+
+      try {
+
+        btnGoogle.disabled = true;
+
+        const resultado =
+          await signInWithPopup(
+            auth,
+            provedorGoogle
+          );
+
+        const usuario =
+          resultado.user;
+
+
+        // Verifica se já existe perfil
+        const resposta =
+          await meuPerfil();
+
+        const perfil =
+          resposta.data.usuarios?.[0];
+
+
+        // Primeiro acesso
+        if (!perfil) {
+
+          await cadastrarUsuario({
+            nome:
+              usuario.displayName ||
+              "Usuário TechSênior",
+
+            email:
+              usuario.email
+          });
+
+        }
+
+
+        console.log(
+          "Cadastro/Login Google realizado:",
+          usuario.uid
+        );
+
+
+        window.location.href =
+          "Cursos.html#cursos";
+
+
+      } catch (erro) {
+
+        console.error(
+          "Erro no cadastro com Google:",
+          erro
+        );
+
+
+        if (
+          erro.code ===
+          "auth/popup-closed-by-user"
+        ) {
+
+          return;
+
+        }
+
+
+        if (
+          erro.code ===
+          "auth/popup-blocked"
+        ) {
+
+          alert(
+            "O navegador bloqueou a janela do Google."
+          );
+
+        } else {
+
+          alert(
+            "Não foi possível continuar com o Google."
+          );
+
+        }
+
+      } finally {
+
+        btnGoogle.disabled = false;
+
+      }
+
+    }
+  );
 
 }

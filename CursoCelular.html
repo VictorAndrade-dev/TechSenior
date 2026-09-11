@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="pt-BR">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    <title>TechSênior - Curso: Conhecendo seu Celular</title>
+    <title>TechSênior - Conhecendo o Celular</title>
 
     <!-- Fonte -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <link
@@ -15,26 +15,25 @@
       rel="stylesheet"
     />
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="Estilos - CSS/CursoCelular.css" />
-    <link rel="stylesheet" href="Estilos - CSS/Padrão.css" />
+    <link rel="stylesheet" href="Estilos - CSS/Padrão.css"/>
+    <link rel="stylesheet" href="Estilos - CSS/CursoCelular.css"/>
 
-    <!-- Ícones -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"/>
   </head>
 
   <body>
-    <!-- HEADER -->
+
+    <!-- ========================================== -->
+    <!-- NAVBAR -->
+    <!-- ========================================== -->
+
     <header>
       <button class="menu-toggle" id="menuToggle">
         <i class="fa-solid fa-bars"></i>
       </button>
 
       <div class="logo">
-        <img src="Imagens/Logotipo Sem Fundo.png" alt="Logo TechSênior" />
+        <img src="Imagens/Logotipo Sem Fundo.png" alt="Logo TechSênior"/>
       </div>
 
       <nav>
@@ -50,238 +49,592 @@
       </a>
     </header>
 
-    <!-- MENU LATERAL -->
+
+    <!-- ========================================== -->
+    <!-- MENU LATERAL MOBILE -->
+    <!-- ========================================== -->
+
     <div class="sidebar" id="sidebar">
+
       <button class="close-menu" id="closeMenu">
         <i class="fa-solid fa-xmark"></i>
       </button>
 
       <nav class="sidebar-nav">
         <a href="index.html">Início</a>
-
         <a href="Cursos.html">Cursos</a>
-
         <a href="Comunidade.html">Comunidade</a>
-
         <a href="Sobre Nós.html">Sobre Nós</a>
       </nav>
+
     </div>
 
-    <!-- FUNDO ESCURO -->
+    <!-- Fundo Escuro-->
     <div class="overlay" id="overlay"></div>
 
-    <section class="barra-curso-topo">
-      <div class="container-barra">
-        <a href="Cursos.html" class="btn-voltar-cursos">
-          <i class="fa-solid fa-arrow-left"></i>
-          Voltar para Cursos
-        </a>
 
-        <div class="titulo-curso-topo">
-          <i class="fa-solid fa-mobile-screen"></i>
-          <h2>Curso: Utilizando o Celular</h2>
-        </div>
+    <!-- ========================================== -->
+    <!-- CONTEÚDO DO CURSO -->
+    <!-- ========================================== -->
 
-        <div class="progresso-container">
-          <div class="progresso-texto">
-            <span>Módulo 1 de 6</span>
-            <span class="porcentagem">16% concluído</span>
-          </div>
-          <div class="barra-progresso-fundo">
-            <div class="barra-progresso-preenchimento" style="width: 16%"></div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <main class="pagina-curso">
 
-    <main class="container-aula-principal">
-      <aside class="sidebar-curso">
-        <div class="card-sidebar">
-          <h3>Módulos do curso</h3>
+      <div class="curso-layout">
 
-          <ul class="lista-modulos">
-            <li class="modulo-item ativo">
-              <div class="modulo-num">1</div>
-              <div class="modulo-info">
-                <span class="modulo-titulo">Conhecendo o seu celular</span>
-                <span class="tag-status">Atual</span>
-              </div>
-            </li>
 
-            <li class="modulo-item bloqueado">
-              <div class="modulo-num">2</div>
-              <div class="modulo-info">
-                <span class="modulo-titulo">Ligações e contatos</span>
-              </div>
-              <i class="fa-solid fa-lock icone-status"></i>
-            </li>
+        <!-- ====================================== -->
+        <!-- COLUNA ESQUERDA -->
+        <!-- ====================================== -->
 
-            <li class="modulo-item bloqueado">
-              <div class="modulo-num">3</div>
-              <div class="modulo-info">
-                <span class="modulo-titulo">Mensagens</span>
-              </div>
-              <i class="fa-solid fa-lock icone-status"></i>
-            </li>
+        <aside class="coluna-esquerda">
 
-            <li class="modulo-item bloqueado">
-              <div class="modulo-num">4</div>
-              <div class="modulo-info">
-                <span class="modulo-titulo">Câmera e fotos</span>
-              </div>
-              <i class="fa-solid fa-lock icone-status"></i>
-            </li>
 
-            <li class="modulo-item bloqueado">
-              <div class="modulo-num">5</div>
-              <div class="modulo-info">
-                <span class="modulo-titulo">Aplicativos úteis</span>
-              </div>
-              <i class="fa-solid fa-lock icone-status"></i>
-            </li>
+          <!-- VOLTAR PARA OS CURSOS -->
 
-            <li class="modulo-item bloqueado">
-              <div class="modulo-num">6</div>
-              <div class="modulo-info">
-                <span class="modulo-titulo"
-                  >Dicas de organização e segurança</span
-                >
-              </div>
-              <i class="fa-solid fa-lock icone-status"></i>
-            </li>
-          </ul>
-        </div>
+          <a href="Cursos.html" class="btn-voltar">
+            <i class="fa-solid fa-arrow-left"></i>
 
-        <div class="card-sidebar card-ajuda">
-          <div class="ajuda-header">
-            <i class="fa-solid fa-circle-question"></i>
-            <h3>Precisa de ajuda?</h3>
-          </div>
-          <p>Fale com nossa comunidade e tire suas dúvidas.</p>
-          <a href="Comunidade.html" class="btn-secundario-ajuda"
-            >Ir para Comunidade</a
-          >
-        </div>
-      </aside>
+            <span>Voltar para meus cursos</span>
+          </a>
 
-      <article class="conteudo-aula">
-        <div class="card-aula-corpo">
-          <span class="badge-modulo">Módulo 1</span>
 
-          <div class="bloco-introducao">
-            <div class="texto-introducao">
-              <h1>Conhecendo o seu celular</h1>
+          <!-- PROGRESSO -->
+
+          <section class="card-progresso">
+
+            <h2>Seu progresso neste curso</h2>
+
+            <div class="porcentagem-progresso">
+              40%
             </div>
 
-            <div class="imagem-ilustration">
-              <img
-                src="Imagens/CelularCurso.png"
-                alt="Celular exibindo tela principal com ícones amigáveis"
-              />
+            <div
+              class="barra-progresso"
+              role="progressbar"
+              aria-label="Progresso do curso"
+              aria-valuenow="40"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              <div class="progresso-preenchido"></div>
             </div>
-          </div>
 
-          <div class="card-destaque card-importante">
-            <div class="icone-destaque">
-              <i class="fa-regular fa-lightbulb"></i>
-            </div>
-            <div class="texto-destaque">
-              <strong>Importante</strong>
-              <p>
-                Nem todos os celulares são iguais. Alguns podem ter botões em
-                lugares diferentes, mas as funções são praticamente as mesmas.
-              </p>
-            </div>
-          </div>
+            <p>
+              2 de 5 módulos concluídos
+            </p>
 
-          <div class="card-destaque card-dica">
-            <div class="icone-destaque">
-              <i class="fa-solid fa-circle-check"></i>
-            </div>
-            <div class="texto-destaque">
-              <strong>Dica</strong>
-              <p>
-                Se tocar em algum botão errado, não se preocupe. Na maioria das
-                vezes basta apertar o botão Voltar para retornar à tela
-                anterior.
-              </p>
-            </div>
-          </div>
+          </section>
 
-          <div class="navegacao-aula">
-            <button class="btn-navegacao desabilitado" disabled>
-              <i class="fa-solid fa-arrow-left"></i>
-              Aula anterior
+
+          <!-- MÓDULOS -->
+
+          <section class="lista-modulos">
+
+            <h2>Módulos do curso</h2>
+
+
+            <!-- MÓDULO 1 -->
+
+            <button class="modulo ativo" type="button">
+
+              <div class="numero-modulo">
+                1
+              </div>
+
+              <div class="informacoes-modulo">
+
+                <strong>
+                  1. Conhecendo o celular
+                </strong>
+
+                <span>
+                  Em andamento
+                </span>
+
+              </div>
+
+              <i class="fa-solid fa-chevron-right"></i>
+
             </button>
 
-            <span class="indicador-modulo-bottom">Módulo 1 de 6</span>
 
-            <a href="AulaCelular2.html" class="btn-navegacao btn-proxima">
-              Próxima aula
+            <!-- MÓDULO 2 -->
+
+            <button class="modulo bloqueado" type="button">
+
+              <div class="numero-modulo">
+                2
+              </div>
+
+              <div class="informacoes-modulo">
+
+                <strong>
+                  2. Fazendo ligações
+                </strong>
+
+                <span>
+                  Ainda não iniciado
+                </span>
+
+              </div>
+
+              <i class="fa-solid fa-lock"></i>
+
+            </button>
+
+
+            <!-- MÓDULO 3 -->
+
+            <button class="modulo bloqueado" type="button">
+
+              <div class="numero-modulo">
+                3
+              </div>
+
+              <div class="informacoes-modulo">
+
+                <strong>
+                  3. Enviando mensagens
+                </strong>
+
+                <span>
+                  Bloqueado
+                </span>
+
+              </div>
+
+              <i class="fa-solid fa-lock"></i>
+
+            </button>
+
+
+            <!-- MÓDULO 4 -->
+
+            <button class="modulo bloqueado" type="button">
+
+              <div class="numero-modulo">
+                4
+              </div>
+
+              <div class="informacoes-modulo">
+
+                <strong>
+                  4. Tirando fotos
+                </strong>
+
+                <span>
+                  Bloqueado
+                </span>
+
+              </div>
+
+              <i class="fa-solid fa-lock"></i>
+
+            </button>
+
+
+            <!-- MÓDULO 5 -->
+
+            <button class="modulo bloqueado" type="button">
+
+              <div class="numero-modulo">
+                5
+              </div>
+
+              <div class="informacoes-modulo">
+
+                <strong>
+                  5. Usando a internet
+                </strong>
+
+                <span>
+                  Bloqueado
+                </span>
+
+              </div>
+
+              <i class="fa-solid fa-lock"></i>
+
+            </button>
+
+          </section>
+
+
+          <!-- AJUDA -->
+
+          <a href="Comunidade.html" class="card-ajuda">
+
+            <div class="icone-ajuda">
+              <i class="fa-solid fa-question"></i>
+            </div>
+
+            <div class="texto-ajuda">
+
+              <strong>
+                Precisa de ajuda?
+              </strong>
+
+              <span>
+                Fale com nossa equipe
+              </span>
+
+            </div>
+
+            <i class="fa-solid fa-chevron-right"></i>
+
+          </a>
+
+        </aside>
+
+
+        <!-- ====================================== -->
+        <!-- CONTEÚDO CENTRAL -->
+        <!-- ====================================== -->
+
+        <section class="conteudo-aula">
+
+
+          <!-- CABEÇALHO DA AULA -->
+
+          <div class="cabecalho-aula">
+
+            <span class="identificacao-modulo">
+              MÓDULO 1 DE 5
+            </span>
+
+            <h1>
+              1. Conhecendo o celular
+            </h1>
+
+            <p class="descricao-aula">
+              Nesta aula, vamos conhecer as partes principais
+              do celular e entender para que cada uma delas serve.
+            </p>
+
+          </div>
+
+
+          <!-- INTRODUÇÃO -->
+
+          <section class="secao-aula">
+
+            <div class="titulo-conteudo">
+
+              <i class="fa-solid fa-book-open"></i>
+
+              <h2>
+                Introdução
+              </h2>
+
+            </div>
+
+            <p>
+              O celular é um aparelho muito útil que pode
+              facilitar nossa comunicação, nosso trabalho e
+              nosso dia a dia.
+            </p>
+
+            <p>
+              Vamos conhecer suas partes principais para
+              usar o aparelho com mais segurança e confiança.
+            </p>
+
+          </section>
+
+
+          <!-- IMAGEM / ILUSTRAÇÃO -->
+
+          <div class="imagem-aula">
+
+            <img src="Imagens/celular.png" alt="Ilustração de um celular mostrando suas principais partes"/>
+
+          </div>
+
+
+          <!-- DICA -->
+
+          <div class="dica-aula">
+
+            <div class="icone-dica">
+              <i class="fa-solid fa-lightbulb"></i>
+            </div>
+
+            <p>
+              <strong>Dica:</strong>
+              Não tenha pressa! Você pode repetir esta explicação
+              quantas vezes quiser até se sentir seguro.
+            </p>
+
+          </div>
+
+
+          <!-- NAVEGAÇÃO ENTRE AULAS -->
+
+          <div class="navegacao-aulas">
+
+            <button class="btn-aula anterior" type="button" disabled>
+
+              <i class="fa-solid fa-arrow-left"></i>
+
+              <span>
+                <strong>Aula anterior</strong>
+                <small>Indisponível</small>
+              </span>
+
+            </button>
+
+
+            <button class="btn-aula proxima" type="button">
+
+              <span>
+                <strong>Próxima aula</strong>
+                <small>Partes do celular</small>
+              </span>
+
               <i class="fa-solid fa-arrow-right"></i>
-            </a>
-          </div>
-        </div>
-      </article>
-    </main>
 
-    <!-- RODAPÉ -->
-    <footer>
-      <div class="coluna">
-        <h3>TechSênior</h3>
-        <p>Tecnologia ao seu alcance.</p>
+            </button>
 
-        <div class="footer-linha logo">
-          <div class="logo-footer">
-            <img
-              src="Imagens/Logotipo Sem Fundo.png"
-              alt="Logotipo TechSênior"
-            />
           </div>
-        </div>
+
+        </section>
+
+
+        <!-- ====================================== -->
+        <!-- COLUNA DIREITA -->
+        <!-- ====================================== -->
+
+        <aside class="coluna-direita">
+
+
+          <!-- SOBRE O MÓDULO -->
+
+          <section class="card-informacao card-sobre">
+
+            <div class="titulo-card">
+
+              <i class="fa-solid fa-circle-info"></i>
+
+              <h2>
+                Sobre o módulo
+              </h2>
+
+            </div>
+
+            <p>
+              Neste módulo você vai aprender as partes do
+              celular e as funções básicas para começar a
+              usar seu smartphone com mais confiança.
+            </p>
+
+          </section>
+
+
+          <!-- DICA IMPORTANTE -->
+
+          <section class="card-informacao card-dica">
+
+            <div class="titulo-card">
+
+              <i class="fa-solid fa-lightbulb"></i>
+
+              <h2>
+                Dica importante
+              </h2>
+
+            </div>
+
+            <p>
+              Não tenha pressa! Aprender um pouco por dia
+              já faz uma grande diferença.
+            </p>
+
+          </section>
+
+
+          <!-- ATENÇÃO -->
+
+          <section class="card-informacao card-atencao">
+
+            <div class="titulo-card">
+
+              <i class="fa-solid fa-triangle-exclamation"></i>
+
+              <h2>
+                Atenção
+              </h2>
+
+            </div>
+
+            <p>
+              Cada celular pode ter um visual diferente,
+              mas as funções principais são as mesmas.
+            </p>
+
+          </section>
+
+
+          <!-- VOCÊ SABIA? -->
+
+          <section class="card-informacao card-sabia">
+
+            <div class="titulo-card">
+
+              <i class="fa-regular fa-star"></i>
+
+              <h2>
+                Você sabia?
+              </h2>
+
+            </div>
+
+            <p>
+              Você pode personalizar a tela inicial colocando
+              os aplicativos que mais usa em lugares de fácil acesso!
+            </p>
+
+          </section>
+
+
+          <!-- LEMBRE-SE -->
+
+          <section class="card-informacao card-lembrete">
+
+            <div class="titulo-card">
+
+              <i class="fa-regular fa-bell"></i>
+
+              <h2>
+                Lembre-se
+              </h2>
+
+            </div>
+
+            <p>
+              Você pode voltar a esta aula sempre que quiser.
+              O importante é não desistir!
+            </p>
+
+          </section>
+
+        </aside>
+
       </div>
 
+    </main>
+
+
+    <!-- ========================================== -->
+    <!-- FOOTER -->
+    <!-- ========================================== -->
+
+    <footer>
+
       <div class="coluna">
+
+        <h3>TechSênior</h3>
+
+        <p>
+          Tecnologia ao seu alcance.
+        </p>
+
+        <div class="footer-linha logo">
+
+          <div class="logo-footer">
+
+            <img src="Imagens/Logotipo Sem Fundo.png" alt="Logotipo TechSênior"/>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="coluna">
+
         <h4>Navegação</h4>
+
         <a href="index.html">Início</a>
         <a href="Cursos.html">Cursos</a>
         <a href="Comunidade.html">Comunidade</a>
         <a href="Sobre Nós.html">Sobre Nós</a>
+
       </div>
 
+
       <div class="coluna">
+
         <h4>Institucional</h4>
-        <a href="Termos de Uso.html">Termos de Uso</a>
-        <a href="Política de Privacidade.html">Política de Privacidade</a>
-        <a href="Declaração de Acessibilidade.html"
-          >Declaração de Acessibilidade</a
-        >
+
+        <a href="Termos de Uso.html">
+          Termos de Uso
+        </a>
+
+        <a href="Política de Privacidade.html">
+          Política de Privacidade
+        </a>
+
+        <a href="Declaração de Acessibilidade.html">
+          Declaração de Acessibilidade
+        </a>
+
       </div>
 
+
       <div class="coluna">
+
         <h4>Comunidade</h4>
-        <a href="Regras da Comunidade.html">Regras da Comunidade</a>
-        <a href="Sobre Nós.html">Fale Conosco</a>
+
+        <a href="Regras da Comunidade.html">
+          Regras da Comunidade
+        </a>
+
+        <a href="Sobre Nós.html">
+          Fale Conosco
+        </a>
 
         <div class="footer-linha redes">
+
           <div class="coluna">
+
             <h4>Redes Sociais</h4>
 
-            <a href="https://www.instagram.com/techsenior_tcc/"
-              ><i class="fa-brands fa-instagram"></i> Instagram</a
-            >
+            <a href="https://www.instagram.com/techsenior_tcc/">
+              <i class="fa-brands fa-instagram"></i>
+              Instagram
+            </a>
+
           </div>
+
         </div>
+
       </div>
+
     </footer>
 
+
     <div class="copyright">
-      © 2026 TechSênior • Projeto desenvolvido para o Trabalho de Conclusão de
-      Curso (TCC) do Curso Técnico em Desenvolvimento de Sistemas.<br />
-      Desenvolvido por: Equipe do TechSênior
+
+      © 2026 TechSênior • Projeto desenvolvido para o Trabalho de
+      Conclusão de Curso (TCC) do Curso Técnico em Desenvolvimento
+      de Sistemas.
+
+      <br/>
+
+      Desenvolvido pela equipe TechSênior.
+
     </div>
 
-    <script type="module" src="Script - Java/Padrão.js"></script>
+
+    <!-- ========================================== -->
+    <!-- JAVASCRIPT -->
+    <!-- ========================================== -->
+
     <script type="module" src="Script - Java/CursoCelular.js"></script>
+
+    <script type="module" src="Script - Java/Padrão.js"></script>
+
   </body>
+
 </html>

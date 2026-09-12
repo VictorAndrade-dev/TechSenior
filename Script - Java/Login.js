@@ -1,6 +1,14 @@
 import { auth } from "./Firebase-config.js";
-import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+import {
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
+import {
+  meuPerfil,
+  cadastrarUsuario,
+} from "../dataconnect-generated/esm/index.esm.js";
 
 // MOSTRAR / OCULTAR SENHA
 // ==========================================
@@ -32,9 +40,11 @@ if (mostrarSenha) {
 // ==========================================
 
 const formLogin = document.getElementById("formLogin");
+const mensagem = document.getElementById("mensagem");
+const btnEntrar = document.getElementById("btnEntrar");
 
 if (formLogin) {
-  formLogin.addEventListener("submit", async (evento) => {  
+  formLogin.addEventListener("submit", async (evento) => {
     evento.preventDefault();
 
     const email = document.getElementById("email").value;
@@ -42,25 +52,31 @@ if (formLogin) {
     const senhaUsuario = document.getElementById("senha").value;
 
     // Validação simples
-
     if (email === "" || senhaUsuario === "") {
-      alert("Preencha todos os campos antes de continuar.");
+      mostrarMensagem("Preencha todos os campos antes de continuar.", "erro");
 
       return;
     }
 
     try {
+      btnEntrar.disabled = true;
+      btnEntrar.textContent = "Entrando...";
+
+      mostrarMensagem("", "");
+
       const resultado = await signInWithEmailAndPassword(
         auth,
         email,
-        senhaUsuario
+        senhaUsuario,
       );
 
       console.log("Login realizado:", resultado.user.uid);
 
-      alert("Login realizado com sucesso!");
+      mostrarMensagem("Login realizado com sucesso!", "sucesso");
 
-      window.location.href = "Cursos.html#cursos";
+      setTimeout(() => {
+        window.location.href = "Cursos.html#cursos";
+      }, 700);
 
     } catch (erro) {
       console.error("Erro no login:", erro);
@@ -70,10 +86,76 @@ if (formLogin) {
         erro.code === "auth/wrong-password" ||
         erro.code === "auth/user-not-found"
       ) {
-        alert("E-mail ou senha incorretos.");
+        mostrarMensagem(
+          "E-mail ou senha incorretos.",
+          "erro"
+        );
       } else {
-        alert("Não foi possível realizar o login. Tente novamente.");
+        mostrarMensagem(
+          "Não foi possível realizar o login. Tente novamente.",
+          "erro"
+        );
       }
+    } finally {
+      btnEntrar.disabled = false;
+      btnEntrar.textContent = "Entrar";
     }
   });
+}
+
+// ==========================================
+// LOGIN COM GOOGLE
+// ==========================================
+
+const btnGoogle = document.getElementById("btnGoogle");
+
+const provedorGoogle = new GoogleAuthProvider();
+
+if (btnGoogle) {
+  btnGoogle.addEventListener("click", async () => {
+    try {
+      btnGoogle.disabled = true;
+
+      const resultado = await signInWithPopup(auth, provedorGoogle);
+
+      const usuario = resultado.user;
+
+      // Verifica se já existe perfil no PostgreSQL
+      const resposta = await meuPerfil();
+
+      const perfil = resposta.data.usuarios?.[0];
+
+      // Primeiro acesso com Google
+      if (!perfil) {
+        await cadastrarUsuario({
+          nome: usuario.displayName || "Usuário TechSênior",
+          email: usuario.email,
+        });
+      }
+
+      console.log("Login com Google realizado:", usuario.uid);
+
+      window.location.href = "Cursos.html#cursos";
+    } catch (erro) {
+      console.error("Erro no login com Google:", erro);
+
+      if (erro.code === "auth/popup-closed-by-user") {
+        return;
+      }
+
+      if (erro.code === "auth/popup-blocked") {
+        alert("O navegador bloqueou a janela do Google.");
+      } else {
+        alert("Não foi possível entrar com o Google.");
+      }
+    } finally {
+      btnGoogle.disabled = false;
+    }
+  });
+}
+
+function mostrarMensagem(texto, tipo) {
+  mensagem.textContent = texto;
+  mensagem.className =
+    tipo ? `mensagem ${tipo}` : "mensagem";
 }

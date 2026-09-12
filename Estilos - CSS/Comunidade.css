@@ -1,495 +1,510 @@
-/* ==========================================
-   COMUNIDADE
-========================================== */
+ /* ===================================== */
+/* COMUNIDADE - PÁGINA DE AJUDA */
+/* ===================================== */
+
+/* ===================================== */
+/* CONFIGURAÇÕES GERAIS */
+/* ===================================== */
+
+main {
+  background-color: #f5f8fa;
+  color: #666666;
+}
+
+.container {
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+
+/* ===================================== */
+/* HERO */
+/* ===================================== */
 
 .hero-comunidade {
-  background: var(--fundo);
-
-  padding: 80px 8% 50px;
-}
-
-.hero-comunidade-container {
-  max-width: 1200px;
-
-  margin: auto;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  gap: 50px;
-}
-
-.hero-comunidade-texto {
-  max-width: 550px;
-}
-
-.hero-comunidade-imagem {
-  flex: 1;
-
-  display: flex;
-
-  justify-content: center;
-}
-
-.hero-comunidade-imagem img {
-  width: 100%;
-
-  max-width: 450px;
-
-  border-radius: 30px;
-
-  box-shadow: var(--sombra);
-
-  transition: 0.3s;
-}
-
-.hero-comunidade-imagem img:hover {
-  transform: translateY(-5px);
+  padding: 80px 0 70px;
+  text-align: center;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e8edf3;
 }
 
 .hero-comunidade h1 {
-  color: var(--titulo);
-
-  margin-bottom: 20px;
+  margin: 0 0 18px;
+  color: #0f2e7b;
+  font-family: "Poppins", sans-serif;
+  font-size: 2.5rem;
+  font-weight: 600;
 }
 
 .hero-comunidade p {
-  font-size: 20px;
-
-  color: var(--texto);
-
+  max-width: 700px;
+  margin: 0 auto;
+  color: #666666;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.1rem;
   line-height: 1.7;
 }
 
-/* ==========================================
-   CARDS DA COMUNIDADE
-========================================== */
 
-.opcoes-comunidade {
-  background: var(--fundo);
+/* ===================================== */
+/* TÍTULOS DAS SEÇÕES */
+/* ===================================== */
 
-  padding: 50px 8% 80px;
-}
-
-.opcoes-comunidade h2 {
+.titulo-secao {
+  margin-bottom: 35px;
   text-align: center;
-
-  color: var(--titulo);
-
-  margin-bottom: 40px;
 }
 
-.cards-comunidade {
-  max-width: 1100px;
-
-  margin: auto;
-
-  display: grid;
-
-  grid-template-columns: repeat(3, 1fr);
-
-  gap: 30px;
+.titulo-secao h2 {
+  margin: 0 0 12px;
+  color: #0f2e7b;
+  font-family: "Poppins", sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
 }
 
-.card-comunidade {
-  background: var(--branco);
+.titulo-secao p {
+  margin: 0 auto;
+  color: #666666;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+}
 
-  padding: 35px 30px;
 
-  border-radius: 25px;
+/* ===================================== */
+/* DÚVIDAS FREQUENTES */
+/* ===================================== */
 
-  text-align: center;
+.duvidas-frequentes {
+  padding: 70px 0;
+}
 
-  border: 1px solid var(--borda);
-
-  box-shadow: var(--sombra);
-
-  transition: 0.3s;
-
+.lista-duvidas {
   display: flex;
-
   flex-direction: column;
-
-  align-items: center;
+  gap: 15px;
 }
 
-.card-comunidade .btn-card {
-  margin-top: auto;
+.duvida {
+  overflow: hidden;
+  background-color: #ffffff;
+  border: 1px solid #e8edf3;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 }
 
-.card-comunidade:hover {
-  transform: translateY(-8px);
-}
 
-.icone-comunidade {
-  width: 75px;
+/* ===================================== */
+/* BOTÃO DA PERGUNTA */
+/* ===================================== */
 
-  height: 75px;
-
+.duvida-pergunta {
   display: flex;
-
   align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 68px;
+  padding: 18px 22px;
 
-  justify-content: center;
-
-  border-radius: 50%;
-
-  background: var(--azul);
-
-  color: var(--branco);
-
-  font-size: 32px;
-
-  margin-bottom: 25px;
-
-  flex-shrink: 0;
-}
-
-.card-comunidade h3 {
-  color: var(--titulo);
-
-  margin-bottom: 15px;
-}
-
-.card-comunidade p {
-  color: var(--texto);
-
-  line-height: 1.7;
-
-  margin-bottom: 25px;
-}
-
-/* ==========================================
-   BOTÕES DOS CARDS DA COMUNIDADE
-========================================== */
-
-.btn-card {
-  display: inline-flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  background: var(--azul);
-
-  color: var(--branco);
-
+  background-color: #ffffff;
   border: none;
 
-  padding: 14px 28px;
+  color: #0f2e7b;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
 
-  min-width: 220px;
-
-  border-radius: 15px;
-
-  font-size: 17px;
-
-  font-weight: 600;
-
+  text-align: left;
   cursor: pointer;
 
-  transition: 0.3s;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.duvida-pergunta span {
+  padding-right: 20px;
+}
+
+.duvida-pergunta i {
+  flex-shrink: 0;
+  color: #2463eb;
+  font-size: 0.9rem;
+  transition: transform 0.25s ease;
+}
+
+.duvida-pergunta:hover {
+  background-color: #f5f8fa;
+}
+
+.duvida-pergunta:focus-visible {
+  outline: 3px solid rgba(36, 99, 235, 0.35);
+  outline-offset: -3px;
+}
+
+
+/* ===================================== */
+/* RESPOSTA */
+/* ===================================== */
+
+.duvida-resposta {
+  display: none;
+  padding: 0 22px 22px;
+  background-color: #ffffff;
+}
+
+.duvida-resposta p {
+  max-width: 850px;
+  margin: 0;
+
+  color: #666666;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+
+/* ===================================== */
+/* ESTADO ABERTO */
+/* ===================================== */
+
+.duvida.ativa .duvida-resposta {
+  display: block;
+}
+
+.duvida.ativa .duvida-pergunta i {
+  transform: rotate(180deg);
+}
+
+.duvida.ativa .duvida-pergunta {
+  background-color: #f5f8fa;
+}
+
+
+/* ===================================== */
+/* ÁREA "AINDA PRECISA DE AJUDA?" */
+/* ===================================== */
+
+.ajuda-contato {
+  padding: 75px 0;
+  background-color: #ffffff;
+  border-top: 1px solid #e8edf3;
+  border-bottom: 1px solid #e8edf3;
+}
+
+.contato-introducao {
+  max-width: 750px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contato-introducao h2 {
+  margin: 0 0 15px;
+
+  color: #0f2e7b;
+  font-family: "Poppins", sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.contato-introducao p {
+  margin: 0 auto 28px;
+
+  color: #666666;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+
+/* ===================================== */
+/* BOTÃO FALE CONOSCO */
+/* ===================================== */
+
+.btn-contato {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 52px;
+  padding: 12px 28px;
+
+  background-color: #2463eb;
+  border: 2px solid #2463eb;
+  border-radius: 8px;
+
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
 
   text-decoration: none;
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
 }
 
-.btn-card:hover {
-  transform: translateY(-4px);
-
-  box-shadow: 0 8px 18px rgba(36, 99, 235, 0.25);
+.btn-contato:hover {
+  background-color: #1954d1;
+  border-color: #1954d1;
+  transform: translateY(-1px);
 }
 
-.btn-card:active {
-  transform: scale(0.97);
+.btn-contato:focus-visible {
+  outline: 3px solid rgba(36, 99, 235, 0.35);
+  outline-offset: 3px;
 }
 
-/* ==========================================
-   MODAIS
-========================================== */
 
-.modal {
-  position: fixed;
+/* ===================================== */
+/* FORMULÁRIO DE CONTATO */
+/* ===================================== */
 
-  top: 0;
+.formulario-contato {
+  padding: 75px 0 85px;
+}
 
-  left: 0;
+.formulario-contato form {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 35px;
 
+  background-color: #ffffff;
+  border: 1px solid #e8edf3;
+  border-radius: 14px;
+
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+}
+
+
+/* ===================================== */
+/* CAMPOS */
+/* ===================================== */
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 22px;
+}
+
+.campo label {
+  margin-bottom: 8px;
+
+  color: #0f2e7b;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.campo input,
+.campo textarea {
   width: 100%;
+  box-sizing: border-box;
 
-  height: 100%;
+  padding: 14px 16px;
 
-  background: rgba(0, 0, 0, 0.45);
+  background-color: #ffffff;
+  border: 2px solid #e8edf3;
+  border-radius: 8px;
 
-  display: none;
+  color: #333333;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.95rem;
 
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.campo input {
+  min-height: 52px;
+}
+
+.campo textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.campo input::placeholder,
+.campo textarea::placeholder {
+  color: #999999;
+}
+
+.campo input:focus,
+.campo textarea:focus {
+  border-color: #2463eb;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(36, 99, 235, 0.12);
+}
+
+
+/* ===================================== */
+/* MENSAGEM DE FEEDBACK */
+/* ===================================== */
+
+.mensagem-feedback {
+  min-height: 24px;
+  margin-bottom: 15px;
+
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.mensagem-feedback.erro {
+  color: #c62828;
+}
+
+.mensagem-feedback.sucesso {
+  color: #187a3d;
+}
+
+
+/* ===================================== */
+/* BOTÃO ENVIAR */
+/* ===================================== */
+
+.btn-enviar {
+  display: flex;
   align-items: center;
-
   justify-content: center;
 
-  padding: 20px;
-
-  z-index: 999;
-}
-
-.modal-conteudo {
-  background: var(--branco);
-
   width: 100%;
+  min-height: 52px;
+  padding: 12px 24px;
 
-  max-width: 600px;
+  background-color: #2463eb;
+  border: 2px solid #2463eb;
+  border-radius: 8px;
 
-  max-height: 85vh;
-
-  overflow-y: auto;
-
-  padding: 40px;
-
-  border-radius: 30px;
-
-  box-shadow: var(--sombra);
-
-  position: relative;
-
-  animation: aparecerModal 0.3s ease;
-}
-
-@keyframes aparecerModal {
-  from {
-    opacity: 0;
-
-    transform: translateY(-30px);
-  }
-
-  to {
-    opacity: 1;
-
-    transform: translateY(0);
-  }
-}
-
-.fechar-modal {
-  position: absolute;
-
-  top: 20px;
-
-  right: 25px;
-
-  border: none;
-
-  background: none;
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
 
   cursor: pointer;
 
-  font-size: 25px;
-
-  color: var(--texto);
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    opacity 0.2s ease;
 }
 
-.modal-conteudo h2 {
-  text-align: center;
-
-  color: var(--titulo);
-
-  margin-bottom: 15px;
+.btn-enviar:hover {
+  background-color: #1954d1;
+  border-color: #1954d1;
 }
 
-.modal-conteudo p {
-  text-align: center;
-
-  color: var(--texto);
-
-  line-height: 1.6;
-
-  margin-bottom: 25px;
+.btn-enviar:focus-visible {
+  outline: 3px solid rgba(36, 99, 235, 0.35);
+  outline-offset: 3px;
 }
 
-/* ==========================================
-   ÁREA DE MENSAGENS
-========================================== */
-
-.area-mensagens {
-  background: var(--fundo);
-
-  padding: 20px;
-
-  border-radius: 20px;
-
-  margin-bottom: 20px;
+.btn-enviar:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
 }
 
-.mensagem {
-  background: var(--branco);
 
-  padding: 15px;
+/* ===================================== */
+/* RESPONSIVIDADE */
+/* ===================================== */
 
-  border-radius: 15px;
-
-  margin-bottom: 10px;
-
-  color: var(--texto);
-}
-
-.campo-mensagem {
-  display: flex;
-
-  gap: 10px;
-}
-
-.campo-mensagem input {
-  flex: 1;
-}
-
-.campo-mensagem button {
-  background: var(--azul);
-
-  color: white;
-
-  border: none;
-
-  padding: 10px 20px;
-
-  border-radius: 12px;
-
-  cursor: pointer;
-}
-
-/* ==========================================
-   AVALIAÇÃO
-========================================== */
-
-.estrelas {
-  text-align: center;
-
-  font-size: 30px;
-
-  color: #f5b301;
-
-  margin-bottom: 25px;
-}
-
-textarea,
-input,
-select {
-  width: 100%;
-
-  padding: 15px;
-
-  border-radius: 15px;
-
-  border: 1px solid var(--borda);
-
-  font-family: inherit;
-
-  font-size: 16px;
-
-  outline: none;
-}
-
-textarea {
-  min-height: 120px;
-
-  resize: none;
-}
-
-/* ==========================================
-   FORMULÁRIO DE CONTATO
-========================================== */
-
-.campo-form {
-  margin-bottom: 20px;
-}
-
-.campo-form label {
-  display: block;
-
-  color: var(--titulo);
-
-  font-weight: 600;
-
-  margin-bottom: 8px;
-}
-
-/* =========================
-CTA
-========================= */
-
-.cta {
-  margin: 100px 8%;
-  padding: 60px;
-  border-radius: 30px;
-
-  background: linear-gradient(90deg, var(--azul), var(--verde));
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  color: white;
-}
-
-.cta h2 {
-  margin-bottom: 15px;
-  color: white;
-}
-
-.cta p {
-  font-size: 20px;
-}
-
-.cta button {
-  background: white;
-  color: var(--azul);
-}
-
-/* ==========================================
-   RESPONSIVIDADE
-========================================== */
-
-@media (max-width: 900px) {
-  .cards-comunidade {
-    grid-template-columns: 1fr;
-  }
-
-  .cta {
-    flex-direction: column;
-    gap: 30px;
-    text-align: center;
-  }
-}
-
-@media (max-width: 768px) {
+@media (max-width: 700px) {
   .hero-comunidade {
-    padding: 50px 5%;
+    padding: 60px 0 55px;
   }
 
-  .hero-comunidade-container {
-    flex-direction: column;
-
-    text-align: center;
-  }
-
-  .hero-comunidade-imagem img {
-    max-width: 350px;
+  .hero-comunidade h1 {
+    font-size: 2.1rem;
   }
 
   .hero-comunidade p {
-    font-size: 17px;
+    font-size: 1rem;
   }
 
-  .modal-conteudo {
-    max-height: 90vh;
-
-    padding: 25px 20px;
+  .duvidas-frequentes,
+  .ajuda-contato,
+  .formulario-contato {
+    padding: 55px 0;
   }
 
-  .campo-mensagem {
-    flex-direction: column;
+  .titulo-secao h2,
+  .contato-introducao h2 {
+    font-size: 1.7rem;
   }
 
-  .cta h2 {
-    font-size: 35px;
+  .formulario-contato form {
+    padding: 28px 24px;
+  }
+}
+
+
+@media (max-width: 500px) {
+  .container {
+    width: 92%;
+  }
+
+  .hero-comunidade h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-comunidade p {
+    font-size: 0.95rem;
+  }
+
+  .duvida-pergunta {
+    min-height: 64px;
+    padding: 16px 18px;
+    font-size: 0.95rem;
+  }
+
+  .duvida-resposta {
+    padding: 0 18px 20px;
+  }
+
+  .duvida-resposta p {
+    font-size: 0.9rem;
+  }
+
+  .formulario-contato form {
+    padding: 24px 18px;
+  }
+
+  .campo input,
+  .campo textarea {
+    font-size: 0.9rem;
+  }
+}
+
+
+@media (max-width: 380px) {
+  .hero-comunidade {
+    padding: 50px 0 45px;
+  }
+
+  .hero-comunidade h1 {
+    font-size: 1.6rem;
+  }
+
+  .titulo-secao h2,
+  .contato-introducao h2 {
+    font-size: 1.5rem;
+  }
+
+  .duvida-pergunta {
+    padding: 15px;
+  }
+
+  .duvida-resposta {
+    padding: 0 15px 18px;
+  }
+
+  .formulario-contato form {
+    padding: 20px 15px;
   }
 }

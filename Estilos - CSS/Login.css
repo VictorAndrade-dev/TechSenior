@@ -291,3 +291,77 @@
     width: 120px;
   }
 }
+
+/* ==========================================
+   MENSAGENS
+========================================== */
+
+.mensagem {
+  min-height: 22px;
+  margin-bottom: 15px;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.mensagem.erro {
+  color: #b91c1c;
+}
+
+.mensagem.sucesso {
+  color: #15803d;
+}
+
+.btn-login-form:disabled,
+.btn-google:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ==========================================
+   LOGIN COM GOOGLE
+========================================== */
+
+.separador {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+  color: var(--texto);
+}
+
+.separador::before,
+.separador::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--borda);
+}
+
+.btn-google {
+  width: 100%;
+  padding: 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  border: 1px solid var(--borda);
+  border-radius: 30px;
+
+  background: var(--branco);
+  color: var(--titulo);
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-google:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--sombra);
+}

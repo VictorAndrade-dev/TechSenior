@@ -4,15 +4,10 @@
 
 .hero {
   min-height: 85vh;
-
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
-
   padding: 80px 8%;
-
   gap: 50px;
 }
 
@@ -22,105 +17,69 @@
 
 .hero-tag {
   display: inline-block;
-
   background: #e7f7f5;
-
   color: #259498;
-
   padding: 8px 18px;
-
   border-radius: 30px;
-
-  font-size: 16px;
-
+  font-size: 1rem;
   font-weight: 600;
-
   margin-bottom: 20px;
 }
 
 .hero-texto h1 {
   font-family: "Poppins", sans-serif;
-
-  font-size: 55px;
-
+  font-size: 3.4375rem;
   line-height: 1.2;
-
   color: var(--titulo);
-
   margin-bottom: 25px;
 }
 
 .hero-texto p {
-  font-size: 20px;
-
+  font-size: 1.375rem;
   line-height: 1.7;
-
   color: var(--texto);
-
   margin-bottom: 35px;
 }
 
 .hero-botoes {
   display: flex;
-
   align-items: center;
-
   gap: 20px;
 }
 
 .btn-secundario {
   display: inline-flex;
-
   align-items: center;
-
   justify-content: center;
-
   padding: 14px 30px;
-
   border-radius: 10px;
-
   border: 2px solid var(--azul);
-
   color: var(--azul);
-
-  font-size: 18px;
-
+  font-size: 1.25rem;
   font-weight: 600;
-
   text-decoration: none;
-
   transition: 0.3s ease;
 }
 
 .btn-secundario:hover {
   background: var(--azul);
-
   color: white;
-
   transform: translateY(-4px);
-
   box-shadow: 0 8px 18px rgba(36, 99, 235, 0.25);
 }
 
 .hero-info {
   display: flex;
-
   gap: 25px;
-
   margin-top: 35px;
-
   flex-wrap: wrap;
 }
 
 .info-item {
   display: flex;
-
   align-items: center;
-
   gap: 10px;
-
-  font-size: 16px;
-
+  font-size: 1.125rem;
   color: var(--texto);
 }
 
@@ -128,7 +87,10 @@
   color: var(--verde);
 }
 
-/* IMAGEM HERO */
+
+/* ==========================
+   IMAGEM HERO
+========================== */
 
 .hero-img {
   position: relative;
@@ -136,51 +98,39 @@
 
 .hero-img img {
   width: 480px;
-
   max-width: 100%;
-
   border-radius: 25px;
 }
 
 .card-experiencia {
   position: absolute;
-
   bottom: 25px;
-
   left: -40px;
-
   background: white;
-
   padding: 18px 25px;
-
   border-radius: 15px;
-
   display: flex;
-
   align-items: center;
-
   gap: 15px;
-
   box-shadow: var(--sombra);
 }
 
 .card-experiencia i {
-  font-size: 32px;
-
+  font-size: 2rem;
   color: var(--azul);
 }
 
 .card-experiencia strong {
-  font-size: 25px;
-
+  font-size: 1.5625rem;
   color: var(--titulo);
 }
 
 .card-experiencia p {
   margin: 0;
-
   color: var(--texto);
+  font-size: 1.125rem;
 }
+
 
 /* ==========================
    SOBRE
@@ -192,11 +142,8 @@
 
 .sobre-container {
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
-
   gap: 50px;
 }
 
@@ -206,23 +153,20 @@
 
 .secao-tag {
   color: var(--azul);
-
   font-weight: 600;
+  font-size: 1.125rem;
 }
 
 .sobre-texto h2,
 .titulo-secao h2,
 .ajuda h2 {
   color: var(--titulo);
-
   margin: 15px 0 20px;
 }
 
 .sobre-texto p {
-  font-size: 18px;
-
+  font-size: 1.375rem;
   line-height: 1.7;
-
   color: var(--texto);
 }
 
@@ -232,9 +176,9 @@
 
 .sobre-imagem img {
   width: 420px;
-
   border-radius: 25px;
 }
+
 
 /* ==========================
    CURSOS EM DESTAQUE
@@ -242,42 +186,37 @@
 
 .cursos-destaque {
   padding: 90px 8%;
-
   text-align: center;
 }
 
 .titulo-secao {
   max-width: 700px;
-
   margin: auto;
 }
 
 .titulo-secao p {
   color: var(--texto);
-
-  font-size: 18px;
+  font-size: 1.375rem;
+  line-height: 1.6;
 }
 
 .cursos-preview {
   display: grid;
-
   grid-template-columns: repeat(3, 1fr);
-
   gap: 30px;
-
   margin: 50px 0;
 }
 
 .curso-card {
   background: var(--branco);
-
   padding: 35px 25px;
-
   border-radius: 20px;
-
   box-shadow: var(--sombra);
-
   transition: 0.3s;
+
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .curso-card:hover {
@@ -285,92 +224,72 @@
 }
 
 .curso-card i {
-  font-size: 45px;
-
+  font-size: 2.8125rem;
   color: var(--azul);
 }
 
 .curso-card h3 {
   margin: 20px 0 10px;
-
   color: var(--titulo);
+  font-size: 1.5rem;
 }
 
 .curso-card p {
   color: var(--texto);
-
+  font-size: 1.25rem;
   line-height: 1.6;
-
   margin-bottom: 20px;
 }
 
 .curso-card a {
   color: var(--azul);
-
+  font-size: 1.125rem;
   font-weight: 600;
+  margin-top: auto;
 }
+
 
 /* ==========================
    ESTATÍSTICAS
 ========================== */
 
-.estatistica {
-  background: white;
-
-  text-align: center;
-
-  padding: 35px 20px;
-
-  border-radius: 20px;
-
-  box-shadow: var(--sombra);
-
-  transition: 0.3s ease;
-
-  cursor: default;
-}
-
-.estatistica:hover {
-  transform: translateY(-8px);
-
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
-}
-
 .estatistica-container {
   display: grid;
-
   grid-template-columns: repeat(4, 1fr);
-
   gap: 25px;
 }
 
 .estatistica {
   background: white;
-
   text-align: center;
-
   padding: 35px 20px;
-
   border-radius: 20px;
-
   box-shadow: var(--sombra);
+  transition: 0.3s ease;
+  cursor: default;
+}
+
+.estatistica:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
 }
 
 .estatistica i {
-  font-size: 40px;
-
+  font-size: 2.5rem;
   color: var(--azul);
 }
 
 .estatistica h3 {
   color: var(--titulo);
-
   margin: 15px 0 5px;
+  font-size: 1.5rem;
 }
 
 .estatistica p {
   color: var(--texto);
+  font-size: 1.125rem;
 }
+
 
 /* ==========================
    DEPOIMENTOS
@@ -386,62 +305,45 @@
 
 .depoimentos-container {
   display: grid;
-
   grid-template-columns: repeat(2, 1fr);
-
   gap: 30px;
-
   margin-top: 50px;
 }
 
 .depoimento-card {
   background: white;
-
   padding: 35px;
-
   border-radius: 20px;
-
   box-shadow: var(--sombra);
 }
 
 .depoimento-card > i {
-  font-size: 35px;
-
+  font-size: 2.1875rem;
   color: var(--azul);
 }
 
 .depoimento-card p {
   color: var(--texto);
-
-  font-size: 18px;
-
+  font-size: 1.25rem;
   line-height: 1.7;
-
   margin: 25px 0;
 }
 
 .usuario {
   display: flex;
-
   align-items: center;
-
   gap: 15px;
 }
 
 .avatar {
   width: 50px;
-
   height: 50px;
-
   border-radius: 50%;
-
   background: #e7f7f5;
-
   display: flex;
-
   justify-content: center;
-
   align-items: center;
+  flex-shrink: 0;
 }
 
 .avatar i {
@@ -450,15 +352,15 @@
 
 .usuario h3 {
   color: var(--titulo);
-
   margin: 0;
+  font-size: 1.25rem;
 }
 
 .usuario span {
   color: var(--texto);
-
-  font-size: 14px;
+  font-size: 1rem;
 }
+
 
 /* ==========================
    CTA FINAL
@@ -466,19 +368,12 @@
 
 .cta {
   margin: 80px 8%;
-
   padding: 50px;
-
   border-radius: 25px;
-
   background: linear-gradient(135deg, #2463eb, #27d17f);
-
   display: flex;
-
   justify-content: space-between;
-
   align-items: center;
-
   gap: 30px;
 }
 
@@ -488,15 +383,15 @@
 
 .cta p {
   color: white;
-
-  font-size: 18px;
+  font-size: 1.25rem;
+  line-height: 1.6;
 }
 
 .cta .btn-principal {
   background: white;
-
   color: var(--azul);
 }
+
 
 /* ==========================
    RESPONSIVIDADE
@@ -506,7 +401,6 @@
   .hero,
   .sobre-container {
     flex-direction: column;
-
     text-align: center;
   }
 
@@ -532,43 +426,318 @@
   }
 }
 
+
 @media (max-width: 700px) {
+
+  /* HERO */
+
+  .hero {
+    min-height: auto;
+    padding: 55px 6%;
+    gap: 35px;
+  }
+
+  .hero-texto {
+    max-width: 100%;
+  }
+
   .hero-texto h1 {
-    font-size: 34px;
+    font-size: 2.25rem;
   }
 
   .hero-texto p {
-    font-size: 17px;
+    font-size: 1.25rem;
   }
 
   .hero-botoes {
     flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-botoes a,
+  .hero-botoes button {
+    width: 100%;
+    max-width: 350px;
+  }
+
+  .info-item {
+    font-size: 1.125rem;
   }
 
   .hero-info {
     flex-direction: column;
+    align-items: center;
+    gap: 15px;
   }
 
-  .ajuda-cards,
-  .cursos-preview,
-  .depoimentos-container,
-  .estatistica-container {
-    grid-template-columns: 1fr;
+  .hero-img {
+    width: 100%;
+  }
+
+  .hero-img img {
+    width: 100%;
+    max-width: 480px;
+  }
+
+  .card-experiencia {
+    left: 10px;
+    bottom: 15px;
+    padding: 14px 18px;
+  }
+
+  .card-experiencia strong {
+    font-size: 1.3125rem;
+  }
+
+
+  /* SOBRE */
+
+  .sobre-inicio {
+    padding: 65px 6%;
+  }
+
+  .sobre-texto {
+    max-width: 100%;
+  }
+
+  .sobre-texto p {
+    font-size: 1.25rem;
+  }
+
+  .sobre-imagem {
+    width: 100%;
   }
 
   .sobre-imagem img {
     width: 100%;
+    max-width: 420px;
   }
 
+
+  /* CURSOS */
+
+  .cursos-destaque {
+    padding: 65px 6%;
+  }
+
+  .titulo-secao {
+    max-width: 100%;
+  }
+
+  .titulo-secao p {
+    font-size: 1.25rem;
+  }
+
+  .cursos-preview {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+    margin: 35px 0;
+  }
+
+  .curso-card {
+    padding: 25px 15px;
+    border-radius: 18px;
+  }
+
+  .curso-card i {
+    font-size: 2rem;
+  }
+
+  .curso-card h3 {
+    font-size: 1.25rem;
+    margin: 15px 0 8px;
+  }
+
+  .curso-card p {
+    font-size: 1.125rem;
+    line-height: 1.5;
+  }
+
+  .curso-card a {
+    font-size: 1.0625rem;
+  }
+
+
+  /* ESTATÍSTICAS */
+
+  .estatistica-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+  }
+
+  .estatistica {
+    padding: 25px 12px;
+    border-radius: 18px;
+  }
+
+  .estatistica i {
+    font-size: 2rem;
+  }
+
+  .estatistica h3 {
+    font-size: 1.25rem;
+  }
+
+  .estatistica p {
+    font-size: 1.0625rem;
+  }
+
+
+  /* DEPOIMENTOS */
+
+  .depoimentos {
+    padding: 65px 6%;
+  }
+
+  .depoimentos-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-top: 35px;
+  }
+
+  .depoimento-card {
+    padding: 25px 20px;
+  }
+
+  .depoimento-card p {
+    font-size: 1.25rem;
+  }
+
+  .usuario span {
+    font-size: 1rem;
+  }
+
+
+  /* CTA */
+
   .cta {
-    flex-direction: column;
-
-    text-align: center;
-
+    margin: 60px 6%;
     padding: 35px 20px;
+    flex-direction: column;
+    text-align: center;
   }
 
   .cta h2 {
-    font-size: 25px;
+    font-size: 1.5625rem;
   }
+
+  .cta p {
+    font-size: 1.125rem;
+  }
+
+  .cta .btn-principal {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+
+/* ==========================
+   CELULARES PEQUENOS
+========================== */
+
+@media (max-width: 480px) {
+
+  .hero {
+    padding: 45px 5%;
+  }
+
+  .hero-texto h1 {
+    font-size: 2rem;
+  }
+
+  .hero-texto p {
+    font-size: 1.1875rem;
+  }
+
+  .hero-botoes {
+    gap: 12px;
+  }
+
+  .btn-secundario {
+    font-size: 1.125rem;
+    padding: 13px 20px;
+  }
+
+  .cursos-preview,
+  .estatistica-container {
+    gap: 10px;
+  }
+
+  .curso-card {
+    padding: 22px 10px;
+  }
+
+  .curso-card i {
+    font-size: 1.875rem;
+  }
+
+  .curso-card h3 {
+    font-size: 1.125rem;
+  }
+
+  .curso-card p {
+    font-size: 1rem;
+  }
+
+  .curso-card a {
+    font-size: 1rem;
+  }
+
+  .estatistica {
+    padding: 22px 8px;
+  }
+
+  .estatistica h3 {
+    font-size: 1.125rem;
+  }
+
+  .estatistica p {
+    font-size: 1rem;
+  }
+
+  .card-experiencia {
+    position: relative;
+    left: 0;
+    bottom: auto;
+    margin: -30px auto 0;
+    width: fit-content;
+  }
+}
+
+
+/* ==========================
+   ACESSIBILIDADE
+========================== */
+
+html[data-tamanho-fonte="70"] {
+  font-size: 70%;
+}
+
+html[data-tamanho-fonte="80"] {
+  font-size: 80%;
+}
+
+html[data-tamanho-fonte="90"] {
+  font-size: 90%;
+}
+
+html[data-tamanho-fonte="100"] {
+  font-size: 100%;
+}
+
+html[data-tamanho-fonte="110"] {
+  font-size: 110%;
+}
+
+html[data-tamanho-fonte="120"] {
+  font-size: 120%;
+}
+
+html[data-tamanho-fonte="130"] {
+  font-size: 130%;
+}
+
+html[data-tamanho-fonte="140"] {
+  font-size: 140%;
 }

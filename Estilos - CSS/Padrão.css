@@ -11,6 +11,7 @@
 
 html {
   scroll-behavior: smooth;
+  font-size: 100%;
 }
 
 :root {
@@ -27,7 +28,8 @@ html {
 body {
   background: var(--fundo);
   color: #1f2937;
-  font-size: 1.0625rem;
+  font-size: 1.375rem;
+  line-height: 1.6;
 }
 
 
@@ -68,7 +70,7 @@ nav a {
   text-decoration: none;
   color: #1f2937;
   font-weight: 500;
-  font-size: 1.08rem;
+  font-size: 1.125rem;
   transition: 0.3s;
 }
 
@@ -90,7 +92,7 @@ nav a:hover {
   padding: 18px 35px;
   border-radius: 18px;
   cursor: pointer;
-  font-size: 1.05rem;
+  font-size: 1.25rem;
   transition: 0.3s;
 }
 
@@ -110,7 +112,7 @@ nav a:hover {
   padding: 15px 32px;
   border-radius: 12px;
   border: none;
-  font-size: 18px;
+  font-size: 1.25rem;
   font-weight: 600;
   cursor: pointer;
   text-decoration: none;
@@ -127,20 +129,22 @@ nav a:hover {
    TÍTULOS
 ======================================== */
 
+h1,
+h2 {
+  font-family: "Lora", serif;
+  color: var(--titulo);
+}
+
 h1 {
-  font-family: "Poppins", sans-serif;
   font-size: 4.0625rem;
   line-height: 1.2;
-  color: var(--titulo);
   font-weight: 700;
   margin-bottom: 25px;
 }
 
 h2 {
-  font-family: "Poppins", sans-serif;
   font-size: 2.625rem;
   line-height: 1.3;
-  color: var(--titulo);
   font-weight: 600;
 }
 
@@ -158,6 +162,34 @@ h4 {
   line-height: 1.3;
   color: var(--titulo);
   font-weight: 700;
+}
+
+
+/* ========================================
+   TEXTOS
+======================================== */
+
+p {
+  font-size: 1.375rem;
+  line-height: 1.6;
+}
+
+.coluna p {
+  color: var(--texto);
+  line-height: 1.6;
+}
+
+.coluna a {
+  display: block;
+  text-decoration: none;
+  color: var(--texto);
+  margin-top: 15px;
+  font-size: 1.25rem;
+  transition: 0.3s;
+}
+
+.coluna a:hover {
+  color: var(--azul);
 }
 
 
@@ -228,23 +260,6 @@ footer {
   margin-bottom: 20px;
 }
 
-.coluna p {
-  color: var(--texto);
-  line-height: 30px;
-}
-
-.coluna a {
-  display: block;
-  text-decoration: none;
-  color: var(--texto);
-  margin-top: 15px;
-  transition: 0.3s;
-}
-
-.coluna a:hover {
-  color: var(--azul);
-}
-
 
 /* ========================================
    ANIMAÇÕES
@@ -305,7 +320,7 @@ a {
 .sidebar-nav a {
   text-decoration: none;
   color: #1f2937;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 500;
 }
 
@@ -341,7 +356,7 @@ a {
   text-align: center;
   padding: 20px;
   color: var(--texto);
-  font-size: 14px;
+  font-size: 1rem;
   border-top: 1px solid var(--borda);
 }
 
@@ -361,8 +376,6 @@ a {
   transition: bottom 0.3s ease;
 }
 
-/* Quando o usuário desce a página,
-   o botão de acessibilidade sobe */
 #painelAcessibilidade.subir {
   bottom: 95px;
 }
@@ -434,7 +447,7 @@ a {
 #opcoesAcessibilidade span {
   display: block;
   color: var(--titulo);
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 600;
   margin-bottom: 15px;
 }
@@ -458,7 +471,7 @@ a {
   border-radius: 10px;
   background: var(--branco);
   color: var(--titulo);
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 600;
   cursor: pointer;
   transition: 0.3s ease;
@@ -476,32 +489,37 @@ a {
 
 
 /* ========================================
-   TAMANHO DA FONTE
+   TAMANHO DA FONTE - ACESSIBILIDADE
 ======================================== */
 
-html {
+/* 80% */
+html[data-tamanho-fonte="80"] {
+  font-size: 80%;
+}
+
+/* 90% */
+html[data-tamanho-fonte="90"] {
+  font-size: 90%;
+}
+
+/* Normal - 100% */
+html[data-tamanho-fonte="100"] {
   font-size: 100%;
 }
 
+/* 110% */
 html[data-tamanho-fonte="110"] {
   font-size: 110%;
 }
 
+/* 120% */
 html[data-tamanho-fonte="120"] {
   font-size: 120%;
 }
 
-html[data-tamanho-fonte="130"] {
-  font-size: 130%;
-}
-
-html[data-tamanho-fonte="140"] {
-  font-size: 140%;
-}
-
 
 /* ========================================
-   RESPONSIVO
+   RESPONSIVO - TABLET
 ======================================== */
 
 @media (max-width: 1000px) {
@@ -515,10 +533,13 @@ html[data-tamanho-fonte="140"] {
 }
 
 
-@media (max-width: 768px) {
+/* ========================================
+   RESPONSIVO - MOBILE
+======================================== */
 
+@media (max-width: 768px) {
   section {
-    padding: 80px 6%;
+    padding: 70px 6%;
   }
 
   header {
@@ -527,16 +548,39 @@ html[data-tamanho-fonte="140"] {
 
   .logo img {
     height: 95px;
+    max-width: 180px;
+    object-fit: contain;
   }
 
-  footer {
-    gap: 40px;
+  .btn-login {
+    padding: 14px 20px;
+    font-size: 1.125rem;
+    border-radius: 14px;
+  }
+
+  h1 {
+    font-size: 2.6rem;
+    line-height: 1.15;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  h4 {
+    font-size: 1.15rem;
+  }
+
+  p {
+    font-size: 1.25rem;
   }
 
 
-  /* ======================================
-     FOOTER - MOBILE
-  ====================================== */
+  /* FOOTER */
 
   footer {
     display: flex;
@@ -545,6 +589,13 @@ html[data-tamanho-fonte="140"] {
     text-align: center;
     gap: 40px;
     padding: 60px 8%;
+  }
+
+  .footer-linha {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 30px;
   }
 
   .coluna {
@@ -558,13 +609,13 @@ html[data-tamanho-fonte="140"] {
   }
 
   .coluna p {
-    font-size: 17px;
+    font-size: 1.125rem;
     line-height: 1.8;
   }
 
   .coluna a {
     display: block;
-    font-size: 17px;
+    font-size: 1.125rem;
     margin-bottom: 12px;
   }
 
@@ -578,6 +629,7 @@ html[data-tamanho-fonte="140"] {
 
   .logo-footer img {
     width: 250px;
+    max-width: 100%;
     height: auto;
     display: block;
   }
@@ -604,9 +656,7 @@ html[data-tamanho-fonte="140"] {
   }
 
 
-  /* ======================================
-     ACESSIBILIDADE - MOBILE
-  ====================================== */
+  /* ACESSIBILIDADE */
 
   #painelAcessibilidade {
     right: 15px;
@@ -630,11 +680,62 @@ html[data-tamanho-fonte="140"] {
 
   #opcoesAcessibilidade {
     min-width: 190px;
+    max-width: calc(100vw - 30px);
     padding: 15px;
   }
 
   .controle-fonte button {
     width: 45px;
     height: 42px;
+  }
+}
+
+
+/* ========================================
+   TELAS MUITO PEQUENAS
+======================================== */
+
+@media (max-width: 480px) {
+  header {
+    padding: 8px 4%;
+  }
+
+  .logo img {
+    height: 80px;
+    max-width: 145px;
+  }
+
+  .btn-login {
+    padding: 12px 15px;
+    font-size: 1rem;
+  }
+
+  section {
+    padding: 55px 5%;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  h3 {
+    font-size: 1.4rem;
+  }
+
+  p {
+    font-size: 1.2rem;
+  }
+
+  .sidebar {
+    width: min(280px, 85vw);
+  }
+
+  #opcoesAcessibilidade {
+    right: 0;
+    min-width: 180px;
   }
 }

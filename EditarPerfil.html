@@ -1,246 +1,227 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>TechSênior - Editar Informações</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Fonte -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <title>TechSênior - Editar Informações</title>
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+  <!-- Fonte -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="Estilos - CSS/EditarPerfil.css" />
-    <link rel="stylesheet" href="Estilos - CSS/Padrão.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
 
-    <!-- Ícones -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
-  </head>
+  <!-- CSS -->
+  <link rel="stylesheet" href="Estilos - CSS/EditarPerfil.css" />
+  <link rel="stylesheet" href="Estilos - CSS/Padrão.css" />
 
-  <body>
-    <!-- HEADER -->
-    <header>
-      <button class="menu-toggle" id="menuToggle">
-        <i class="fa-solid fa-bars"></i>
-      </button>
+  <!-- Ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
 
-      <div class="logo">
-        <img src="Imagens/Logotipo Sem Fundo.png" alt="Logo TechSênior" />
-      </div>
+<body>
+  <!-- HEADER -->
+  <header>
+    <button class="menu-toggle" id="menuToggle">
+      <i class="fa-solid fa-bars"></i>
+    </button>
 
-      <nav>
-        <a href="index.html">Início</a>
-        <a href="Cursos.html">Cursos</a>
-        <a href="Comunidade.html">Comunidade</a>
-        <a href="Sobre Nós.html">Sobre Nós</a>
-      </nav>
-
-      <button class="btn-login" id="btnUsuario" type="button">
-        <i class="fa-regular fa-user"></i>Entrar
-      </button>
-    </header>
-    
-    <!-- MENU LATERAL -->
-    <div class="sidebar" id="sidebar">
-      <button class="close-menu" id="closeMenu">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-
-      <nav class="sidebar-nav">
-        <a href="index.html">Início</a>
-
-        <a href="Cursos.html">Cursos</a>
-
-        <a href="Comunidade.html">Comunidade</a>
-
-        <a href="Sobre Nós.html">Sobre Nós</a>
-      </nav>
+    <div class="logo">
+      <img src="Imagens/Logotipo Sem Fundo.png" alt="Logo TechSênior" />
     </div>
 
-    <!-- FUNDO ESCURO -->
-    <div class="overlay" id="overlay"></div>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="Cursos.html">Cursos</a>
+      <a href="Comunidade.html">Comunidade</a>
+      <a href="Sobre Nós.html">Sobre Nós</a>
+    </nav>
 
+    <button class="btn-login" id="btnUsuario" type="button">
+      <i class="fa-regular fa-user"></i>
+      Entrar
+    </button>
+  </header>
 
-    <!-- ================================
-         CONTEÚDO PRINCIPAL
-    ================================= -->
+  <!-- MENU LATERAL -->
+  <div class="sidebar" id="sidebar">
+    <button class="close-menu" id="closeMenu">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
 
-    <main class="pagina-edicao">
+    <nav class="sidebar-nav">
+      <a href="index.html">Início</a>
+      <a href="Cursos.html">Cursos</a>
+      <a href="Comunidade.html">Comunidade</a>
+      <a href="Sobre Nós.html">Sobre Nós</a>
+    </nav>
+  </div>
 
-        <section class="container-edicao">
+  <div class="overlay" id="overlay"></div>
 
-            <div class="cabecalho-edicao">
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="pagina-edicao">
+    <section class="container-edicao">
 
-                <h1>Editar informações</h1>
+      <div class="cabecalho-edicao">
+        <h1>Editar informações</h1>
 
-                <p>
-                    Atualize suas informações da conta
-                    sempre que precisar.
-                </p>
+        <p>
+          Atualize suas informações da conta
+          sempre que precisar.
+        </p>
+      </div>
 
-            </div>
+      <!-- FORMULÁRIO -->
+      <form id="formEdicao">
 
+        <!-- Nome -->
+        <div class="campo">
+          <label for="nome">
+            Nome completo
+          </label>
 
-            <!-- ================================
-                 FORMULÁRIO
-            ================================= -->
+          <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" autocomplete="name"
+            required />
+        </div>
 
-            <form id="formEdicao">
+        <!-- E-mail -->
+        <div class="campo">
+          <label for="email">
+            E-mail
+          </label>
 
-                <!-- Nome -->
-                <div class="campo">
+          <input type="email" id="email" name="email" autocomplete="email" readonly />
+        </div>
 
-                    <label for="nome">
-                        Nome completo
-                    </label>
+        <!-- Alteração de senha -->
+        <div class="secao-senha">
 
-                    <input
-                        type="text"
-                        id="nome"
-                        name="nome"
-                        placeholder="Digite seu nome completo"
-                        autocomplete="name"
-                        required
-                    >
+          <div class="texto-senha">
+            <h2>Senha</h2>
 
-                </div>
-
-
-                <!-- E-mail -->
-                <div class="campo">
-
-                    <label for="email">
-                        E-mail
-                    </label>
-
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="Digite seu e-mail"
-                        autocomplete="email"
-                        required
-                    >
-
-                </div>
-
-
-                <!-- Alteração de senha -->
-                <div class="secao-senha">
-
-                    <div class="texto-senha">
-
-                        <h2>Senha</h2>
-
-                        <p>
-                            Deseja alterar sua senha?
-                        </p>
-
-                    </div>
-
-                    <a href="EsqueciSenha.html" class="botao-alterar-senha">
-                        Alterar senha
-                    </a>
-
-                </div>
-
-
-                <!-- Mensagem -->
-                <div
-                    id="mensagem"
-                    class="mensagem"
-                    aria-live="polite">
-                </div>
-
-
-                <!-- Ações -->
-                <div class="acoes">
-
-                    <a href="Perfil.html" class="botao-cancelar">
-                        Cancelar
-                    </a>
-
-                    <button
-                        type="submit"
-                        id="btnSalvar">
-                        Salvar alterações
-                    </button>
-
-                </div>
-
-            </form>
-
-        </section>
-
-    </main>
-
-
-       <!-- RODAPÉ -->
-    <footer>
-      <div class="coluna">
-        <h3>TechSênior</h3>
-        <p>Tecnologia ao seu alcance.</p>
-
-        <div class="footer-linha logo">
-          <div class="logo-footer">
-            <img
-              src="Imagens/Logotipo Sem Fundo.png"
-              alt="Logotipo TechSênior"
-            />
+            <p>
+              Deseja alterar sua senha?
+            </p>
           </div>
+
+          <a href="EsqueciSenha.html" class="botao-alterar-senha">
+            Alterar senha
+          </a>
+
+        </div>
+
+        <!-- Mensagem -->
+        <div id="mensagem" class="mensagem" aria-live="polite"></div>
+
+        <!-- Ações -->
+        <div class="acoes">
+
+          <a href="Perfil.html" class="botao-cancelar">
+            Cancelar
+          </a>
+
+          <button type="submit" id="btnSalvar">
+            Salvar alterações
+          </button>
+
+        </div>
+
+      </form>
+
+    </section>
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer>
+
+    <div class="coluna">
+      <h3>TechSênior</h3>
+
+      <p>Tecnologia ao seu alcance.</p>
+
+      <div class="footer-linha logo">
+        <div class="logo-footer">
+          <img src="Imagens/Logotipo Sem Fundo.png" alt="Logotipo TechSênior" />
         </div>
       </div>
-
-      <div class="coluna">
-        <h4>Navegação</h4>
-        <a href="index.html">Início</a>
-        <a href="Cursos.html">Cursos</a>
-        <a href="Comunidade.html">Comunidade</a>
-        <a href="Sobre Nós.html">Sobre Nós</a>
-      </div>
-
-      <div class="coluna">
-        <h4>Institucional</h4>
-        <a href="Termos de Uso.html">Termos de Uso</a>
-        <a href="Política de Privacidade.html">Política de Privacidade</a>
-        <a href="Declaração de Acessibilidade.html"
-          >Declaração de Acessibilidade</a
-        >
-      </div>
-
-      <div class="coluna">
-        <h4>Comunidade</h4>
-        <a href="Regras da Comunidade.html">Regras da Comunidade</a>
-        <a href="Sobre Nós.html">Fale Conosco</a>
-
-        <div class="footer-linha redes">
-          <div class="coluna">
-            <h4>Redes Sociais</h4>
-
-            <a href="https://www.instagram.com/techsenior_tcc/"
-              ><i class="fa-brands fa-instagram"></i> Instagram</a
-            >
-          </div>
-        </div>
-      </div>
-    </footer>
-
-    <div class="copyright">
-      © 2026 TechSênior • Projeto desenvolvido para o Trabalho de Conclusão de
-      Curso (TCC) do Curso Técnico em Desenvolvimento de Sistemas.<br />
-      Desenvolvido por: Equipe do TechSênior
     </div>
 
-    <script type="module" src="Script - Java/Padrão.js"></script>
-    <script type="module" src="Script - Java/EditarPerfil.js"></script>
-  </body>
+    <div class="coluna">
+      <h4>Navegação</h4>
+
+      <a href="index.html">Início</a>
+      <a href="Cursos.html">Cursos</a>
+      <a href="Comunidade.html">Comunidade</a>
+      <a href="Sobre Nós.html">Sobre Nós</a>
+    </div>
+
+    <div class="coluna">
+      <h4>Institucional</h4>
+
+      <a href="Termos de Uso.html">
+        Termos de Uso
+      </a>
+
+      <a href="Política de Privacidade.html">
+        Política de Privacidade
+      </a>
+
+      <a href="Declaração de Acessibilidade.html">
+        Declaração de Acessibilidade
+      </a>
+    </div>
+
+    <div class="coluna">
+      <h4>Comunidade</h4>
+
+      <a href="Regras da Comunidade.html">
+        Regras da Comunidade
+      </a>
+
+      <a href="Comunidade.html">
+        Fale Conosco
+      </a>
+
+      <div class="footer-linha redes">
+        <div class="coluna">
+
+          <h4>Redes Sociais</h4>
+
+          <a href="https://www.instagram.com/techsenior_tcc/" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-instagram"></i>
+            Instagram
+          </a>
+
+        </div>
+      </div>
+    </div>
+
+  </footer>
+
+  <div class="copyright">
+    © 2026 TechSênior • Projeto desenvolvido para o Trabalho de Conclusão de
+    Curso (TCC) do Curso Técnico em Desenvolvimento de Sistemas.<br />
+
+    Desenvolvido por: Equipe do TechSênior
+  </div>
+
+  <!-- DATA CONNECT -->
+  <script type="importmap">
+      {
+        "imports": {
+          "firebase/data-connect": "https://www.gstatic.com/firebasejs/12.17.1/firebase-data-connect.js"
+        }
+      }
+    </script>
+
+  <!-- SCRIPTS -->
+  <script type="module" src="Script - Java/Padrão.js"></script>
+
+  <script type="module" src="Script - Java/EditarPerfil.js"></script>
+</body>
+
 </html>

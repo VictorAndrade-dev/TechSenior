@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-
+<!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
@@ -28,85 +26,93 @@
     />
   </head>
 
-<body>
-
+  <body>
     <main class="pagina-redefinicao">
+      <section class="card-redefinicao">
 
-        <section class="card-redefinicao">
+        <!-- Logo -->
+        <div class="logo">
+          <h1>Tech<span>Sênior</span></h1>
+        </div>
 
-            <!-- Logo -->
-            <div class="logo">
-                <h1>Tech<span>Sênior</span></h1>
-            </div>
+        <!-- Cabeçalho -->
+        <div class="cabecalho-redefinicao">
+          <h2>Redefina sua senha</h2>
 
-            <!-- Cabeçalho -->
-            <div class="cabecalho-redefinicao">
-                <h2>Redefina sua senha</h2>
+          <p>
+            Crie uma nova senha para recuperar
+            o acesso à sua conta.
+          </p>
+        </div>
 
-                <p>
-                    Crie uma nova senha para recuperar
-                    o acesso à sua conta.
-                </p>
-            </div>
+        <!-- Formulário -->
+        <form id="formRedefinicao">
 
-            <!-- Formulário -->
-            <form id="formRedefinicao">
+          <!-- Nova senha -->
+          <div class="campo">
+            <label for="novaSenha">
+              Nova senha
+            </label>
 
-                <!-- Nova senha -->
-                <div class="campo">
-                    <label for="novaSenha">Nova senha</label>
+            <input
+              type="password"
+              id="novaSenha"
+              name="novaSenha"
+              placeholder="Digite sua nova senha"
+              autocomplete="new-password"
+              minlength="6"
+              required
+            />
+          </div>
 
-                    <input
-                        type="password"
-                        id="novaSenha"
-                        name="novaSenha"
-                        placeholder="Digite sua nova senha"
-                        autocomplete="new-password"
-                        required
-                    >
-                </div>
+          <!-- Confirmar senha -->
+          <div class="campo">
+            <label for="confirmarSenha">
+              Confirmar nova senha
+            </label>
 
-                <!-- Confirmar senha -->
-                <div class="campo">
-                    <label for="confirmarSenha">Confirmar nova senha</label>
+            <input
+              type="password"
+              id="confirmarSenha"
+              name="confirmarSenha"
+              placeholder="Digite a senha novamente"
+              autocomplete="new-password"
+              minlength="6"
+              required
+            />
+          </div>
 
-                    <input
-                        type="password"
-                        id="confirmarSenha"
-                        name="confirmarSenha"
-                        placeholder="Digite a senha novamente"
-                        autocomplete="new-password"
-                        required
-                    >
-                </div>
+          <!-- Botão -->
+          <button
+            type="submit"
+            id="btnRedefinir"
+          >
+            Redefinir senha
+          </button>
 
-                <!-- Botão -->
-                <button type="submit" id="btnRedefinir">
-                    Redefinir senha
-                </button>
+        </form>
 
-            </form>
+        <!-- Mensagem -->
+        <div
+          id="mensagem"
+          class="mensagem"
+          aria-live="polite"
+        ></div>
 
-            <!-- Mensagem -->
-            <div
-                id="mensagem"
-                class="mensagem"
-                aria-live="polite">
-            </div>
+        <!-- Voltar -->
+        <div class="voltar-login">
+          <a href="Login.html">
+            ← Voltar para o login
+          </a>
+        </div>
 
-            <!-- Voltar -->
-            <div class="voltar-login">
-                <a href="Login.html">
-                    ← Voltar para o login
-                </a>
-            </div>
-
-        </section>
-
+      </section>
     </main>
 
     <!-- JavaScript -->
-    <script src="Script - Java/RedefinirSenha.js"></script>
-
-</body>
+    <script
+      type="module"
+      src="Script - Java/RedefinirSenha.js"
+    ></script>
+  </body>
 </html>

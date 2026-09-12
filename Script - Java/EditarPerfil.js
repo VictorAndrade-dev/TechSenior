@@ -1,150 +1,236 @@
-// ========================================
-// EDIÇÃO DE INFORMAÇÕES DO PERFIL
-// ========================================
+import { auth } from "./Firebase-config.js";
 
-const formEdicao = document.getElementById("formEdicao");
+import {
+  onAuthStateChanged,
+  updateProfile
+} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
-const nomeInput = document.getElementById("nome");
-const emailInput = document.getElementById("email");
-
-const mensagem = document.getElementById("mensagem");
-const btnSalvar = document.getElementById("btnSalvar");
-
-
-// ========================================
-// DADOS DE PROTÓTIPO
-// ========================================
-
-// Enquanto o Firebase não estiver conectado,
-// utilizamos informações fictícias para testar a tela.
-
-const usuarioProtótipo = {
-    nome: "Usuário TechSênior",
-    email: "usuario@email.com"
-};
+import {
+  meuPerfil,
+  atualizarNomeUsuario
+} from "../dataconnect-generated/esm/index.esm.js";
 
 
 // ========================================
-// CARREGAR INFORMAÇÕES
+// ELEMENTOS
 // ========================================
 
-function carregarInformacoes() {
+const formEdicao =
+  document.getElementById("formEdicao");
 
-    nomeInput.value = usuarioProtótipo.nome;
-    emailInput.value = usuarioProtótipo.email;
+const nomeInput =
+  document.getElementById("nome");
 
-}
+const emailInput =
+  document.getElementById("email");
 
+const mensagem =
+  document.getElementById("mensagem");
 
-// Carrega as informações assim que a página abre
-carregarInformacoes();
+const btnSalvar =
+  document.getElementById("btnSalvar");
 
 
 // ========================================
-// ENVIO DO FORMULÁRIO
+// USUÁRIO ATUAL
 // ========================================
 
-formEdicao.addEventListener("submit", function (event) {
+let usuarioAtual = null;
 
-    // Impede o recarregamento da página
+
+// ========================================
+// CARREGAR PERFIL
+// ========================================
+
+onAuthStateChanged(
+  auth,
+  async (usuario) => {
+
+    if (!usuario) {
+
+      window.location.href =
+        "Login.html";
+
+      return;
+    }
+
+
+    usuarioAtual = usuario;
+
+
+    try {
+
+      const resposta =
+        await meuPerfil();
+
+      const dados =
+        resposta.data.usuarios?.[0];
+
+
+      if (!dados) {
+
+        mostrarMensagem(
+          "Não foi possível encontrar seu perfil.",
+          "erro"
+        );
+
+        return;
+      }
+
+
+      nomeInput.value =
+        dados.nome || "";
+
+      emailInput.value =
+        dados.email ||
+        usuario.email ||
+        "";
+
+
+    } catch (erro) {
+
+      console.error(
+        "Erro ao carregar perfil:",
+        erro
+      );
+
+      mostrarMensagem(
+        "Não foi possível carregar suas informações.",
+        "erro"
+      );
+
+    }
+
+  }
+);
+
+
+// ========================================
+// SALVAR ALTERAÇÕES
+// ========================================
+
+formEdicao.addEventListener(
+  "submit",
+  async (event) => {
+
     event.preventDefault();
 
-    const nome = nomeInput.value.trim();
-    const email = emailInput.value.trim();
+
+    const nome =
+      nomeInput.value.trim();
 
 
-    // Limpa mensagem anterior
     mensagem.textContent = "";
     mensagem.className = "mensagem";
 
 
-    // ========================================
-    // VALIDAÇÃO DO NOME
-    // ========================================
+    // ====================================
+    // VALIDAÇÃO
+    // ====================================
 
     if (nome === "") {
 
-        mostrarMensagem(
-            "Por favor, informe seu nome.",
-            "erro"
-        );
+      mostrarMensagem(
+        "Por favor, informe seu nome.",
+        "erro"
+      );
 
-        nomeInput.focus();
+      nomeInput.focus();
 
-        return;
+      return;
     }
 
 
-    // ========================================
-    // VALIDAÇÃO DO E-MAIL
-    // ========================================
+    if (!usuarioAtual) {
 
-    if (email === "") {
+      mostrarMensagem(
+        "Sua sessão expirou. Faça login novamente.",
+        "erro"
+      );
 
-        mostrarMensagem(
-            "Por favor, informe seu e-mail.",
-            "erro"
-        );
-
-        emailInput.focus();
-
-        return;
+      return;
     }
 
 
-    const formatoEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // ====================================
+    // SALVAR
+    // ====================================
 
-    if (!formatoEmail.test(email)) {
+    try {
 
-        mostrarMensagem(
-            "Digite um e-mail válido.",
-            "erro"
-        );
+      btnSalvar.disabled = true;
 
-        emailInput.focus();
+      btnSalvar.textContent =
+        "Salvando...";
 
-        return;
+
+      // PostgreSQL
+      await atualizarNomeUsuario({
+        nome
+      });
+
+
+      // Firebase Authentication
+      await updateProfile(
+        usuarioAtual,
+        {
+          displayName: nome
+        }
+      );
+
+
+      mostrarMensagem(
+        "Suas informações foram atualizadas com sucesso!",
+        "sucesso"
+      );
+
+
+      setTimeout(() => {
+
+        window.location.href =
+          "Perfil.html";
+
+      }, 1200);
+
+
+    } catch (erro) {
+
+      console.error(
+        "Erro ao atualizar perfil:",
+        erro
+      );
+
+
+      mostrarMensagem(
+        "Não foi possível salvar as alterações. Tente novamente.",
+        "erro"
+      );
+
+
+      btnSalvar.disabled = false;
+
+      btnSalvar.textContent =
+        "Salvar alterações";
+
     }
 
-
-    // ========================================
-    // SIMULAÇÃO DO SALVAMENTO
-    // ========================================
-
-    btnSalvar.disabled = true;
-    btnSalvar.textContent = "Salvando...";
-
-
-    setTimeout(() => {
-
-        // Atualiza os dados do protótipo
-        usuarioProtótipo.nome = nome;
-        usuarioProtótipo.email = email;
-
-
-        mostrarMensagem(
-            "Suas informações foram atualizadas com sucesso!",
-            "sucesso"
-        );
-
-
-        btnSalvar.disabled = false;
-        btnSalvar.textContent = "Salvar alterações";
-
-
-    }, 1000);
-
-});
+  }
+);
 
 
 // ========================================
-// FUNÇÃO DE MENSAGEM
+// MENSAGEM
 // ========================================
 
-function mostrarMensagem(texto, tipo) {
+function mostrarMensagem(
+  texto,
+  tipo
+) {
 
-    mensagem.textContent = texto;
+  mensagem.textContent =
+    texto;
 
-    mensagem.className = `mensagem ${tipo}`;
+  mensagem.className =
+    `mensagem ${tipo}`;
 
 }

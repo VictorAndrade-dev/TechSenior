@@ -10,12 +10,34 @@ export type DateString = string;
 
 
 
+export interface AlternativaQuiz_Key {
+  id: UUIDString;
+  __typename?: 'AlternativaQuiz_Key';
+}
+
 export interface AtualizarNomeUsuarioData {
   usuario_updateMany: number;
 }
 
 export interface AtualizarNomeUsuarioVariables {
   nome: string;
+}
+
+export interface BuscarCursoData {
+  curso?: {
+    id: UUIDString;
+    nome: string;
+    descricao?: string | null;
+    dificuldade: string;
+    cargaHoraria: number;
+    imagem?: string | null;
+    icone?: string | null;
+    ativo?: boolean | null;
+  } & Curso_Key;
+}
+
+export interface BuscarCursoVariables {
+  id: UUIDString;
 }
 
 export interface CadastrarUsuarioData {
@@ -51,6 +73,50 @@ export interface ExcluirUsuarioPorEmailVariables {
   email: string;
 }
 
+export interface ListarConteudosDoModuloData {
+  conteudoModulos: ({
+    id: UUIDString;
+    tipo: string;
+    titulo?: string | null;
+    conteudo?: string | null;
+    url?: string | null;
+    altTexto?: string | null;
+    ordem: number;
+  } & ConteudoModulo_Key)[];
+}
+
+export interface ListarConteudosDoModuloVariables {
+  moduloId: UUIDString;
+}
+
+export interface ListarCursosData {
+  cursos: ({
+    id: UUIDString;
+    nome: string;
+    descricao?: string | null;
+    dificuldade: string;
+    cargaHoraria: number;
+    imagem?: string | null;
+    icone?: string | null;
+    ativo?: boolean | null;
+  } & Curso_Key)[];
+}
+
+export interface ListarModulosDoCursoData {
+  modulos: ({
+    id: UUIDString;
+    nome: string;
+    descricao?: string | null;
+    ordem: number;
+    duracaoMinutos?: number | null;
+    imagem?: string | null;
+  } & Modulo_Key)[];
+}
+
+export interface ListarModulosDoCursoVariables {
+  cursoId: UUIDString;
+}
+
 export interface MeuPerfilData {
   usuarios: ({
     id: UUIDString;
@@ -69,6 +135,16 @@ export interface MeuPerfilData {
 export interface Modulo_Key {
   id: UUIDString;
   __typename?: 'Modulo_Key';
+}
+
+export interface QuestaoQuiz_Key {
+  id: UUIDString;
+  __typename?: 'QuestaoQuiz_Key';
+}
+
+export interface Quiz_Key {
+  id: UUIDString;
+  __typename?: 'Quiz_Key';
 }
 
 export interface StatusCurso_Key {
@@ -102,6 +178,54 @@ export interface Usuario_Key {
   id: UUIDString;
   __typename?: 'Usuario_Key';
 }
+
+interface ListarCursosRef {
+  /* Allow users to create refs without passing in DataConnect */
+  (): QueryRef<ListarCursosData, undefined>;
+  /* Allow users to pass in custom DataConnect instances */
+  (dc: DataConnect): QueryRef<ListarCursosData, undefined>;
+  operationName: string;
+}
+export const listarCursosRef: ListarCursosRef;
+
+export function listarCursos(options?: ExecuteQueryOptions): QueryPromise<ListarCursosData, undefined>;
+export function listarCursos(dc: DataConnect, options?: ExecuteQueryOptions): QueryPromise<ListarCursosData, undefined>;
+
+interface BuscarCursoRef {
+  /* Allow users to create refs without passing in DataConnect */
+  (vars: BuscarCursoVariables): QueryRef<BuscarCursoData, BuscarCursoVariables>;
+  /* Allow users to pass in custom DataConnect instances */
+  (dc: DataConnect, vars: BuscarCursoVariables): QueryRef<BuscarCursoData, BuscarCursoVariables>;
+  operationName: string;
+}
+export const buscarCursoRef: BuscarCursoRef;
+
+export function buscarCurso(vars: BuscarCursoVariables, options?: ExecuteQueryOptions): QueryPromise<BuscarCursoData, BuscarCursoVariables>;
+export function buscarCurso(dc: DataConnect, vars: BuscarCursoVariables, options?: ExecuteQueryOptions): QueryPromise<BuscarCursoData, BuscarCursoVariables>;
+
+interface ListarModulosDoCursoRef {
+  /* Allow users to create refs without passing in DataConnect */
+  (vars: ListarModulosDoCursoVariables): QueryRef<ListarModulosDoCursoData, ListarModulosDoCursoVariables>;
+  /* Allow users to pass in custom DataConnect instances */
+  (dc: DataConnect, vars: ListarModulosDoCursoVariables): QueryRef<ListarModulosDoCursoData, ListarModulosDoCursoVariables>;
+  operationName: string;
+}
+export const listarModulosDoCursoRef: ListarModulosDoCursoRef;
+
+export function listarModulosDoCurso(vars: ListarModulosDoCursoVariables, options?: ExecuteQueryOptions): QueryPromise<ListarModulosDoCursoData, ListarModulosDoCursoVariables>;
+export function listarModulosDoCurso(dc: DataConnect, vars: ListarModulosDoCursoVariables, options?: ExecuteQueryOptions): QueryPromise<ListarModulosDoCursoData, ListarModulosDoCursoVariables>;
+
+interface ListarConteudosDoModuloRef {
+  /* Allow users to create refs without passing in DataConnect */
+  (vars: ListarConteudosDoModuloVariables): QueryRef<ListarConteudosDoModuloData, ListarConteudosDoModuloVariables>;
+  /* Allow users to pass in custom DataConnect instances */
+  (dc: DataConnect, vars: ListarConteudosDoModuloVariables): QueryRef<ListarConteudosDoModuloData, ListarConteudosDoModuloVariables>;
+  operationName: string;
+}
+export const listarConteudosDoModuloRef: ListarConteudosDoModuloRef;
+
+export function listarConteudosDoModulo(vars: ListarConteudosDoModuloVariables, options?: ExecuteQueryOptions): QueryPromise<ListarConteudosDoModuloData, ListarConteudosDoModuloVariables>;
+export function listarConteudosDoModulo(dc: DataConnect, vars: ListarConteudosDoModuloVariables, options?: ExecuteQueryOptions): QueryPromise<ListarConteudosDoModuloData, ListarConteudosDoModuloVariables>;
 
 interface CadastrarUsuarioRef {
   /* Allow users to create refs without passing in DataConnect */

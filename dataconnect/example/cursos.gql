@@ -1,0 +1,75 @@
+query ListarCursos @auth(level: PUBLIC) {
+  cursos(
+    where: {
+      ativo: { eq: true }
+    }
+    orderBy: [
+      { nome: ASC }
+    ]
+  ) {
+    id
+    nome
+    descricao
+    dificuldade
+    cargaHoraria
+    imagem
+    icone
+    ativo
+  }
+}
+
+query BuscarCurso(
+  $id: UUID!
+) @auth(level: USER) {
+  curso(id: $id) {
+    id
+    nome
+    descricao
+    dificuldade
+    cargaHoraria
+    imagem
+    icone
+    ativo
+  }
+}
+
+query ListarModulosDoCurso(
+  $cursoId: UUID!
+) @auth(level: USER) {
+  modulos(
+    where: {
+      cursoId: { eq: $cursoId }
+    }
+    orderBy: [
+      { ordem: ASC }
+    ]
+  ) {
+    id
+    nome
+    descricao
+    ordem
+    duracaoMinutos
+    imagem
+  }
+}
+
+query ListarConteudosDoModulo(
+  $moduloId: UUID!
+) @auth(level: USER) {
+  conteudoModulos(
+    where: {
+      moduloId: { eq: $moduloId }
+    }
+    orderBy: [
+      { ordem: ASC }
+    ]
+  ) {
+    id
+    tipo
+    titulo
+    conteudo
+    url
+    altTexto
+    ordem
+  }
+}

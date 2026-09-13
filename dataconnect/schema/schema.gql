@@ -18,29 +18,73 @@ type Curso @table {
   descricao: String
   dificuldade: String!
   cargaHoraria: Int!
+
   imagem: String
+  icone: String
+
   ativo: Boolean @default(value: true)
+
   criadoEm: Timestamp @default(expr: "request.time")
   atualizadoEm: Timestamp @default(expr: "request.time")
 }
 
 type Modulo @table {
   curso: Curso!
+
   nome: String!
   descricao: String
   ordem: Int!
+  duracaoMinutos: Int
+
   imagem: String
+
   criadoEm: Timestamp @default(expr: "request.time")
   atualizadoEm: Timestamp @default(expr: "request.time")
 }
 
 type ConteudoModulo @table {
   modulo: Modulo!
+
   tipo: String!
-  titulo: String!
+  titulo: String
   conteudo: String
   url: String
+  altTexto: String
+
   ordem: Int!
+
+  criadoEm: Timestamp @default(expr: "request.time")
+  atualizadoEm: Timestamp @default(expr: "request.time")
+}
+
+type Quiz @table {
+  curso: Curso!
+  modulo: Modulo
+
+  tipo: String!
+
+  criadoEm: Timestamp @default(expr: "request.time")
+  atualizadoEm: Timestamp @default(expr: "request.time")
+}
+
+type QuestaoQuiz @table {
+  quiz: Quiz!
+
+  pergunta: String!
+  ordem: Int!
+
+  criadoEm: Timestamp @default(expr: "request.time")
+  atualizadoEm: Timestamp @default(expr: "request.time")
+}
+
+type AlternativaQuiz @table {
+  questao: QuestaoQuiz!
+
+  texto: String!
+  correta: Boolean!
+  explicacao: String
+  ordem: Int!
+
   criadoEm: Timestamp @default(expr: "request.time")
   atualizadoEm: Timestamp @default(expr: "request.time")
 }

@@ -73,3 +73,172 @@ query ListarConteudosDoModulo(
     ordem
   }
 }
+
+mutation CriarCurso(
+  $nome: String!
+  $descricao: String
+  $dificuldade: String!
+  $cargaHoraria: Int!
+  $imagem: String
+  $icone: String
+  $ativo: Boolean!
+) @auth(level: USER) @transaction {
+
+  query @redact {
+    usuarios(
+      where: {
+        firebaseUid: { eq_expr: "auth.uid" }
+      }
+      limit: 1
+    ) {
+      tipoUsuario {
+        nome @check(
+          expr: "this == 'Administrador'"
+          message: "Apenas administradores podem criar cursos."
+        )
+      }
+    }
+  }
+
+  curso_insert(
+    data: {
+      nome: $nome
+      descricao: $descricao
+      dificuldade: $dificuldade
+      cargaHoraria: $cargaHoraria
+      imagem: $imagem
+      icone: $icone
+      ativo: $ativo
+    }
+  )
+}
+
+
+mutation CriarModulo(
+  $cursoId: UUID!
+  $nome: String!
+  $descricao: String
+  $ordem: Int!
+  $duracaoMinutos: Int
+  $imagem: String
+) @auth(level: USER) @transaction {
+
+  query @redact {
+    usuarios(
+      where: {
+        firebaseUid: { eq_expr: "auth.uid" }
+      }
+      limit: 1
+    ) {
+      tipoUsuario {
+        nome @check(
+          expr: "this == 'Administrador'"
+          message: "Apenas administradores podem criar módulos."
+        )
+      }
+    }
+  }
+
+  modulo_insert(
+    data: {
+      cursoId: $cursoId
+      nome: $nome
+      descricao: $descricao
+      ordem: $ordem
+      duracaoMinutos: $duracaoMinutos
+      imagem: $imagem
+    }
+  )
+}
+
+
+mutation CriarConteudoModulo(
+  $moduloId: UUID!
+  $tipo: String!
+  $titulo: String
+  $conteudo: String
+  $url: String
+  $altTexto: String
+  $ordem: Int!
+) @auth(level: USER) @transaction {
+
+  query @redact {
+    usuarios(
+      where: {
+        firebaseUid: { eq_expr: "auth.uid" }
+      }
+      limit: 1
+    ) {
+      tipoUsuario {
+        nome @check(
+          expr: "this == 'Administrador'"
+          message: "Apenas administradores podem criar conteúdos."
+        )
+      }
+    }
+  }
+
+  conteudoModulo_insert(
+    data: {
+      moduloId: $moduloId
+      tipo: $tipo
+      titulo: $titulo
+      conteudo: $conteudo
+      url: $url
+      altTexto: $altTexto
+      ordem: $ordem
+    }
+  )
+}
+
+query BuscarQuizDoModulo(
+  $moduloId: UUID!
+) @auth(level: USER) {
+  quizzes(
+    where: {
+      moduloId: { eq: $moduloId }
+      tipo: { eq: "modulo" }
+    }
+    limit: 1
+  ) {
+    id
+    tipo
+    moduloId
+  }
+}
+
+query ListarQuestoesDoQuiz(
+  $quizId: UUID!
+) @auth(level: USER) {
+  questaoQuizs(
+    where: {
+      quizId: { eq: $quizId }
+    }
+    orderBy: [
+      { ordem: ASC }
+    ]
+  ) {
+    id
+    pergunta
+    ordem
+  }
+}
+
+query ListarAlternativasDaQuestao(
+  $questaoId: UUID!
+) @auth(level: USER) {
+  alternativaQuizs(
+    where: {
+      questaoId: { eq: $questaoId }
+    }
+    orderBy: [
+      { ordem: ASC }
+    ]
+  ) {
+    id
+    texto
+    correta
+    explicacao
+    ordem
+  }
+}

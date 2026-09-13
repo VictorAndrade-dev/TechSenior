@@ -14,7 +14,7 @@ If a user is not using a supported framework, they can use the generated SDK dir
 Here's an example of how to use it with the first 5 operations:
 
 ```js
-import { listarCursos, buscarCurso, listarModulosDoCurso, listarConteudosDoModulo, cadastrarUsuario, meuPerfil, excluirUsuarioPorEmail, atualizarNomeUsuario } from '@dataconnect/generated';
+import { listarCursos, buscarCurso, listarModulosDoCurso, listarConteudosDoModulo, criarCurso, criarModulo, criarConteudoModulo, buscarQuizDoModulo, listarQuestoesDoQuiz, listarAlternativasDaQuestao } from '@dataconnect/generated';
 
 
 // Operation ListarCursos: 
@@ -29,17 +29,23 @@ const { data } = await ListarModulosDoCurso(dataConnect, listarModulosDoCursoVar
 // Operation ListarConteudosDoModulo:  For variables, look at type ListarConteudosDoModuloVars in ../index.d.ts
 const { data } = await ListarConteudosDoModulo(dataConnect, listarConteudosDoModuloVars);
 
-// Operation CadastrarUsuario:  For variables, look at type CadastrarUsuarioVars in ../index.d.ts
-const { data } = await CadastrarUsuario(dataConnect, cadastrarUsuarioVars);
+// Operation CriarCurso:  For variables, look at type CriarCursoVars in ../index.d.ts
+const { data } = await CriarCurso(dataConnect, criarCursoVars);
 
-// Operation MeuPerfil: 
-const { data } = await MeuPerfil(dataConnect);
+// Operation CriarModulo:  For variables, look at type CriarModuloVars in ../index.d.ts
+const { data } = await CriarModulo(dataConnect, criarModuloVars);
 
-// Operation ExcluirUsuarioPorEmail:  For variables, look at type ExcluirUsuarioPorEmailVars in ../index.d.ts
-const { data } = await ExcluirUsuarioPorEmail(dataConnect, excluirUsuarioPorEmailVars);
+// Operation CriarConteudoModulo:  For variables, look at type CriarConteudoModuloVars in ../index.d.ts
+const { data } = await CriarConteudoModulo(dataConnect, criarConteudoModuloVars);
 
-// Operation AtualizarNomeUsuario:  For variables, look at type AtualizarNomeUsuarioVars in ../index.d.ts
-const { data } = await AtualizarNomeUsuario(dataConnect, atualizarNomeUsuarioVars);
+// Operation BuscarQuizDoModulo:  For variables, look at type BuscarQuizDoModuloVars in ../index.d.ts
+const { data } = await BuscarQuizDoModulo(dataConnect, buscarQuizDoModuloVars);
+
+// Operation ListarQuestoesDoQuiz:  For variables, look at type ListarQuestoesDoQuizVars in ../index.d.ts
+const { data } = await ListarQuestoesDoQuiz(dataConnect, listarQuestoesDoQuizVars);
+
+// Operation ListarAlternativasDaQuestao:  For variables, look at type ListarAlternativasDaQuestaoVars in ../index.d.ts
+const { data } = await ListarAlternativasDaQuestao(dataConnect, listarAlternativasDaQuestaoVars);
 
 
 ```

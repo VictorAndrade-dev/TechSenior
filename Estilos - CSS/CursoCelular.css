@@ -9,7 +9,6 @@
   color: var(--texto);
 }
 
-
 /* ========================================== */
 /* LAYOUT PRINCIPAL */
 /* ========================================== */
@@ -26,7 +25,6 @@
   align-items: start;
 }
 
-
 /* ========================================== */
 /* COLUNAS */
 /* ========================================== */
@@ -39,7 +37,6 @@
   border-radius: 12px;
 }
 
-
 /* ========================================== */
 /* COLUNA ESQUERDA */
 /* ========================================== */
@@ -47,7 +44,6 @@
 .coluna-esquerda {
   padding: 15px;
 }
-
 
 /* ========================================== */
 /* BOTÃO VOLTAR */
@@ -90,7 +86,6 @@
   outline-offset: 2px;
 }
 
-
 /* ========================================== */
 /* CARD DE PROGRESSO */
 /* ========================================== */
@@ -124,7 +119,6 @@
   font-weight: 600;
   line-height: 1;
 }
-
 
 /* ========================================== */
 /* BARRA DE PROGRESSO */
@@ -162,7 +156,6 @@
   font-size: 0.95rem;
 }
 
-
 /* ========================================== */
 /* LISTA DE MÓDULOS */
 /* ========================================== */
@@ -180,7 +173,6 @@
   font-size: 1.1rem;
   font-weight: 600;
 }
-
 
 /* ========================================== */
 /* CONTAINER DOS MÓDULOS */
@@ -200,7 +192,6 @@
 
   font-size: 0.9rem;
 }
-
 
 /* ========================================== */
 /* MÓDULO */
@@ -240,7 +231,6 @@
   outline-offset: 2px;
 }
 
-
 /* ========================================== */
 /* NÚMERO DO MÓDULO */
 /* ========================================== */
@@ -269,7 +259,6 @@
   background-color: #16866e;
   color: #ffffff;
 }
-
 
 /* ========================================== */
 /* INFORMAÇÕES DO MÓDULO */
@@ -305,7 +294,6 @@
   color: #222222;
 }
 
-
 /* ========================================== */
 /* ÍCONE DO MÓDULO */
 /* ========================================== */
@@ -321,7 +309,6 @@
 .modulo.bloqueado > i {
   color: #4b5563;
 }
-
 
 /* ========================================== */
 /* CARD DE AJUDA */
@@ -401,7 +388,6 @@
   color: #16866e;
 }
 
-
 /* ========================================== */
 /* CONTEÚDO CENTRAL */
 /* ========================================== */
@@ -411,7 +397,6 @@
 
   padding: 28px 42px 22px;
 }
-
 
 /* ========================================== */
 /* CABEÇALHO DA AULA */
@@ -450,7 +435,6 @@
   font-size: 1.05rem;
   line-height: 1.7;
 }
-
 
 /* ========================================== */
 /* CONTEÚDO DA AULA */
@@ -501,7 +485,6 @@
   line-height: 1.7;
 }
 
-
 /* ========================================== */
 /* IMAGEM DA AULA */
 /* ========================================== */
@@ -524,7 +507,6 @@
 
   object-fit: contain;
 }
-
 
 /* ========================================== */
 /* ESTADO DE CARREGAMENTO */
@@ -569,7 +551,6 @@
     transform: rotate(360deg);
   }
 }
-
 
 /* ========================================== */
 /* DICA DA AULA */
@@ -621,7 +602,6 @@
 .dica-aula strong {
   color: #16866e;
 }
-
 
 /* ========================================== */
 /* NAVEGAÇÃO ENTRE AULAS */
@@ -703,7 +683,6 @@
   text-align: right;
 }
 
-
 /* ========================================== */
 /* COLUNA DIREITA */
 /* ========================================== */
@@ -724,7 +703,6 @@
 .card-informacao:last-child {
   margin-bottom: 0;
 }
-
 
 /* ========================================== */
 /* TÍTULO DOS CARDS */
@@ -761,7 +739,6 @@
   line-height: 1.75;
 }
 
-
 /* ========================================== */
 /* CORES DOS CARDS INFORMATIVOS */
 /* ========================================== */
@@ -774,7 +751,6 @@
   color: var(--azul);
 }
 
-
 .card-dica {
   background-color: #f0faf5;
 }
@@ -782,7 +758,6 @@
 .card-dica .titulo-card {
   color: #16866e;
 }
-
 
 .card-atencao {
   background-color: #fff8eb;
@@ -792,7 +767,6 @@
   color: #e17b00;
 }
 
-
 .card-sabia {
   background-color: #f6f2ff;
 }
@@ -800,7 +774,6 @@
 .card-sabia .titulo-card {
   color: #4530b8;
 }
-
 
 .card-lembrete {
   background-color: #f2f6ff;
@@ -810,7 +783,6 @@
   color: var(--azul);
 }
 
-
 /* ========================================== */
 /* ELEMENTO HIDDEN */
 /* ========================================== */
@@ -819,13 +791,234 @@
   display: none;
 }
 
+/* ========================================== */
+/* QUIZ DO MÓDULO */
+/* ========================================== */
+
+.quiz-modulo {
+  width: 100%;
+
+  margin-top: 25px;
+  padding: 22px;
+
+  background-color: #ffffff;
+
+  border: 1px solid var(--borda);
+  border-radius: 12px;
+
+  box-sizing: border-box;
+}
+
+/* ========================================== */
+/* CABEÇALHO DO QUIZ */
+/* ========================================== */
+
+.quiz-cabecalho {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 14px;
+
+  margin-bottom: 20px;
+}
+
+.quiz-icone {
+  width: 44px;
+  height: 44px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #eff9f3;
+
+  border-radius: 50%;
+
+  color: #16866e;
+
+  font-size: 1.35rem;
+}
+
+.quiz-identificacao {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #16866e;
+
+  font-size: 0.85rem;
+  font-weight: 600;
+
+  text-transform: uppercase;
+}
+
+.quiz-cabecalho h2 {
+  margin: 0;
+
+  color: #151515;
+
+  font-size: 1.2rem;
+  font-weight: 600;
+
+  line-height: 1.45;
+}
+
+/* ========================================== */
+/* ALTERNATIVAS */
+/* ========================================== */
+
+.quiz-alternativas {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.opcao-quiz {
+  width: 100%;
+  min-height: 60px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+
+  padding: 13px 16px;
+
+  background-color: #ffffff;
+
+  border: 1.5px solid var(--borda);
+  border-radius: 10px;
+
+  color: #151515;
+
+  text-align: left;
+
+  font-family: inherit;
+  font-size: 0.95rem;
+  line-height: 1.5;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.opcao-quiz:hover:not(:disabled) {
+  background-color: var(--fundo);
+
+  border-color: var(--azul);
+}
+
+.opcao-quiz:focus-visible {
+  outline: 3px solid var(--azul);
+  outline-offset: 2px;
+}
+
+.opcao-quiz:disabled {
+  cursor: default;
+}
+
+/* ========================================== */
+/* LETRA DA ALTERNATIVA */
+/* ========================================== */
+
+.letra-alternativa {
+  width: 34px;
+  height: 34px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #e9eaec;
+
+  border-radius: 50%;
+
+  color: #151515;
+
+  font-weight: 600;
+}
+
+/* ========================================== */
+/* RESPOSTA CORRETA */
+/* ========================================== */
+
+.opcao-quiz.correta {
+  background-color: #eff9f3;
+
+  border-color: #16866e;
+}
+
+.opcao-quiz.correta .letra-alternativa {
+  background-color: #16866e;
+
+  color: #ffffff;
+}
+
+/* ========================================== */
+/* RESPOSTA ERRADA */
+/* ========================================== */
+
+.opcao-quiz.errada {
+  background-color: #fff3f1;
+
+  border-color: #c94b3c;
+}
+
+.opcao-quiz.errada .letra-alternativa {
+  background-color: #c94b3c;
+
+  color: #ffffff;
+}
+
+/* ========================================== */
+/* FEEDBACK */
+/* ========================================== */
+
+.quiz-feedback {
+  margin-top: 16px;
+  padding: 14px 16px;
+
+  border-radius: 10px;
+
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.quiz-feedback.correto {
+  background-color: #eff9f3;
+
+  border: 1px solid #ccebdd;
+
+  color: #116a58;
+}
+
+.quiz-feedback.errado {
+  background-color: #fff3f1;
+
+  border: 1px solid #f0d1cc;
+
+  color: #9d382c;
+}
+
+/* ========================================== */
+/* HIDDEN */
+/* ========================================== */
+
+.quiz-modulo[hidden],
+.quiz-feedback[hidden] {
+  display: none;
+}
 
 /* ========================================== */
 /* RESPONSIVIDADE */
 /* ========================================== */
 
 @media (max-width: 1200px) {
-
   .curso-layout {
     grid-template-columns: 250px minmax(0, 1fr) 260px;
   }
@@ -841,16 +1034,13 @@
   .btn-aula {
     min-width: 160px;
   }
-
 }
-
 
 /* ========================================== */
 /* TABLETS */
 /* ========================================== */
 
 @media (max-width: 1000px) {
-
   .curso-layout {
     grid-template-columns: 230px minmax(0, 1fr);
   }
@@ -867,16 +1057,13 @@
   .card-informacao {
     margin-bottom: 0;
   }
-
 }
-
 
 /* ========================================== */
 /* TABLETS PEQUENOS */
 /* ========================================== */
 
 @media (max-width: 750px) {
-
   .pagina-curso {
     padding: 15px 10px 30px;
   }
@@ -934,16 +1121,13 @@
   .btn-aula.proxima {
     margin-left: 0;
   }
-
 }
-
 
 /* ========================================== */
 /* CELULARES */
 /* ========================================== */
 
 @media (max-width: 500px) {
-
   .pagina-curso {
     padding: 10px 8px 25px;
   }
@@ -981,15 +1165,28 @@
     margin-top: 25px;
   }
 
-}
+  .quiz-modulo {
+    padding: 17px 14px;
+  }
 
+  .quiz-cabecalho h2 {
+    font-size: 1.05rem;
+  }
+
+  .opcao-quiz {
+    min-height: 58px;
+
+    padding: 12px;
+
+    font-size: 0.9rem;
+  }
+}
 
 /* ========================================== */
 /* CELULARES PEQUENOS */
 /* ========================================== */
 
 @media (max-width: 380px) {
-
   .cabecalho-aula h1 {
     font-size: 1.4rem;
   }
@@ -1019,5 +1216,4 @@
   .informacoes-modulo span {
     font-size: 0.78rem;
   }
-
 }

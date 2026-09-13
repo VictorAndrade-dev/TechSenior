@@ -5,11 +5,22 @@ import {
   salvarProgressoCurso,
 } from "./ServicoProgresso.js";
 
+import {
+  listarModulosDoCurso,
+  listarConteudosDoModulo,
+  buscarQuizDoModulo,
+  listarQuestoesDoQuiz,
+  listarAlternativasDaQuestao,
+} from "../dataconnect-generated/esm/index.esm.js";
+
 // ==========================================
 // CONFIGURAÇÕES DO CURSO
 // ==========================================
 
 const ID_CURSO = "celular";
+
+const ID_CURSO_SQL =
+  "7a831a7c8c3c41768575f4e46a3df222";
 
 let modulos = [];
 let moduloAtual = 0;
@@ -19,6 +30,18 @@ let modulosConcluidos = [];
 // ==========================================
 // ELEMENTOS DA PÁGINA
 // ==========================================
+
+const quizModulo =
+  document.getElementById("quizModulo");
+
+const quizPergunta =
+  document.getElementById("quizPergunta");
+
+const quizAlternativas =
+  document.getElementById("quizAlternativas");
+
+const quizFeedback =
+  document.getElementById("quizFeedback");
 
 const modulosContainer =
   document.getElementById("modulosContainer");
@@ -115,14 +138,23 @@ onAuthStateChanged(auth, async (usuario) => {
 
 async function inicializarCurso(usuario) {
 
+  console.log("1 - Buscando módulos no SQL");
+
   await carregarModulos();
 
+  console.log(
+    "2 - Módulos carregados:",
+    modulos
+  );
+
   if (modulos.length === 0) {
-
     mostrarMensagemSemModulos();
-
     return;
   }
+
+  console.log(
+    "3 - Buscando progresso no Firestore"
+  );
 
   const progresso =
     await carregarProgressoCurso(
@@ -131,19 +163,21 @@ async function inicializarCurso(usuario) {
       modulos.length
     );
 
-  moduloAtual = progresso.moduloAtual;
+  console.log(
+    "4 - Progresso carregado:",
+    progresso
+  );
+
+  moduloAtual =
+    progresso.moduloAtual;
 
   modulosConcluidos =
     progresso.modulosConcluidos;
 
   atualizarProgresso();
-
   renderizarModulos();
-
   carregarModulo(moduloAtual);
-
 }
-
 
 // ==========================================
 // CARREGAR MÓDULOS DO FIRESTORE
@@ -151,34 +185,27 @@ async function inicializarCurso(usuario) {
 
 async function carregarModulos() {
 
-  const referenciaModulos =
-    collection(
-      db,
-      "cursos",
-      ID_CURSO,
-      "modulos"
-    );
-
-  const consulta =
-    query(
-      referenciaModulos,
-      orderBy("ordem", "asc")
-    );
-
   const resultado =
-    await getDocs(consulta);
+    await listarModulosDoCurso({
+      cursoId: ID_CURSO_SQL,
+    });
 
-  modulos = resultado.docs.map((documento) => {
+  const dados =
+    resultado.data?.modulos || [];
+
+  modulos = dados.map((modulo) => {
 
     return {
-      id: documento.id,
-      ...documento.data(),
+      ...modulo,
+
+      // A interface atual usa "titulo",
+      // enquanto o SQL usa "nome".
+      titulo: modulo.nome,
     };
 
   });
 
 }
-
 
 // ==========================================
 // RENDERIZAR LISTA DE MÓDULOS
@@ -186,7 +213,9 @@ async function carregarModulos() {
 
 function renderizarModulos() {
 
-  modulosContainer.innerHTML = "";
+  modulosContainer
+    .querySelectorAll(".modulo")
+    .forEach((elemento) => elemento.remove());
 
   modulos.forEach((modulo, indice) => {
 
@@ -319,7 +348,7 @@ function renderizarModulos() {
 // CARREGAR MÓDULO SELECIONADO
 // ==========================================
 
-function carregarModulo(indice) {
+async function carregarModulo(indice) {
 
   if (
     indice < 0 ||
@@ -333,7 +362,95 @@ function carregarModulo(indice) {
 
   const modulo =
     modulos[indice];
+  const resultadoConteudos =
+    await listarConteudosDoModulo({
+      moduloId: modulo.id,
+    });
 
+  const conteudos =
+    resultadoConteudos.data?.conteudoModulos || [];
+
+
+  // ========================================
+  // CONVERTER CONTEÚDOS DO SQL
+  // PARA O FORMATO DA INTERFACE ATUAL
+  // ========================================
+
+  modulo.introducao = "";
+  modulo.conteudo = "";
+  modulo.dica = "";
+  modulo.importante = "";
+  modulo.altImagem = "";
+
+
+  // TEXTO
+
+  const blocoTexto =
+    conteudos.find(
+      (item) => item.tipo === "texto"
+    );
+
+  if (blocoTexto) {
+
+    modulo.introducao =
+      blocoTexto.conteudo || "";
+
+  }
+
+
+  // IMAGEM
+
+  const blocoImagem =
+    conteudos.find(
+      (item) => item.tipo === "imagem"
+    );
+
+  if (
+    blocoImagem &&
+    blocoImagem.url
+  ) {
+
+    modulo.imagem =
+      blocoImagem.url;
+
+    modulo.altImagem =
+      blocoImagem.altTexto || "";
+
+  } else {
+
+    modulo.imagem = null;
+
+  }
+
+
+  // IMPORTANTE
+
+  const blocoImportante =
+    conteudos.find(
+      (item) => item.tipo === "importante"
+    );
+
+  if (blocoImportante) {
+
+    modulo.importante =
+      blocoImportante.conteudo || "";
+
+  }
+
+
+  // DICA
+
+  const blocoDica =
+    conteudos.find(
+      (item) => item.tipo === "dica"
+    );
+
+  if (blocoDica) {
+
+    modulo.dica =
+      blocoDica.conteudo || "";
+
+  }
 
   // ========================================
   // CABEÇALHO
@@ -354,7 +471,7 @@ function carregarModulo(indice) {
   // ========================================
 
   renderizarConteudo(modulo);
-
+  await carregarQuizModulo(modulo);
 
   // ========================================
   // INFORMAÇÕES LATERAIS
@@ -546,6 +663,251 @@ function renderizarConteudo(modulo) {
 
 }
 
+// ==========================================
+// CARREGAR QUIZ DO MÓDULO
+// ==========================================
+
+async function carregarQuizModulo(modulo) {
+
+  // Limpa o quiz anterior
+  quizModulo.hidden = true;
+
+  quizPergunta.textContent = "";
+
+  quizAlternativas.innerHTML = "";
+
+  quizFeedback.textContent = "";
+  quizFeedback.className = "quiz-feedback";
+  quizFeedback.hidden = true;
+
+
+  // ========================================
+  // BUSCAR QUIZ
+  // ========================================
+
+  const resultadoQuiz =
+    await buscarQuizDoModulo({
+      moduloId: modulo.id,
+    });
+
+  const quiz =
+    resultadoQuiz.data?.quizzes?.[0];
+
+  if (!quiz) {
+    return;
+  }
+
+
+  // ========================================
+  // BUSCAR QUESTÃO
+  // ========================================
+
+  const resultadoQuestoes =
+    await listarQuestoesDoQuiz({
+      quizId: quiz.id,
+    });
+
+  const questao =
+    resultadoQuestoes.data?.questaoQuizs?.[0];
+
+  if (!questao) {
+    return;
+  }
+
+
+  // ========================================
+  // BUSCAR ALTERNATIVAS
+  // ========================================
+
+  const resultadoAlternativas =
+    await listarAlternativasDaQuestao({
+      questaoId: questao.id,
+    });
+
+  const alternativas =
+    resultadoAlternativas.data?.alternativaQuizs || [];
+
+  if (alternativas.length === 0) {
+    return;
+  }
+
+
+  // ========================================
+  // PERGUNTA
+  // ========================================
+
+  quizPergunta.textContent =
+    questao.pergunta;
+
+
+  // ========================================
+  // ALTERNATIVAS
+  // ========================================
+
+  const letras =
+    ["A", "B", "C", "D"];
+
+  alternativas.forEach(
+    (alternativa, indice) => {
+
+      const botao =
+        document.createElement("button");
+
+      botao.type = "button";
+
+      botao.className =
+        "opcao-quiz";
+
+
+      // Letra
+      const letra =
+        document.createElement("span");
+
+      letra.className =
+        "letra-alternativa";
+
+      letra.textContent =
+        letras[indice] || indice + 1;
+
+
+      // Texto
+      const texto =
+        document.createElement("span");
+
+      texto.textContent =
+        alternativa.texto;
+
+
+      botao.appendChild(letra);
+      botao.appendChild(texto);
+
+
+      botao.addEventListener(
+        "click",
+        () => {
+
+          responderQuiz(
+            botao,
+            alternativa,
+            alternativas
+          );
+
+        }
+      );
+
+
+      quizAlternativas.appendChild(
+        botao
+      );
+
+    }
+  );
+
+
+  quizModulo.hidden = false;
+
+}
+
+
+// ==========================================
+// RESPONDER QUIZ
+// ==========================================
+
+function responderQuiz(
+  botaoSelecionado,
+  alternativaSelecionada,
+  alternativas
+) {
+
+  const botoes =
+    Array.from(
+      quizAlternativas.querySelectorAll(
+        ".opcao-quiz"
+      )
+    );
+
+
+  // ========================================
+  // BLOQUEAR RESPOSTAS
+  // ========================================
+
+  botoes.forEach(
+    (botao) => {
+
+      botao.disabled = true;
+
+    }
+  );
+
+
+  // ========================================
+  // RESPOSTA CORRETA
+  // ========================================
+
+  if (alternativaSelecionada.correta) {
+
+    botaoSelecionado.classList.add(
+      "correta"
+    );
+
+    quizFeedback.classList.add(
+      "correto"
+    );
+
+  }
+
+
+  // ========================================
+  // RESPOSTA ERRADA
+  // ========================================
+
+  else {
+
+    botaoSelecionado.classList.add(
+      "errada"
+    );
+
+    quizFeedback.classList.add(
+      "errado"
+    );
+
+
+    // Mostrar também qual era a correta
+
+    const indiceCorreta =
+      alternativas.findIndex(
+        (alternativa) =>
+          alternativa.correta === true
+      );
+
+    if (
+      indiceCorreta >= 0 &&
+      botoes[indiceCorreta]
+    ) {
+
+      botoes[indiceCorreta]
+        .classList.add("correta");
+
+    }
+
+  }
+
+
+  // ========================================
+  // FEEDBACK
+  // ========================================
+
+  quizFeedback.textContent =
+    alternativaSelecionada.explicacao ||
+    (
+      alternativaSelecionada.correta
+        ? "Muito bem! Resposta correta."
+        : "Essa não é a resposta correta."
+    );
+
+  quizFeedback.hidden = false;
+
+}
 
 // ==========================================
 // FORMATAR TEXTO

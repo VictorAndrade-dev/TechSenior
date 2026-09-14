@@ -1,8 +1,189 @@
 import { auth } from "./Firebase-config.js";
 
 import {
+  listarCursos,
+} from "../dataconnect-generated/esm/index.esm.js";
+
+import {
   onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+
+// ==========================================
+// CARREGAR CURSOS DO SQL CONNECT
+// ==========================================
+
+async function carregarCursosDoBanco() {
+
+  try {
+
+    const resultado =
+      await listarCursos();
+
+    const cursos =
+      resultado.data?.cursos || [];
+
+    console.log(
+      "Cursos carregados do PostgreSQL:",
+      cursos
+    );
+
+
+    // ======================================
+    // CURSO CELULAR
+    // ======================================
+
+    const cursoCelular =
+      cursos.find(
+        (curso) =>
+          curso.id ===
+          "7a831a7c8c3c41768575f4e46a3df222"
+      );
+
+    if (!cursoCelular) {
+      return;
+    }
+
+
+    atualizarCursoCelular(
+      cursoCelular
+    );
+
+  } catch (erro) {
+
+    console.error(
+      "Erro ao carregar cursos:",
+      erro
+    );
+
+  }
+
+}
+
+
+// ==========================================
+// ATUALIZAR CARD/MODAL DO CURSO CELULAR
+// ==========================================
+
+function atualizarCursoCelular(curso) {
+
+  const botao =
+    document.querySelector(
+      '[data-modal="modalCelular"]'
+    );
+
+  const card =
+    botao?.closest(".card");
+
+  if (card) {
+
+    const icone =
+      card.querySelector("i");
+
+    const titulo =
+      card.querySelector("h3");
+
+    const descricao =
+      card.querySelector("p");
+
+
+    if (icone && curso.icone) {
+
+      icone.className =
+        curso.icone;
+
+    }
+
+
+    if (titulo) {
+
+      titulo.textContent =
+        curso.nome;
+
+    }
+
+
+    if (descricao) {
+
+      descricao.textContent =
+        curso.descricao || "";
+
+    }
+
+  }
+
+
+  // ========================================
+  // MODAL
+  // ========================================
+
+  const modal =
+    document.getElementById(
+      "modalCelular"
+    );
+
+  if (!modal) {
+    return;
+  }
+
+
+  const tituloModal =
+    modal.querySelector("h2");
+
+  const descricaoModal =
+    modal.querySelector(
+      ".modal-conteudo-curso > p"
+    );
+
+
+  if (tituloModal) {
+
+    tituloModal.innerHTML = `
+
+      <i class="${curso.icone || "fa-solid fa-mobile-screen"}"></i>
+
+      ${curso.nome}
+
+    `;
+
+  }
+
+
+  if (descricaoModal) {
+
+    descricaoModal.textContent =
+      curso.descricao || "";
+
+  }
+
+
+  // ========================================
+  // DIFICULDADE E DURAÇÃO
+  // ========================================
+
+  const informacoes =
+    modal.querySelectorAll(
+      ".info-item span"
+    );
+
+  if (informacoes[1]) {
+
+    informacoes[1].textContent =
+      curso.dificuldade;
+
+  }
+
+
+  if (informacoes[2]) {
+
+    informacoes[2].textContent =
+      `${curso.cargaHoraria} minutos`;
+
+  }
+
+}
+
+carregarCursosDoBanco();
 
 // ==========================================
 // CONTROLE UNIVERSAL DOS MODAIS DOS CURSOS

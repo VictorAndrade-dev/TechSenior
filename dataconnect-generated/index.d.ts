@@ -33,6 +33,7 @@ export interface BuscarCursoData {
     imagem?: string | null;
     icone?: string | null;
     ativo?: boolean | null;
+    publicado?: boolean | null;
   } & Curso_Key;
 }
 
@@ -70,6 +71,18 @@ export interface Certificado_Key {
 export interface ConteudoModulo_Key {
   id: UUIDString;
   __typename?: 'ConteudoModulo_Key';
+}
+
+export interface CriarAlternativaQuizData {
+  alternativaQuiz_insert: AlternativaQuiz_Key;
+}
+
+export interface CriarAlternativaQuizVariables {
+  questaoId: UUIDString;
+  texto: string;
+  correta: boolean;
+  explicacao?: string | null;
+  ordem: number;
 }
 
 export interface CriarConteudoModuloData {
@@ -113,9 +126,103 @@ export interface CriarModuloVariables {
   imagem?: string | null;
 }
 
+export interface CriarQuestaoQuizData {
+  questaoQuiz_insert: QuestaoQuiz_Key;
+}
+
+export interface CriarQuestaoQuizVariables {
+  quizId: UUIDString;
+  pergunta: string;
+  ordem: number;
+}
+
+export interface CriarQuizData {
+  quiz_insert: Quiz_Key;
+}
+
+export interface CriarQuizVariables {
+  cursoId: UUIDString;
+  moduloId?: UUIDString | null;
+  tipo: string;
+}
+
 export interface Curso_Key {
   id: UUIDString;
   __typename?: 'Curso_Key';
+}
+
+export interface EditarAlternativaQuizData {
+  alternativaQuiz_update?: AlternativaQuiz_Key | null;
+}
+
+export interface EditarAlternativaQuizVariables {
+  id: UUIDString;
+  texto: string;
+  correta: boolean;
+  explicacao?: string | null;
+  ordem: number;
+}
+
+export interface EditarConteudoModuloData {
+  conteudoModulo_update?: ConteudoModulo_Key | null;
+}
+
+export interface EditarConteudoModuloVariables {
+  id: UUIDString;
+  tipo: string;
+  titulo?: string | null;
+  conteudo?: string | null;
+  url?: string | null;
+  altTexto?: string | null;
+  ordem: number;
+}
+
+export interface EditarCursoData {
+  curso_update?: Curso_Key | null;
+}
+
+export interface EditarCursoVariables {
+  id: UUIDString;
+  nome: string;
+  descricao?: string | null;
+  dificuldade: string;
+  cargaHoraria: number;
+  imagem?: string | null;
+  icone?: string | null;
+  ativo: boolean;
+  publicado: boolean;
+}
+
+export interface EditarModuloData {
+  modulo_update?: Modulo_Key | null;
+}
+
+export interface EditarModuloVariables {
+  id: UUIDString;
+  nome: string;
+  descricao?: string | null;
+  ordem: number;
+  duracaoMinutos?: number | null;
+  imagem?: string | null;
+}
+
+export interface EditarQuestaoQuizData {
+  questaoQuiz_update?: QuestaoQuiz_Key | null;
+}
+
+export interface EditarQuestaoQuizVariables {
+  id: UUIDString;
+  pergunta: string;
+  ordem: number;
+}
+
+export interface EditarQuizData {
+  quiz_update?: Quiz_Key | null;
+}
+
+export interface EditarQuizVariables {
+  id: UUIDString;
+  tipo: string;
 }
 
 export interface ExcluirUsuarioPorEmailData {
@@ -156,6 +263,22 @@ export interface ListarConteudosDoModuloVariables {
   moduloId: UUIDString;
 }
 
+export interface ListarCursosAdminData {
+  cursos: ({
+    id: UUIDString;
+    nome: string;
+    descricao?: string | null;
+    dificuldade: string;
+    cargaHoraria: number;
+    imagem?: string | null;
+    icone?: string | null;
+    ativo?: boolean | null;
+    publicado?: boolean | null;
+    criadoEm?: TimestampString | null;
+    atualizadoEm?: TimestampString | null;
+  } & Curso_Key)[];
+}
+
 export interface ListarCursosData {
   cursos: ({
     id: UUIDString;
@@ -166,6 +289,7 @@ export interface ListarCursosData {
     imagem?: string | null;
     icone?: string | null;
     ativo?: boolean | null;
+    publicado?: boolean | null;
   } & Curso_Key)[];
 }
 
@@ -377,6 +501,126 @@ export const listarAlternativasDaQuestaoRef: ListarAlternativasDaQuestaoRef;
 
 export function listarAlternativasDaQuestao(vars: ListarAlternativasDaQuestaoVariables, options?: ExecuteQueryOptions): QueryPromise<ListarAlternativasDaQuestaoData, ListarAlternativasDaQuestaoVariables>;
 export function listarAlternativasDaQuestao(dc: DataConnect, vars: ListarAlternativasDaQuestaoVariables, options?: ExecuteQueryOptions): QueryPromise<ListarAlternativasDaQuestaoData, ListarAlternativasDaQuestaoVariables>;
+
+interface ListarCursosAdminRef {
+  /* Allow users to create refs without passing in DataConnect */
+  (): QueryRef<ListarCursosAdminData, undefined>;
+  /* Allow users to pass in custom DataConnect instances */
+  (dc: DataConnect): QueryRef<ListarCursosAdminData, undefined>;
+  operationName: string;
+}
+export const listarCursosAdminRef: ListarCursosAdminRef;
+
+export function listarCursosAdmin(options?: ExecuteQueryOptions): QueryPromise<ListarCursosAdminData, undefined>;
+export function listarCursosAdmin(dc: DataConnect, options?: ExecuteQueryOptions): QueryPromise<ListarCursosAdminData, undefined>;
+
+interface EditarCursoRef {
+  /* Allow users to create refs without passing in DataConnect */
+  (vars: EditarCursoVariables): MutationRef<EditarCursoData, EditarCursoVariables>;
+  /* Allow users to pass in custom DataConnect instances */
+  (dc: DataConnect, vars: EditarCursoVariables): MutationRef<EditarCursoData, EditarCursoVariables>;
+  operationName: string;
+}
+export const editarCursoRef: EditarCursoRef;
+
+export function editarCurso(vars: EditarCursoVariables): MutationPromise<EditarCursoData, EditarCursoVariables>;
+export function editarCurso(dc: DataConnect, vars: EditarCursoVariables): MutationPromise<EditarCursoData, EditarCursoVariables>;
+
+interface EditarModuloRef {
+  /* Allow users to create refs without passing in DataConnect */
+  (vars: EditarModuloVariables): MutationRef<EditarModuloData, EditarModuloVariables>;
+  /* Allow users to pass in custom DataConnect instances */
+  (dc: DataConnect, vars: EditarModuloVariables): MutationRef<EditarModuloData, EditarModuloVariables>;
+  operationName: string;
+}
+export const editarModuloRef: EditarModuloRef;
+
+export function editarModulo(vars: EditarModuloVariables): MutationPromise<EditarModuloData, EditarModuloVariables>;
+export function editarModulo(dc: DataConnect, vars: EditarModuloVariables): MutationPromise<EditarModuloData, EditarModuloVariables>;
+
+interface EditarConteudoModuloRef {
+  /* Allow users to create refs without passing in DataConnect */
+  (vars: EditarConteudoModuloVariables): MutationRef<EditarConteudoModuloData, EditarConteudoModuloVariables>;
+  /* Allow users to pass in custom DataConnect instances */
+  (dc: DataConnect, vars: EditarConteudoModuloVariables): MutationRef<EditarConteudoModuloData, EditarConteudoModuloVariables>;
+  operationName: string;
+}
+export const editarConteudoModuloRef: EditarConteudoModuloRef;
+
+export function editarConteudoModulo(vars: EditarConteudoModuloVariables): MutationPromise<EditarConteudoModuloData, EditarConteudoModuloVariables>;
+export function editarConteudoModulo(dc: DataConnect, vars: EditarConteudoModuloVariables): MutationPromise<EditarConteudoModuloData, EditarConteudoModuloVariables>;
+
+interface CriarQuizRef {
+  /* Allow users to create refs without passing in DataConnect */
+  (vars: CriarQuizVariables): MutationRef<CriarQuizData, CriarQuizVariables>;
+  /* Allow users to pass in custom DataConnect instances */
+  (dc: DataConnect, vars: CriarQuizVariables): MutationRef<CriarQuizData, CriarQuizVariables>;
+  operationName: string;
+}
+export const criarQuizRef: CriarQuizRef;
+
+export function criarQuiz(vars: CriarQuizVariables): MutationPromise<CriarQuizData, CriarQuizVariables>;
+export function criarQuiz(dc: DataConnect, vars: CriarQuizVariables): MutationPromise<CriarQuizData, CriarQuizVariables>;
+
+interface EditarQuizRef {
+  /* Allow users to create refs without passing in DataConnect */
+  (vars: EditarQuizVariables): MutationRef<EditarQuizData, EditarQuizVariables>;
+  /* Allow users to pass in custom DataConnect instances */
+  (dc: DataConnect, vars: EditarQuizVariables): MutationRef<EditarQuizData, EditarQuizVariables>;
+  operationName: string;
+}
+export const editarQuizRef: EditarQuizRef;
+
+export function editarQuiz(vars: EditarQuizVariables): MutationPromise<EditarQuizData, EditarQuizVariables>;
+export function editarQuiz(dc: DataConnect, vars: EditarQuizVariables): MutationPromise<EditarQuizData, EditarQuizVariables>;
+
+interface CriarQuestaoQuizRef {
+  /* Allow users to create refs without passing in DataConnect */
+  (vars: CriarQuestaoQuizVariables): MutationRef<CriarQuestaoQuizData, CriarQuestaoQuizVariables>;
+  /* Allow users to pass in custom DataConnect instances */
+  (dc: DataConnect, vars: CriarQuestaoQuizVariables): MutationRef<CriarQuestaoQuizData, CriarQuestaoQuizVariables>;
+  operationName: string;
+}
+export const criarQuestaoQuizRef: CriarQuestaoQuizRef;
+
+export function criarQuestaoQuiz(vars: CriarQuestaoQuizVariables): MutationPromise<CriarQuestaoQuizData, CriarQuestaoQuizVariables>;
+export function criarQuestaoQuiz(dc: DataConnect, vars: CriarQuestaoQuizVariables): MutationPromise<CriarQuestaoQuizData, CriarQuestaoQuizVariables>;
+
+interface EditarQuestaoQuizRef {
+  /* Allow users to create refs without passing in DataConnect */
+  (vars: EditarQuestaoQuizVariables): MutationRef<EditarQuestaoQuizData, EditarQuestaoQuizVariables>;
+  /* Allow users to pass in custom DataConnect instances */
+  (dc: DataConnect, vars: EditarQuestaoQuizVariables): MutationRef<EditarQuestaoQuizData, EditarQuestaoQuizVariables>;
+  operationName: string;
+}
+export const editarQuestaoQuizRef: EditarQuestaoQuizRef;
+
+export function editarQuestaoQuiz(vars: EditarQuestaoQuizVariables): MutationPromise<EditarQuestaoQuizData, EditarQuestaoQuizVariables>;
+export function editarQuestaoQuiz(dc: DataConnect, vars: EditarQuestaoQuizVariables): MutationPromise<EditarQuestaoQuizData, EditarQuestaoQuizVariables>;
+
+interface CriarAlternativaQuizRef {
+  /* Allow users to create refs without passing in DataConnect */
+  (vars: CriarAlternativaQuizVariables): MutationRef<CriarAlternativaQuizData, CriarAlternativaQuizVariables>;
+  /* Allow users to pass in custom DataConnect instances */
+  (dc: DataConnect, vars: CriarAlternativaQuizVariables): MutationRef<CriarAlternativaQuizData, CriarAlternativaQuizVariables>;
+  operationName: string;
+}
+export const criarAlternativaQuizRef: CriarAlternativaQuizRef;
+
+export function criarAlternativaQuiz(vars: CriarAlternativaQuizVariables): MutationPromise<CriarAlternativaQuizData, CriarAlternativaQuizVariables>;
+export function criarAlternativaQuiz(dc: DataConnect, vars: CriarAlternativaQuizVariables): MutationPromise<CriarAlternativaQuizData, CriarAlternativaQuizVariables>;
+
+interface EditarAlternativaQuizRef {
+  /* Allow users to create refs without passing in DataConnect */
+  (vars: EditarAlternativaQuizVariables): MutationRef<EditarAlternativaQuizData, EditarAlternativaQuizVariables>;
+  /* Allow users to pass in custom DataConnect instances */
+  (dc: DataConnect, vars: EditarAlternativaQuizVariables): MutationRef<EditarAlternativaQuizData, EditarAlternativaQuizVariables>;
+  operationName: string;
+}
+export const editarAlternativaQuizRef: EditarAlternativaQuizRef;
+
+export function editarAlternativaQuiz(vars: EditarAlternativaQuizVariables): MutationPromise<EditarAlternativaQuizData, EditarAlternativaQuizVariables>;
+export function editarAlternativaQuiz(dc: DataConnect, vars: EditarAlternativaQuizVariables): MutationPromise<EditarAlternativaQuizData, EditarAlternativaQuizVariables>;
 
 interface CadastrarUsuarioRef {
   /* Allow users to create refs without passing in DataConnect */

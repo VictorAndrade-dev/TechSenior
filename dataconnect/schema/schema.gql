@@ -23,6 +23,7 @@ type Curso @table {
   icone: String
 
   ativo: Boolean @default(value: true)
+  publicado: Boolean @default(value: false)
 
   criadoEm: Timestamp @default(expr: "request.time")
   atualizadoEm: Timestamp @default(expr: "request.time")

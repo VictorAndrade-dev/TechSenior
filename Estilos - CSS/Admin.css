@@ -1,0 +1,331 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    background: #f5f7f9;
+    font-family: Arial, sans-serif;
+    color: #17212b;
+}
+
+
+/* ============================= */
+/* MENU */
+/* ============================= */
+
+.menu-admin {
+    width: 250px;
+    min-height: 100vh;
+    padding: 24px 18px;
+    background: #123b5d;
+    color: white;
+}
+
+.logo-admin {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-bottom: 40px;
+
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.logo-admin img {
+    width: 48px;
+}
+
+.menu-admin nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.menu-item {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 14px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: transparent;
+    color: white;
+
+    text-decoration: none;
+    font-size: 1rem;
+
+    cursor: pointer;
+}
+
+.menu-item.ativo,
+.menu-item:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+
+/* ============================= */
+/* CONTEÚDO */
+/* ============================= */
+
+.conteudo-admin {
+    flex: 1;
+    padding: 40px;
+}
+
+.cabecalho-admin {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 30px;
+}
+
+.subtitulo {
+    color: #66727e;
+    margin-bottom: 4px;
+}
+
+.btn-novo {
+    padding: 13px 18px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #087f71;
+    color: white;
+
+    font-size: 1rem;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+/* ============================= */
+/* RESUMO */
+/* ============================= */
+
+.resumo-cursos {
+    display: grid;
+    grid-template-columns:
+        repeat(4, minmax(150px, 1fr));
+
+    gap: 18px;
+
+    margin-bottom: 32px;
+}
+
+.resumo-card {
+    padding: 20px;
+
+    background: white;
+
+    border-radius: 10px;
+
+    border: 1px solid #e0e5e9;
+}
+
+.resumo-card span {
+    display: block;
+
+    color: #66727e;
+
+    margin-bottom: 8px;
+}
+
+.resumo-card strong {
+    font-size: 1.7rem;
+}
+
+
+/* ============================= */
+/* CURSOS */
+/* ============================= */
+
+.secao-cursos {
+    background: white;
+
+    border: 1px solid #e0e5e9;
+    border-radius: 10px;
+
+    padding: 24px;
+}
+
+.titulo-secao {
+    margin-bottom: 24px;
+}
+
+.titulo-secao p {
+    margin-top: 5px;
+    color: #66727e;
+}
+
+.lista-cursos {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.curso-admin {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    padding: 18px;
+
+    border: 1px solid #e0e5e9;
+    border-radius: 10px;
+}
+
+.curso-icone {
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 10px;
+
+    background: #e8f5f2;
+    color: #087f71;
+
+    font-size: 1.4rem;
+}
+
+.curso-info {
+    flex: 1;
+}
+
+.curso-titulo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-bottom: 7px;
+}
+
+.curso-info p {
+    color: #66727e;
+    margin-bottom: 10px;
+}
+
+.curso-detalhes {
+    display: flex;
+    gap: 20px;
+
+    font-size: 0.9rem;
+    color: #66727e;
+}
+
+
+/* ============================= */
+/* STATUS */
+/* ============================= */
+
+.status {
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.status.publicado {
+    background: #e5f5ed;
+    color: #237a4b;
+}
+
+.status.rascunho {
+    background: #fff4d6;
+    color: #8a6500;
+}
+
+.status.desativado {
+    background: #eceff1;
+    color: #616161;
+}
+
+
+/* ============================= */
+/* BOTÕES */
+/* ============================= */
+
+.btn-editar {
+    padding: 10px 14px;
+
+    border: 1px solid #123b5d;
+    border-radius: 7px;
+
+    background: white;
+    color: #123b5d;
+
+    cursor: pointer;
+}
+
+.mensagem {
+    padding: 30px;
+    text-align: center;
+    color: #66727e;
+}
+
+
+/* ============================= */
+/* RESPONSIVO */
+/* ============================= */
+
+@media (max-width: 900px) {
+
+    .menu-admin {
+        width: 190px;
+    }
+
+    .resumo-cursos {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 650px) {
+
+    body {
+        display: block;
+    }
+
+    .menu-admin {
+        width: 100%;
+        min-height: auto;
+    }
+
+    .conteudo-admin {
+        padding: 20px;
+    }
+
+    .cabecalho-admin {
+        align-items: flex-start;
+        gap: 20px;
+        flex-direction: column;
+    }
+
+    .resumo-cursos {
+        grid-template-columns: 1fr;
+    }
+
+    .curso-admin {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+}

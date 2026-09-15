@@ -2,6 +2,7 @@ query ListarCursos @auth(level: PUBLIC) {
   cursos(
     where: {
       ativo: { eq: true }
+      publicado: { eq: true }
     }
     orderBy: [
       { nome: ASC }
@@ -15,8 +16,10 @@ query ListarCursos @auth(level: PUBLIC) {
     imagem
     icone
     ativo
+    publicado
   }
 }
+
 
 query BuscarCurso(
   $id: UUID!
@@ -30,8 +33,10 @@ query BuscarCurso(
     imagem
     icone
     ativo
+    publicado
   }
 }
+
 
 query ListarModulosDoCurso(
   $cursoId: UUID!
@@ -52,6 +57,7 @@ query ListarModulosDoCurso(
     imagem
   }
 }
+
 
 query ListarConteudosDoModulo(
   $moduloId: UUID!
@@ -74,6 +80,11 @@ query ListarConteudosDoModulo(
   }
 }
 
+
+# ==========================================
+# CRIAR CURSO
+# ==========================================
+
 mutation CriarCurso(
   $nome: String!
   $descricao: String
@@ -84,7 +95,13 @@ mutation CriarCurso(
   $ativo: Boolean!
 ) @auth(level: USER) @transaction {
 
-  query @redact {
+  query
+    @redact
+    @check(
+      expr: "response.query.usuarios.size() == 1"
+      message: "Administrador não encontrado."
+    ) {
+
     usuarios(
       where: {
         firebaseUid: { eq_expr: "auth.uid" }
@@ -114,6 +131,10 @@ mutation CriarCurso(
 }
 
 
+# ==========================================
+# CRIAR MÓDULO
+# ==========================================
+
 mutation CriarModulo(
   $cursoId: UUID!
   $nome: String!
@@ -123,7 +144,13 @@ mutation CriarModulo(
   $imagem: String
 ) @auth(level: USER) @transaction {
 
-  query @redact {
+  query
+    @redact
+    @check(
+      expr: "response.query.usuarios.size() == 1"
+      message: "Administrador não encontrado."
+    ) {
+
     usuarios(
       where: {
         firebaseUid: { eq_expr: "auth.uid" }
@@ -152,6 +179,10 @@ mutation CriarModulo(
 }
 
 
+# ==========================================
+# CRIAR CONTEÚDO DO MÓDULO
+# ==========================================
+
 mutation CriarConteudoModulo(
   $moduloId: UUID!
   $tipo: String!
@@ -162,7 +193,13 @@ mutation CriarConteudoModulo(
   $ordem: Int!
 ) @auth(level: USER) @transaction {
 
-  query @redact {
+  query
+    @redact
+    @check(
+      expr: "response.query.usuarios.size() == 1"
+      message: "Administrador não encontrado."
+    ) {
+
     usuarios(
       where: {
         firebaseUid: { eq_expr: "auth.uid" }
@@ -191,6 +228,11 @@ mutation CriarConteudoModulo(
   )
 }
 
+
+# ==========================================
+# QUIZ DO MÓDULO
+# ==========================================
+
 query BuscarQuizDoModulo(
   $moduloId: UUID!
 ) @auth(level: USER) {
@@ -206,6 +248,7 @@ query BuscarQuizDoModulo(
     moduloId
   }
 }
+
 
 query ListarQuestoesDoQuiz(
   $quizId: UUID!
@@ -224,6 +267,7 @@ query ListarQuestoesDoQuiz(
   }
 }
 
+
 query ListarAlternativasDaQuestao(
   $questaoId: UUID!
 ) @auth(level: USER) {
@@ -241,4 +285,463 @@ query ListarAlternativasDaQuestao(
     explicacao
     ordem
   }
+}
+
+
+# ==========================================
+# ADMIN - LISTAR CURSOS
+# ==========================================
+
+query ListarCursosAdmin @auth(level: USER) {
+
+  usuarios(
+    where: {
+      firebaseUid: { eq_expr: "auth.uid" }
+    }
+    limit: 1
+  )
+    @redact
+    @check(
+      message: "Usuário administrativo não encontrado."
+    ) {
+
+    tipoUsuario {
+      nome @check(
+        expr: "this == 'Administrador'"
+        message: "Apenas administradores podem acessar esta área."
+      )
+    }
+  }
+
+  cursos(
+    orderBy: [
+      { nome: ASC }
+    ]
+  ) {
+    id
+    nome
+    descricao
+    dificuldade
+    cargaHoraria
+    imagem
+    icone
+    ativo
+    publicado
+    criadoEm
+    atualizadoEm
+  }
+}
+
+
+# ==========================================
+# ADMIN - EDITAR CURSO
+# ==========================================
+
+mutation EditarCurso(
+  $id: UUID!
+  $nome: String!
+  $descricao: String
+  $dificuldade: String!
+  $cargaHoraria: Int!
+  $imagem: String
+  $icone: String
+  $ativo: Boolean!
+  $publicado: Boolean!
+) @auth(level: USER) @transaction {
+
+  query
+    @redact
+    @check(
+      expr: "response.query.usuarios.size() == 1"
+      message: "Administrador não encontrado."
+    ) {
+
+    usuarios(
+      where: {
+        firebaseUid: { eq_expr: "auth.uid" }
+      }
+      limit: 1
+    ) {
+      tipoUsuario {
+        nome @check(
+          expr: "this == 'Administrador'"
+          message: "Apenas administradores podem editar cursos."
+        )
+      }
+    }
+  }
+
+  curso_update(
+    id: $id
+    data: {
+      nome: $nome
+      descricao: $descricao
+      dificuldade: $dificuldade
+      cargaHoraria: $cargaHoraria
+      imagem: $imagem
+      icone: $icone
+      ativo: $ativo
+      publicado: $publicado
+      atualizadoEm_expr: "request.time"
+    }
+  )
+}
+
+# ==========================================
+# ADMIN - EDITAR MÓDULO
+# ==========================================
+
+mutation EditarModulo(
+  $id: UUID!
+  $nome: String!
+  $descricao: String
+  $ordem: Int!
+  $duracaoMinutos: Int
+  $imagem: String
+) @auth(level: USER) @transaction {
+
+  query
+    @redact
+    @check(
+      expr: "response.query.usuarios.size() == 1"
+      message: "Administrador não encontrado."
+    ) {
+
+    usuarios(
+      where: {
+        firebaseUid: { eq_expr: "auth.uid" }
+      }
+      limit: 1
+    ) {
+      tipoUsuario {
+        nome @check(
+          expr: "this == 'Administrador'"
+          message: "Apenas administradores podem editar módulos."
+        )
+      }
+    }
+  }
+
+  modulo_update(
+    id: $id
+    data: {
+      nome: $nome
+      descricao: $descricao
+      ordem: $ordem
+      duracaoMinutos: $duracaoMinutos
+      imagem: $imagem
+      atualizadoEm_expr: "request.time"
+    }
+  )
+}
+
+
+# ==========================================
+# ADMIN - EDITAR CONTEÚDO
+# ==========================================
+
+mutation EditarConteudoModulo(
+  $id: UUID!
+  $tipo: String!
+  $titulo: String
+  $conteudo: String
+  $url: String
+  $altTexto: String
+  $ordem: Int!
+) @auth(level: USER) @transaction {
+
+  query
+    @redact
+    @check(
+      expr: "response.query.usuarios.size() == 1"
+      message: "Administrador não encontrado."
+    ) {
+
+    usuarios(
+      where: {
+        firebaseUid: { eq_expr: "auth.uid" }
+      }
+      limit: 1
+    ) {
+      tipoUsuario {
+        nome @check(
+          expr: "this == 'Administrador'"
+          message: "Apenas administradores podem editar conteúdos."
+        )
+      }
+    }
+  }
+
+  conteudoModulo_update(
+    id: $id
+    data: {
+      tipo: $tipo
+      titulo: $titulo
+      conteudo: $conteudo
+      url: $url
+      altTexto: $altTexto
+      ordem: $ordem
+      atualizadoEm_expr: "request.time"
+    }
+  )
+}
+
+# ==========================================
+# ADMIN - CRIAR QUIZ
+# ==========================================
+
+mutation CriarQuiz(
+  $cursoId: UUID!
+  $moduloId: UUID
+  $tipo: String!
+) @auth(level: USER) @transaction {
+
+  query
+    @redact
+    @check(
+      expr: "response.query.usuarios.size() == 1"
+      message: "Administrador não encontrado."
+    ) {
+
+    usuarios(
+      where: {
+        firebaseUid: { eq_expr: "auth.uid" }
+      }
+      limit: 1
+    ) {
+      tipoUsuario {
+        nome @check(
+          expr: "this == 'Administrador'"
+          message: "Apenas administradores podem criar quizzes."
+        )
+      }
+    }
+  }
+
+  quiz_insert(
+    data: {
+      cursoId: $cursoId
+      moduloId: $moduloId
+      tipo: $tipo
+    }
+  )
+}
+
+
+# ==========================================
+# ADMIN - EDITAR QUIZ
+# ==========================================
+
+mutation EditarQuiz(
+  $id: UUID!
+  $tipo: String!
+) @auth(level: USER) @transaction {
+
+  query
+    @redact
+    @check(
+      expr: "response.query.usuarios.size() == 1"
+      message: "Administrador não encontrado."
+    ) {
+
+    usuarios(
+      where: {
+        firebaseUid: { eq_expr: "auth.uid" }
+      }
+      limit: 1
+    ) {
+      tipoUsuario {
+        nome @check(
+          expr: "this == 'Administrador'"
+          message: "Apenas administradores podem editar quizzes."
+        )
+      }
+    }
+  }
+
+  quiz_update(
+    id: $id
+    data: {
+      tipo: $tipo
+      atualizadoEm_expr: "request.time"
+    }
+  )
+}
+
+
+# ==========================================
+# ADMIN - CRIAR QUESTÃO
+# ==========================================
+
+mutation CriarQuestaoQuiz(
+  $quizId: UUID!
+  $pergunta: String!
+  $ordem: Int!
+) @auth(level: USER) @transaction {
+
+  query
+    @redact
+    @check(
+      expr: "response.query.usuarios.size() == 1"
+      message: "Administrador não encontrado."
+    ) {
+
+    usuarios(
+      where: {
+        firebaseUid: { eq_expr: "auth.uid" }
+      }
+      limit: 1
+    ) {
+      tipoUsuario {
+        nome @check(
+          expr: "this == 'Administrador'"
+          message: "Apenas administradores podem criar questões."
+        )
+      }
+    }
+  }
+
+  questaoQuiz_insert(
+    data: {
+      quizId: $quizId
+      pergunta: $pergunta
+      ordem: $ordem
+    }
+  )
+}
+
+
+# ==========================================
+# ADMIN - EDITAR QUESTÃO
+# ==========================================
+
+mutation EditarQuestaoQuiz(
+  $id: UUID!
+  $pergunta: String!
+  $ordem: Int!
+) @auth(level: USER) @transaction {
+
+  query
+    @redact
+    @check(
+      expr: "response.query.usuarios.size() == 1"
+      message: "Administrador não encontrado."
+    ) {
+
+    usuarios(
+      where: {
+        firebaseUid: { eq_expr: "auth.uid" }
+      }
+      limit: 1
+    ) {
+      tipoUsuario {
+        nome @check(
+          expr: "this == 'Administrador'"
+          message: "Apenas administradores podem editar questões."
+        )
+      }
+    }
+  }
+
+  questaoQuiz_update(
+    id: $id
+    data: {
+      pergunta: $pergunta
+      ordem: $ordem
+      atualizadoEm_expr: "request.time"
+    }
+  )
+}
+
+
+# ==========================================
+# ADMIN - CRIAR ALTERNATIVA
+# ==========================================
+
+mutation CriarAlternativaQuiz(
+  $questaoId: UUID!
+  $texto: String!
+  $correta: Boolean!
+  $explicacao: String
+  $ordem: Int!
+) @auth(level: USER) @transaction {
+
+  query
+    @redact
+    @check(
+      expr: "response.query.usuarios.size() == 1"
+      message: "Administrador não encontrado."
+    ) {
+
+    usuarios(
+      where: {
+        firebaseUid: { eq_expr: "auth.uid" }
+      }
+      limit: 1
+    ) {
+      tipoUsuario {
+        nome @check(
+          expr: "this == 'Administrador'"
+          message: "Apenas administradores podem criar alternativas."
+        )
+      }
+    }
+  }
+
+  alternativaQuiz_insert(
+    data: {
+      questaoId: $questaoId
+      texto: $texto
+      correta: $correta
+      explicacao: $explicacao
+      ordem: $ordem
+    }
+  )
+}
+
+
+# ==========================================
+# ADMIN - EDITAR ALTERNATIVA
+# ==========================================
+
+mutation EditarAlternativaQuiz(
+  $id: UUID!
+  $texto: String!
+  $correta: Boolean!
+  $explicacao: String
+  $ordem: Int!
+) @auth(level: USER) @transaction {
+
+  query
+    @redact
+    @check(
+      expr: "response.query.usuarios.size() == 1"
+      message: "Administrador não encontrado."
+    ) {
+
+    usuarios(
+      where: {
+        firebaseUid: { eq_expr: "auth.uid" }
+      }
+      limit: 1
+    ) {
+      tipoUsuario {
+        nome @check(
+          expr: "this == 'Administrador'"
+          message: "Apenas administradores podem editar alternativas."
+        )
+      }
+    }
+  }
+
+  alternativaQuiz_update(
+    id: $id
+    data: {
+      texto: $texto
+      correta: $correta
+      explicacao: $explicacao
+      ordem: $ordem
+      atualizadoEm_expr: "request.time"
+    }
+  )
 }

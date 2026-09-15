@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Painel Administrativo | TechSênior</title>
+
+    <link rel="stylesheet" href="Estilos - CSS/Admin.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <script type="importmap">
+    {
+        "imports": {
+            "firebase/data-connect": "https://www.gstatic.com/firebasejs/12.17.1/firebase-data-connect.js"
+        }
+    }
+    </script>
+</head>
+
+<body>
+
+    <aside class="menu-admin">
+
+        <div class="logo-admin">
+            <img
+                src="Imagens/Logotipo Sem Fundo.png"
+                alt="TechSênior"
+            >
+
+            <span>Admin</span>
+        </div>
+
+        <nav>
+            <button class="menu-item ativo">
+                <i class="fa-solid fa-book"></i>
+                Cursos
+            </button>
+
+            <a href="index.html" class="menu-item">
+                <i class="fa-solid fa-house"></i>
+                Voltar ao site
+            </a>
+        </nav>
+
+    </aside>
+
+
+    <main class="conteudo-admin">
+
+        <header class="cabecalho-admin">
+
+            <div>
+                <p class="subtitulo">Painel administrativo</p>
+                <h1>Gerenciar cursos</h1>
+            </div>
+
+            <button
+                id="btnNovoCurso"
+                class="btn-novo"
+                type="button"
+            >
+                <i class="fa-solid fa-plus"></i>
+                Novo curso
+            </button>
+
+        </header>
+
+
+        <section class="resumo-cursos">
+
+            <div class="resumo-card">
+                <span>Total</span>
+                <strong id="totalCursos">0</strong>
+            </div>
+
+            <div class="resumo-card">
+                <span>Publicados</span>
+                <strong id="totalPublicados">0</strong>
+            </div>
+
+            <div class="resumo-card">
+                <span>Rascunhos</span>
+                <strong id="totalRascunhos">0</strong>
+            </div>
+
+            <div class="resumo-card">
+                <span>Desativados</span>
+                <strong id="totalDesativados">0</strong>
+            </div>
+
+        </section>
+
+
+        <section class="secao-cursos">
+
+            <div class="titulo-secao">
+                <div>
+                    <h2>Cursos</h2>
+                    <p>Gerencie os cursos disponíveis na plataforma.</p>
+                </div>
+            </div>
+
+
+            <div id="estadoCarregamento" class="mensagem">
+                Carregando cursos...
+            </div>
+
+
+            <div
+                id="listaCursosAdmin"
+                class="lista-cursos"
+                hidden
+            ></div>
+
+        </section>
+
+    </main>
+
+
+    <script
+        type="module"
+        src="Script - Java/Admin.js"
+    ></script>
+
+</body>
+
+</html>

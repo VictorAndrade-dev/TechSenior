@@ -1,133 +1,316 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Painel Administrativo | TechSênior</title>
 
-    <link rel="stylesheet" href="Estilos - CSS/Admin.css">
+    <link rel="stylesheet" href="Estilos - CSS/Admin.css" />
 
     <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
 
     <script type="importmap">
-    {
+      {
         "imports": {
-            "firebase/data-connect": "https://www.gstatic.com/firebasejs/12.17.1/firebase-data-connect.js"
+          "firebase/data-connect": "https://www.gstatic.com/firebasejs/12.17.1/firebase-data-connect.js"
         }
-    }
+      }
     </script>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <aside class="menu-admin">
+      <div class="logo-admin">
+        <img src="Imagens/Logotipo Sem Fundo.png" alt="TechSênior" />
 
-        <div class="logo-admin">
-            <img
-                src="Imagens/Logotipo Sem Fundo.png"
-                alt="TechSênior"
-            >
+        <span>Admin</span>
+      </div>
 
-            <span>Admin</span>
-        </div>
+      <nav>
+        <button class="menu-item ativo">
+          <i class="fa-solid fa-book"></i>
+          Cursos
+        </button>
 
-        <nav>
-            <button class="menu-item ativo">
-                <i class="fa-solid fa-book"></i>
-                Cursos
-            </button>
-
-            <a href="index.html" class="menu-item">
-                <i class="fa-solid fa-house"></i>
-                Voltar ao site
-            </a>
-        </nav>
-
+        <a href="index.html" class="menu-item">
+          <i class="fa-solid fa-house"></i>
+          Voltar ao site
+        </a>
+      </nav>
     </aside>
 
-
     <main class="conteudo-admin">
+      <header class="cabecalho-admin">
+        <div>
+          <p class="subtitulo">Painel administrativo</p>
+          <h1>Gerenciar cursos</h1>
+        </div>
 
-        <header class="cabecalho-admin">
+        <button id="btnNovoCurso" class="btn-novo" type="button">
+          <i class="fa-solid fa-plus"></i>
+          Novo curso
+        </button>
+      </header>
 
-            <div>
-                <p class="subtitulo">Painel administrativo</p>
-                <h1>Gerenciar cursos</h1>
-            </div>
+      <section class="resumo-cursos">
+        <div class="resumo-card">
+          <span>Total</span>
+          <strong id="totalCursos">0</strong>
+        </div>
 
-            <button
-                id="btnNovoCurso"
-                class="btn-novo"
-                type="button"
-            >
-                <i class="fa-solid fa-plus"></i>
-                Novo curso
-            </button>
+        <div class="resumo-card">
+          <span>Publicados</span>
+          <strong id="totalPublicados">0</strong>
+        </div>
 
-        </header>
+        <div class="resumo-card">
+          <span>Rascunhos</span>
+          <strong id="totalRascunhos">0</strong>
+        </div>
 
+        <div class="resumo-card">
+          <span>Desativados</span>
+          <strong id="totalDesativados">0</strong>
+        </div>
+      </section>
 
-        <section class="resumo-cursos">
+      <section class="secao-cursos">
+        <div class="titulo-secao">
+          <div>
+            <h2>Cursos</h2>
+            <p>Gerencie os cursos disponíveis na plataforma.</p>
+          </div>
+        </div>
 
-            <div class="resumo-card">
-                <span>Total</span>
-                <strong id="totalCursos">0</strong>
-            </div>
+        <div id="estadoCarregamento" class="mensagem">Carregando cursos...</div>
 
-            <div class="resumo-card">
-                <span>Publicados</span>
-                <strong id="totalPublicados">0</strong>
-            </div>
-
-            <div class="resumo-card">
-                <span>Rascunhos</span>
-                <strong id="totalRascunhos">0</strong>
-            </div>
-
-            <div class="resumo-card">
-                <span>Desativados</span>
-                <strong id="totalDesativados">0</strong>
-            </div>
-
-        </section>
-
-
-        <section class="secao-cursos">
-
-            <div class="titulo-secao">
-                <div>
-                    <h2>Cursos</h2>
-                    <p>Gerencie os cursos disponíveis na plataforma.</p>
-                </div>
-            </div>
-
-
-            <div id="estadoCarregamento" class="mensagem">
-                Carregando cursos...
-            </div>
-
-
-            <div
-                id="listaCursosAdmin"
-                class="lista-cursos"
-                hidden
-            ></div>
-
-        </section>
-
+        <div id="listaCursosAdmin" class="lista-cursos" hidden></div>
+      </section>
     </main>
 
+    <div id="modalNovoCurso" class="modal" hidden>
+      <div class="modal-conteudo">
+        <div class="modal-cabecalho">
+          <div>
+            <p class="subtitulo">Novo curso</p>
+            <h2 id="tituloModalCurso">Criar curso</h2>
+          </div>
 
-    <script
-        type="module"
-        src="Script - Java/Admin.js"
-    ></script>
+          <button
+            id="btnFecharModal"
+            class="btn-fechar"
+            type="button"
+            aria-label="Fechar"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
 
-</body>
+        <form id="formNovoCurso">
+          <div class="campo">
+            <label for="nomeCurso"> Nome do curso </label>
 
+            <input
+              id="nomeCurso"
+              type="text"
+              required
+              minlength="3"
+              maxlength="70"
+              placeholder="Ex.: Segurança Digital"
+            />
+
+            <small class="ajuda-campo"> Entre 3 e 70 caracteres. </small>
+          </div>
+
+          <div class="campo campo-descricao">
+            <label for="descricaoCurso"> Descrição do curso </label>
+
+            <textarea
+              id="descricaoCurso"
+              rows="3"
+              minlength="30"
+              maxlength="500"
+              aria-describedby="ajudaDescricao erroDescricao"
+            ></textarea>
+
+            <div class="rodape-campo">
+              <small id="ajudaDescricao" class="ajuda-campo">
+                Explique de forma breve o que será aprendido no curso.
+              </small>
+
+              <small id="contadorDescricao" class="contador-caracteres">
+                0 / 500
+              </small>
+            </div>
+
+            <small id="erroDescricao" class="erro-campo" hidden>
+              Escreva pelo menos 30 caracteres ou deixe a descrição vazia.
+            </small>
+          </div>
+
+          <div class="linha-campos">
+            <div class="campo">
+              <label for="dificuldadeCurso"> Dificuldade </label>
+
+              <select id="dificuldadeCurso" required>
+                <option value="" selected disabled>Selecione</option>
+                <option value="Iniciante">Iniciante</option>
+                <option value="Intermediário">Intermediário</option>
+                <option value="Avançado">Avançado</option>
+              </select>
+            </div>
+
+            <div class="campo">
+              <label for="cargaHorariaCurso"> Duração estimada </label>
+
+              <select id="cargaHorariaCurso" required>
+                <option value="" selected disabled>Selecione</option>
+
+                <option value="15">15 minutos</option>
+                <option value="30">30 minutos</option>
+                <option value="45">45 minutos</option>
+                <option value="60">1 hora</option>
+                <option value="90">1h30</option>
+                <option value="120">2 horas</option>
+
+                <option value="personalizada">Personalizada...</option>
+              </select>
+
+              <small class="ajuda-campo">
+                Escolha uma duração aproximada do curso.
+              </small>
+            </div>
+
+            <div id="duracaoPersonalizada" class="duracao-personalizada" hidden>
+              <div class="campo">
+                <label for="duracaoHoras"> Horas </label>
+
+                <input
+                  id="duracaoHoras"
+                  type="number"
+                  min="0"
+                  max="24"
+                  value="0"
+                />
+              </div>
+
+              <div class="campo">
+                <label for="duracaoMinutos"> Minutos </label>
+
+                <input
+                  id="duracaoMinutos"
+                  type="number"
+                  min="0"
+                  max="59"
+                  step="5"
+                  value="0"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="campo">
+            <label for="iconeCurso"> Ícone do curso </label>
+
+            <select id="iconeCurso">
+              <option value="fa-solid fa-book">📘 Curso geral</option>
+
+              <option value="fa-solid fa-mobile-screen">📱 Celular</option>
+
+              <option value="fa-solid fa-globe">🌐 Internet</option>
+
+              <option value="fa-solid fa-users">👥 Redes sociais</option>
+
+              <option value="fa-solid fa-envelope">✉️ E-mail</option>
+
+              <option value="fa-solid fa-cart-shopping">🛒 Compras</option>
+
+              <option value="fa-solid fa-shield-halved">
+                🛡️ Segurança digital
+              </option>
+
+              <option value="fa-solid fa-map-location-dot">
+                🗺️ Mapas e transporte
+              </option>
+
+              <option value="fa-solid fa-comments">💬 Comunicação</option>
+
+              <option value="fa-solid fa-graduation-cap">🎓 Aprendizado</option>
+            </select>
+          </div>
+
+          <div id="campoStatusCurso" class="campo" hidden>
+            <label for="statusCurso"> Status do curso </label>
+
+            <select id="statusCurso">
+              <option value="rascunho">Rascunho</option>
+
+              <option value="publicado">Publicado</option>
+
+              <option value="desativado">Desativado</option>
+            </select>
+
+            <small class="ajuda-campo">
+              Cursos publicados ficam visíveis para os alunos.
+            </small>
+          </div>
+
+          <p class="aviso-rascunho">
+            O curso será criado como rascunho e não ficará visível para os
+            alunos até ser publicado.
+          </p>
+
+          <div class="acoes-formulario">
+            <button
+              id="btnExcluirCurso"
+              class="btn-excluir"
+              type="button"
+              hidden
+            >
+              <i class="fa-solid fa-trash"></i>
+              Excluir curso
+            </button>
+
+            <div
+              id="areaGerenciarModulos"
+              class="area-gerenciar-modulos"
+              hidden
+            >
+              <div>
+                <strong>Módulos do curso</strong>
+
+                <p>Organize as etapas e conteúdos deste curso.</p>
+              </div>
+
+              <button
+                id="btnGerenciarModulos"
+                class="btn-secundario"
+                type="button"
+              >
+                <i class="fa-solid fa-layer-group"></i>
+                Gerenciar módulos
+              </button>
+            </div>
+
+            <div class="acoes-formulario-direita">
+              <button id="btnCancelarCurso" class="btn-cancelar" type="button">
+                Cancelar
+              </button>
+
+              <button id="btnSalvarCurso" class="btn-novo" type="submit">
+                <i class="fa-solid fa-floppy-disk"></i>
+                Criar curso
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script type="module" src="Script - Java/Admin.js"></script>
+  </body>
 </html>

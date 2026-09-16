@@ -225,6 +225,14 @@ export interface EditarQuizVariables {
   tipo: string;
 }
 
+export interface ExcluirCursoData {
+  curso_delete?: Curso_Key | null;
+}
+
+export interface ExcluirCursoVariables {
+  id: UUIDString;
+}
+
 export interface ExcluirUsuarioPorEmailData {
   usuario_deleteMany: number;
 }
@@ -621,6 +629,18 @@ export const editarAlternativaQuizRef: EditarAlternativaQuizRef;
 
 export function editarAlternativaQuiz(vars: EditarAlternativaQuizVariables): MutationPromise<EditarAlternativaQuizData, EditarAlternativaQuizVariables>;
 export function editarAlternativaQuiz(dc: DataConnect, vars: EditarAlternativaQuizVariables): MutationPromise<EditarAlternativaQuizData, EditarAlternativaQuizVariables>;
+
+interface ExcluirCursoRef {
+  /* Allow users to create refs without passing in DataConnect */
+  (vars: ExcluirCursoVariables): MutationRef<ExcluirCursoData, ExcluirCursoVariables>;
+  /* Allow users to pass in custom DataConnect instances */
+  (dc: DataConnect, vars: ExcluirCursoVariables): MutationRef<ExcluirCursoData, ExcluirCursoVariables>;
+  operationName: string;
+}
+export const excluirCursoRef: ExcluirCursoRef;
+
+export function excluirCurso(vars: ExcluirCursoVariables): MutationPromise<ExcluirCursoData, ExcluirCursoVariables>;
+export function excluirCurso(dc: DataConnect, vars: ExcluirCursoVariables): MutationPromise<ExcluirCursoData, ExcluirCursoVariables>;
 
 interface CadastrarUsuarioRef {
   /* Allow users to create refs without passing in DataConnect */

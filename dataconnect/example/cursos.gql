@@ -745,3 +745,56 @@ mutation EditarAlternativaQuiz(
     }
   )
 }
+
+mutation ExcluirCurso(
+  $id: UUID!
+) @auth(level: USER) @transaction {
+
+  query
+    @redact
+    @check(
+      expr: "response.query.usuarios.size() == 1"
+      message: "Administrador não encontrado."
+    ) {
+
+    usuarios(
+      where: {
+        firebaseUid: {
+          eq_expr: "auth.uid"
+        }
+      }
+      limit: 1
+    ) {
+      tipoUsuario {
+        nome @check(
+          expr: "this == 'Administrador'"
+          message: "Apenas administradores podem excluir cursos."
+        )
+      }
+    }
+
+    cursos(
+      where: {
+        id: {
+          eq: $id
+        }
+      }
+      limit: 1
+    ) {
+
+      ativo @check(
+        expr: "this == true"
+        message: "Cursos desativados não podem ser excluídos diretamente."
+      )
+
+      publicado @check(
+        expr: "this == false"
+        message: "Apenas cursos em rascunho podem ser excluídos."
+      )
+    }
+  }
+
+  curso_delete(
+    id: $id
+  )
+}

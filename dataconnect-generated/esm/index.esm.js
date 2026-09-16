@@ -253,6 +253,18 @@ export function editarAlternativaQuiz(dcOrVars, vars) {
   return executeMutation(editarAlternativaQuizRef(dcInstance, inputVars));
 }
 
+export const excluirCursoRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return mutationRef(dcInstance, 'ExcluirCurso', inputVars);
+}
+excluirCursoRef.operationName = 'ExcluirCurso';
+
+export function excluirCurso(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars } = validateArgs(connectorConfig, dcOrVars, vars, true);
+  return executeMutation(excluirCursoRef(dcInstance, inputVars));
+}
+
 export const cadastrarUsuarioRef = (dcOrVars, vars) => {
   const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
   dcInstance._useGeneratedSdk();

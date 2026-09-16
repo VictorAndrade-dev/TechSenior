@@ -35,7 +35,7 @@ body {
   color: white;
 }
 
-.logo-admin {
+.admin-brand {
   display: flex;
   align-items: center;
 
@@ -43,12 +43,30 @@ body {
 
   margin-bottom: 40px;
 
-  font-size: 1.3rem;
-  font-weight: 700;
+  padding: 8px;
 }
 
-.logo-admin img {
-  width: 48px;
+.admin-brand>i {
+  font-size: 1.5rem;
+  color: #7dd8c9;
+}
+
+.admin-brand div {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-brand strong {
+  font-size: 1.05rem;
+}
+
+.admin-brand span {
+  margin-top: 2px;
+
+  font-size: 0.78rem;
+  font-weight: 400;
+
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .menu-admin nav {
@@ -241,6 +259,7 @@ body {
   border: 1px solid #e0e5e9;
   border-radius: 10px;
 
+  cursor: pointer;
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease;
@@ -250,6 +269,12 @@ body {
   border-color: #c8d2d9;
 
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.curso-admin:focus-visible {
+  outline: 3px solid rgba(8, 127, 113, 0.22);
+
+  outline-offset: 3px;
 }
 
 .curso-icone {
@@ -294,7 +319,7 @@ body {
   overflow-wrap: anywhere;
 }
 
-.curso-info > p {
+.curso-info>p {
   margin-bottom: 10px;
 
   color: #66727e;
@@ -350,6 +375,52 @@ body {
   background: #eceff1;
 
   color: #616161;
+}
+
+/* ============================= */
+/* AÇÕES DO CURSO */
+/* ============================= */
+
+.curso-acoes {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  flex-shrink: 0;
+}
+
+.btn-modulos {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  padding: 10px 14px;
+
+  border: 1px solid #ccd4da;
+  border-radius: 7px;
+
+  background: white;
+
+  color: #44515c;
+
+  font: inherit;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.btn-modulos:hover {
+  background: #f3f6f8;
+
+  border-color: #aebbc4;
 }
 
 /* ============================= */
@@ -748,71 +819,6 @@ body {
 }
 
 /* ============================= */
-/* PAINEL DE GERENCIAMENTO DE MÓDULOS */
-/* ============================= */
-
-.area-gerenciar-modulos {
-    display: flex;
-
-    justify-content: space-between;
-    align-items: center;
-
-    gap: 20px;
-
-    margin: 10px 0 24px;
-
-    padding: 16px;
-
-    background: #f4f8fb;
-
-    border: 1px solid #dce5eb;
-    border-radius: 9px;
-}
-
-.area-gerenciar-modulos[hidden] {
-    display: none;
-}
-
-.area-gerenciar-modulos p {
-    margin-top: 4px;
-
-    color: #66727e;
-
-    font-size: 0.9rem;
-}
-
-.btn-secundario {
-    flex-shrink: 0;
-
-    display: inline-flex;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 8px;
-
-    padding: 11px 15px;
-
-    border: 1px solid #123b5d;
-    border-radius: 8px;
-
-    background: white;
-
-    color: #123b5d;
-
-    font: inherit;
-    font-weight: 600;
-
-    cursor: pointer;
-}
-
-.btn-secundario:hover {
-    background: #123b5d;
-
-    color: white;
-}
-
-/* ============================= */
 /* RESPONSIVO */
 /* ============================= */
 
@@ -865,13 +871,17 @@ body {
 
   .curso-acoes {
     width: 100%;
+
+    flex-direction: column;
   }
 
+  .btn-modulos,
   .btn-editar {
     width: 100%;
 
     justify-content: center;
   }
+
 }
 
 @media (max-width: 600px) {
@@ -920,17 +930,4 @@ body {
     width: 100%;
   }
 
-  .area-gerenciar-modulos {
-        flex-direction: column;
-
-        align-items: stretch;
-    }
-
-    .btn-secundario {
-        width: 100%;
-    }
 }
-
-
-
-

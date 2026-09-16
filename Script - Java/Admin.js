@@ -84,14 +84,6 @@ const campoStatusCurso = document.getElementById("campoStatusCurso");
 const statusCurso = document.getElementById("statusCurso");
 
 // ==========================================
-// CONSTANTES DE ADMINISTRAÇÃO
-// ==========================================
-
-const areaGerenciarModulos = document.getElementById("areaGerenciarModulos");
-
-const btnGerenciarModulos = document.getElementById("btnGerenciarModulos");
-
-// ==========================================
 // AUTENTICAÇÃO
 // ==========================================
 
@@ -212,85 +204,121 @@ function mostrarCursos(cursos) {
 
     card.classList.add("curso-admin");
 
+    card.dataset.id = curso.id;
+
+    card.tabIndex = 0;
+
+    card.setAttribute("role", "button");
+
+    card.setAttribute(
+      "aria-label",
+      `Editar curso ${curso.nome}`,
+    );
+
     card.innerHTML = `
-        <div class="curso-icone">
+      <div class="curso-icone">
+        <i class="${curso.icone || "fa-solid fa-book"}"></i>
+      </div>
 
-          <i class="${curso.icone || "fa-solid fa-book"}"></i>
+      <div class="curso-info">
 
-        </div>
+        <div class="curso-titulo">
 
+          <h3>
+            ${curso.nome}
+          </h3>
 
-        <div class="curso-info">
-
-          <div class="curso-titulo">
-
-            <h3>
-              ${curso.nome}
-            </h3>
-
-            <span
-              class="status ${status.classe}"
-            >
-              ${status.texto}
-            </span>
-
-          </div>
-
-
-          <p>
-            ${curso.descricao || "Curso sem descrição."}
-          </p>
-
-
-          <div class="curso-detalhes">
-
-            <span>
-              <i
-                class="fa-solid fa-signal"
-              ></i>
-
-              ${curso.dificuldade}
-            </span>
-
-
-            <span>
-              <i
-                class="fa-regular fa-clock"
-              ></i>
-
-              ${formatarDuracao(curso.cargaHoraria)}
-            </span>
-
-          </div>
+          <span class="status ${status.classe}">
+            ${status.texto}
+          </span>
 
         </div>
 
+        <p>
+          ${curso.descricao || "Curso sem descrição."}
+        </p>
 
-        <div class="curso-acoes">
+        <div class="curso-detalhes">
 
-          <button
-            class="btn-editar"
-            data-id="${curso.id}"
-            type="button"
-          >
+          <span>
+            <i class="fa-solid fa-signal"></i>
+            ${curso.dificuldade}
+          </span>
 
-            <i
-              class="fa-solid fa-pen"
-            ></i>
-
-            Editar
-
-          </button>
+          <span>
+            <i class="fa-regular fa-clock"></i>
+            ${formatarDuracao(curso.cargaHoraria)}
+          </span>
 
         </div>
-      `;
+
+      </div>
+
+      <div class="curso-acoes">
+
+        <button
+          class="btn-modulos"
+          data-id="${curso.id}"
+          type="button"
+        >
+          <i class="fa-solid fa-layer-group"></i>
+          Módulos
+        </button>
+
+        <button
+          class="btn-editar"
+          data-id="${curso.id}"
+          type="button"
+        >
+          <i class="fa-solid fa-pen"></i>
+          Editar
+        </button>
+
+      </div>
+    `;
 
     listaCursosAdmin.appendChild(card);
   });
 
+  // ========================================
+  // CLICAR NO CARD
+  // ========================================
+
+  document.querySelectorAll(".curso-admin").forEach((card) => {
+    card.addEventListener("click", (evento) => {
+      if (evento.target.closest("button")) {
+        return;
+      }
+
+      abrirEdicaoCurso(card.dataset.id);
+    });
+
+    card.addEventListener("keydown", (evento) => {
+      if (evento.key === "Enter" || evento.key === " ") {
+        evento.preventDefault();
+
+        abrirEdicaoCurso(card.dataset.id);
+      }
+    });
+  });
+
+  // ========================================
+  // EDITAR
+  // ========================================
+
   document.querySelectorAll(".btn-editar").forEach((botao) => {
     botao.addEventListener("click", () => {
       abrirEdicaoCurso(botao.dataset.id);
+    });
+  });
+
+  // ========================================
+  // MÓDULOS
+  // ========================================
+
+  document.querySelectorAll(".btn-modulos").forEach((botao) => {
+    botao.addEventListener("click", () => {
+      abrirPaginaModulos(botao.dataset.id);
     });
   });
 }
@@ -413,8 +441,6 @@ function prepararNovoCurso() {
   statusCurso.value = "rascunho";
 
   btnExcluirCurso.hidden = true;
-
-  areaGerenciarModulos.hidden = true;
   
   atualizarContadorDescricao();
 
@@ -445,8 +471,6 @@ function abrirEdicaoCurso(id) {
   dificuldadeCurso.value = curso.dificuldade || "";
 
   campoStatusCurso.hidden = false;
-
-  areaGerenciarModulos.hidden = false;
 
   statusCurso.value = obterValorStatusCurso(curso);
 
@@ -634,8 +658,6 @@ function fecharModalNovoCurso() {
   statusCurso.value = "rascunho";
 
   btnExcluirCurso.hidden = true;
-
-  areaGerenciarModulos.hidden = true;
 
   atualizarContadorDescricao();
 

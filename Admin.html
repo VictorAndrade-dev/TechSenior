@@ -24,17 +24,20 @@
 
   <body>
     <aside class="menu-admin">
-      <div class="logo-admin">
-        <img src="Imagens/Logotipo Sem Fundo.png" alt="TechSênior" />
+      <div class="admin-brand">
+        <i class="fa-solid fa-shield-halved"></i>
 
-        <span>Admin</span>
+        <div>
+          <strong>TechSênior</strong>
+          <span>Painel Admin</span>
+        </div>
       </div>
 
       <nav>
-        <button class="menu-item ativo">
+        <a href="Admin.html" class="menu-item ativo">
           <i class="fa-solid fa-book"></i>
           Cursos
-        </button>
+        </a>
 
         <a href="index.html" class="menu-item">
           <i class="fa-solid fa-house"></i>
@@ -86,9 +89,15 @@
           </div>
         </div>
 
-        <div id="estadoCarregamento" class="mensagem">Carregando cursos...</div>
+        <div id="estadoCarregamento" class="mensagem">
+          Carregando cursos...
+        </div>
 
-        <div id="listaCursosAdmin" class="lista-cursos" hidden></div>
+        <div
+          id="listaCursosAdmin"
+          class="lista-cursos"
+          hidden
+        ></div>
       </section>
     </main>
 
@@ -112,7 +121,9 @@
 
         <form id="formNovoCurso">
           <div class="campo">
-            <label for="nomeCurso"> Nome do curso </label>
+            <label for="nomeCurso">
+              Nome do curso
+            </label>
 
             <input
               id="nomeCurso"
@@ -123,11 +134,15 @@
               placeholder="Ex.: Segurança Digital"
             />
 
-            <small class="ajuda-campo"> Entre 3 e 70 caracteres. </small>
+            <small class="ajuda-campo">
+              Entre 3 e 70 caracteres.
+            </small>
           </div>
 
           <div class="campo campo-descricao">
-            <label for="descricaoCurso"> Descrição do curso </label>
+            <label for="descricaoCurso">
+              Descrição do curso
+            </label>
 
             <textarea
               id="descricaoCurso"
@@ -138,46 +153,106 @@
             ></textarea>
 
             <div class="rodape-campo">
-              <small id="ajudaDescricao" class="ajuda-campo">
+              <small
+                id="ajudaDescricao"
+                class="ajuda-campo"
+              >
                 Explique de forma breve o que será aprendido no curso.
               </small>
 
-              <small id="contadorDescricao" class="contador-caracteres">
+              <small
+                id="contadorDescricao"
+                class="contador-caracteres"
+              >
                 0 / 500
               </small>
             </div>
 
-            <small id="erroDescricao" class="erro-campo" hidden>
+            <small
+              id="erroDescricao"
+              class="erro-campo"
+              hidden
+            >
               Escreva pelo menos 30 caracteres ou deixe a descrição vazia.
             </small>
           </div>
 
           <div class="linha-campos">
             <div class="campo">
-              <label for="dificuldadeCurso"> Dificuldade </label>
+              <label for="dificuldadeCurso">
+                Dificuldade
+              </label>
 
-              <select id="dificuldadeCurso" required>
-                <option value="" selected disabled>Selecione</option>
-                <option value="Iniciante">Iniciante</option>
-                <option value="Intermediário">Intermediário</option>
-                <option value="Avançado">Avançado</option>
+              <select
+                id="dificuldadeCurso"
+                required
+              >
+                <option
+                  value=""
+                  selected
+                  disabled
+                >
+                  Selecione
+                </option>
+
+                <option value="Iniciante">
+                  Iniciante
+                </option>
+
+                <option value="Intermediário">
+                  Intermediário
+                </option>
+
+                <option value="Avançado">
+                  Avançado
+                </option>
               </select>
             </div>
 
             <div class="campo">
-              <label for="cargaHorariaCurso"> Duração estimada </label>
+              <label for="cargaHorariaCurso">
+                Duração estimada
+              </label>
 
-              <select id="cargaHorariaCurso" required>
-                <option value="" selected disabled>Selecione</option>
+              <select
+                id="cargaHorariaCurso"
+                required
+              >
+                <option
+                  value=""
+                  selected
+                  disabled
+                >
+                  Selecione
+                </option>
 
-                <option value="15">15 minutos</option>
-                <option value="30">30 minutos</option>
-                <option value="45">45 minutos</option>
-                <option value="60">1 hora</option>
-                <option value="90">1h30</option>
-                <option value="120">2 horas</option>
+                <option value="15">
+                  15 minutos
+                </option>
 
-                <option value="personalizada">Personalizada...</option>
+                <option value="30">
+                  30 minutos
+                </option>
+
+                <option value="45">
+                  45 minutos
+                </option>
+
+                <option value="60">
+                  1 hora
+                </option>
+
+                <option value="90">
+                  1h30
+                </option>
+
+                <option value="120">
+                  2 horas
+                </option>
+
+                <option value="personalizada">
+                  Personalizada...
+                </option>
               </select>
 
               <small class="ajuda-campo">
@@ -185,9 +260,15 @@
               </small>
             </div>
 
-            <div id="duracaoPersonalizada" class="duracao-personalizada" hidden>
+            <div
+              id="duracaoPersonalizada"
+              class="duracao-personalizada"
+              hidden
+            >
               <div class="campo">
-                <label for="duracaoHoras"> Horas </label>
+                <label for="duracaoHoras">
+                  Horas
+                </label>
 
                 <input
                   id="duracaoHoras"
@@ -199,7 +280,9 @@
               </div>
 
               <div class="campo">
-                <label for="duracaoMinutos"> Minutos </label>
+                <label for="duracaoMinutos">
+                  Minutos
+                </label>
 
                 <input
                   id="duracaoMinutos"
@@ -214,20 +297,34 @@
           </div>
 
           <div class="campo">
-            <label for="iconeCurso"> Ícone do curso </label>
+            <label for="iconeCurso">
+              Ícone do curso
+            </label>
 
             <select id="iconeCurso">
-              <option value="fa-solid fa-book">📘 Curso geral</option>
+              <option value="fa-solid fa-book">
+                📘 Curso geral
+              </option>
 
-              <option value="fa-solid fa-mobile-screen">📱 Celular</option>
+              <option value="fa-solid fa-mobile-screen">
+                📱 Celular
+              </option>
 
-              <option value="fa-solid fa-globe">🌐 Internet</option>
+              <option value="fa-solid fa-globe">
+                🌐 Internet
+              </option>
 
-              <option value="fa-solid fa-users">👥 Redes sociais</option>
+              <option value="fa-solid fa-users">
+                👥 Redes sociais
+              </option>
 
-              <option value="fa-solid fa-envelope">✉️ E-mail</option>
+              <option value="fa-solid fa-envelope">
+                ✉️ E-mail
+              </option>
 
-              <option value="fa-solid fa-cart-shopping">🛒 Compras</option>
+              <option value="fa-solid fa-cart-shopping">
+                🛒 Compras
+              </option>
 
               <option value="fa-solid fa-shield-halved">
                 🛡️ Segurança digital
@@ -237,21 +334,37 @@
                 🗺️ Mapas e transporte
               </option>
 
-              <option value="fa-solid fa-comments">💬 Comunicação</option>
+              <option value="fa-solid fa-comments">
+                💬 Comunicação
+              </option>
 
-              <option value="fa-solid fa-graduation-cap">🎓 Aprendizado</option>
+              <option value="fa-solid fa-graduation-cap">
+                🎓 Aprendizado
+              </option>
             </select>
           </div>
 
-          <div id="campoStatusCurso" class="campo" hidden>
-            <label for="statusCurso"> Status do curso </label>
+          <div
+            id="campoStatusCurso"
+            class="campo"
+            hidden
+          >
+            <label for="statusCurso">
+              Status do curso
+            </label>
 
             <select id="statusCurso">
-              <option value="rascunho">Rascunho</option>
+              <option value="rascunho">
+                Rascunho
+              </option>
 
-              <option value="publicado">Publicado</option>
+              <option value="publicado">
+                Publicado
+              </option>
 
-              <option value="desativado">Desativado</option>
+              <option value="desativado">
+                Desativado
+              </option>
             </select>
 
             <small class="ajuda-campo">
@@ -275,33 +388,20 @@
               Excluir curso
             </button>
 
-            <div
-              id="areaGerenciarModulos"
-              class="area-gerenciar-modulos"
-              hidden
-            >
-              <div>
-                <strong>Módulos do curso</strong>
-
-                <p>Organize as etapas e conteúdos deste curso.</p>
-              </div>
-
+            <div class="acoes-formulario-direita">
               <button
-                id="btnGerenciarModulos"
-                class="btn-secundario"
+                id="btnCancelarCurso"
+                class="btn-cancelar"
                 type="button"
               >
-                <i class="fa-solid fa-layer-group"></i>
-                Gerenciar módulos
-              </button>
-            </div>
-
-            <div class="acoes-formulario-direita">
-              <button id="btnCancelarCurso" class="btn-cancelar" type="button">
                 Cancelar
               </button>
 
-              <button id="btnSalvarCurso" class="btn-novo" type="submit">
+              <button
+                id="btnSalvarCurso"
+                class="btn-novo"
+                type="submit"
+              >
                 <i class="fa-solid fa-floppy-disk"></i>
                 Criar curso
               </button>
@@ -311,6 +411,9 @@
       </div>
     </div>
 
-    <script type="module" src="Script - Java/Admin.js"></script>
+    <script
+      type="module"
+      src="Script - Java/Admin.js"
+    ></script>
   </body>
 </html>

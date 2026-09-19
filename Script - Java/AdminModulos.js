@@ -13,6 +13,7 @@ import {
   buscarCurso,
   listarModulosDoCurso,
   criarModulo,
+  editarModulo,
 } from "../dataconnect-generated/esm/index.esm.js";
 
 
@@ -72,6 +73,9 @@ const duracaoModuloMinutos =
 const btnSalvarModulo =
   document.getElementById("btnSalvarModulo");
 
+const tituloModalModulo =
+  document.getElementById("tituloModalModulo");
+
 
 // ==========================================
 // ID DO CURSO
@@ -99,6 +103,8 @@ if (!cursoId) {
 // ==========================================
 
 let modulosCarregados = [];
+
+let moduloEmEdicao = null;
 
 // ==========================================
 // AUTENTICAÇÃO
@@ -310,8 +316,28 @@ function mostrarModulos(modulos) {
 
         </div>
 
+        <div class="curso-acoes">
+          <button
+            class="btn-editar"
+            type="button"
+            data-modulo-id="${modulo.id}"
+          >
+            <i class="fa-solid fa-pen-to-square"></i>
+            Editar
+          </button>
+        </div>
+
       </div>
     `;
+
+    const btnEditarModulo =
+      card.querySelector("[data-modulo-id]");
+
+    btnEditarModulo.addEventListener("click", () => {
+      abrirEdicaoModulo(
+        btnEditarModulo.dataset.moduloId,
+      );
+    });
 
     listaModulosAdmin.appendChild(card);
   });
@@ -375,6 +401,8 @@ function formatarDuracao(totalMinutos) {
 // ==========================================
 
 btnNovoModulo.addEventListener("click", () => {
+  moduloEmEdicao = null;
+
   abrirModalModulo();
 });
 
@@ -394,6 +422,42 @@ function abrirModalModulo() {
   contadorDescricaoModulo.textContent =
     "0 / 500";
 
+  atualizarTextosDoModal();
+
+  modalModulo.hidden = false;
+
+  nomeModulo.focus();
+}
+
+function abrirEdicaoModulo(moduloId) {
+  const modulo =
+    modulosCarregados.find(
+      (item) => item.id === moduloId,
+    );
+
+  if (!modulo) {
+    alert("Módulo não encontrado.");
+
+    return;
+  }
+
+  moduloEmEdicao = modulo;
+
+  formModulo.reset();
+
+  nomeModulo.value = modulo.nome || "";
+
+  descricaoModulo.value = modulo.descricao || "";
+
+  contadorDescricaoModulo.textContent =
+    `${descricaoModulo.value.length} / 500`;
+
+  preencherDuracaoModulo(
+    modulo.duracaoMinutos,
+  );
+
+  atualizarTextosDoModal();
+
   modalModulo.hidden = false;
 
   nomeModulo.focus();
@@ -401,6 +465,8 @@ function abrirModalModulo() {
 
 function fecharModalModulo() {
   modalModulo.hidden = true;
+
+  moduloEmEdicao = null;
 
   formModulo.reset();
 
@@ -412,6 +478,62 @@ function fecharModalModulo() {
 
   contadorDescricaoModulo.textContent =
     "0 / 500";
+
+  atualizarTextosDoModal();
+}
+
+function atualizarTextosDoModal() {
+  const editando = moduloEmEdicao !== null;
+
+  tituloModalModulo.textContent = editando
+    ? "Editar módulo"
+    : "Criar módulo";
+
+  btnSalvarModulo.innerHTML = editando
+    ? `
+      <i class="fa-solid fa-floppy-disk"></i>
+      Salvar alterações
+    `
+    : `
+      <i class="fa-solid fa-floppy-disk"></i>
+      Criar módulo
+    `;
+}
+
+function preencherDuracaoModulo(duracaoMinutos) {
+  const duracoesPadrao = [
+    5,
+    10,
+    15,
+    20,
+    30,
+    45,
+    60,
+  ];
+
+  const duracao = Number(duracaoMinutos);
+
+  if (duracoesPadrao.includes(duracao)) {
+    duracaoModulo.value = String(duracao);
+
+    duracaoModuloPersonalizada.hidden = true;
+
+    duracaoModuloHoras.value = 0;
+
+    duracaoModuloMinutos.value = 0;
+
+    return;
+  }
+
+  duracaoModulo.value = "personalizada";
+
+  duracaoModuloPersonalizada.hidden = false;
+
+  duracaoModuloHoras.value =
+    Math.floor(duracao / 60);
+
+  duracaoModuloMinutos.value =
+    duracao % 60;
 }
 
 btnFecharModalModulo.addEventListener(
@@ -458,6 +580,9 @@ formModulo.addEventListener(
     const duracaoMinutos =
       obterDuracaoModuloEmMinutos();
 
+    const editando =
+      moduloEmEdicao !== null;
+
 
     // ======================================
     // VALIDAR NOME
@@ -495,54 +620,73 @@ formModulo.addEventListener(
 
 
     // ======================================
-    // CALCULAR PRÓXIMA ORDEM
-    // ======================================
-
-    const maiorOrdem =
-      modulosCarregados.length === 0
-        ? 0
-        : Math.max(
-            ...modulosCarregados.map(
-              (modulo) =>
-                Number(modulo.ordem) || 0,
-            ),
-          );
-
-    const novaOrdem =
-      maiorOrdem + 1;
-
-
-    // ======================================
     // SALVAR
     // ======================================
 
     btnSalvarModulo.disabled = true;
 
     btnSalvarModulo.textContent =
-      "Criando...";
+      editando
+        ? "Salvando..."
+        : "Criando...";
 
     try {
-      await criarModulo({
-        cursoId,
+      if (editando) {
+        await editarModulo({
+          id: moduloEmEdicao.id,
 
-        nome,
+          nome,
 
-        descricao:
-          descricao || null,
+          descricao:
+            descricao || null,
 
-        ordem:
-          novaOrdem,
+          ordem:
+            moduloEmEdicao.ordem,
 
-        duracaoMinutos,
+          duracaoMinutos,
 
-        imagem:
-          null,
-      });
+          imagem:
+            moduloEmEdicao.imagem ?? null,
+        });
 
+        alert(
+          "Módulo atualizado com sucesso!",
+        );
+      } else {
+        const maiorOrdem =
+          modulosCarregados.length === 0
+            ? 0
+            : Math.max(
+                ...modulosCarregados.map(
+                  (modulo) =>
+                    Number(modulo.ordem) || 0,
+                ),
+              );
 
-      alert(
-        "Módulo criado com sucesso!",
-      );
+        const novaOrdem =
+          maiorOrdem + 1;
+
+        await criarModulo({
+          cursoId,
+
+          nome,
+
+          descricao:
+            descricao || null,
+
+          ordem:
+            novaOrdem,
+
+          duracaoMinutos,
+
+          imagem:
+            null,
+        });
+
+        alert(
+          "Módulo criado com sucesso!",
+        );
+      }
 
       fecharModalModulo();
 
@@ -550,22 +694,23 @@ formModulo.addEventListener(
 
     } catch (erro) {
       console.error(
-        "Erro ao criar módulo:",
+        editando
+          ? "Erro ao atualizar módulo:"
+          : "Erro ao criar módulo:",
         erro,
       );
 
       alert(
-        "Não foi possível criar o módulo.",
+        editando
+          ? "Não foi possível atualizar o módulo."
+          : "Não foi possível criar o módulo.",
       );
 
     } finally {
       btnSalvarModulo.disabled =
         false;
 
-      btnSalvarModulo.innerHTML = `
-        <i class="fa-solid fa-floppy-disk"></i>
-        Criar módulo
-      `;
+      atualizarTextosDoModal();
     }
   },
 );

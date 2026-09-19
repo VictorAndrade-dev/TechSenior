@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Módulos do Curso | TechSênior</title>
+
+    <link rel="stylesheet" href="Estilos - CSS/Admin.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <script type="importmap">
+      {
+        "imports": {
+          "firebase/data-connect": "https://www.gstatic.com/firebasejs/12.17.1/firebase-data-connect.js"
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+    <aside class="menu-admin">
+      <div class="admin-brand">
+        <i class="fa-solid fa-shield-halved"></i>
+
+        <div>
+          <strong>TechSênior</strong>
+          <span>Painel Admin</span>
+        </div>
+      </div>
+
+      <nav>
+        <a href="Admin.html" class="menu-item">
+          <i class="fa-solid fa-book"></i>
+          Cursos
+        </a>
+
+        <a href="#" class="menu-item ativo">
+          <i class="fa-solid fa-layer-group"></i>
+          Módulos
+        </a>
+
+        <a href="index.html" class="menu-item">
+          <i class="fa-solid fa-house"></i>
+          Voltar ao site
+        </a>
+      </nav>
+    </aside>
+
+    <main class="conteudo-admin">
+      <header class="cabecalho-admin">
+        <div>
+          <p class="subtitulo">Gerenciamento do curso</p>
+
+          <h1 id="nomeCursoAdmin">Módulos</h1>
+
+          <p id="descricaoCursoAdmin">
+            Organize os módulos e etapas deste curso.
+          </p>
+        </div>
+
+        <button id="btnNovoModulo" class="btn-novo" type="button">
+          <i class="fa-solid fa-plus"></i>
+          Novo módulo
+        </button>
+      </header>
+
+      <section class="secao-cursos">
+        <div class="titulo-secao">
+          <div>
+            <h2>Estrutura do curso</h2>
+
+            <p>
+              Os módulos serão exibidos na ordem em que aparecem para o aluno.
+            </p>
+          </div>
+        </div>
+
+        <div id="estadoModulos" class="mensagem">Carregando módulos...</div>
+
+        <div id="listaModulosAdmin" class="lista-cursos" hidden></div>
+      </section>
+    </main>
+
+    <div id="modalModulo" class="modal" hidden>
+      <div class="modal-conteudo">
+        <div class="modal-cabecalho">
+          <div>
+            <p class="subtitulo">Novo módulo</p>
+
+            <h2 id="tituloModalModulo">Criar módulo</h2>
+          </div>
+
+          <button
+            id="btnFecharModalModulo"
+            class="btn-fechar"
+            type="button"
+            aria-label="Fechar"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <form id="formModulo">
+          <div class="campo">
+            <label for="nomeModulo"> Nome do módulo </label>
+
+            <input
+              id="nomeModulo"
+              type="text"
+              required
+              minlength="3"
+              maxlength="70"
+              placeholder="Ex.: Conhecendo o celular"
+            />
+
+            <small class="ajuda-campo"> Entre 3 e 70 caracteres. </small>
+          </div>
+
+          <div class="campo campo-descricao">
+            <label for="descricaoModulo"> Descrição </label>
+
+            <textarea
+              id="descricaoModulo"
+              rows="3"
+              maxlength="500"
+              placeholder="Explique brevemente o conteúdo deste módulo."
+            ></textarea>
+
+            <div class="rodape-campo">
+              <small class="ajuda-campo"> A descrição é opcional. </small>
+
+              <small id="contadorDescricaoModulo" class="contador-caracteres">
+                0 / 500
+              </small>
+            </div>
+          </div>
+
+          <div class="campo">
+            <label for="duracaoModulo"> Duração estimada </label>
+
+            <select id="duracaoModulo" required>
+              <option value="" selected disabled>Selecione</option>
+
+              <option value="5">5 minutos</option>
+
+              <option value="10">10 minutos</option>
+
+              <option value="15">15 minutos</option>
+
+              <option value="20">20 minutos</option>
+
+              <option value="30">30 minutos</option>
+
+              <option value="45">45 minutos</option>
+
+              <option value="60">1 hora</option>
+
+              <option value="personalizada">Personalizada...</option>
+            </select>
+          </div>
+
+          <div
+            id="duracaoModuloPersonalizada"
+            class="duracao-personalizada"
+            hidden
+          >
+            <div class="campo">
+              <label for="duracaoModuloHoras"> Horas </label>
+
+              <input
+                id="duracaoModuloHoras"
+                type="number"
+                min="0"
+                max="24"
+                value="0"
+              />
+            </div>
+
+            <div class="campo">
+              <label for="duracaoModuloMinutos"> Minutos </label>
+
+              <input
+                id="duracaoModuloMinutos"
+                type="number"
+                min="0"
+                max="59"
+                value="0"
+              />
+            </div>
+          </div>
+
+          <p class="aviso-rascunho">
+            A posição do módulo será definida automaticamente após o último
+            módulo do curso.
+          </p>
+
+          <div class="acoes-formulario">
+            <div></div>
+
+            <div class="acoes-formulario-direita">
+              <button id="btnCancelarModulo" class="btn-cancelar" type="button">
+                Cancelar
+              </button>
+
+              <button id="btnSalvarModulo" class="btn-novo" type="submit">
+                <i class="fa-solid fa-floppy-disk"></i>
+                Criar módulo
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script type="module" src="Script - Java/AdminModulos.js"></script>
+  </body>
+</html>

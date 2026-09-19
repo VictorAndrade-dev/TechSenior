@@ -324,6 +324,15 @@ function mostrarCursos(cursos) {
 }
 
 // ==========================================
+// ABRIR MÓDULOS DO CURSO
+// ==========================================
+
+function abrirPaginaModulos(id) {
+  window.location.href =
+    `AdminModulos.html?cursoId=${encodeURIComponent(id)}`;
+}
+
+// ==========================================
 // STATUS DO CURSO
 // ==========================================
 

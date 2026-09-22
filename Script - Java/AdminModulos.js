@@ -1,12 +1,9 @@
 import { auth } from "./Firebase-config.js";
+import { criarBloqueio, configurarModais, escapeHtml } from "./AdminComum.js";
 
-import {
-  onAuthStateChanged,
-} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
-import {
-  QueryFetchPolicy,
-} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-data-connect.js";
+import { QueryFetchPolicy } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-data-connect.js";
 
 import {
   meuPerfil,
@@ -14,85 +11,70 @@ import {
   listarModulosDoCurso,
   criarModulo,
   editarModulo,
+  excluirModulo,
 } from "../dataconnect-generated/esm/index.esm.js";
-
 
 // ==========================================
 // ELEMENTOS
 // ==========================================
 
+const nomeCursoAdmin = document.getElementById("nomeCursoAdmin");
 
-const nomeCursoAdmin =
-  document.getElementById("nomeCursoAdmin");
+const descricaoCursoAdmin = document.getElementById("descricaoCursoAdmin");
 
-const descricaoCursoAdmin =
-  document.getElementById("descricaoCursoAdmin");
+const estadoModulos = document.getElementById("estadoModulos");
 
-const estadoModulos =
-  document.getElementById("estadoModulos");
+const listaModulosAdmin = document.getElementById("listaModulosAdmin");
 
-const listaModulosAdmin =
-  document.getElementById("listaModulosAdmin");
+const btnNovoModulo = document.getElementById("btnNovoModulo");
 
-const btnNovoModulo =
-  document.getElementById("btnNovoModulo");
+const modalModulo = document.getElementById("modalModulo");
 
-  const modalModulo =
-  document.getElementById("modalModulo");
+const formModulo = document.getElementById("formModulo");
 
-const formModulo =
-  document.getElementById("formModulo");
+const btnFecharModalModulo = document.getElementById("btnFecharModalModulo");
 
-const btnFecharModalModulo =
-  document.getElementById("btnFecharModalModulo");
+const btnCancelarModulo = document.getElementById("btnCancelarModulo");
 
-const btnCancelarModulo =
-  document.getElementById("btnCancelarModulo");
+const nomeModulo = document.getElementById("nomeModulo");
 
-const nomeModulo =
-  document.getElementById("nomeModulo");
+const descricaoModulo = document.getElementById("descricaoModulo");
 
-const descricaoModulo =
-  document.getElementById("descricaoModulo");
+const contadorDescricaoModulo = document.getElementById(
+  "contadorDescricaoModulo",
+);
 
-const contadorDescricaoModulo =
-  document.getElementById("contadorDescricaoModulo");
+const duracaoModulo = document.getElementById("duracaoModulo");
 
-const duracaoModulo =
-  document.getElementById("duracaoModulo");
+const duracaoModuloPersonalizada = document.getElementById(
+  "duracaoModuloPersonalizada",
+);
 
-const duracaoModuloPersonalizada =
-  document.getElementById("duracaoModuloPersonalizada");
+const duracaoModuloHoras = document.getElementById("duracaoModuloHoras");
 
-const duracaoModuloHoras =
-  document.getElementById("duracaoModuloHoras");
+const duracaoModuloMinutos = document.getElementById("duracaoModuloMinutos");
 
-const duracaoModuloMinutos =
-  document.getElementById("duracaoModuloMinutos");
+const btnSalvarModulo = document.getElementById("btnSalvarModulo");
 
-const btnSalvarModulo =
-  document.getElementById("btnSalvarModulo");
-
-const tituloModalModulo =
-  document.getElementById("tituloModalModulo");
-
+const tituloModalModulo = document.getElementById("tituloModalModulo");
 
 // ==========================================
 // ID DO CURSO
 // ==========================================
 
-const parametros =
-  new URLSearchParams(window.location.search);
+const parametros = new URLSearchParams(window.location.search);
 
-const cursoId =
-  parametros.get("cursoId");
-
+const cursoId = parametros.get("cursoId");
 
 // ==========================================
 // VERIFICAR ID
 // ==========================================
 
-if (!cursoId) {
+const cursoValido =
+  /^(?:[0-9a-f]{32}|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$/i.test(
+    cursoId || "",
+  );
+if (!cursoValido) {
   alert("Curso não informado.");
 
   window.location.href = "Admin.html";
@@ -111,6 +93,7 @@ let moduloEmEdicao = null;
 // ==========================================
 
 onAuthStateChanged(auth, async (usuario) => {
+  if (!cursoValido) return;
   if (!usuario) {
     window.location.href = "Login.html";
 
@@ -118,16 +101,11 @@ onAuthStateChanged(auth, async (usuario) => {
   }
 
   try {
-    const respostaPerfil =
-      await meuPerfil();
+    const respostaPerfil = await meuPerfil();
 
-    const perfil =
-      respostaPerfil.data.usuarios?.[0];
+    const perfil = respostaPerfil.data.usuarios?.[0];
 
-    if (
-      !perfil ||
-      perfil.tipoUsuario?.nome !== "Administrador"
-    ) {
+    if (!perfil || perfil.tipoUsuario?.nome !== "Administrador") {
       negarAcesso();
 
       return;
@@ -135,31 +113,23 @@ onAuthStateChanged(auth, async (usuario) => {
 
     await carregarPagina();
   } catch (erro) {
-    console.error(
-      "Erro ao carregar gerenciamento de módulos:",
-      erro,
-    );
+    console.error("Erro ao carregar gerenciamento de módulos:", erro);
 
     estadoModulos.hidden = false;
 
-    estadoModulos.textContent =
-      "Não foi possível carregar os módulos.";
+    estadoModulos.textContent = "Não foi possível carregar os módulos.";
   }
 });
-
 
 // ==========================================
 // NEGAR ACESSO
 // ==========================================
 
 function negarAcesso() {
-  alert(
-    "Você não possui permissão para acessar o painel administrativo.",
-  );
+  alert("Você não possui permissão para acessar o painel administrativo.");
 
   window.location.href = "index.html";
 }
-
 
 // ==========================================
 // CARREGAR PÁGINA
@@ -171,25 +141,21 @@ async function carregarPagina() {
   await carregarModulos();
 }
 
-
 // ==========================================
 // CARREGAR CURSO
 // ==========================================
 
 async function carregarCurso() {
-  const resposta =
-    await buscarCurso(
-      {
-        id: cursoId,
-      },
-      {
-        fetchPolicy:
-          QueryFetchPolicy.SERVER_ONLY,
-      },
-    );
+  const resposta = await buscarCurso(
+    {
+      id: cursoId,
+    },
+    {
+      fetchPolicy: QueryFetchPolicy.SERVER_ONLY,
+    },
+  );
 
-  const curso =
-    resposta.data.curso;
+  const curso = resposta.data.curso;
 
   if (!curso) {
     alert("Curso não encontrado.");
@@ -199,16 +165,16 @@ async function carregarCurso() {
     return;
   }
 
-  nomeCursoAdmin.textContent =
-    curso.nome;
+  nomeCursoAdmin.textContent = curso.nome;
 
-  descricaoCursoAdmin.textContent =
-    "Organize os módulos e etapas deste curso.";
+  const linkTesteFinal = document.getElementById("linkTesteFinal");
+  linkTesteFinal.href = `AdminQuizCurso.html?cursoId=${encodeURIComponent(cursoId)}`;
+  linkTesteFinal.hidden = false;
 
-  document.title =
-    `Módulos - ${curso.nome} | TechSênior`;
+  descricaoCursoAdmin.textContent = "Organize os módulos e etapas deste curso.";
+
+  document.title = `Módulos - ${curso.nome} | TechSênior`;
 }
-
 
 // ==========================================
 // CARREGAR MÓDULOS
@@ -217,26 +183,22 @@ async function carregarCurso() {
 async function carregarModulos() {
   estadoModulos.hidden = false;
 
-  estadoModulos.textContent =
-    "Carregando módulos...";
+  estadoModulos.textContent = "Carregando módulos...";
 
   listaModulosAdmin.hidden = true;
 
   try {
-    const resposta =
-      await listarModulosDoCurso(
-        {
-          cursoId,
-        },
-        {
-          fetchPolicy:
-            QueryFetchPolicy.SERVER_ONLY,
-        },
-      );
+    const resposta = await listarModulosDoCurso(
+      {
+        cursoId,
+      },
+      {
+        fetchPolicy: QueryFetchPolicy.SERVER_ONLY,
+      },
+    );
 
-    const modulos =
-      resposta.data.modulos || [];
-      modulosCarregados = modulos;
+    const modulos = resposta.data.modulos || [];
+    modulosCarregados = modulos;
 
     mostrarModulos(modulos);
 
@@ -244,18 +206,13 @@ async function carregarModulos() {
 
     listaModulosAdmin.hidden = false;
   } catch (erro) {
-    console.error(
-      "Erro ao carregar módulos:",
-      erro,
-    );
+    console.error("Erro ao carregar módulos:", erro);
 
     estadoModulos.hidden = false;
 
-    estadoModulos.textContent =
-      "Não foi possível carregar os módulos.";
+    estadoModulos.textContent = "Não foi possível carregar os módulos.";
   }
 }
-
 
 // ==========================================
 // MOSTRAR MÓDULOS
@@ -274,72 +231,173 @@ function mostrarModulos(modulos) {
     return;
   }
 
-  modulos.forEach((modulo) => {
-    const card =
-      document.createElement("article");
+  modulos.forEach((modulo, indice) => {
+    const card = document.createElement("article");
 
     card.classList.add("curso-admin");
 
     card.innerHTML = `
       <div class="curso-icone">
-        <strong>
-          ${modulo.ordem}
-        </strong>
+        <strong>${modulo.ordem}</strong>
       </div>
 
       <div class="curso-info">
-
         <div class="curso-titulo">
-          <h3>
-            ${modulo.nome}
-          </h3>
+          <h3>${escapeHtml(modulo.nome)}</h3>
         </div>
 
-        <p>
-          ${
-            modulo.descricao ||
-            "Módulo sem descrição."
-          }
-        </p>
+        <p>${escapeHtml(modulo.descricao || "Módulo sem descrição.")}</p>
 
         <div class="curso-detalhes">
-
           <span>
             <i class="fa-solid fa-list-ol"></i>
             Módulo ${modulo.ordem}
           </span>
-
           <span>
             <i class="fa-regular fa-clock"></i>
             ${formatarDuracao(modulo.duracaoMinutos)}
           </span>
-
         </div>
 
         <div class="curso-acoes">
+          <button class="btn-excluir" type="button" data-acao="excluir">Excluir módulo</button>
+          <button
+            class="btn-ordem"
+            type="button"
+            data-acao="subir"
+            ${indice === 0 ? "disabled" : ""}
+            aria-label="Mover módulo para cima"
+          >
+            <i class="fa-solid fa-arrow-up"></i>
+            Subir
+          </button>
+
+          <button
+            class="btn-ordem"
+            type="button"
+            data-acao="descer"
+            ${indice === modulos.length - 1 ? "disabled" : ""}
+            aria-label="Mover módulo para baixo"
+          >
+            <i class="fa-solid fa-arrow-down"></i>
+            Descer
+          </button>
+
+          <button
+            class="btn-modulos"
+            type="button"
+            data-acao="gerenciar"
+          >
+            <i class="fa-solid fa-folder-open"></i>
+            Gerenciar
+          </button>
+
           <button
             class="btn-editar"
             type="button"
-            data-modulo-id="${modulo.id}"
+            data-acao="editar"
           >
             <i class="fa-solid fa-pen-to-square"></i>
             Editar
           </button>
         </div>
-
       </div>
     `;
 
-    const btnEditarModulo =
-      card.querySelector("[data-modulo-id]");
-
-    btnEditarModulo.addEventListener("click", () => {
-      abrirEdicaoModulo(
-        btnEditarModulo.dataset.moduloId,
-      );
+    card.querySelector("[data-acao='editar']").addEventListener("click", () => {
+      abrirEdicaoModulo(modulo.id);
     });
 
+    card
+      .querySelector("[data-acao='gerenciar']")
+      .addEventListener("click", () => {
+        abrirGerenciamentoModulo(modulo.id);
+      });
+
+    card.querySelector("[data-acao='subir']").addEventListener("click", () => {
+      moverModulo(modulo.id, -1);
+    });
+
+    card.querySelector("[data-acao='descer']").addEventListener("click", () => {
+      moverModulo(modulo.id, 1);
+    });
+
+    card
+      .querySelector('[data-acao="excluir"]')
+      .addEventListener("click", async () => {
+        if (
+          prompt(
+            `Excluir o módulo "${modulo.nome}"? Esta ação não pode ser desfeita. Digite EXCLUIR para confirmar.`,
+          ) !== "EXCLUIR"
+        )
+          return;
+        await bloquearModulos(async () => {
+          try {
+            await excluirModulo({ id: modulo.id });
+            await carregarModulos();
+          } catch (erro) {
+            console.error("Erro ao excluir módulo:", erro);
+
+            alert(
+              "Não foi possível excluir o módulo. Atualize a página e tente novamente.",
+            );
+          }
+        });
+      });
     listaModulosAdmin.appendChild(card);
+  });
+}
+
+function abrirGerenciamentoModulo(moduloId) {
+  window.location.href = `AdminModulo.html?cursoId=${encodeURIComponent(cursoId)}&moduloId=${encodeURIComponent(moduloId)}`;
+}
+
+const bloquearModulos = criarBloqueio(document.querySelector("main"));
+const moverModulo = (...args) =>
+  bloquearModulos(() => moverModuloInterno(...args));
+configurarModais([[modalModulo, fecharModalModulo]]);
+
+async function moverModuloInterno(moduloId, direcao) {
+  const indice = modulosCarregados.findIndex(
+    (modulo) => modulo.id === moduloId,
+  );
+
+  const destino = indice + direcao;
+
+  if (indice < 0 || destino < 0 || destino >= modulosCarregados.length) {
+    return;
+  }
+
+  const moduloAtual = modulosCarregados[indice];
+  const moduloDestino = modulosCarregados[destino];
+  const maiorOrdem = Math.max(
+    ...modulosCarregados.map((modulo) => Number(modulo.ordem) || 0),
+    0,
+  );
+
+  try {
+    await atualizarOrdemModulo(moduloAtual, maiorOrdem + 1);
+
+    await atualizarOrdemModulo(moduloDestino, moduloAtual.ordem);
+
+    await atualizarOrdemModulo(moduloAtual, moduloDestino.ordem);
+
+    await carregarModulos();
+  } catch (erro) {
+    console.error("Erro ao reordenar módulo:", erro);
+
+    alert("Não foi possível alterar a ordem do módulo.");
+  }
+}
+
+async function atualizarOrdemModulo(modulo, ordem) {
+  await editarModulo({
+    id: modulo.id,
+    nome: modulo.nome,
+    descricao: modulo.descricao ?? null,
+    ordem,
+    duracaoMinutos: modulo.duracaoMinutos ?? null,
+    imagem: modulo.imagem ?? null,
   });
 }
 
@@ -348,17 +406,13 @@ function mostrarModulos(modulos) {
 // ==========================================
 
 function obterDuracaoModuloEmMinutos() {
-  if (
-    duracaoModulo.value !== "personalizada"
-  ) {
+  if (duracaoModulo.value !== "personalizada") {
     return Number(duracaoModulo.value);
   }
 
-  const horas =
-    Number(duracaoModuloHoras.value) || 0;
+  const horas = Number(duracaoModuloHoras.value) || 0;
 
-  const minutos =
-    Number(duracaoModuloMinutos.value) || 0;
+  const minutos = Number(duracaoModuloMinutos.value) || 0;
 
   return horas * 60 + minutos;
 }
@@ -368,25 +422,19 @@ function obterDuracaoModuloEmMinutos() {
 // ==========================================
 
 function formatarDuracao(totalMinutos) {
-  if (
-    totalMinutos === null ||
-    totalMinutos === undefined
-  ) {
+  if (totalMinutos === null || totalMinutos === undefined) {
     return "Duração não informada";
   }
 
-  const total =
-    Number(totalMinutos);
+  const total = Number(totalMinutos);
 
   if (total < 60) {
     return `${total} min`;
   }
 
-  const horas =
-    Math.floor(total / 60);
+  const horas = Math.floor(total / 60);
 
-  const minutos =
-    total % 60;
+  const minutos = total % 60;
 
   if (minutos === 0) {
     return `${horas}h`;
@@ -394,7 +442,6 @@ function formatarDuracao(totalMinutos) {
 
   return `${horas}h ${minutos}min`;
 }
-
 
 // ==========================================
 // NOVO MÓDULO
@@ -419,8 +466,7 @@ function abrirModalModulo() {
 
   duracaoModuloMinutos.value = 0;
 
-  contadorDescricaoModulo.textContent =
-    "0 / 500";
+  contadorDescricaoModulo.textContent = "0 / 500";
 
   atualizarTextosDoModal();
 
@@ -430,10 +476,7 @@ function abrirModalModulo() {
 }
 
 function abrirEdicaoModulo(moduloId) {
-  const modulo =
-    modulosCarregados.find(
-      (item) => item.id === moduloId,
-    );
+  const modulo = modulosCarregados.find((item) => item.id === moduloId);
 
   if (!modulo) {
     alert("Módulo não encontrado.");
@@ -449,12 +492,9 @@ function abrirEdicaoModulo(moduloId) {
 
   descricaoModulo.value = modulo.descricao || "";
 
-  contadorDescricaoModulo.textContent =
-    `${descricaoModulo.value.length} / 500`;
+  contadorDescricaoModulo.textContent = `${descricaoModulo.value.length} / 500`;
 
-  preencherDuracaoModulo(
-    modulo.duracaoMinutos,
-  );
+  preencherDuracaoModulo(modulo.duracaoMinutos);
 
   atualizarTextosDoModal();
 
@@ -476,8 +516,7 @@ function fecharModalModulo() {
 
   duracaoModuloMinutos.value = 0;
 
-  contadorDescricaoModulo.textContent =
-    "0 / 500";
+  contadorDescricaoModulo.textContent = "0 / 500";
 
   atualizarTextosDoModal();
 }
@@ -485,9 +524,7 @@ function fecharModalModulo() {
 function atualizarTextosDoModal() {
   const editando = moduloEmEdicao !== null;
 
-  tituloModalModulo.textContent = editando
-    ? "Editar módulo"
-    : "Criar módulo";
+  tituloModalModulo.textContent = editando ? "Editar módulo" : "Criar módulo";
 
   btnSalvarModulo.innerHTML = editando
     ? `
@@ -501,15 +538,7 @@ function atualizarTextosDoModal() {
 }
 
 function preencherDuracaoModulo(duracaoMinutos) {
-  const duracoesPadrao = [
-    5,
-    10,
-    15,
-    20,
-    30,
-    45,
-    60,
-  ];
+  const duracoesPadrao = [5, 10, 15, 20, 30, 45, 60];
 
   const duracao = Number(duracaoMinutos);
 
@@ -529,29 +558,19 @@ function preencherDuracaoModulo(duracaoMinutos) {
 
   duracaoModuloPersonalizada.hidden = false;
 
-  duracaoModuloHoras.value =
-    Math.floor(duracao / 60);
+  duracaoModuloHoras.value = Math.floor(duracao / 60);
 
-  duracaoModuloMinutos.value =
-    duracao % 60;
+  duracaoModuloMinutos.value = duracao % 60;
 }
 
-btnFecharModalModulo.addEventListener(
-  "click",
-  fecharModalModulo,
-);
+btnFecharModalModulo.addEventListener("click", fecharModalModulo);
 
-btnCancelarModulo.addEventListener(
-  "click",
-  fecharModalModulo,
-);
+btnCancelarModulo.addEventListener("click", fecharModalModulo);
 
 duracaoModulo.addEventListener("change", () => {
-  const personalizada =
-    duracaoModulo.value === "personalizada";
+  const personalizada = duracaoModulo.value === "personalizada";
 
-  duracaoModuloPersonalizada.hidden =
-    !personalizada;
+  duracaoModuloPersonalizada.hidden = !personalizada;
 
   if (personalizada) {
     duracaoModuloHoras.focus();
@@ -562,155 +581,116 @@ duracaoModulo.addEventListener("change", () => {
 });
 
 descricaoModulo.addEventListener("input", () => {
-  contadorDescricaoModulo.textContent =
-    `${descricaoModulo.value.length} / 500`;
+  contadorDescricaoModulo.textContent = `${descricaoModulo.value.length} / 500`;
 });
 
-formModulo.addEventListener(
-  "submit",
-  async (evento) => {
-    evento.preventDefault();
+formModulo.addEventListener("submit", async (evento) => {
+  evento.preventDefault();
+  if (btnSalvarModulo.disabled) return;
 
-    const nome =
-      nomeModulo.value.trim();
+  const nome = nomeModulo.value.trim();
 
-    const descricao =
-      descricaoModulo.value.trim();
+  const descricao = descricaoModulo.value.trim();
 
-    const duracaoMinutos =
-      obterDuracaoModuloEmMinutos();
+  const duracaoMinutos = obterDuracaoModuloEmMinutos();
 
-    const editando =
-      moduloEmEdicao !== null;
+  const editando = moduloEmEdicao !== null;
 
+  // ======================================
+  // VALIDAR NOME
+  // ======================================
 
-    // ======================================
-    // VALIDAR NOME
-    // ======================================
+  if (nome.length < 3 || nome.length > 70) {
+    alert("O nome do módulo deve ter entre 3 e 70 caracteres.");
 
-    if (
-      nome.length < 3 ||
-      nome.length > 70
-    ) {
-      alert(
-        "O nome do módulo deve ter entre 3 e 70 caracteres.",
-      );
+    nomeModulo.focus();
 
-      nomeModulo.focus();
+    return;
+  }
 
-      return;
+  // ======================================
+  // VALIDAR DURAÇÃO
+  // ======================================
+
+  if (
+    !Number.isFinite(duracaoMinutos) ||
+    duracaoMinutos <= 0 ||
+    duracaoMinutos > 1440
+  ) {
+    alert("Informe uma duração válida para o módulo.");
+
+    return;
+  }
+
+  // ======================================
+  // SALVAR
+  // ======================================
+
+  btnSalvarModulo.disabled = true;
+
+  btnSalvarModulo.textContent = editando ? "Salvando..." : "Criando...";
+
+  try {
+    if (editando) {
+      await editarModulo({
+        id: moduloEmEdicao.id,
+
+        nome,
+
+        descricao: descricao || null,
+
+        ordem: moduloEmEdicao.ordem,
+
+        duracaoMinutos,
+
+        imagem: moduloEmEdicao.imagem ?? null,
+      });
+
+      alert("Módulo atualizado com sucesso!");
+    } else {
+      const maiorOrdem =
+        modulosCarregados.length === 0
+          ? 0
+          : Math.max(
+              ...modulosCarregados.map((modulo) => Number(modulo.ordem) || 0),
+            );
+
+      const novaOrdem = maiorOrdem + 1;
+
+      await criarModulo({
+        cursoId,
+
+        nome,
+
+        descricao: descricao || null,
+
+        ordem: novaOrdem,
+
+        duracaoMinutos,
+
+        imagem: null,
+      });
+
+      alert("Módulo criado com sucesso!");
     }
 
+    fecharModalModulo();
 
-    // ======================================
-    // VALIDAR DURAÇÃO
-    // ======================================
+    await carregarModulos();
+  } catch (erro) {
+    console.error(
+      editando ? "Erro ao atualizar módulo:" : "Erro ao criar módulo:",
+      erro,
+    );
 
-    if (
-      !Number.isFinite(duracaoMinutos) ||
-      duracaoMinutos <= 0 ||
-      duracaoMinutos > 1440
-    ) {
-      alert(
-        "Informe uma duração válida para o módulo.",
-      );
-
-      return;
-    }
-
-
-    // ======================================
-    // SALVAR
-    // ======================================
-
-    btnSalvarModulo.disabled = true;
-
-    btnSalvarModulo.textContent =
+    alert(
       editando
-        ? "Salvando..."
-        : "Criando...";
+        ? "Não foi possível atualizar o módulo."
+        : "Não foi possível criar o módulo.",
+    );
+  } finally {
+    btnSalvarModulo.disabled = false;
 
-    try {
-      if (editando) {
-        await editarModulo({
-          id: moduloEmEdicao.id,
-
-          nome,
-
-          descricao:
-            descricao || null,
-
-          ordem:
-            moduloEmEdicao.ordem,
-
-          duracaoMinutos,
-
-          imagem:
-            moduloEmEdicao.imagem ?? null,
-        });
-
-        alert(
-          "Módulo atualizado com sucesso!",
-        );
-      } else {
-        const maiorOrdem =
-          modulosCarregados.length === 0
-            ? 0
-            : Math.max(
-                ...modulosCarregados.map(
-                  (modulo) =>
-                    Number(modulo.ordem) || 0,
-                ),
-              );
-
-        const novaOrdem =
-          maiorOrdem + 1;
-
-        await criarModulo({
-          cursoId,
-
-          nome,
-
-          descricao:
-            descricao || null,
-
-          ordem:
-            novaOrdem,
-
-          duracaoMinutos,
-
-          imagem:
-            null,
-        });
-
-        alert(
-          "Módulo criado com sucesso!",
-        );
-      }
-
-      fecharModalModulo();
-
-      await carregarModulos();
-
-    } catch (erro) {
-      console.error(
-        editando
-          ? "Erro ao atualizar módulo:"
-          : "Erro ao criar módulo:",
-        erro,
-      );
-
-      alert(
-        editando
-          ? "Não foi possível atualizar o módulo."
-          : "Não foi possível criar o módulo.",
-      );
-
-    } finally {
-      btnSalvarModulo.disabled =
-        false;
-
-      atualizarTextosDoModal();
-    }
-  },
-);
+    atualizarTextosDoModal();
+  }
+});

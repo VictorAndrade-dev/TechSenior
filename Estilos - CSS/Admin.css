@@ -4,6 +4,27 @@
   box-sizing: border-box;
 }
 
+[hidden] {
+  display: none !important;
+}
+
+.secao-teste-final, .painel-modulo { margin-top: 24px; }
+.secao-teste-final { border-top: 4px solid #123b5d; }
+.titulo-secao-com-acao, .acoes-cabecalho { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; }
+.lista-questoes { display: grid; gap: 20px; }
+.curso-acoes { flex-wrap: wrap; }
+.curso-info { min-width: 0; }
+.questao-admin .curso-info > p { display: block; overflow: visible; overflow-wrap: anywhere; }
+.alternativa-admin { overflow-wrap: anywhere; }
+.link-voltar { display: inline-block; margin-bottom: 12px; color: #123b5d; }
+a.btn-novo { text-decoration: none; }
+button:disabled { cursor: not-allowed; }
+:is(button, a, input, select, textarea):focus-visible { outline: 3px solid #123b5d; outline-offset: 3px; }
+.menu-admin a:focus-visible { outline-color: #fff; }
+.campo-checkbox input { width: auto; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }
+@media (max-width: 650px) { .titulo-secao-com-acao { align-items: stretch; } .acoes-cabecalho { width: 100%; } }
+
 /* ============================= */
 /* BASE */
 /* ============================= */
@@ -604,6 +625,13 @@ body {
   box-shadow: 0 0 0 3px rgba(8, 127, 113, 0.12);
 }
 
+.campo input:focus-visible,
+.campo textarea:focus-visible,
+.campo select:focus-visible {
+  outline: 3px solid #123b5d;
+  outline-offset: 2px;
+}
+
 /* ============================= */
 /* CAMPOS EM LINHA */
 /* ============================= */
@@ -930,4 +958,187 @@ body {
     width: 100%;
   }
 
+}
+/* ============================= */
+/* GERENCIAMENTO DO MÓDULO */
+/* ============================= */
+
+
+.dados-modulo {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 18px;
+
+  margin-top: 16px;
+
+  color: #506170;
+}
+
+.dados-modulo span {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+}
+
+.btn-ordem {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 10px 14px;
+
+  border: 1px solid #ccd4da;
+  border-radius: 8px;
+
+  background: white;
+
+  color: #475766;
+
+  font: inherit;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.btn-ordem:hover:not(:disabled) {
+  background: #f1f5f8;
+}
+
+.btn-ordem:disabled {
+  opacity: 0.5;
+
+  cursor: not-allowed;
+}
+
+.etiqueta-conteudo {
+  display: inline-flex;
+
+  align-items: center;
+
+  padding: 4px 8px;
+
+  border-radius: 999px;
+
+  background: #eaf1f5;
+
+  color: #31566d;
+
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.alternativas-admin {
+  margin-top: 20px;
+
+  padding-top: 18px;
+
+  border-top: 1px solid #e2e7eb;
+}
+
+.alternativas-admin h4 {
+  margin: 0 0 12px;
+
+  color: #364757;
+}
+
+.mensagem-alternativas {
+  margin: 0;
+
+  color: #647484;
+}
+
+.alternativa-admin {
+  display: flex;
+
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 16px;
+
+  margin-top: 10px;
+  padding: 12px;
+
+  border: 1px solid #dce4ea;
+  border-radius: 8px;
+
+  background: #fbfcfd;
+}
+
+.alternativa-admin small {
+  display: block;
+
+  margin-top: 6px;
+
+  color: #647484;
+}
+
+.alternativa-admin span {
+  display: inline-block;
+
+  margin-left: 8px;
+  padding: 3px 7px;
+
+  border-radius: 999px;
+
+  background: #dff3e4;
+
+  color: #1f6b38;
+
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.alternativa-correta {
+  border-color: #93cf9f;
+
+  background: #f2fbf4;
+}
+
+.acoes-alternativa {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  justify-content: flex-end;
+
+  gap: 8px;
+}
+
+.acoes-alternativa .btn-ordem {
+  min-width: 40px;
+
+  padding: 9px;
+}
+
+@media (max-width: 650px) {
+  .cabecalho-secao,
+  .alternativa-admin {
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+  .btn-ordem,
+  .curso-acoes .btn-modulos,
+  .curso-acoes .btn-editar {
+    width: 100%;
+
+    justify-content: center;
+  }
+
+  .acoes-alternativa {
+    justify-content: flex-start;
+  }
+
+  .acoes-alternativa .btn-ordem,
+  .acoes-alternativa .btn-editar {
+    flex: 1;
+  }
 }

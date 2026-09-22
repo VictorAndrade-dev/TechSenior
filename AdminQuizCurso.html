@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teste final do curso | TechSênior</title>
+    <link rel="stylesheet" href="Estilos - CSS/Admin.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <script type="importmap">
+      {
+        "imports": {
+          "firebase/data-connect": "https://www.gstatic.com/firebasejs/12.17.1/firebase-data-connect.js"
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+    <aside class="menu-admin">
+      <div class="admin-brand">
+        <i class="fa-solid fa-shield-halved"></i>
+        <div>
+          <strong>TechSênior</strong>
+          <span>Painel Admin</span>
+        </div>
+      </div>
+
+      <nav>
+        <a href="Admin.html" class="menu-item">
+          <i class="fa-solid fa-book"></i>
+          Cursos
+        </a>
+        <a id="linkVoltarModulos" href="AdminModulos.html" class="menu-item ativo">
+          <i class="fa-solid fa-layer-group"></i>
+          Módulos
+        </a>
+        <a href="index.html" class="menu-item">
+          <i class="fa-solid fa-house"></i>
+          Voltar ao site
+        </a>
+      </nav>
+    </aside>
+
+    <main class="conteudo-admin">
+      <header class="cabecalho-admin cabecalho-modulo">
+        <div>
+          <a id="btnVoltarModulos" class="link-voltar" href="AdminModulos.html">
+            <i class="fa-solid fa-arrow-left"></i>
+            Voltar aos módulos
+          </a>
+          <p id="trilhaModulo" class="subtitulo">Curso &gt; Teste final</p>
+          <h1 id="nomeModuloAdmin">Teste final do curso</h1>
+          <p id="descricaoModuloAdmin">Carregando informações do curso...</p>
+        </div>
+      </header>
+
+      <section data-editor-quiz class="secao-cursos painel-modulo">
+        <div class="titulo-secao titulo-secao-com-acao">
+          <div>
+            <h2>Teste final do curso</h2>
+            <p>Cadastre de 10 a 15 questões. Todas precisam estar completas para finalizar o teste.</p>
+          </div>
+          <div class="acoes-cabecalho">
+            <button id="btnCriarQuiz" class="btn-novo" type="button" hidden>
+              <i class="fa-solid fa-circle-plus"></i>
+              Criar teste final
+            </button>
+            <button id="btnNovaQuestao" class="btn-novo" type="button" hidden>
+              <i class="fa-solid fa-plus"></i>
+              Nova pergunta
+            </button>
+          </div>
+        </div>
+
+        <div id="estadoQuiz" class="mensagem" role="status">Carregando quiz...</div>
+        <div id="listaQuestoes" class="lista-questoes" hidden></div>
+      </section>
+    </main>
+
+    <div id="modalQuestao" class="modal" hidden>
+      <div class="modal-conteudo">
+        <div class="modal-cabecalho">
+          <div>
+            <p class="subtitulo">Teste final do curso</p>
+            <h2 id="tituloModalQuestao">Criar pergunta</h2>
+          </div>
+          <button id="btnFecharModalQuestao" class="btn-fechar" type="button" aria-label="Fechar">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <form id="formQuestao">
+          <div class="campo">
+            <label for="perguntaQuiz">Pergunta</label>
+            <textarea id="perguntaQuiz" rows="4" required maxlength="1000"></textarea>
+          </div>
+          <div class="acoes-formulario">
+            <div></div>
+            <div class="acoes-formulario-direita">
+              <button id="btnCancelarQuestao" class="btn-cancelar" type="button">Cancelar</button>
+              <button id="btnSalvarQuestao" class="btn-novo" type="submit">
+                <i class="fa-solid fa-floppy-disk"></i>
+                Criar pergunta
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="modalAlternativa" class="modal" hidden>
+      <div class="modal-conteudo">
+        <div class="modal-cabecalho">
+          <div>
+            <p class="subtitulo">Alternativa da pergunta</p>
+            <h2 id="tituloModalAlternativa">Criar alternativa</h2>
+          </div>
+          <button id="btnFecharModalAlternativa" class="btn-fechar" type="button" aria-label="Fechar">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <form id="formAlternativa">
+          <p id="erroAlternativa" class="erro-campo" role="alert" hidden></p>
+          <div class="campo">
+            <label for="textoAlternativa">Texto da alternativa</label>
+            <textarea id="textoAlternativa" rows="3" required maxlength="1000"></textarea>
+          </div>
+          <div class="campo campo-checkbox">
+            <label for="alternativaCorreta">
+              <input id="alternativaCorreta" type="checkbox" />
+              Esta é a alternativa correta
+            </label>
+          </div>
+          <div class="campo">
+            <label for="explicacaoAlternativa">Explicação <span class="texto-opcional">(opcional)</span></label>
+            <textarea id="explicacaoAlternativa" rows="3" maxlength="1500"></textarea>
+          </div>
+          <div class="acoes-formulario">
+            <div></div>
+            <div class="acoes-formulario-direita">
+              <button id="btnCancelarAlternativa" class="btn-cancelar" type="button">Cancelar</button>
+              <button id="btnSalvarAlternativa" class="btn-novo" type="submit">
+                <i class="fa-solid fa-floppy-disk"></i>
+                Criar alternativa
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script type="module" src="Script - Java/AdminQuizCurso.js"></script>
+  </body>
+</html>

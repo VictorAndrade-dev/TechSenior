@@ -518,6 +518,16 @@ mutation CriarQuiz(
     }
   }
 
+  # O curso serializa a criação, evitando dois quizzes finais ou de módulo.
+  curso_update(id: $cursoId, data: {atualizadoEm_expr: "request.time"}) @redact @check
+  contexto: query @redact @check(
+    expr: "(vars.tipo == 'final' && vars.moduloId == null && response.contexto.finais.size() == 0) || (vars.tipo == 'modulo' && vars.moduloId != null && response.contexto.modulos.size() == 1 && response.contexto.doModulo.size() == 0)"
+    message: "Quiz já existente ou vínculo entre curso, módulo e tipo inválido."
+  ) {
+    finais: quizzes(where: {cursoId: {eq: $cursoId}, moduloId: {isNull: true}, tipo: {eq: "final"}}, limit: 1) { id }
+    modulos(where: {id: {eq: $moduloId}, cursoId: {eq: $cursoId}}, limit: 1) { id }
+    doModulo: quizzes(where: {moduloId: {eq: $moduloId}, tipo: {eq: "modulo"}}, limit: 1) { id }
+  }
   quiz_insert(
     data: {
       cursoId: $cursoId
@@ -559,6 +569,11 @@ mutation EditarQuiz(
     }
   }
 
+  contexto: query @redact {
+    quiz(id: $id) @check {
+      tipo @check(expr: "this == vars.tipo", message: "O tipo de um quiz não pode ser alterado.")
+    }
+  }
   quiz_update(
     id: $id
     data: {
@@ -573,41 +588,19 @@ mutation EditarQuiz(
 # ADMIN - CRIAR QUESTÃO
 # ==========================================
 
-mutation CriarQuestaoQuiz(
-  $quizId: UUID!
-  $pergunta: String!
-  $ordem: Int!
-) @auth(level: USER) @transaction {
-
-  query
-    @redact
-    @check(
-      expr: "response.query.usuarios.size() == 1"
-      message: "Administrador não encontrado."
-    ) {
-
-    usuarios(
-      where: {
-        firebaseUid: { eq_expr: "auth.uid" }
-      }
-      limit: 1
-    ) {
-      tipoUsuario {
-        nome @check(
-          expr: "this == 'Administrador'"
-          message: "Apenas administradores podem criar questões."
-        )
-      }
+mutation CriarQuestaoQuiz($quizId: UUID!, $pergunta: String!, $ordem: Int!) @auth(level: USER) @transaction {
+  query @redact @check(expr: "response.query.usuarios.size() == 1", message: "Administrador não encontrado.") {
+    usuarios(where: {firebaseUid: {eq_expr: "auth.uid"}}, limit: 1) {
+      tipoUsuario { nome @check(expr: "this == 'Administrador'", message: "Apenas administradores podem realizar esta operação.") }
     }
   }
-
-  questaoQuiz_insert(
-    data: {
-      quizId: $quizId
-      pergunta: $pergunta
-      ordem: $ordem
-    }
-  )
+  # Serializa criações concorrentes no mesmo quiz antes de contar questões.
+  quiz_update(id: $quizId, data: {atualizadoEm_expr: "request.time"}) @redact @check
+  limites: query @redact @check(expr: "response.limites.quiz.tipo != 'final' || response.limites.questaoQuizs.size() < 15", message: "O teste final permite no máximo 15 questões.") {
+    quiz(id: $quizId) { tipo }
+    questaoQuizs(where: {quizId: {eq: $quizId}}, limit: 15) { id }
+  }
+  questaoQuiz_insert(data: {quizId: $quizId, pergunta: $pergunta, ordem: $ordem})
 }
 
 
@@ -658,45 +651,19 @@ mutation EditarQuestaoQuiz(
 # ADMIN - CRIAR ALTERNATIVA
 # ==========================================
 
-mutation CriarAlternativaQuiz(
-  $questaoId: UUID!
-  $texto: String!
-  $correta: Boolean!
-  $explicacao: String
-  $ordem: Int!
-) @auth(level: USER) @transaction {
-
-  query
-    @redact
-    @check(
-      expr: "response.query.usuarios.size() == 1"
-      message: "Administrador não encontrado."
-    ) {
-
-    usuarios(
-      where: {
-        firebaseUid: { eq_expr: "auth.uid" }
-      }
-      limit: 1
-    ) {
-      tipoUsuario {
-        nome @check(
-          expr: "this == 'Administrador'"
-          message: "Apenas administradores podem criar alternativas."
-        )
-      }
+mutation CriarAlternativaQuiz($questaoId: UUID!, $texto: String!, $correta: Boolean!, $explicacao: String, $ordem: Int!) @auth(level: USER) @transaction {
+  query @redact @check(expr: "response.query.usuarios.size() == 1", message: "Administrador não encontrado.") {
+    usuarios(where: {firebaseUid: {eq_expr: "auth.uid"}}, limit: 1) {
+      tipoUsuario { nome @check(expr: "this == 'Administrador'", message: "Apenas administradores podem realizar esta operação.") }
     }
   }
-
-  alternativaQuiz_insert(
-    data: {
-      questaoId: $questaoId
-      texto: $texto
-      correta: $correta
-      explicacao: $explicacao
-      ordem: $ordem
-    }
-  )
+  questaoQuiz_update(id: $questaoId, data: {atualizadoEm_expr: "request.time"}) @redact @check
+  limites: query @redact @check(expr: "response.limites.alternativaQuizs.size() < 5", message: "Uma questão permite no máximo 5 alternativas.") {
+    alternativaQuizs(where: {questaoId: {eq: $questaoId}}, limit: 5) { id }
+  }
+  # Se a nova alternativa é correta, desmarca as anteriores na mesma transação.
+  alternativaQuiz_updateMany(where: {questaoId: {eq: $questaoId}, correta: {eq: true}}, data: {correta_expr: "!vars.correta"}) @redact
+  alternativaQuiz_insert(data: {questaoId: $questaoId, texto: $texto, correta: $correta, explicacao: $explicacao, ordem: $ordem})
 }
 
 
@@ -704,46 +671,25 @@ mutation CriarAlternativaQuiz(
 # ADMIN - EDITAR ALTERNATIVA
 # ==========================================
 
-mutation EditarAlternativaQuiz(
-  $id: UUID!
-  $texto: String!
-  $correta: Boolean!
-  $explicacao: String
-  $ordem: Int!
-) @auth(level: USER) @transaction {
-
-  query
-    @redact
-    @check(
-      expr: "response.query.usuarios.size() == 1"
-      message: "Administrador não encontrado."
-    ) {
-
-    usuarios(
-      where: {
-        firebaseUid: { eq_expr: "auth.uid" }
-      }
-      limit: 1
-    ) {
-      tipoUsuario {
-        nome @check(
-          expr: "this == 'Administrador'"
-          message: "Apenas administradores podem editar alternativas."
-        )
-      }
+mutation EditarAlternativaQuiz($id: UUID!, $texto: String!, $correta: Boolean!, $explicacao: String, $ordem: Int!) @auth(level: USER) @transaction {
+  query @redact @check(expr: "response.query.usuarios.size() == 1", message: "Administrador não encontrado.") {
+    usuarios(where: {firebaseUid: {eq_expr: "auth.uid"}}, limit: 1) {
+      tipoUsuario { nome @check(expr: "this == 'Administrador'", message: "Apenas administradores podem realizar esta operação.") }
     }
   }
-
-  alternativaQuiz_update(
-    id: $id
-    data: {
-      texto: $texto
-      correta: $correta
-      explicacao: $explicacao
-      ordem: $ordem
-      atualizadoEm_expr: "request.time"
-    }
-  )
+  alvo: query @redact {
+    alternativaQuiz(id: $id) @check(message: "Alternativa não encontrada.") { questaoId }
+  }
+  questaoQuiz_update(key: {id_expr: "response.alvo.alternativaQuiz.questaoId"}, data: {atualizadoEm_expr: "request.time"}) @redact @check
+  estado: query @redact @check(
+    expr: "vars.correta || !response.estado.alternativaQuiz.correta || response.estado.outrasCorretas.size() > 0"
+    message: "Uma questão precisa possuir uma alternativa correta. Marque outra alternativa como correta antes de desmarcar esta."
+  ) {
+    alternativaQuiz(id: $id) @check { correta }
+    outrasCorretas: alternativaQuizs(where: {questaoId: {eq_expr: "response.alvo.alternativaQuiz.questaoId"}, id: {ne: $id}, correta: {eq: true}}, limit: 1) { id }
+  }
+  alternativaQuiz_updateMany(where: {questaoId: {eq_expr: "response.alvo.alternativaQuiz.questaoId"}, id: {ne: $id}, correta: {eq: true}}, data: {correta_expr: "!vars.correta"}) @redact
+  alternativaQuiz_update(id: $id, data: {texto: $texto, correta: $correta, explicacao: $explicacao, ordem: $ordem, atualizadoEm_expr: "request.time"}) @check
 }
 
 mutation ExcluirCurso(
@@ -797,4 +743,121 @@ mutation ExcluirCurso(
   curso_delete(
     id: $id
   )
+}
+# O teste final pertence ao curso, nunca ao último módulo.
+query BuscarQuizFinalDoCurso($cursoId: UUID!) @auth(level: USER) {
+
+  usuarios(
+    where: {
+      firebaseUid: { eq_expr: "auth.uid" }
+    }
+    limit: 1
+  )
+    @redact
+    @check(
+      message: "Usuário administrativo não encontrado."
+    ) {
+
+    tipoUsuario {
+      nome @check(
+        expr: "this == 'Administrador'"
+        message: "Apenas administradores podem acessar esta área."
+      )
+    }
+  }
+
+  quizzes(
+    where: {
+      cursoId: { eq: $cursoId }
+      moduloId: { isNull: true }
+      tipo: { eq: "final" }
+    }
+    limit: 1
+  ) {
+    id
+    tipo
+    moduloId
+  }
+}
+
+mutation ExcluirConteudoModulo($id: UUID!) @auth(level: USER) @transaction {
+  query @redact @check(expr: "response.query.usuarios.size() == 1", message: "Administrador não encontrado.") {
+    usuarios(where: {firebaseUid: {eq_expr: "auth.uid"}}, limit: 1) {
+      tipoUsuario { nome @check(expr: "this == 'Administrador'", message: "Apenas administradores podem realizar esta operação.") }
+    }
+  }
+  conteudoModulo_delete(id: $id) @check(expr: "this != null", message: "Conteúdo não encontrado.")
+}
+mutation ExcluirAlternativaQuiz($id: UUID!) @auth(level: USER) @transaction {
+  query @redact @check(expr: "response.query.usuarios.size() == 1", message: "Administrador não encontrado.") {
+    usuarios(where: {firebaseUid: {eq_expr: "auth.uid"}}, limit: 1) {
+      tipoUsuario { nome @check(expr: "this == 'Administrador'", message: "Apenas administradores podem realizar esta operação.") }
+    }
+  }
+  alternativaQuiz_delete(id: $id) @check(expr: "this != null", message: "Alternativa não encontrada.")
+}
+mutation ExcluirQuestaoQuiz($id: UUID!) @auth(level: USER) @transaction {
+  query @redact @check(expr: "response.query.usuarios.size() == 1", message: "Administrador não encontrado.") {
+    usuarios(where: {firebaseUid: {eq_expr: "auth.uid"}}, limit: 1) {
+      tipoUsuario { nome @check(expr: "this == 'Administrador'", message: "Apenas administradores podem realizar esta operação.") }
+    }
+  }
+  # Mantém a chave, adquirindo o bloqueio antes de remover dependências.
+  questaoQuiz_update(id: $id, data: {id: $id}) @redact @check(message: "Questão não encontrada.")
+  alternativaQuiz_deleteMany(where: {questaoId: {eq: $id}})
+  questaoQuiz_delete(id: $id) @check(expr: "this != null", message: "Questão não encontrada.")
+}
+
+mutation ExcluirModulo($id: UUID!) @auth(level: USER) @transaction {
+
+  query
+    @redact
+    @check(
+      expr: "response.query.usuarios.size() == 1"
+      message: "Administrador não encontrado."
+    ) {
+
+    usuarios(
+      where: {
+        firebaseUid: { eq_expr: "auth.uid" }
+      }
+      limit: 1
+    ) {
+      tipoUsuario {
+        nome @check(
+          expr: "this == 'Administrador'"
+          message: "Apenas administradores podem realizar esta operação."
+        )
+      }
+    }
+  }
+
+  # Confirma que o módulo existe e mantém a operação transacional.
+  modulo_update(
+    id: $id
+    data: { id: $id }
+  )
+    @redact
+    @check(
+      message: "Módulo não encontrado."
+    )
+
+  # Quiz possui relação opcional com módulo.
+  # Por isso precisa ser removido antes para não virar um quiz sem módulo.
+  quiz_deleteMany(
+    where: {
+      moduloId: { eq: $id }
+    }
+  )
+
+  # Conteúdos e UsuarioModulo possuem relação obrigatória com módulo
+  # e são removidos pelas FKs.
+  # UsuarioCurso.moduloAtual é opcional e passa a null.
+  modulo_delete(
+    id: $id
+  )
+    @check(
+      expr: "this != null"
+      message: "Módulo não encontrado."
+    )
 }

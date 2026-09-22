@@ -16,6 +16,7 @@ This README will guide you through the process of using the generated JavaScript
   - [*ListarQuestoesDoQuiz*](#listarquestoesdoquiz)
   - [*ListarAlternativasDaQuestao*](#listaralternativasdaquestao)
   - [*ListarCursosAdmin*](#listarcursosadmin)
+  - [*BuscarQuizFinalDoCurso*](#buscarquizfinaldocurso)
   - [*MeuPerfil*](#meuperfil)
 - [**Mutations**](#mutations)
   - [*CriarCurso*](#criarcurso)
@@ -31,6 +32,10 @@ This README will guide you through the process of using the generated JavaScript
   - [*CriarAlternativaQuiz*](#criaralternativaquiz)
   - [*EditarAlternativaQuiz*](#editaralternativaquiz)
   - [*ExcluirCurso*](#excluircurso)
+  - [*ExcluirConteudoModulo*](#excluirconteudomodulo)
+  - [*ExcluirAlternativaQuiz*](#excluiralternativaquiz)
+  - [*ExcluirQuestaoQuiz*](#excluirquestaoquiz)
+  - [*ExcluirModulo*](#excluirmodulo)
   - [*CadastrarUsuario*](#cadastrarusuario)
   - [*ExcluirUsuarioPorEmail*](#excluirusuarioporemail)
   - [*AtualizarNomeUsuario*](#atualizarnomeusuario)
@@ -974,6 +979,119 @@ console.log(data.cursos);
 executeQuery(ref).then((response) => {
   const data = response.data;
   console.log(data.cursos);
+});
+```
+
+## BuscarQuizFinalDoCurso
+You can execute the `BuscarQuizFinalDoCurso` query using the following action shortcut function, or by calling `executeQuery()` after calling the following `QueryRef` function, both of which are defined in [dataconnect-generated/index.d.ts](./index.d.ts):
+```typescript
+buscarQuizFinalDoCurso(vars: BuscarQuizFinalDoCursoVariables, options?: ExecuteQueryOptions): QueryPromise<BuscarQuizFinalDoCursoData, BuscarQuizFinalDoCursoVariables>;
+
+interface BuscarQuizFinalDoCursoRef {
+  ...
+  /* Allow users to create refs without passing in DataConnect */
+  (vars: BuscarQuizFinalDoCursoVariables): QueryRef<BuscarQuizFinalDoCursoData, BuscarQuizFinalDoCursoVariables>;
+}
+export const buscarQuizFinalDoCursoRef: BuscarQuizFinalDoCursoRef;
+```
+You can also pass in a `DataConnect` instance to the action shortcut function or `QueryRef` function.
+```typescript
+buscarQuizFinalDoCurso(dc: DataConnect, vars: BuscarQuizFinalDoCursoVariables, options?: ExecuteQueryOptions): QueryPromise<BuscarQuizFinalDoCursoData, BuscarQuizFinalDoCursoVariables>;
+
+interface BuscarQuizFinalDoCursoRef {
+  ...
+  (dc: DataConnect, vars: BuscarQuizFinalDoCursoVariables): QueryRef<BuscarQuizFinalDoCursoData, BuscarQuizFinalDoCursoVariables>;
+}
+export const buscarQuizFinalDoCursoRef: BuscarQuizFinalDoCursoRef;
+```
+
+If you need the name of the operation without creating a ref, you can retrieve the operation name by calling the `operationName` property on the buscarQuizFinalDoCursoRef:
+```typescript
+const name = buscarQuizFinalDoCursoRef.operationName;
+console.log(name);
+```
+
+### Variables
+The `BuscarQuizFinalDoCurso` query requires an argument of type `BuscarQuizFinalDoCursoVariables`, which is defined in [dataconnect-generated/index.d.ts](./index.d.ts). It has the following fields:
+
+```typescript
+export interface BuscarQuizFinalDoCursoVariables {
+  cursoId: UUIDString;
+}
+```
+### Return Type
+Recall that executing the `BuscarQuizFinalDoCurso` query returns a `QueryPromise` that resolves to an object with a `data` property.
+
+The `data` property is an object of type `BuscarQuizFinalDoCursoData`, which is defined in [dataconnect-generated/index.d.ts](./index.d.ts). It has the following fields:
+```typescript
+export interface BuscarQuizFinalDoCursoData {
+  quizzes: ({
+    id: UUIDString;
+    tipo: string;
+    moduloId?: UUIDString | null;
+  } & Quiz_Key)[];
+}
+```
+### Using `BuscarQuizFinalDoCurso`'s action shortcut function
+
+```typescript
+import { getDataConnect } from 'firebase/data-connect';
+import { connectorConfig, buscarQuizFinalDoCurso, BuscarQuizFinalDoCursoVariables } from '@dataconnect/generated';
+
+// The `BuscarQuizFinalDoCurso` query requires an argument of type `BuscarQuizFinalDoCursoVariables`:
+const buscarQuizFinalDoCursoVars: BuscarQuizFinalDoCursoVariables = {
+  cursoId: ..., 
+};
+
+// Call the `buscarQuizFinalDoCurso()` function to execute the query.
+// You can use the `await` keyword to wait for the promise to resolve.
+const { data } = await buscarQuizFinalDoCurso(buscarQuizFinalDoCursoVars);
+// Variables can be defined inline as well.
+const { data } = await buscarQuizFinalDoCurso({ cursoId: ..., });
+
+// You can also pass in a `DataConnect` instance to the action shortcut function.
+const dataConnect = getDataConnect(connectorConfig);
+const { data } = await buscarQuizFinalDoCurso(dataConnect, buscarQuizFinalDoCursoVars);
+
+console.log(data.quizzes);
+
+// Or, you can use the `Promise` API.
+buscarQuizFinalDoCurso(buscarQuizFinalDoCursoVars).then((response) => {
+  const data = response.data;
+  console.log(data.quizzes);
+});
+```
+
+### Using `BuscarQuizFinalDoCurso`'s `QueryRef` function
+
+```typescript
+import { getDataConnect, executeQuery } from 'firebase/data-connect';
+import { connectorConfig, buscarQuizFinalDoCursoRef, BuscarQuizFinalDoCursoVariables } from '@dataconnect/generated';
+
+// The `BuscarQuizFinalDoCurso` query requires an argument of type `BuscarQuizFinalDoCursoVariables`:
+const buscarQuizFinalDoCursoVars: BuscarQuizFinalDoCursoVariables = {
+  cursoId: ..., 
+};
+
+// Call the `buscarQuizFinalDoCursoRef()` function to get a reference to the query.
+const ref = buscarQuizFinalDoCursoRef(buscarQuizFinalDoCursoVars);
+// Variables can be defined inline as well.
+const ref = buscarQuizFinalDoCursoRef({ cursoId: ..., });
+
+// You can also pass in a `DataConnect` instance to the `QueryRef` function.
+const dataConnect = getDataConnect(connectorConfig);
+const ref = buscarQuizFinalDoCursoRef(dataConnect, buscarQuizFinalDoCursoVars);
+
+// Call `executeQuery()` on the reference to execute the query.
+// You can use the `await` keyword to wait for the promise to resolve.
+const { data } = await executeQuery(ref);
+
+console.log(data.quizzes);
+
+// Or, you can use the `Promise` API.
+executeQuery(ref).then((response) => {
+  const data = response.data;
+  console.log(data.quizzes);
 });
 ```
 
@@ -2661,6 +2779,452 @@ console.log(data.curso_delete);
 executeMutation(ref).then((response) => {
   const data = response.data;
   console.log(data.curso_delete);
+});
+```
+
+## ExcluirConteudoModulo
+You can execute the `ExcluirConteudoModulo` mutation using the following action shortcut function, or by calling `executeMutation()` after calling the following `MutationRef` function, both of which are defined in [dataconnect-generated/index.d.ts](./index.d.ts):
+```typescript
+excluirConteudoModulo(vars: ExcluirConteudoModuloVariables): MutationPromise<ExcluirConteudoModuloData, ExcluirConteudoModuloVariables>;
+
+interface ExcluirConteudoModuloRef {
+  ...
+  /* Allow users to create refs without passing in DataConnect */
+  (vars: ExcluirConteudoModuloVariables): MutationRef<ExcluirConteudoModuloData, ExcluirConteudoModuloVariables>;
+}
+export const excluirConteudoModuloRef: ExcluirConteudoModuloRef;
+```
+You can also pass in a `DataConnect` instance to the action shortcut function or `MutationRef` function.
+```typescript
+excluirConteudoModulo(dc: DataConnect, vars: ExcluirConteudoModuloVariables): MutationPromise<ExcluirConteudoModuloData, ExcluirConteudoModuloVariables>;
+
+interface ExcluirConteudoModuloRef {
+  ...
+  (dc: DataConnect, vars: ExcluirConteudoModuloVariables): MutationRef<ExcluirConteudoModuloData, ExcluirConteudoModuloVariables>;
+}
+export const excluirConteudoModuloRef: ExcluirConteudoModuloRef;
+```
+
+If you need the name of the operation without creating a ref, you can retrieve the operation name by calling the `operationName` property on the excluirConteudoModuloRef:
+```typescript
+const name = excluirConteudoModuloRef.operationName;
+console.log(name);
+```
+
+### Variables
+The `ExcluirConteudoModulo` mutation requires an argument of type `ExcluirConteudoModuloVariables`, which is defined in [dataconnect-generated/index.d.ts](./index.d.ts). It has the following fields:
+
+```typescript
+export interface ExcluirConteudoModuloVariables {
+  id: UUIDString;
+}
+```
+### Return Type
+Recall that executing the `ExcluirConteudoModulo` mutation returns a `MutationPromise` that resolves to an object with a `data` property.
+
+The `data` property is an object of type `ExcluirConteudoModuloData`, which is defined in [dataconnect-generated/index.d.ts](./index.d.ts). It has the following fields:
+```typescript
+export interface ExcluirConteudoModuloData {
+  conteudoModulo_delete?: ConteudoModulo_Key | null;
+}
+```
+### Using `ExcluirConteudoModulo`'s action shortcut function
+
+```typescript
+import { getDataConnect } from 'firebase/data-connect';
+import { connectorConfig, excluirConteudoModulo, ExcluirConteudoModuloVariables } from '@dataconnect/generated';
+
+// The `ExcluirConteudoModulo` mutation requires an argument of type `ExcluirConteudoModuloVariables`:
+const excluirConteudoModuloVars: ExcluirConteudoModuloVariables = {
+  id: ..., 
+};
+
+// Call the `excluirConteudoModulo()` function to execute the mutation.
+// You can use the `await` keyword to wait for the promise to resolve.
+const { data } = await excluirConteudoModulo(excluirConteudoModuloVars);
+// Variables can be defined inline as well.
+const { data } = await excluirConteudoModulo({ id: ..., });
+
+// You can also pass in a `DataConnect` instance to the action shortcut function.
+const dataConnect = getDataConnect(connectorConfig);
+const { data } = await excluirConteudoModulo(dataConnect, excluirConteudoModuloVars);
+
+console.log(data.conteudoModulo_delete);
+
+// Or, you can use the `Promise` API.
+excluirConteudoModulo(excluirConteudoModuloVars).then((response) => {
+  const data = response.data;
+  console.log(data.conteudoModulo_delete);
+});
+```
+
+### Using `ExcluirConteudoModulo`'s `MutationRef` function
+
+```typescript
+import { getDataConnect, executeMutation } from 'firebase/data-connect';
+import { connectorConfig, excluirConteudoModuloRef, ExcluirConteudoModuloVariables } from '@dataconnect/generated';
+
+// The `ExcluirConteudoModulo` mutation requires an argument of type `ExcluirConteudoModuloVariables`:
+const excluirConteudoModuloVars: ExcluirConteudoModuloVariables = {
+  id: ..., 
+};
+
+// Call the `excluirConteudoModuloRef()` function to get a reference to the mutation.
+const ref = excluirConteudoModuloRef(excluirConteudoModuloVars);
+// Variables can be defined inline as well.
+const ref = excluirConteudoModuloRef({ id: ..., });
+
+// You can also pass in a `DataConnect` instance to the `MutationRef` function.
+const dataConnect = getDataConnect(connectorConfig);
+const ref = excluirConteudoModuloRef(dataConnect, excluirConteudoModuloVars);
+
+// Call `executeMutation()` on the reference to execute the mutation.
+// You can use the `await` keyword to wait for the promise to resolve.
+const { data } = await executeMutation(ref);
+
+console.log(data.conteudoModulo_delete);
+
+// Or, you can use the `Promise` API.
+executeMutation(ref).then((response) => {
+  const data = response.data;
+  console.log(data.conteudoModulo_delete);
+});
+```
+
+## ExcluirAlternativaQuiz
+You can execute the `ExcluirAlternativaQuiz` mutation using the following action shortcut function, or by calling `executeMutation()` after calling the following `MutationRef` function, both of which are defined in [dataconnect-generated/index.d.ts](./index.d.ts):
+```typescript
+excluirAlternativaQuiz(vars: ExcluirAlternativaQuizVariables): MutationPromise<ExcluirAlternativaQuizData, ExcluirAlternativaQuizVariables>;
+
+interface ExcluirAlternativaQuizRef {
+  ...
+  /* Allow users to create refs without passing in DataConnect */
+  (vars: ExcluirAlternativaQuizVariables): MutationRef<ExcluirAlternativaQuizData, ExcluirAlternativaQuizVariables>;
+}
+export const excluirAlternativaQuizRef: ExcluirAlternativaQuizRef;
+```
+You can also pass in a `DataConnect` instance to the action shortcut function or `MutationRef` function.
+```typescript
+excluirAlternativaQuiz(dc: DataConnect, vars: ExcluirAlternativaQuizVariables): MutationPromise<ExcluirAlternativaQuizData, ExcluirAlternativaQuizVariables>;
+
+interface ExcluirAlternativaQuizRef {
+  ...
+  (dc: DataConnect, vars: ExcluirAlternativaQuizVariables): MutationRef<ExcluirAlternativaQuizData, ExcluirAlternativaQuizVariables>;
+}
+export const excluirAlternativaQuizRef: ExcluirAlternativaQuizRef;
+```
+
+If you need the name of the operation without creating a ref, you can retrieve the operation name by calling the `operationName` property on the excluirAlternativaQuizRef:
+```typescript
+const name = excluirAlternativaQuizRef.operationName;
+console.log(name);
+```
+
+### Variables
+The `ExcluirAlternativaQuiz` mutation requires an argument of type `ExcluirAlternativaQuizVariables`, which is defined in [dataconnect-generated/index.d.ts](./index.d.ts). It has the following fields:
+
+```typescript
+export interface ExcluirAlternativaQuizVariables {
+  id: UUIDString;
+}
+```
+### Return Type
+Recall that executing the `ExcluirAlternativaQuiz` mutation returns a `MutationPromise` that resolves to an object with a `data` property.
+
+The `data` property is an object of type `ExcluirAlternativaQuizData`, which is defined in [dataconnect-generated/index.d.ts](./index.d.ts). It has the following fields:
+```typescript
+export interface ExcluirAlternativaQuizData {
+  alternativaQuiz_delete?: AlternativaQuiz_Key | null;
+}
+```
+### Using `ExcluirAlternativaQuiz`'s action shortcut function
+
+```typescript
+import { getDataConnect } from 'firebase/data-connect';
+import { connectorConfig, excluirAlternativaQuiz, ExcluirAlternativaQuizVariables } from '@dataconnect/generated';
+
+// The `ExcluirAlternativaQuiz` mutation requires an argument of type `ExcluirAlternativaQuizVariables`:
+const excluirAlternativaQuizVars: ExcluirAlternativaQuizVariables = {
+  id: ..., 
+};
+
+// Call the `excluirAlternativaQuiz()` function to execute the mutation.
+// You can use the `await` keyword to wait for the promise to resolve.
+const { data } = await excluirAlternativaQuiz(excluirAlternativaQuizVars);
+// Variables can be defined inline as well.
+const { data } = await excluirAlternativaQuiz({ id: ..., });
+
+// You can also pass in a `DataConnect` instance to the action shortcut function.
+const dataConnect = getDataConnect(connectorConfig);
+const { data } = await excluirAlternativaQuiz(dataConnect, excluirAlternativaQuizVars);
+
+console.log(data.alternativaQuiz_delete);
+
+// Or, you can use the `Promise` API.
+excluirAlternativaQuiz(excluirAlternativaQuizVars).then((response) => {
+  const data = response.data;
+  console.log(data.alternativaQuiz_delete);
+});
+```
+
+### Using `ExcluirAlternativaQuiz`'s `MutationRef` function
+
+```typescript
+import { getDataConnect, executeMutation } from 'firebase/data-connect';
+import { connectorConfig, excluirAlternativaQuizRef, ExcluirAlternativaQuizVariables } from '@dataconnect/generated';
+
+// The `ExcluirAlternativaQuiz` mutation requires an argument of type `ExcluirAlternativaQuizVariables`:
+const excluirAlternativaQuizVars: ExcluirAlternativaQuizVariables = {
+  id: ..., 
+};
+
+// Call the `excluirAlternativaQuizRef()` function to get a reference to the mutation.
+const ref = excluirAlternativaQuizRef(excluirAlternativaQuizVars);
+// Variables can be defined inline as well.
+const ref = excluirAlternativaQuizRef({ id: ..., });
+
+// You can also pass in a `DataConnect` instance to the `MutationRef` function.
+const dataConnect = getDataConnect(connectorConfig);
+const ref = excluirAlternativaQuizRef(dataConnect, excluirAlternativaQuizVars);
+
+// Call `executeMutation()` on the reference to execute the mutation.
+// You can use the `await` keyword to wait for the promise to resolve.
+const { data } = await executeMutation(ref);
+
+console.log(data.alternativaQuiz_delete);
+
+// Or, you can use the `Promise` API.
+executeMutation(ref).then((response) => {
+  const data = response.data;
+  console.log(data.alternativaQuiz_delete);
+});
+```
+
+## ExcluirQuestaoQuiz
+You can execute the `ExcluirQuestaoQuiz` mutation using the following action shortcut function, or by calling `executeMutation()` after calling the following `MutationRef` function, both of which are defined in [dataconnect-generated/index.d.ts](./index.d.ts):
+```typescript
+excluirQuestaoQuiz(vars: ExcluirQuestaoQuizVariables): MutationPromise<ExcluirQuestaoQuizData, ExcluirQuestaoQuizVariables>;
+
+interface ExcluirQuestaoQuizRef {
+  ...
+  /* Allow users to create refs without passing in DataConnect */
+  (vars: ExcluirQuestaoQuizVariables): MutationRef<ExcluirQuestaoQuizData, ExcluirQuestaoQuizVariables>;
+}
+export const excluirQuestaoQuizRef: ExcluirQuestaoQuizRef;
+```
+You can also pass in a `DataConnect` instance to the action shortcut function or `MutationRef` function.
+```typescript
+excluirQuestaoQuiz(dc: DataConnect, vars: ExcluirQuestaoQuizVariables): MutationPromise<ExcluirQuestaoQuizData, ExcluirQuestaoQuizVariables>;
+
+interface ExcluirQuestaoQuizRef {
+  ...
+  (dc: DataConnect, vars: ExcluirQuestaoQuizVariables): MutationRef<ExcluirQuestaoQuizData, ExcluirQuestaoQuizVariables>;
+}
+export const excluirQuestaoQuizRef: ExcluirQuestaoQuizRef;
+```
+
+If you need the name of the operation without creating a ref, you can retrieve the operation name by calling the `operationName` property on the excluirQuestaoQuizRef:
+```typescript
+const name = excluirQuestaoQuizRef.operationName;
+console.log(name);
+```
+
+### Variables
+The `ExcluirQuestaoQuiz` mutation requires an argument of type `ExcluirQuestaoQuizVariables`, which is defined in [dataconnect-generated/index.d.ts](./index.d.ts). It has the following fields:
+
+```typescript
+export interface ExcluirQuestaoQuizVariables {
+  id: UUIDString;
+}
+```
+### Return Type
+Recall that executing the `ExcluirQuestaoQuiz` mutation returns a `MutationPromise` that resolves to an object with a `data` property.
+
+The `data` property is an object of type `ExcluirQuestaoQuizData`, which is defined in [dataconnect-generated/index.d.ts](./index.d.ts). It has the following fields:
+```typescript
+export interface ExcluirQuestaoQuizData {
+  alternativaQuiz_deleteMany: number;
+  questaoQuiz_delete?: QuestaoQuiz_Key | null;
+}
+```
+### Using `ExcluirQuestaoQuiz`'s action shortcut function
+
+```typescript
+import { getDataConnect } from 'firebase/data-connect';
+import { connectorConfig, excluirQuestaoQuiz, ExcluirQuestaoQuizVariables } from '@dataconnect/generated';
+
+// The `ExcluirQuestaoQuiz` mutation requires an argument of type `ExcluirQuestaoQuizVariables`:
+const excluirQuestaoQuizVars: ExcluirQuestaoQuizVariables = {
+  id: ..., 
+};
+
+// Call the `excluirQuestaoQuiz()` function to execute the mutation.
+// You can use the `await` keyword to wait for the promise to resolve.
+const { data } = await excluirQuestaoQuiz(excluirQuestaoQuizVars);
+// Variables can be defined inline as well.
+const { data } = await excluirQuestaoQuiz({ id: ..., });
+
+// You can also pass in a `DataConnect` instance to the action shortcut function.
+const dataConnect = getDataConnect(connectorConfig);
+const { data } = await excluirQuestaoQuiz(dataConnect, excluirQuestaoQuizVars);
+
+console.log(data.alternativaQuiz_deleteMany);
+console.log(data.questaoQuiz_delete);
+
+// Or, you can use the `Promise` API.
+excluirQuestaoQuiz(excluirQuestaoQuizVars).then((response) => {
+  const data = response.data;
+  console.log(data.alternativaQuiz_deleteMany);
+  console.log(data.questaoQuiz_delete);
+});
+```
+
+### Using `ExcluirQuestaoQuiz`'s `MutationRef` function
+
+```typescript
+import { getDataConnect, executeMutation } from 'firebase/data-connect';
+import { connectorConfig, excluirQuestaoQuizRef, ExcluirQuestaoQuizVariables } from '@dataconnect/generated';
+
+// The `ExcluirQuestaoQuiz` mutation requires an argument of type `ExcluirQuestaoQuizVariables`:
+const excluirQuestaoQuizVars: ExcluirQuestaoQuizVariables = {
+  id: ..., 
+};
+
+// Call the `excluirQuestaoQuizRef()` function to get a reference to the mutation.
+const ref = excluirQuestaoQuizRef(excluirQuestaoQuizVars);
+// Variables can be defined inline as well.
+const ref = excluirQuestaoQuizRef({ id: ..., });
+
+// You can also pass in a `DataConnect` instance to the `MutationRef` function.
+const dataConnect = getDataConnect(connectorConfig);
+const ref = excluirQuestaoQuizRef(dataConnect, excluirQuestaoQuizVars);
+
+// Call `executeMutation()` on the reference to execute the mutation.
+// You can use the `await` keyword to wait for the promise to resolve.
+const { data } = await executeMutation(ref);
+
+console.log(data.alternativaQuiz_deleteMany);
+console.log(data.questaoQuiz_delete);
+
+// Or, you can use the `Promise` API.
+executeMutation(ref).then((response) => {
+  const data = response.data;
+  console.log(data.alternativaQuiz_deleteMany);
+  console.log(data.questaoQuiz_delete);
+});
+```
+
+## ExcluirModulo
+You can execute the `ExcluirModulo` mutation using the following action shortcut function, or by calling `executeMutation()` after calling the following `MutationRef` function, both of which are defined in [dataconnect-generated/index.d.ts](./index.d.ts):
+```typescript
+excluirModulo(vars: ExcluirModuloVariables): MutationPromise<ExcluirModuloData, ExcluirModuloVariables>;
+
+interface ExcluirModuloRef {
+  ...
+  /* Allow users to create refs without passing in DataConnect */
+  (vars: ExcluirModuloVariables): MutationRef<ExcluirModuloData, ExcluirModuloVariables>;
+}
+export const excluirModuloRef: ExcluirModuloRef;
+```
+You can also pass in a `DataConnect` instance to the action shortcut function or `MutationRef` function.
+```typescript
+excluirModulo(dc: DataConnect, vars: ExcluirModuloVariables): MutationPromise<ExcluirModuloData, ExcluirModuloVariables>;
+
+interface ExcluirModuloRef {
+  ...
+  (dc: DataConnect, vars: ExcluirModuloVariables): MutationRef<ExcluirModuloData, ExcluirModuloVariables>;
+}
+export const excluirModuloRef: ExcluirModuloRef;
+```
+
+If you need the name of the operation without creating a ref, you can retrieve the operation name by calling the `operationName` property on the excluirModuloRef:
+```typescript
+const name = excluirModuloRef.operationName;
+console.log(name);
+```
+
+### Variables
+The `ExcluirModulo` mutation requires an argument of type `ExcluirModuloVariables`, which is defined in [dataconnect-generated/index.d.ts](./index.d.ts). It has the following fields:
+
+```typescript
+export interface ExcluirModuloVariables {
+  id: UUIDString;
+}
+```
+### Return Type
+Recall that executing the `ExcluirModulo` mutation returns a `MutationPromise` that resolves to an object with a `data` property.
+
+The `data` property is an object of type `ExcluirModuloData`, which is defined in [dataconnect-generated/index.d.ts](./index.d.ts). It has the following fields:
+```typescript
+export interface ExcluirModuloData {
+  quiz_deleteMany: number;
+  modulo_delete?: Modulo_Key | null;
+}
+```
+### Using `ExcluirModulo`'s action shortcut function
+
+```typescript
+import { getDataConnect } from 'firebase/data-connect';
+import { connectorConfig, excluirModulo, ExcluirModuloVariables } from '@dataconnect/generated';
+
+// The `ExcluirModulo` mutation requires an argument of type `ExcluirModuloVariables`:
+const excluirModuloVars: ExcluirModuloVariables = {
+  id: ..., 
+};
+
+// Call the `excluirModulo()` function to execute the mutation.
+// You can use the `await` keyword to wait for the promise to resolve.
+const { data } = await excluirModulo(excluirModuloVars);
+// Variables can be defined inline as well.
+const { data } = await excluirModulo({ id: ..., });
+
+// You can also pass in a `DataConnect` instance to the action shortcut function.
+const dataConnect = getDataConnect(connectorConfig);
+const { data } = await excluirModulo(dataConnect, excluirModuloVars);
+
+console.log(data.quiz_deleteMany);
+console.log(data.modulo_delete);
+
+// Or, you can use the `Promise` API.
+excluirModulo(excluirModuloVars).then((response) => {
+  const data = response.data;
+  console.log(data.quiz_deleteMany);
+  console.log(data.modulo_delete);
+});
+```
+
+### Using `ExcluirModulo`'s `MutationRef` function
+
+```typescript
+import { getDataConnect, executeMutation } from 'firebase/data-connect';
+import { connectorConfig, excluirModuloRef, ExcluirModuloVariables } from '@dataconnect/generated';
+
+// The `ExcluirModulo` mutation requires an argument of type `ExcluirModuloVariables`:
+const excluirModuloVars: ExcluirModuloVariables = {
+  id: ..., 
+};
+
+// Call the `excluirModuloRef()` function to get a reference to the mutation.
+const ref = excluirModuloRef(excluirModuloVars);
+// Variables can be defined inline as well.
+const ref = excluirModuloRef({ id: ..., });
+
+// You can also pass in a `DataConnect` instance to the `MutationRef` function.
+const dataConnect = getDataConnect(connectorConfig);
+const ref = excluirModuloRef(dataConnect, excluirModuloVars);
+
+// Call `executeMutation()` on the reference to execute the mutation.
+// You can use the `await` keyword to wait for the promise to resolve.
+const { data } = await executeMutation(ref);
+
+console.log(data.quiz_deleteMany);
+console.log(data.modulo_delete);
+
+// Or, you can use the `Promise` API.
+executeMutation(ref).then((response) => {
+  const data = response.data;
+  console.log(data.quiz_deleteMany);
+  console.log(data.modulo_delete);
 });
 ```
 

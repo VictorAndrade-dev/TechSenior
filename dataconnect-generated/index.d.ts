@@ -53,6 +53,18 @@ export interface BuscarQuizDoModuloVariables {
   moduloId: UUIDString;
 }
 
+export interface BuscarQuizFinalDoCursoData {
+  quizzes: ({
+    id: UUIDString;
+    tipo: string;
+    moduloId?: UUIDString | null;
+  } & Quiz_Key)[];
+}
+
+export interface BuscarQuizFinalDoCursoVariables {
+  cursoId: UUIDString;
+}
+
 export interface CadastrarUsuarioData {
   usuario_insert: Usuario_Key;
 }
@@ -225,11 +237,45 @@ export interface EditarQuizVariables {
   tipo: string;
 }
 
+export interface ExcluirAlternativaQuizData {
+  alternativaQuiz_delete?: AlternativaQuiz_Key | null;
+}
+
+export interface ExcluirAlternativaQuizVariables {
+  id: UUIDString;
+}
+
+export interface ExcluirConteudoModuloData {
+  conteudoModulo_delete?: ConteudoModulo_Key | null;
+}
+
+export interface ExcluirConteudoModuloVariables {
+  id: UUIDString;
+}
+
 export interface ExcluirCursoData {
   curso_delete?: Curso_Key | null;
 }
 
 export interface ExcluirCursoVariables {
+  id: UUIDString;
+}
+
+export interface ExcluirModuloData {
+  quiz_deleteMany: number;
+  modulo_delete?: Modulo_Key | null;
+}
+
+export interface ExcluirModuloVariables {
+  id: UUIDString;
+}
+
+export interface ExcluirQuestaoQuizData {
+  alternativaQuiz_deleteMany: number;
+  questaoQuiz_delete?: QuestaoQuiz_Key | null;
+}
+
+export interface ExcluirQuestaoQuizVariables {
   id: UUIDString;
 }
 
@@ -641,6 +687,66 @@ export const excluirCursoRef: ExcluirCursoRef;
 
 export function excluirCurso(vars: ExcluirCursoVariables): MutationPromise<ExcluirCursoData, ExcluirCursoVariables>;
 export function excluirCurso(dc: DataConnect, vars: ExcluirCursoVariables): MutationPromise<ExcluirCursoData, ExcluirCursoVariables>;
+
+interface BuscarQuizFinalDoCursoRef {
+  /* Allow users to create refs without passing in DataConnect */
+  (vars: BuscarQuizFinalDoCursoVariables): QueryRef<BuscarQuizFinalDoCursoData, BuscarQuizFinalDoCursoVariables>;
+  /* Allow users to pass in custom DataConnect instances */
+  (dc: DataConnect, vars: BuscarQuizFinalDoCursoVariables): QueryRef<BuscarQuizFinalDoCursoData, BuscarQuizFinalDoCursoVariables>;
+  operationName: string;
+}
+export const buscarQuizFinalDoCursoRef: BuscarQuizFinalDoCursoRef;
+
+export function buscarQuizFinalDoCurso(vars: BuscarQuizFinalDoCursoVariables, options?: ExecuteQueryOptions): QueryPromise<BuscarQuizFinalDoCursoData, BuscarQuizFinalDoCursoVariables>;
+export function buscarQuizFinalDoCurso(dc: DataConnect, vars: BuscarQuizFinalDoCursoVariables, options?: ExecuteQueryOptions): QueryPromise<BuscarQuizFinalDoCursoData, BuscarQuizFinalDoCursoVariables>;
+
+interface ExcluirConteudoModuloRef {
+  /* Allow users to create refs without passing in DataConnect */
+  (vars: ExcluirConteudoModuloVariables): MutationRef<ExcluirConteudoModuloData, ExcluirConteudoModuloVariables>;
+  /* Allow users to pass in custom DataConnect instances */
+  (dc: DataConnect, vars: ExcluirConteudoModuloVariables): MutationRef<ExcluirConteudoModuloData, ExcluirConteudoModuloVariables>;
+  operationName: string;
+}
+export const excluirConteudoModuloRef: ExcluirConteudoModuloRef;
+
+export function excluirConteudoModulo(vars: ExcluirConteudoModuloVariables): MutationPromise<ExcluirConteudoModuloData, ExcluirConteudoModuloVariables>;
+export function excluirConteudoModulo(dc: DataConnect, vars: ExcluirConteudoModuloVariables): MutationPromise<ExcluirConteudoModuloData, ExcluirConteudoModuloVariables>;
+
+interface ExcluirAlternativaQuizRef {
+  /* Allow users to create refs without passing in DataConnect */
+  (vars: ExcluirAlternativaQuizVariables): MutationRef<ExcluirAlternativaQuizData, ExcluirAlternativaQuizVariables>;
+  /* Allow users to pass in custom DataConnect instances */
+  (dc: DataConnect, vars: ExcluirAlternativaQuizVariables): MutationRef<ExcluirAlternativaQuizData, ExcluirAlternativaQuizVariables>;
+  operationName: string;
+}
+export const excluirAlternativaQuizRef: ExcluirAlternativaQuizRef;
+
+export function excluirAlternativaQuiz(vars: ExcluirAlternativaQuizVariables): MutationPromise<ExcluirAlternativaQuizData, ExcluirAlternativaQuizVariables>;
+export function excluirAlternativaQuiz(dc: DataConnect, vars: ExcluirAlternativaQuizVariables): MutationPromise<ExcluirAlternativaQuizData, ExcluirAlternativaQuizVariables>;
+
+interface ExcluirQuestaoQuizRef {
+  /* Allow users to create refs without passing in DataConnect */
+  (vars: ExcluirQuestaoQuizVariables): MutationRef<ExcluirQuestaoQuizData, ExcluirQuestaoQuizVariables>;
+  /* Allow users to pass in custom DataConnect instances */
+  (dc: DataConnect, vars: ExcluirQuestaoQuizVariables): MutationRef<ExcluirQuestaoQuizData, ExcluirQuestaoQuizVariables>;
+  operationName: string;
+}
+export const excluirQuestaoQuizRef: ExcluirQuestaoQuizRef;
+
+export function excluirQuestaoQuiz(vars: ExcluirQuestaoQuizVariables): MutationPromise<ExcluirQuestaoQuizData, ExcluirQuestaoQuizVariables>;
+export function excluirQuestaoQuiz(dc: DataConnect, vars: ExcluirQuestaoQuizVariables): MutationPromise<ExcluirQuestaoQuizData, ExcluirQuestaoQuizVariables>;
+
+interface ExcluirModuloRef {
+  /* Allow users to create refs without passing in DataConnect */
+  (vars: ExcluirModuloVariables): MutationRef<ExcluirModuloData, ExcluirModuloVariables>;
+  /* Allow users to pass in custom DataConnect instances */
+  (dc: DataConnect, vars: ExcluirModuloVariables): MutationRef<ExcluirModuloData, ExcluirModuloVariables>;
+  operationName: string;
+}
+export const excluirModuloRef: ExcluirModuloRef;
+
+export function excluirModulo(vars: ExcluirModuloVariables): MutationPromise<ExcluirModuloData, ExcluirModuloVariables>;
+export function excluirModulo(dc: DataConnect, vars: ExcluirModuloVariables): MutationPromise<ExcluirModuloData, ExcluirModuloVariables>;
 
 interface CadastrarUsuarioRef {
   /* Allow users to create refs without passing in DataConnect */

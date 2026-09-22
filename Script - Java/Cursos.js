@@ -10,10 +10,64 @@ import {
 
 
 // ==========================================
-// CARREGAR CURSOS DO SQL CONNECT
+// CONFIGURAÇÕES
+// ==========================================
+
+const ID_CURSO_CELULAR =
+  "7a831a7c8c3c41768575f4e46a3df222";
+
+const listaCursos =
+  document.getElementById("listaCursos");
+
+const modalCurso =
+  document.getElementById("modalCurso");
+
+const fecharModalCurso =
+  document.getElementById("fecharModalCurso");
+
+const modalCursoTitulo =
+  document.getElementById("modalCursoTitulo");
+
+const modalCursoDescricao =
+  document.getElementById("modalCursoDescricao");
+
+const modalCursoDificuldade =
+  document.getElementById("modalCursoDificuldade");
+
+const modalCursoDuracao =
+  document.getElementById("modalCursoDuracao");
+
+const btnIniciarCurso =
+  document.getElementById("btnIniciarCurso");
+
+let usuarioAtual = null;
+let cursoSelecionado = null;
+
+
+// ==========================================
+// LOGIN
+// ==========================================
+
+onAuthStateChanged(auth, (usuario) => {
+  usuarioAtual = usuario;
+});
+
+
+// ==========================================
+// CARREGAR CURSOS DO BANCO
 // ==========================================
 
 async function carregarCursosDoBanco() {
+
+  if (!listaCursos) {
+    return;
+  }
+
+  listaCursos.innerHTML = `
+    <p class="mensagem-cursos">
+      Carregando cursos...
+    </p>
+  `;
 
   try {
 
@@ -24,30 +78,11 @@ async function carregarCursosDoBanco() {
       resultado.data?.cursos || [];
 
     console.log(
-      "Cursos carregados do PostgreSQL:",
+      "Cursos publicados:",
       cursos
     );
 
-
-    // ======================================
-    // CURSO CELULAR
-    // ======================================
-
-    const cursoCelular =
-      cursos.find(
-        (curso) =>
-          curso.id ===
-          "7a831a7c8c3c41768575f4e46a3df222"
-      );
-
-    if (!cursoCelular) {
-      return;
-    }
-
-
-    atualizarCursoCelular(
-      cursoCelular
-    );
+    mostrarCursos(cursos);
 
   } catch (erro) {
 
@@ -56,365 +91,689 @@ async function carregarCursosDoBanco() {
       erro
     );
 
-  }
-
-}
-
-
-// ==========================================
-// ATUALIZAR CARD/MODAL DO CURSO CELULAR
-// ==========================================
-
-function atualizarCursoCelular(curso) {
-
-  const botao =
-    document.querySelector(
-      '[data-modal="modalCelular"]'
-    );
-
-  const card =
-    botao?.closest(".card");
-
-  if (card) {
-
-    const icone =
-      card.querySelector("i");
-
-    const titulo =
-      card.querySelector("h3");
-
-    const descricao =
-      card.querySelector("p");
-
-
-    if (icone && curso.icone) {
-
-      icone.className =
-        curso.icone;
-
-    }
-
-
-    if (titulo) {
-
-      titulo.textContent =
-        curso.nome;
-
-    }
-
-
-    if (descricao) {
-
-      descricao.textContent =
-        curso.descricao || "";
-
-    }
-
-  }
-
-
-  // ========================================
-  // MODAL
-  // ========================================
-
-  const modal =
-    document.getElementById(
-      "modalCelular"
-    );
-
-  if (!modal) {
-    return;
-  }
-
-
-  const tituloModal =
-    modal.querySelector("h2");
-
-  const descricaoModal =
-    modal.querySelector(
-      ".modal-conteudo-curso > p"
-    );
-
-
-  if (tituloModal) {
-
-    tituloModal.innerHTML = `
-
-      <i class="${curso.icone || "fa-solid fa-mobile-screen"}"></i>
-
-      ${curso.nome}
-
+    listaCursos.innerHTML = `
+      <p class="mensagem-cursos">
+        Não foi possível carregar os cursos.
+        Tente novamente mais tarde.
+      </p>
     `;
 
   }
 
+}
 
-  if (descricaoModal) {
 
-    descricaoModal.textContent =
-      curso.descricao || "";
+// ==========================================
+// MOSTRAR CURSOS
+// ==========================================
 
+function mostrarCursos(cursos) {
+
+  listaCursos.innerHTML = "";
+
+  if (cursos.length === 0) {
+
+    listaCursos.innerHTML = `
+      <p class="mensagem-cursos">
+        Nenhum curso disponível no momento.
+      </p>
+    `;
+
+    return;
   }
 
+  cursos.forEach((curso) => {
 
-  // ========================================
-  // DIFICULDADE E DURAÇÃO
-  // ========================================
+    const card =
+      document.createElement("div");
 
-  const informacoes =
-    modal.querySelectorAll(
-      ".info-item span"
+    card.className = "card";
+
+    const icone =
+      document.createElement("i");
+
+    icone.className =
+      curso.icone ||
+      "fa-solid fa-book-open";
+
+
+    const titulo =
+      document.createElement("h3");
+
+    titulo.textContent =
+      curso.nome;
+
+
+    const descricao =
+      document.createElement("p");
+
+    descricao.textContent =
+      curso.descricao ||
+      "Conheça este curso do TechSênior.";
+
+
+    const botao =
+      document.createElement("button");
+
+    botao.className =
+      "btn-card";
+
+    botao.type =
+      "button";
+
+    botao.textContent =
+      "Ver Curso";
+
+
+    botao.addEventListener(
+      "click",
+      () => abrirModalCurso(curso)
     );
 
-  if (informacoes[1]) {
 
-    informacoes[1].textContent =
-      curso.dificuldade;
+    card.appendChild(icone);
+    card.appendChild(titulo);
+    card.appendChild(descricao);
+    card.appendChild(botao);
 
-  }
+    listaCursos.appendChild(card);
 
+    prepararAnimacaoCard(card);
 
-  if (informacoes[2]) {
-
-    informacoes[2].textContent =
-      `${curso.cargaHoraria} minutos`;
-
-  }
+  });
 
 }
 
-carregarCursosDoBanco();
 
 // ==========================================
-// CONTROLE UNIVERSAL DOS MODAIS DOS CURSOS
+// ABRIR MODAL
 // ==========================================
 
-const botoesVerCurso = document.querySelectorAll(".btn-card");
+function abrirModalCurso(curso) {
 
-botoesVerCurso.forEach((botao) => {
-  botao.addEventListener("click", (e) => {
-    e.preventDefault();
+  cursoSelecionado =
+    curso;
 
-    const idModal = botao.getAttribute("data-modal");
-    const modalTarget = document.getElementById(idModal);
+  modalCursoTitulo.innerHTML = "";
 
-    if (!modalTarget) return;
+  const icone =
+    document.createElement("i");
 
-    modalTarget.style.display = "flex";
+  icone.className =
+    curso.icone ||
+    "fa-solid fa-book-open";
 
-    const botaoFechar = modalTarget.querySelector(".fechar-modal");
+  const textoTitulo =
+    document.createTextNode(
+      ` ${curso.nome}`
+    );
 
-    if (botaoFechar) {
-      botaoFechar.onclick = () => {
-        modalTarget.style.display = "none";
-      };
+  modalCursoTitulo.appendChild(icone);
+  modalCursoTitulo.appendChild(textoTitulo);
+
+
+  modalCursoDescricao.textContent =
+    curso.descricao ||
+    "Conheça este curso do TechSênior.";
+
+
+  modalCursoDificuldade.textContent =
+    curso.dificuldade ||
+    "Não informado";
+
+
+  modalCursoDuracao.textContent =
+    curso.cargaHoraria
+      ? `${curso.cargaHoraria} minutos`
+      : "Duração não informada";
+
+
+  configurarBotaoIniciar(curso);
+
+
+  modalCurso.style.display =
+    "flex";
+
+}
+
+
+// ==========================================
+// DESTINO DO CURSO
+// ==========================================
+
+function obterDestinoCurso(curso) {
+
+  if (
+    curso.id ===
+    ID_CURSO_CELULAR
+  ) {
+
+    return "CursoCelular.html";
+
+  }
+
+  return null;
+
+}
+
+
+// ==========================================
+// CONFIGURAR BOTÃO INICIAR
+// ==========================================
+
+function configurarBotaoIniciar(curso) {
+
+  const destino =
+    obterDestinoCurso(curso);
+
+  btnIniciarCurso.classList.remove(
+    "desabilitado"
+  );
+
+  btnIniciarCurso.removeAttribute(
+    "aria-disabled"
+  );
+
+
+  if (destino) {
+
+    btnIniciarCurso.innerHTML = `
+      <i class="fa-solid fa-play"></i>
+      Iniciar Curso
+    `;
+
+    btnIniciarCurso.dataset.destino =
+      destino;
+
+    return;
+
+  }
+
+
+  btnIniciarCurso.innerHTML = `
+    <i class="fa-regular fa-clock"></i>
+    Em breve
+  `;
+
+  btnIniciarCurso.dataset.destino =
+    "";
+
+  btnIniciarCurso.classList.add(
+    "desabilitado"
+  );
+
+  btnIniciarCurso.setAttribute(
+    "aria-disabled",
+    "true"
+  );
+
+}
+
+
+// ==========================================
+// INICIAR CURSO
+// ==========================================
+
+btnIniciarCurso?.addEventListener(
+  "click",
+  (evento) => {
+
+    evento.preventDefault();
+
+    if (!cursoSelecionado) {
+      return;
     }
 
-    modalTarget.onclick = (evento) => {
-      if (evento.target === modalTarget) {
-        modalTarget.style.display = "none";
-      }
-    };
-  });
-});
 
-// ==========================================
-// VERIFICAÇÃO DE LOGIN PARA INICIAR CURSO
-// ==========================================
+    const destino =
+      btnIniciarCurso.dataset.destino;
 
-let usuarioAtual = null;
 
-onAuthStateChanged(auth, (usuario) => {
-  usuarioAtual = usuario;
-});
+    // Curso ainda não possui página
+    if (!destino) {
+      return;
+    }
 
-// Todos os links "Iniciar Curso" dos modais
-const botoesIniciarCurso = document.querySelectorAll(
-  ".modal .btn-principal"
+
+    // Precisa estar logado
+    if (!usuarioAtual) {
+
+      window.location.href =
+        "Login.html";
+
+      return;
+
+    }
+
+
+    window.location.href =
+      destino;
+
+  }
 );
 
-botoesIniciarCurso.forEach((botao) => {
-  botao.addEventListener("click", (e) => {
-    e.preventDefault();
 
-    const destino = botao.getAttribute("href");
+// ==========================================
+// FECHAR MODAL
+// ==========================================
 
-    if (!destino) return;
+function fecharModal() {
 
-    if (usuarioAtual) {
-      window.location.href = destino;
-    } else {
-      window.location.href = "Login.html";
+  if (!modalCurso) {
+    return;
+  }
+
+  modalCurso.style.display =
+    "none";
+
+  cursoSelecionado =
+    null;
+
+}
+
+
+fecharModalCurso?.addEventListener(
+  "click",
+  fecharModal
+);
+
+
+modalCurso?.addEventListener(
+  "click",
+  (evento) => {
+
+    if (
+      evento.target ===
+      modalCurso
+    ) {
+
+      fecharModal();
+
     }
-  });
-});
+
+  }
+);
+
+
+document.addEventListener(
+  "keydown",
+  (evento) => {
+
+    if (
+      evento.key === "Escape" &&
+      modalCurso?.style.display === "flex"
+    ) {
+
+      fecharModal();
+
+    }
+
+  }
+);
+
 
 // ==========================================
 // ANIMAÇÃO DOS CARDS
 // ==========================================
 
-const cards = document.querySelectorAll(".card");
+const observador =
+  new IntersectionObserver(
+    (entradas) => {
 
-cards.forEach((card) => {
-  card.addEventListener("mouseenter", () => {
-    card.style.transform = "translateY(-10px)";
-    card.style.transition = "0.3s";
-  });
+      entradas.forEach(
+        (entrada) => {
 
-  card.addEventListener("mouseleave", () => {
-    card.style.transform = "translateY(0)";
-  });
-});
+          if (
+            entrada.isIntersecting
+          ) {
 
-// ==========================================
-// ANIMAÇÃO AO APARECER NA TELA
-// ==========================================
+            entrada.target.style.opacity =
+              "1";
 
-const observador = new IntersectionObserver((entradas) => {
-  entradas.forEach((entrada) => {
-    if (entrada.isIntersecting) {
-      entrada.target.style.opacity = "1";
-      entrada.target.style.transform = "translateY(0)";
+            entrada.target.style.transform =
+              "translateY(0)";
+
+          }
+
+        }
+      );
+
     }
-  });
-});
+  );
 
-cards.forEach((card) => {
-  card.style.opacity = "0";
-  card.style.transform = "translateY(40px)";
-  card.style.transition = "0.8s";
+
+function prepararAnimacaoCard(card) {
+
+  card.style.opacity =
+    "0";
+
+  card.style.transform =
+    "translateY(40px)";
+
+  card.style.transition =
+    "0.8s";
+
+
+  card.addEventListener(
+    "mouseenter",
+    () => {
+
+      card.style.transform =
+        "translateY(-10px)";
+
+      card.style.transition =
+        "0.3s";
+
+    }
+  );
+
+
+  card.addEventListener(
+    "mouseleave",
+    () => {
+
+      card.style.transform =
+        "translateY(0)";
+
+    }
+  );
+
 
   observador.observe(card);
-});
+
+}
+
 
 // ==========================================
 // BOTÃO COMEÇAR
 // ==========================================
 
-const btnComecar = document.getElementById("btnComecar");
+const btnComecar =
+  document.getElementById(
+    "btnComecar"
+  );
+
 
 if (btnComecar) {
-  onAuthStateChanged(auth, (usuario) => {
-    if (usuario) {
-      btnComecar.innerHTML = `
-        <i class="fa-solid fa-graduation-cap"></i>
-        Continuar aprendendo
-      `;
-    }
 
-    btnComecar.onclick = () => {
+  onAuthStateChanged(
+    auth,
+    (usuario) => {
+
       if (usuario) {
-        document.getElementById("cursos")?.scrollIntoView({
-          behavior: "smooth"
-        });
 
-        return;
+        btnComecar.innerHTML = `
+          <i class="fa-solid fa-graduation-cap"></i>
+          Continuar aprendendo
+        `;
+
       }
 
-      window.location.href = "Login.html";
-    };
-  });
+
+      btnComecar.onclick =
+        () => {
+
+          if (usuario) {
+
+            document
+              .getElementById("cursos")
+              ?.scrollIntoView({
+                behavior: "smooth"
+              });
+
+            return;
+
+          }
+
+
+          window.location.href =
+            "Login.html";
+
+        };
+
+    }
+  );
+
 }
+
 
 // ==========================================
 // FAQ
 // ==========================================
 
-const accordions = document.querySelectorAll(".accordion");
+const accordions =
+  document.querySelectorAll(
+    ".accordion"
+  );
 
-accordions.forEach((accordion) => {
-  accordion.addEventListener("click", () => {
-    const resposta = accordion.nextElementSibling;
 
-    if (!resposta) return;
+accordions.forEach(
+  (accordion) => {
 
-    const estaAberto = accordion.classList.contains("active");
+    accordion.addEventListener(
+      "click",
+      () => {
 
-    accordion.classList.toggle("active");
+        const resposta =
+          accordion.nextElementSibling;
 
-    if (estaAberto) {
-      resposta.classList.remove("aberta");
-    } else {
-      resposta.classList.add("aberta");
-    }
-  });
-});
+        if (!resposta) {
+          return;
+        }
 
-// ==========================================
-// SCROLL AUTOMÁTICO PARA A SEÇÃO DE CURSOS
-// ==========================================
 
-window.addEventListener("load", () => {
-  if (window.location.hash === "#cursos") {
-    setTimeout(() => {
-      const destino = document.getElementById("cursos");
+        const estaAberto =
+          accordion.classList.contains(
+            "active"
+          );
 
-      if (destino) {
-        scrollSuave(destino, 2000);
+
+        accordion.classList.toggle(
+          "active"
+        );
+
+
+        if (estaAberto) {
+
+          resposta.classList.remove(
+            "aberta"
+          );
+
+        } else {
+
+          resposta.classList.add(
+            "aberta"
+          );
+
+        }
+
       }
-    }, 400);
+    );
+
   }
-});
+);
+
+
+// ==========================================
+// SCROLL AUTOMÁTICO
+// ==========================================
+
+window.addEventListener(
+  "load",
+  () => {
+
+    if (
+      window.location.hash ===
+      "#cursos"
+    ) {
+
+      setTimeout(
+        () => {
+
+          const destino =
+            document.getElementById(
+              "cursos"
+            );
+
+          if (destino) {
+
+            scrollSuave(
+              destino,
+              2000
+            );
+
+          }
+
+        },
+        400
+      );
+
+    }
+
+  }
+);
+
 
 // ==========================================
 // FUNÇÃO DE SCROLL SUAVE
 // ==========================================
 
-function scrollSuave(destino, duracao = 2000) {
-  if (!destino) return;
+function scrollSuave(
+  destino,
+  duracao = 2000
+) {
 
-  const inicio = window.scrollY;
+  if (!destino) {
+    return;
+  }
+
+
+  const inicio =
+    window.scrollY;
+
 
   const posicaoDestino =
-    destino.getBoundingClientRect().top + window.scrollY;
+    destino
+      .getBoundingClientRect()
+      .top +
+    window.scrollY;
 
-  const fim = posicaoDestino - 90;
-  const distancia = fim - inicio;
 
-  let inicioTempo = null;
+  const fim =
+    posicaoDestino - 90;
 
-  function animar(tempoAtual) {
+  const distancia =
+    fim - inicio;
+
+  let inicioTempo =
+    null;
+
+
+  function animar(
+    tempoAtual
+  ) {
+
     if (!inicioTempo) {
-      inicioTempo = tempoAtual;
+      inicioTempo =
+        tempoAtual;
     }
 
-    const tempoDecorrido = tempoAtual - inicioTempo;
 
-    const progresso = Math.min(
-      tempoDecorrido / duracao,
-      1
-    );
+    const tempoDecorrido =
+      tempoAtual -
+      inicioTempo;
+
+
+    const progresso =
+      Math.min(
+        tempoDecorrido /
+          duracao,
+        1
+      );
+
 
     const ease =
       progresso < 0.5
-        ? 2 * progresso * progresso
-        : 1 - Math.pow(-2 * progresso + 2, 2) / 2;
+        ? 2 *
+          progresso *
+          progresso
+        : 1 -
+          Math.pow(
+            -2 *
+              progresso +
+              2,
+            2
+          ) /
+            2;
+
 
     window.scrollTo(
       0,
-      inicio + distancia * ease
+      inicio +
+        distancia *
+          ease
     );
 
-    if (progresso < 1) {
-      requestAnimationFrame(animar);
+
+    if (
+      progresso < 1
+    ) {
+
+      requestAnimationFrame(
+        animar
+      );
+
     }
+
   }
 
-  requestAnimationFrame(animar);
+
+  requestAnimationFrame(
+    animar
+  );
+
 }
+
 
 // ==========================================
 // BOTÃO "CONHEÇA NOSSOS CURSOS"
 // ==========================================
 
-const btnCursos = document.querySelector(".btn-principal");
+// Usamos o botão especificamente dentro do HERO.
+// Não usamos document.querySelector(".btn-principal")
+// porque agora também existe o botão do modal.
+
+const btnCursos =
+  document.getElementById(
+    "btnCursos"
+  );
+
 
 if (btnCursos) {
-  btnCursos.addEventListener("click", () => {
-    const cursos = document.getElementById("cursos");
 
-    if (cursos) {
-      scrollSuave(cursos);
+  btnCursos.addEventListener(
+    "click",
+    () => {
+
+      const cursos =
+        document.getElementById(
+          "cursos"
+        );
+
+      if (cursos) {
+
+        scrollSuave(cursos);
+
+      }
+
     }
-  });
+  );
+
 }
+
+
+// ==========================================
+// INICIALIZAÇÃO
+// ==========================================
+
+carregarCursosDoBanco();

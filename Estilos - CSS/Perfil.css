@@ -169,10 +169,28 @@
   text-align: center;
 
   transition: 0.3s;
+
+  display: flex;
+
+  flex-direction: column;
+
+  height: 100%;
 }
 
 .card-curso:hover {
   transform: translateY(-8px);
+}
+
+.card-curso p {
+  color: var(--texto);
+
+  line-height: 1.6;
+
+  margin-bottom: 20px;
+}
+
+.card-curso .btn-card {
+  margin-top: auto;
 }
 
 .icone-curso {
@@ -203,14 +221,6 @@
   color: var(--titulo);
 
   margin-bottom: 15px;
-}
-
-.card-curso p {
-  color: var(--texto);
-
-  line-height: 1.6;
-
-  margin-bottom: 20px;
 }
 
 /* ==========================================

@@ -234,10 +234,14 @@ function mostrarModulos(modulos) {
   modulos.forEach((modulo, indice) => {
     const card = document.createElement("article");
 
-    card.classList.add("curso-admin");
+    card.classList.add(
+      "curso-admin",
+      "modulo-admin-card"
+    );
 
     card.innerHTML = `
-      <div class="curso-icone">
+      <div class="curso-icone modulo-numero">
+        <span>Módulo</span>
         <strong>${modulo.ordem}</strong>
       </div>
 
@@ -259,8 +263,26 @@ function mostrarModulos(modulos) {
           </span>
         </div>
 
-        <div class="curso-acoes">
-          <button class="btn-excluir" type="button" data-acao="excluir">Excluir módulo</button>
+        <div class="curso-acoes modulo-acoes">
+
+          <button
+            class="btn-modulos"
+            type="button"
+            data-acao="gerenciar"
+          >
+            <i class="fa-solid fa-folder-open"></i>
+            Gerenciar
+          </button>
+
+          <button
+            class="btn-editar"
+            type="button"
+            data-acao="editar"
+          >
+            <i class="fa-solid fa-pen-to-square"></i>
+            Editar
+          </button>
+
           <button
             class="btn-ordem"
             type="button"
@@ -284,23 +306,16 @@ function mostrarModulos(modulos) {
           </button>
 
           <button
-            class="btn-modulos"
+            class="btn-excluir"
             type="button"
-            data-acao="gerenciar"
+            data-acao="excluir"
           >
-            <i class="fa-solid fa-folder-open"></i>
-            Gerenciar
+            <i class="fa-solid fa-trash"></i>
+            Excluir
           </button>
 
-          <button
-            class="btn-editar"
-            type="button"
-            data-acao="editar"
-          >
-            <i class="fa-solid fa-pen-to-square"></i>
-            Editar
-          </button>
         </div>
+
       </div>
     `;
 

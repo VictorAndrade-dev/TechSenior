@@ -133,21 +133,151 @@ export async function iniciarEditorQuiz({cursoId, moduloId = null}) {
       const card = document.createElement("article");
       card.className = "curso-admin painel-item-admin questao-admin";
       card.innerHTML = `
-        <div class="curso-icone"><strong>${escapeHtml(questao.ordem)}</strong></div>
-        <div class="curso-info">
-          <div class="curso-titulo"><h3>Questão ${escapeHtml(questao.ordem)}</h3><span class="status ${questaoCompleta(questao) ? "publicado" : "rascunho"}">${questaoCompleta(questao) ? "Completa" : "Incompleta"}</span></div>
-          <p>${escapeHtml(questao.pergunta)}</p>
-          <div class="curso-acoes">
-            <button class="btn-ordem" type="button" data-acao="subir-questao" ${indiceQuestao === 0 ? "disabled" : ""}><i class="fa-solid fa-arrow-up" aria-hidden="true"></i> Subir</button>
-            <button class="btn-ordem" type="button" data-acao="descer-questao" ${indiceQuestao === questoesCarregadas.length - 1 ? "disabled" : ""}><i class="fa-solid fa-arrow-down" aria-hidden="true"></i> Descer</button>
-            <button class="btn-excluir" type="button" data-acao="excluir-questao">Excluir questão</button>
-            <button class="btn-editar" type="button" data-acao="editar-questao"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i> Editar questão</button>
-            <button class="btn-modulos" type="button" data-acao="nova-alternativa" ${(alternativasPorQuestao.get(questao.id) || []).length >= 5 ? "disabled" : ""}><i class="fa-solid fa-plus" aria-hidden="true"></i> Nova alternativa</button>
-          </div>
-          <p class="ajuda-campo">${(alternativasPorQuestao.get(questao.id) || []).length >= 5 ? 'Limite de 5 alternativas atingido.' : 'Para completar: pelo menos 2 alternativas e exatamente 1 correta.'}</p>
-          <div class="alternativas-admin"><h4>Alternativas</h4>${montarAlternativas(questao)}</div>
+      <div class="questao-numero">
+        ${escapeHtml(questao.ordem)}
+      </div>
+
+      <div class="questao-conteudo">
+
+        <div class="questao-topo">
+
+          <h3>
+            Questão ${escapeHtml(questao.ordem)}
+          </h3>
+
+          <span
+            class="badge-status ${
+              questaoCompleta(questao)
+                ? "completa"
+                : ""
+            }"
+          >
+            ${
+              questaoCompleta(questao)
+                ? "Completa"
+                : "Incompleta"
+            }
+          </span>
+
         </div>
-      `;
+
+
+        <p class="questao-pergunta">
+          ${escapeHtml(questao.pergunta)}
+        </p>
+
+
+        <div class="bloco-acoes-questao">
+
+          <div class="acoes-questao-admin">
+
+            <button
+              class="btn-modulos"
+              type="button"
+              data-acao="nova-alternativa"
+              ${
+                (alternativasPorQuestao.get(questao.id) || []).length >= 5
+                  ? "disabled"
+                  : ""
+              }
+            >
+              <i class="fa-solid fa-plus"></i>
+              Nova alternativa
+            </button>
+
+
+            <button
+              class="btn-editar"
+              type="button"
+              data-acao="editar-questao"
+            >
+              <i class="fa-solid fa-pen-to-square"></i>
+              Editar
+            </button>
+
+
+            <div class="grupo-ordem">
+
+              <button
+                class="btn-ordem"
+                type="button"
+                data-acao="subir-questao"
+                ${indiceQuestao === 0 ? "disabled" : ""}
+                aria-label="Mover questão para cima"
+                title="Mover para cima"
+              >
+                <i class="fa-solid fa-arrow-up"></i>
+              </button>
+
+              <button
+                class="btn-ordem"
+                type="button"
+                data-acao="descer-questao"
+                ${
+                  indiceQuestao === questoesCarregadas.length - 1
+                    ? "disabled"
+                    : ""
+                }
+                aria-label="Mover questão para baixo"
+                title="Mover para baixo"
+              >
+                <i class="fa-solid fa-arrow-down"></i>
+              </button>
+
+            </div>
+
+
+            <button
+              class="btn-excluir"
+              type="button"
+              data-acao="excluir-questao"
+            >
+              <i class="fa-solid fa-trash"></i>
+              Excluir
+            </button>
+
+          </div>
+
+
+          <p class="texto-ajuda-questao">
+            Para completar:
+            pelo menos <strong>2 alternativas</strong>
+            e exatamente <strong>1 correta</strong>.
+          </p>
+
+        </div>
+
+
+        <div class="bloco-alternativas">
+
+          <div class="cabecalho-alternativas">
+
+            <h4>
+              Alternativas
+            </h4>
+
+            <span class="contador-alternativas">
+              ${(alternativasPorQuestao.get(questao.id) || []).length}/5
+            </span>
+
+          </div>
+
+          ${
+            (alternativasPorQuestao.get(questao.id) || []).length === 0
+
+              ? `
+                <p class="estado-vazio-alternativas">
+                  Esta questão ainda não possui alternativas.
+                </p>
+              `
+
+              : montarAlternativas(questao)
+          }
+
+        </div>
+
+      </div>
+    `;
 
       card.querySelector("[data-acao='subir-questao']").addEventListener("click", () => moverQuestao(questao.id, -1));
       card.querySelector("[data-acao='descer-questao']").addEventListener("click", () => moverQuestao(questao.id, 1));
@@ -175,21 +305,114 @@ export async function iniciarEditorQuiz({cursoId, moduloId = null}) {
     }
 
     return alternativas.map((alternativa, indice) => `
-      <div class="alternativa-admin ${alternativa.correta ? "alternativa-correta" : ""}">
-        <div>
-          <strong>${String.fromCharCode(65 + indice)}.</strong> ${escapeHtml(alternativa.texto)}
-          ${alternativa.correta ? "<span>Correta</span>" : ""}
-          ${alternativa.explicacao ? `<small>${escapeHtml(alternativa.explicacao)}</small>` : ""}
+    <div
+      class="alternativa-admin ${
+        alternativa.correta
+          ? "alternativa-correta"
+          : ""
+      }"
+    >
+
+      <div class="alternativa-conteudo">
+
+        <div class="alternativa-topo">
+
+          <p class="alternativa-texto">
+            <strong>
+              ${String.fromCharCode(65 + indice)}.
+            </strong>
+
+            ${escapeHtml(alternativa.texto)}
+          </p>
+
+          ${
+            alternativa.correta
+              ? `
+                <span class="badge-correta">
+                  <i class="fa-solid fa-check"></i>
+                  Correta
+                </span>
+              `
+              : `
+                <span class="badge-incorreta">
+                  Incorreta
+                </span>
+              `
+          }
+
         </div>
-        <div class="acoes-alternativa">
-          <button class="btn-ordem" type="button" data-acao="subir-alternativa" data-alternativa-id="${alternativa.id}" ${indice === 0 ? "disabled" : ""} aria-label="Mover alternativa para cima"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i></button>
-          <button class="btn-ordem" type="button" data-acao="descer-alternativa" data-alternativa-id="${alternativa.id}" ${indice === alternativas.length - 1 ? "disabled" : ""} aria-label="Mover alternativa para baixo"><i class="fa-solid fa-arrow-down" aria-hidden="true"></i></button>
-          <button class="btn-excluir" type="button" data-acao="excluir-alternativa" data-alternativa-id="${alternativa.id}">Excluir</button>
-          <button class="btn-editar" type="button" data-acao="editar-alternativa" data-alternativa-id="${alternativa.id}">Editar</button>
-        </div>
+
+        ${
+          alternativa.explicacao
+            ? `
+              <p class="alternativa-explicacao">
+                ${escapeHtml(alternativa.explicacao)}
+              </p>
+            `
+            : ""
+        }
+
       </div>
-    `).join("");
-  }
+
+
+      <div class="acoes-alternativa">
+
+        <button
+          class="btn-editar"
+          type="button"
+          data-acao="editar-alternativa"
+          data-alternativa-id="${alternativa.id}"
+        >
+          <i class="fa-solid fa-pen-to-square"></i>
+          Editar
+        </button>
+
+
+        <div class="grupo-ordem">
+
+          <button
+            class="btn-ordem"
+            type="button"
+            data-acao="subir-alternativa"
+            data-alternativa-id="${alternativa.id}"
+            ${indice === 0 ? "disabled" : ""}
+            aria-label="Mover alternativa para cima"
+          >
+            <i class="fa-solid fa-arrow-up"></i>
+          </button>
+
+          <button
+            class="btn-ordem"
+            type="button"
+            data-acao="descer-alternativa"
+            data-alternativa-id="${alternativa.id}"
+            ${
+              indice === alternativas.length - 1
+                ? "disabled"
+                : ""
+            }
+            aria-label="Mover alternativa para baixo"
+          >
+            <i class="fa-solid fa-arrow-down"></i>
+          </button>
+
+        </div>
+
+
+        <button
+          class="btn-excluir"
+          type="button"
+          data-acao="excluir-alternativa"
+          data-alternativa-id="${alternativa.id}"
+        >
+          <i class="fa-solid fa-trash"></i>
+          Excluir
+        </button>
+
+      </div>
+
+    </div>
+  `).join("");
 
   function abrirNovaQuestao() {
     if (final && questoesCarregadas.length >= 15) return;

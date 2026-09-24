@@ -6,7 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Módulos do Curso | TechSênior</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="Estilos - CSS/Admin.css" />
 
     <link
@@ -53,13 +59,20 @@
     </aside>
 
     <main class="conteudo-admin">
-      <header class="cabecalho-admin">
+      <header
+        class="cabecalho-admin cabecalho-admin-principal cabecalho-modulos"
+      >
         <div>
-          <p class="subtitulo">Gerenciamento do curso</p>
+          <a href="Admin.html" class="link-voltar">
+            <i class="fa-solid fa-arrow-left"></i>
+            Voltar aos cursos
+          </a>
+
+          <p class="subtitulo-admin">GERENCIAMENTO DO CURSO</p>
 
           <h1 id="nomeCursoAdmin">Módulos</h1>
 
-          <p id="descricaoCursoAdmin">
+          <p id="descricaoCursoAdmin" class="descricao-pagina">
             Organize os módulos e etapas deste curso.
           </p>
         </div>
@@ -73,11 +86,11 @@
       <section class="secao-cursos">
         <div class="titulo-secao">
           <div>
-            <h2>Estrutura do curso</h2>
+            <span class="etiqueta-secao"> ESTRUTURA </span>
 
-            <p>
-              Os módulos serão exibidos na ordem em que aparecem para o aluno.
-            </p>
+            <h2>Módulos do curso</h2>
+
+            <p>Organize a sequência de aprendizagem apresentada aos alunos.</p>
           </div>
         </div>
 
@@ -85,12 +98,31 @@
 
         <div id="listaModulosAdmin" class="lista-cursos" hidden></div>
       </section>
-      <section class="secao-cursos secao-teste-final" aria-labelledby="tituloTesteFinal">
-        <div class="titulo-secao">
-          <h2 id="tituloTesteFinal">Teste final do curso</h2>
-          <p>De 10 a 15 questões para avaliar o aprendizado do curso.</p>
+
+      <section
+        class="secao-cursos secao-teste-final"
+        aria-labelledby="tituloTesteFinal"
+      >
+        <div class="teste-final-info">
+          <div class="teste-final-icone">
+            <i class="fa-solid fa-trophy"></i>
+          </div>
+
+          <div>
+            <span class="etiqueta-secao"> AVALIAÇÃO </span>
+
+            <h2 id="tituloTesteFinal">Teste final do curso</h2>
+
+            <p>
+              Crie entre 10 e 15 questões para avaliar o aprendizado do aluno.
+            </p>
+          </div>
         </div>
-        <a id="linkTesteFinal" class="btn-novo" hidden>Gerenciar teste final</a>
+
+        <a id="linkTesteFinal" class="btn-novo" hidden>
+          <i class="fa-solid fa-list-check"></i>
+          Gerenciar teste final
+        </a>
       </section>
     </main>
 
@@ -153,23 +185,45 @@
 
             <select id="duracaoModulo" required>
               <option value="" selected disabled>Selecione</option>
-
               <option value="5">5 minutos</option>
-
               <option value="10">10 minutos</option>
-
               <option value="15">15 minutos</option>
-
               <option value="20">20 minutos</option>
-
               <option value="30">30 minutos</option>
-
               <option value="45">45 minutos</option>
-
               <option value="60">1 hora</option>
-
               <option value="personalizada">Personalizada...</option>
             </select>
+
+            <div
+              id="duracaoModuloPersonalizada"
+              class="duracao-personalizada"
+              hidden
+            >
+              <div class="campo">
+                <label for="duracaoModuloHoras"> Horas </label>
+
+                <input
+                  id="duracaoModuloHoras"
+                  type="number"
+                  min="0"
+                  max="24"
+                  value="0"
+                />
+              </div>
+
+              <div class="campo">
+                <label for="duracaoModuloMinutos"> Minutos </label>
+
+                <input
+                  id="duracaoModuloMinutos"
+                  type="number"
+                  min="0"
+                  max="59"
+                  value="0"
+                />
+              </div>
+            </div>
           </div>
 
           <div

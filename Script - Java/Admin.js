@@ -210,10 +210,7 @@ function mostrarCursos(cursos) {
 
     card.setAttribute("role", "button");
 
-    card.setAttribute(
-      "aria-label",
-      `Editar curso ${curso.nome}`,
-    );
+    card.setAttribute("aria-label", `Editar curso ${curso.nome}`);
 
     card.innerHTML = `
       <div class="curso-icone">
@@ -250,6 +247,11 @@ function mostrarCursos(cursos) {
             ${formatarDuracao(curso.cargaHoraria)}
           </span>
 
+          <span>
+            <i class="fa-solid fa-layer-group"></i>
+            Gerenciar conteúdo
+          </span>
+
         </div>
 
       </div>
@@ -261,8 +263,8 @@ function mostrarCursos(cursos) {
           data-id="${curso.id}"
           type="button"
         >
-          <i class="fa-solid fa-layer-group"></i>
-          Módulos
+         <i class="fa-solid fa-layer-group"></i>
+          Gerenciar módulos
         </button>
 
         <button
@@ -328,8 +330,7 @@ function mostrarCursos(cursos) {
 // ==========================================
 
 function abrirPaginaModulos(id) {
-  window.location.href =
-    `AdminModulos.html?cursoId=${encodeURIComponent(id)}`;
+  window.location.href = `AdminModulos.html?cursoId=${encodeURIComponent(id)}`;
 }
 
 // ==========================================
@@ -450,7 +451,7 @@ function prepararNovoCurso() {
   statusCurso.value = "rascunho";
 
   btnExcluirCurso.hidden = true;
-  
+
   atualizarContadorDescricao();
 
   atualizarBotaoSalvar();
@@ -793,9 +794,9 @@ formNovoCurso.addEventListener("submit", async (evento) => {
   const dadosStatus = editando
     ? converterStatusParaBanco(statusCurso.value)
     : {
-        ativo: true,
-        publicado: false,
-      };
+      ativo: true,
+      publicado: false,
+    };
 
   // ======================================
   // BLOQUEAR BOTÃO
@@ -895,7 +896,7 @@ btnExcluirCurso.addEventListener("click", async () => {
 
   const confirmou = confirm(
     `Excluir "${curso.nome}"?\n\n` +
-      "Esta ação é permanente e não poderá ser desfeita.",
+    "Esta ação é permanente e não poderá ser desfeita.",
   );
 
   if (!confirmou) {
@@ -926,8 +927,8 @@ btnExcluirCurso.addEventListener("click", async () => {
 
     alert(
       "Não foi possível excluir o curso. " +
-        "Se ele já possui módulos ou outros dados vinculados, " +
-        "use a opção Desativado.",
+      "Se ele já possui módulos ou outros dados vinculados, " +
+      "use a opção Desativado.",
     );
   } finally {
     btnExcluirCurso.disabled = false;

@@ -6,6 +6,13 @@
 
     <title>Painel Administrativo | TechSênior</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="Estilos - CSS/Admin.css" />
 
     <link
@@ -47,10 +54,13 @@
     </aside>
 
     <main class="conteudo-admin">
-      <header class="cabecalho-admin">
+      <header class="cabecalho-admin cabecalho-admin-principal">
         <div>
-          <p class="subtitulo">Painel administrativo</p>
+          <p class="subtitulo-admin">PAINEL ADMINISTRATIVO</p>
           <h1>Gerenciar cursos</h1>
+          <p class="descricao-pagina">
+            Cadastre, edite e organize os cursos disponíveis na plataforma.
+          </p>
         </div>
 
         <button id="btnNovoCurso" class="btn-novo" type="button">
@@ -60,44 +70,69 @@
       </header>
 
       <section class="resumo-cursos">
-        <div class="resumo-card">
-          <span>Total</span>
-          <strong id="totalCursos">0</strong>
-        </div>
+        <article class="resumo-card resumo-total">
+          <div class="resumo-icone">
+            <i class="fa-solid fa-book-open"></i>
+          </div>
 
-        <div class="resumo-card">
-          <span>Publicados</span>
-          <strong id="totalPublicados">0</strong>
-        </div>
+          <div>
+            <span>Total de cursos</span>
+            <strong id="totalCursos">0</strong>
+            <small>Cadastrados na plataforma</small>
+          </div>
+        </article>
 
-        <div class="resumo-card">
-          <span>Rascunhos</span>
-          <strong id="totalRascunhos">0</strong>
-        </div>
+        <article class="resumo-card resumo-publicados">
+          <div class="resumo-icone">
+            <i class="fa-solid fa-circle-check"></i>
+          </div>
 
-        <div class="resumo-card">
-          <span>Desativados</span>
-          <strong id="totalDesativados">0</strong>
-        </div>
+          <div>
+            <span>Publicados</span>
+            <strong id="totalPublicados">0</strong>
+            <small>Visíveis para os alunos</small>
+          </div>
+        </article>
+
+        <article class="resumo-card resumo-rascunhos">
+          <div class="resumo-icone">
+            <i class="fa-solid fa-file-lines"></i>
+          </div>
+
+          <div>
+            <span>Rascunhos</span>
+            <strong id="totalRascunhos">0</strong>
+            <small>Em preparação</small>
+          </div>
+        </article>
+
+        <article class="resumo-card resumo-desativados">
+          <div class="resumo-icone">
+            <i class="fa-solid fa-circle-minus"></i>
+          </div>
+
+          <div>
+            <span>Desativados</span>
+            <strong id="totalDesativados">0</strong>
+            <small>Ocultos da plataforma</small>
+          </div>
+        </article>
       </section>
 
       <section class="secao-cursos">
+
         <div class="titulo-secao">
+          <div class="titulo-secao">
           <div>
-            <h2>Cursos</h2>
-            <p>Gerencie os cursos disponíveis na plataforma.</p>
+            <span class="etiqueta-secao">CONTEÚDO</span>
+            <h2>Cursos cadastrados</h2>
+            <p>Gerencie os cursos e acesse seus módulos.</p>
           </div>
         </div>
 
-        <div id="estadoCarregamento" class="mensagem">
-          Carregando cursos...
-        </div>
+        <div id="estadoCarregamento" class="mensagem">Carregando cursos...</div>
 
-        <div
-          id="listaCursosAdmin"
-          class="lista-cursos"
-          hidden
-        ></div>
+        <div id="listaCursosAdmin" class="lista-cursos" hidden></div>
       </section>
     </main>
 
@@ -121,9 +156,7 @@
 
         <form id="formNovoCurso">
           <div class="campo">
-            <label for="nomeCurso">
-              Nome do curso
-            </label>
+            <label for="nomeCurso"> Nome do curso </label>
 
             <input
               id="nomeCurso"
@@ -134,15 +167,11 @@
               placeholder="Ex.: Segurança Digital"
             />
 
-            <small class="ajuda-campo">
-              Entre 3 e 70 caracteres.
-            </small>
+            <small class="ajuda-campo"> Entre 3 e 70 caracteres. </small>
           </div>
 
           <div class="campo campo-descricao">
-            <label for="descricaoCurso">
-              Descrição do curso
-            </label>
+            <label for="descricaoCurso"> Descrição do curso </label>
 
             <textarea
               id="descricaoCurso"
@@ -153,26 +182,16 @@
             ></textarea>
 
             <div class="rodape-campo">
-              <small
-                id="ajudaDescricao"
-                class="ajuda-campo"
-              >
+              <small id="ajudaDescricao" class="ajuda-campo">
                 Explique de forma breve o que será aprendido no curso.
               </small>
 
-              <small
-                id="contadorDescricao"
-                class="contador-caracteres"
-              >
+              <small id="contadorDescricao" class="contador-caracteres">
                 0 / 500
               </small>
             </div>
 
-            <small
-              id="erroDescricao"
-              class="erro-campo"
-              hidden
-            >
+            <small id="erroDescricao" class="erro-campo" hidden>
               Escreva pelo menos 30 caracteres ou deixe a descrição vazia.
             </small>
           </div>
@@ -183,29 +202,14 @@
                 Dificuldade
               </label>
 
-              <select
-                id="dificuldadeCurso"
-                required
-              >
-                <option
-                  value=""
-                  selected
-                  disabled
-                >
+              <select id="dificuldadeCurso" required>
+                <option value="" selected disabled>
                   Selecione
                 </option>
 
-                <option value="Iniciante">
-                  Iniciante
-                </option>
-
-                <option value="Intermediário">
-                  Intermediário
-                </option>
-
-                <option value="Avançado">
-                  Avançado
-                </option>
+                <option value="Iniciante">Iniciante</option>
+                <option value="Intermediário">Intermediário</option>
+                <option value="Avançado">Avançado</option>
               </select>
             </div>
 
@@ -214,42 +218,17 @@
                 Duração estimada
               </label>
 
-              <select
-                id="cargaHorariaCurso"
-                required
-              >
-                <option
-                  value=""
-                  selected
-                  disabled
-                >
+              <select id="cargaHorariaCurso" required>
+                <option value="" selected disabled>
                   Selecione
                 </option>
 
-                <option value="15">
-                  15 minutos
-                </option>
-
-                <option value="30">
-                  30 minutos
-                </option>
-
-                <option value="45">
-                  45 minutos
-                </option>
-
-                <option value="60">
-                  1 hora
-                </option>
-
-                <option value="90">
-                  1h30
-                </option>
-
-                <option value="120">
-                  2 horas
-                </option>
-
+                <option value="15">15 minutos</option>
+                <option value="30">30 minutos</option>
+                <option value="45">45 minutos</option>
+                <option value="60">1 hora</option>
+                <option value="90">1h30</option>
+                <option value="120">2 horas</option>
                 <option value="personalizada">
                   Personalizada...
                 </option>
@@ -258,73 +237,59 @@
               <small class="ajuda-campo">
                 Escolha uma duração aproximada do curso.
               </small>
-            </div>
 
-            <div
-              id="duracaoPersonalizada"
-              class="duracao-personalizada"
-              hidden
-            >
-              <div class="campo">
-                <label for="duracaoHoras">
-                  Horas
-                </label>
+              <div
+                id="duracaoPersonalizada"
+                class="duracao-personalizada"
+                hidden
+              >
+                <div class="campo">
+                  <label for="duracaoHoras">
+                    Horas
+                  </label>
 
-                <input
-                  id="duracaoHoras"
-                  type="number"
-                  min="0"
-                  max="24"
-                  value="0"
-                />
-              </div>
+                  <input
+                    id="duracaoHoras"
+                    type="number"
+                    min="0"
+                    max="24"
+                    value="0"
+                  />
+                </div>
 
-              <div class="campo">
-                <label for="duracaoMinutos">
-                  Minutos
-                </label>
+                <div class="campo">
+                  <label for="duracaoMinutos">
+                    Minutos
+                  </label>
 
-                <input
-                  id="duracaoMinutos"
-                  type="number"
-                  min="0"
-                  max="59"
-                  step="5"
-                  value="0"
-                />
+                  <input
+                    id="duracaoMinutos"
+                    type="number"
+                    min="0"
+                    max="59"
+                    step="5"
+                    value="0"
+                  />
+                </div>
               </div>
             </div>
           </div>
 
           <div class="campo">
-            <label for="iconeCurso">
-              Ícone do curso
-            </label>
+            <label for="iconeCurso"> Ícone do curso </label>
 
             <select id="iconeCurso">
-              <option value="fa-solid fa-book">
-                📘 Curso geral
-              </option>
+              <option value="fa-solid fa-book">📘 Curso geral</option>
 
-              <option value="fa-solid fa-mobile-screen">
-                📱 Celular
-              </option>
+              <option value="fa-solid fa-mobile-screen">📱 Celular</option>
 
-              <option value="fa-solid fa-globe">
-                🌐 Internet
-              </option>
+              <option value="fa-solid fa-globe">🌐 Internet</option>
 
-              <option value="fa-solid fa-users">
-                👥 Redes sociais
-              </option>
+              <option value="fa-solid fa-users">👥 Redes sociais</option>
 
-              <option value="fa-solid fa-envelope">
-                ✉️ E-mail
-              </option>
+              <option value="fa-solid fa-envelope">✉️ E-mail</option>
 
-              <option value="fa-solid fa-cart-shopping">
-                🛒 Compras
-              </option>
+              <option value="fa-solid fa-cart-shopping">🛒 Compras</option>
 
               <option value="fa-solid fa-shield-halved">
                 🛡️ Segurança digital
@@ -334,37 +299,21 @@
                 🗺️ Mapas e transporte
               </option>
 
-              <option value="fa-solid fa-comments">
-                💬 Comunicação
-              </option>
+              <option value="fa-solid fa-comments">💬 Comunicação</option>
 
-              <option value="fa-solid fa-graduation-cap">
-                🎓 Aprendizado
-              </option>
+              <option value="fa-solid fa-graduation-cap">🎓 Aprendizado</option>
             </select>
           </div>
 
-          <div
-            id="campoStatusCurso"
-            class="campo"
-            hidden
-          >
-            <label for="statusCurso">
-              Status do curso
-            </label>
+          <div id="campoStatusCurso" class="campo" hidden>
+            <label for="statusCurso"> Status do curso </label>
 
             <select id="statusCurso">
-              <option value="rascunho">
-                Rascunho
-              </option>
+              <option value="rascunho">Rascunho</option>
 
-              <option value="publicado">
-                Publicado
-              </option>
+              <option value="publicado">Publicado</option>
 
-              <option value="desativado">
-                Desativado
-              </option>
+              <option value="desativado">Desativado</option>
             </select>
 
             <small class="ajuda-campo">
@@ -389,19 +338,11 @@
             </button>
 
             <div class="acoes-formulario-direita">
-              <button
-                id="btnCancelarCurso"
-                class="btn-cancelar"
-                type="button"
-              >
+              <button id="btnCancelarCurso" class="btn-cancelar" type="button">
                 Cancelar
               </button>
 
-              <button
-                id="btnSalvarCurso"
-                class="btn-novo"
-                type="submit"
-              >
+              <button id="btnSalvarCurso" class="btn-novo" type="submit">
                 <i class="fa-solid fa-floppy-disk"></i>
                 Criar curso
               </button>
@@ -411,9 +352,6 @@
       </div>
     </div>
 
-    <script
-      type="module"
-      src="Script - Java/Admin.js"
-    ></script>
+    <script type="module" src="Script - Java/Admin.js"></script>
   </body>
 </html>

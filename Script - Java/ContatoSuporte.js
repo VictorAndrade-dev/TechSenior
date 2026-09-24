@@ -172,15 +172,7 @@ if (btnComecar) {
     }
 
     btnComecar.onclick = () => {
-      if (usuario) {
-        document.getElementById("cursos")?.scrollIntoView({
-          behavior: "smooth"
-        });
-
-        return;
-      }
-
-      window.location.href = "Login.html";
+      window.location.href = usuario ? "Cursos.html#cursos" : "Login.html";
     };
   });
 }

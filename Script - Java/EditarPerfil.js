@@ -141,6 +141,19 @@ formEdicao.addEventListener(
     }
 
 
+    if (nome.length > 40) {
+
+      mostrarMensagem(
+        "O nome deve ter no máximo 40 caracteres.",
+        "erro"
+      );
+
+      nomeInput.focus();
+
+      return;
+    }
+
+
     if (!usuarioAtual) {
 
       mostrarMensagem(

@@ -84,8 +84,15 @@
             Nome completo
           </label>
 
-          <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" autocomplete="name"
-            required />
+          <input
+            type="text"
+            id="nome"
+            name="nome"
+            placeholder="Digite seu nome completo"
+            autocomplete="name"
+            maxlength="40"
+            required
+          />
         </div>
 
         <!-- E-mail -->
@@ -94,7 +101,14 @@
             E-mail
           </label>
 
-          <input type="email" id="email" name="email" autocomplete="email" readonly />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            autocomplete="email"
+            maxlength="100"
+            readonly
+          />
         </div>
 
         <!-- Alteração de senha -->
@@ -211,12 +225,12 @@
 
   <!-- DATA CONNECT -->
   <script type="importmap">
-      {
-        "imports": {
-          "firebase/data-connect": "https://www.gstatic.com/firebasejs/12.17.1/firebase-data-connect.js"
-        }
+    {
+      "imports": {
+        "firebase/data-connect": "https://www.gstatic.com/firebasejs/12.17.1/firebase-data-connect.js"
       }
-    </script>
+    }
+  </script>
 
   <!-- SCRIPTS -->
   <script type="module" src="Script - Java/Padrão.js"></script>

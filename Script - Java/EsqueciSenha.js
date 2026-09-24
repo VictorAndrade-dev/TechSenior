@@ -74,7 +74,18 @@ formRecuperacao.addEventListener(
       return;
     }
 
+    if (email.length > 100) {
 
+      mostrarMensagem(
+        "O e-mail deve ter no máximo 100 caracteres.",
+        "erro"
+      );
+
+      emailInput.focus();
+
+      return;
+    }
+    
     // ========================================
     // FIREBASE AUTH
     // ========================================

@@ -13,8 +13,6 @@ import {
 // CONFIGURAÇÕES
 // ==========================================
 
-const ID_CURSO_CELULAR =
-  "7a831a7c8c3c41768575f4e46a3df222";
 
 const listaCursos =
   document.getElementById("listaCursos");
@@ -42,6 +40,9 @@ const btnIniciarCurso =
 
 let usuarioAtual = null;
 let cursoSelecionado = null;
+
+
+
 
 
 // ==========================================
@@ -243,16 +244,11 @@ function abrirModalCurso(curso) {
 
 function obterDestinoCurso(curso) {
 
-  if (
-    curso.id ===
-    ID_CURSO_CELULAR
-  ) {
-
-    return "CursoCelular.html";
-
+  if (!curso?.id) {
+    return null;
   }
 
-  return null;
+  return `Curso.html?id=${encodeURIComponent(curso.id)}`;
 
 }
 

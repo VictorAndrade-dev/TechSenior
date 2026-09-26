@@ -866,6 +866,45 @@
 }
 
 /* ========================================== */
+/* BOTÃO DE PRÓXIMA PERGUNTA */
+/* ========================================== */
+
+.btn-proxima-questao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  width: fit-content;
+
+  margin: 16px 0 0 auto;
+  padding: 11px 17px;
+
+  border: 0;
+  border-radius: 8px;
+
+  background: #16866e;
+  color: #ffffff;
+
+  font: inherit;
+  font-size: 0.98rem;
+  font-weight: 600;
+
+  cursor: pointer;
+}ursor: pointer;
+}
+
+.btn-proxima-questao:hover {
+  filter: brightness(0.94);
+}
+
+.btn-proxima-questao[hidden] {
+  display: none;
+}
+
+
+/* ========================================== */
 /* ALTERNATIVAS */
 /* ========================================== */
 
@@ -975,6 +1014,17 @@
   color: #ffffff;
 }
 
+.opcao-quiz.selecionada {
+  border-color: #16866e;
+  outline: 2px solid rgba(22, 134, 110, 0.18);
+}
+
+.btn-proxima-questao:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+
 /* ========================================== */
 /* FEEDBACK */
 /* ========================================== */
@@ -1012,6 +1062,103 @@
 .quiz-modulo[hidden],
 .quiz-feedback[hidden] {
   display: none;
+}
+
+/* ========================================== */
+/* CONTEÚDOS DINÂMICOS */
+/* ========================================== */
+
+.bloco-destaque {
+  width: 100%;
+
+  margin: 18px 0 24px;
+  padding: 18px 20px;
+
+  border: 1px solid;
+  border-radius: 10px;
+
+  box-sizing: border-box;
+}
+
+.bloco-destaque-titulo {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 10px;
+
+  font-size: 1rem;
+}
+
+.bloco-destaque-titulo i {
+  font-size: 1.25rem;
+}
+
+.bloco-destaque-texto p {
+  margin: 6px 0;
+
+  color: #151515;
+
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+
+/* DICA */
+
+.bloco-dica {
+  border-color: #cfe9dc;
+  background: #eff9f3;
+}
+
+.bloco-dica .bloco-destaque-titulo {
+  color: #16866e;
+}
+
+
+/* IMPORTANTE */
+
+.bloco-importante {
+  border-color: #f0d8ad;
+  background: #fff8eb;
+}
+
+.bloco-importante .bloco-destaque-titulo {
+  color: #c66900;
+}
+
+
+/* VÍDEO */
+
+.video-aula {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+
+  margin: 15px 0 20px;
+}
+
+.video-aula video,
+.video-aula iframe {
+  display: block;
+
+  width: 100%;
+  max-width: 820px;
+
+  border: 0;
+  border-radius: 10px;
+
+  background: #0b1115;
+}
+
+.video-aula iframe {
+  aspect-ratio: 16 / 9;
+}
+
+.video-aula video {
+  max-height: 520px;
 }
 
 /* ========================================== */

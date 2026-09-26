@@ -839,10 +839,12 @@ a.btn-novo {
   line-height: 1.55;
 
   display: -webkit-box;
-  overflow: hidden;
 
-  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+
+  overflow: hidden;
 }
 
 .curso-detalhes {

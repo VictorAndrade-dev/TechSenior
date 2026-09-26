@@ -413,6 +413,7 @@ export async function iniciarEditorQuiz({cursoId, moduloId = null}) {
 
     </div>
   `).join("");
+  }
 
   function abrirNovaQuestao() {
     if (final && questoesCarregadas.length >= 15) return;

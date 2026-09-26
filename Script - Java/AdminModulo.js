@@ -368,16 +368,53 @@ function mostrarConteudos() {
 
         <div class="curso-detalhes"><span><i class="fa-solid fa-list-ol" aria-hidden="true"></i> Conteúdo ${escapeHtml(conteudo.ordem)}</span></div>
 
-        <div class="curso-acoes">
+        <div class="curso-acoes acoes-conteudo-admin">
 
-          <button class="btn-ordem" type="button" data-acao="subir-conteudo" ${indice === 0 ? "disabled" : ""} aria-label="Mover conteúdo para cima"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i> Subir</button>
+          <button
+            class="btn-editar"
+            type="button"
+            data-acao="editar-conteudo"
+          >
+            <i class="fa-solid fa-pen-to-square"></i>
+            Editar
+          </button>
 
-          <button class="btn-ordem" type="button" data-acao="descer-conteudo" ${indice === conteudosCarregados.length - 1 ? "disabled" : ""} aria-label="Mover conteúdo para baixo"><i class="fa-solid fa-arrow-down" aria-hidden="true"></i> Descer</button>
+          <div class="grupo-ordem">
 
-          <button class="btn-excluir" type="button" data-acao="excluir-conteudo">Excluir</button>
+            <button
+              class="btn-ordem"
+              type="button"
+              data-acao="subir-conteudo"
+              ${indice === 0 ? "disabled" : ""}
+              aria-label="Mover conteúdo para cima"
+              title="Mover para cima"
+            >
+              <i class="fa-solid fa-arrow-up"></i>
+            </button>
 
-          <button class="btn-editar" type="button" data-acao="editar-conteudo"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i> Editar</button>
+            <button
+              class="btn-ordem"
+              type="button"
+              data-acao="descer-conteudo"
+              ${indice === conteudosCarregados.length - 1 ? "disabled" : ""}
+              aria-label="Mover conteúdo para baixo"
+              title="Mover para baixo"
+            >
+              <i class="fa-solid fa-arrow-down"></i>
+            </button>
 
+          </div>
+
+          <button
+            class="btn-excluir"
+            type="button"
+            data-acao="excluir-conteudo"
+          >
+            <i class="fa-solid fa-trash"></i>
+            Excluir
+          </button>
+
+        </div>
         </div>
 
       </div>

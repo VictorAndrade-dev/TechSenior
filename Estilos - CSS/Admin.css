@@ -3823,3 +3823,843 @@ input:checked
   background: #edf9f4;
   color: #117a59;
 }
+
+/* ===================================================== */
+/* AJUSTE FINAL — QUIZ + CARDS DE CONTEÚDO               */
+/* ===================================================== */
+
+
+/* ===================================================== */
+/* CONTEÚDOS DO MÓDULO — AÇÕES                           */
+/* ===================================================== */
+
+/*
+  Remove aquele "quadrado/L" formado pela combinação
+  de border-left + border-top.
+*/
+.conteudo-admin-card .curso-acoes {
+  width: 100%;
+
+  margin-top: 16px;
+  padding: 0;
+
+  border: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 8px;
+
+  flex-wrap: wrap;
+}
+
+
+/* mantém os botões alinhados */
+.conteudo-admin-card .btn-ordem,
+.conteudo-admin-card .btn-editar,
+.conteudo-admin-card .btn-excluir {
+  min-height: 42px;
+}
+
+
+/* ===================================================== */
+/* QUIZ — CARD DA QUESTÃO                                */
+/* ===================================================== */
+
+.questao-admin {
+  display: grid;
+
+  grid-template-columns:
+    88px
+    minmax(0, 1fr);
+
+  align-items: stretch;
+
+  gap: 0;
+
+  padding: 0;
+
+  overflow: hidden;
+
+  border-radius: 9px;
+}
+
+
+.questao-numero {
+  min-height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-right: 1px solid #d5e3e0;
+
+  background:
+    linear-gradient(
+      160deg,
+      #edf7f4,
+      #dfeee9
+    );
+
+  color: #087f71;
+
+  font-size: 1.65rem;
+  font-weight: 700;
+}
+
+
+.questao-conteudo {
+  min-width: 0;
+
+  padding: 24px 28px;
+}
+
+
+.questao-topo {
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 12px;
+}
+
+
+.questao-topo h3 {
+  margin: 0;
+
+  color: #102235;
+
+  font-size: 1.35rem;
+}
+
+
+.questao-pergunta {
+  margin: 12px 0 0;
+
+  color: #506a7b;
+
+  font-size: 1rem;
+
+  line-height: 1.65;
+
+  overflow-wrap: anywhere;
+}
+
+
+/* ===================================================== */
+/* QUIZ — AÇÕES DA QUESTÃO                               */
+/* ===================================================== */
+
+/*
+  Em vez de colocar outro retângulo em volta dos botões,
+  usamos apenas uma separação horizontal.
+*/
+.bloco-acoes-questao {
+  margin-top: 20px;
+
+  padding-top: 16px;
+
+  border-top: 1px solid #e1e9ed;
+}
+
+
+.acoes-questao-admin {
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+}
+
+
+.grupo-ordem {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 6px;
+}
+
+
+.acoes-questao-admin > .btn-excluir {
+  margin-left: auto;
+}
+
+
+/* ===================================================== */
+/* "PARA COMPLETAR"                                      */
+/* ===================================================== */
+
+/*
+  Agora não fica grudado nos botões.
+  Vira uma informação secundária bem separada.
+*/
+.texto-ajuda-questao {
+  margin: 14px 0 0;
+
+  padding: 10px 12px;
+
+  border-left: 3px solid #acd2ca;
+  border-radius: 0 6px 6px 0;
+
+  background: #f5f9f8;
+
+  color: #5c7382;
+
+  font-size: 0.88rem;
+
+  line-height: 1.55;
+}
+
+
+.texto-ajuda-questao strong {
+  color: #304d5e;
+
+  font-weight: 700;
+}
+
+
+/* ===================================================== */
+/* QUIZ — CABEÇALHO DAS ALTERNATIVAS                     */
+/* ===================================================== */
+
+.bloco-alternativas {
+  margin-top: 20px;
+
+  padding-top: 18px;
+
+  border-top: 1px solid #e1e9ed;
+}
+
+
+.cabecalho-alternativas {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  margin-bottom: 12px;
+}
+
+
+.cabecalho-alternativas h4 {
+  margin: 0;
+
+  color: #253f52;
+
+  font-size: 0.95rem;
+}
+
+
+.contador-alternativas {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-width: 44px;
+  min-height: 28px;
+
+  padding: 4px 9px;
+
+  margin: 0 !important;
+
+  border: 1px solid #d6e2e7 !important;
+  border-radius: 999px !important;
+
+  background: #f2f6f8 !important;
+
+  color: #526d7d !important;
+
+  font-size: 0.78rem !important;
+  font-weight: 700;
+}
+
+
+.estado-vazio-alternativas {
+  margin: 0;
+
+  color: #708594;
+
+  font-size: 0.9rem;
+
+  line-height: 1.5;
+}
+
+
+/* ===================================================== */
+/* QUIZ — CARD DAS ALTERNATIVAS                          */
+/* ===================================================== */
+
+.alternativa-admin {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto;
+
+  align-items: start;
+
+  gap: 18px;
+
+  margin-top: 10px;
+
+  padding: 14px 15px;
+
+  border: 1px solid #dce5ea;
+  border-radius: 7px;
+
+  background: #fbfcfd;
+}
+
+
+.alternativa-conteudo {
+  min-width: 0;
+}
+
+
+.alternativa-topo {
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 9px;
+}
+
+
+.alternativa-texto {
+  margin: 0;
+
+  color: #1f384b;
+
+  font-size: 0.94rem;
+
+  line-height: 1.55;
+
+  overflow-wrap: anywhere;
+}
+
+
+.alternativa-explicacao {
+  margin: 8px 0 0;
+
+  color: #617888;
+
+  font-size: 0.85rem;
+
+  line-height: 1.55;
+}
+
+
+/* ===================================================== */
+/* BADGES CORRETA / INCORRETA                            */
+/* ===================================================== */
+
+/*
+  Isso também corrige o seletor antigo:
+  .alternativa-admin span
+  que estava deixando "Incorreta" verde.
+*/
+
+.alternativa-admin .badge-correta {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  margin: 0;
+
+  padding: 4px 8px;
+
+  border: 1px solid #b7deca;
+  border-radius: 999px;
+
+  background: #e9f7ef;
+
+  color: #167247;
+
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+
+.alternativa-admin .badge-incorreta {
+  display: inline-flex;
+
+  align-items: center;
+
+  margin: 0;
+
+  padding: 4px 8px;
+
+  border: 1px solid #d6e0e5;
+  border-radius: 999px;
+
+  background: #f3f6f8;
+
+  color: #647b8a;
+
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+
+/* alternativa correta recebe destaque discreto */
+.alternativa-admin.alternativa-correta {
+  border-color: #b9ddca;
+
+  background:
+    linear-gradient(
+      145deg,
+      #f6fcf9,
+      #eef8f3
+    );
+}
+
+
+/* ===================================================== */
+/* AÇÕES DA ALTERNATIVA                                  */
+/* ===================================================== */
+
+.acoes-alternativa {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: flex-end;
+
+  flex-wrap: wrap;
+
+  gap: 7px;
+}
+
+
+.acoes-alternativa .btn-editar,
+.acoes-alternativa .btn-excluir,
+.acoes-alternativa .btn-ordem {
+  min-height: 40px;
+}
+
+
+/* ===================================================== */
+/* RESPONSIVIDADE — TABLET                               */
+/* ===================================================== */
+
+@media (max-width: 900px) {
+
+  .questao-admin {
+    grid-template-columns: 1fr;
+  }
+
+
+  .questao-numero {
+    min-height: 62px;
+
+    border-right: 0;
+    border-bottom: 1px solid #d5e3e0;
+  }
+
+
+  .questao-conteudo {
+    padding: 20px;
+  }
+
+
+  .acoes-questao-admin > .btn-excluir {
+    margin-left: 0;
+  }
+
+
+  .alternativa-admin {
+    grid-template-columns: 1fr;
+  }
+
+
+  .acoes-alternativa {
+    justify-content: flex-start;
+  }
+
+
+  .conteudo-admin-card .curso-acoes {
+    justify-content: flex-start;
+  }
+
+}
+
+
+/* ===================================================== */
+/* RESPONSIVIDADE — CELULAR                              */
+/* ===================================================== */
+
+@media (max-width: 650px) {
+
+  .questao-conteudo {
+    padding: 17px;
+  }
+
+
+  .questao-topo {
+    align-items: flex-start;
+  }
+
+
+  .questao-pergunta {
+    font-size: 0.94rem;
+  }
+
+
+  /* ações da questão */
+
+  .acoes-questao-admin {
+    display: grid;
+
+    grid-template-columns:
+      1fr
+      1fr;
+  }
+
+
+  .acoes-questao-admin .btn-modulos {
+    grid-column: 1 / -1;
+
+    width: 100%;
+  }
+
+
+  .acoes-questao-admin .btn-editar {
+    width: 100%;
+  }
+
+
+  .acoes-questao-admin .grupo-ordem {
+    display: grid;
+
+    grid-template-columns:
+      1fr
+      1fr;
+
+    gap: 7px;
+  }
+
+
+  .acoes-questao-admin .grupo-ordem .btn-ordem {
+    width: 100%;
+  }
+
+
+  .acoes-questao-admin .btn-excluir {
+    grid-column: 1 / -1;
+
+    width: 100%;
+  }
+
+
+  /* alternativas */
+
+  .cabecalho-alternativas {
+    align-items: center;
+  }
+
+
+  .acoes-alternativa {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+      1fr
+      auto
+      1fr;
+
+    gap: 7px;
+  }
+
+
+  .acoes-alternativa .btn-editar,
+  .acoes-alternativa .btn-excluir {
+    width: 100%;
+
+    min-width: 0;
+  }
+
+
+  /* conteúdos */
+
+  .conteudo-admin-card .curso-acoes {
+    display: grid;
+
+    grid-template-columns:
+      1fr
+      1fr;
+
+    gap: 7px;
+  }
+
+
+  .conteudo-admin-card .curso-acoes button {
+    width: 100%;
+  }
+
+}
+
+/* ===================================================== */
+/* ADMIN — RESPONSIVIDADE GLOBAL FINAL                   */
+/* ===================================================== */
+
+/* DESKTOP */
+body {
+  overflow-x: hidden;
+}
+
+.menu-admin {
+  flex: 0 0 245px;
+}
+
+.conteudo-admin {
+  flex: 1 1 auto;
+
+  width: auto;
+  max-width: none;
+
+  min-width: 0;
+
+  overflow-x: hidden;
+}
+
+
+/* ===================================================== */
+/* TABLET                                                */
+/* ===================================================== */
+
+@media (max-width: 900px) {
+
+  body {
+    display: block;
+  }
+
+
+  /* sidebar vira barra superior */
+
+  .menu-admin {
+    width: 100%;
+
+    min-height: auto;
+
+    padding: 16px 18px;
+
+    position: relative;
+  }
+
+
+  .admin-brand {
+    margin: 0 0 14px;
+
+    padding: 4px;
+  }
+
+
+  .menu-admin nav {
+    display: flex;
+
+    flex-direction: row;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+  }
+
+
+  .menu-item {
+    width: auto;
+
+    min-height: 46px;
+
+    flex: 1 1 160px;
+
+    justify-content: center;
+
+    padding: 10px 14px;
+  }
+
+
+  /* conteúdo ocupa a tela toda */
+
+  .conteudo-admin {
+    width: 100%;
+
+    max-width: none;
+
+    padding: 28px 24px;
+  }
+
+
+  /* cabeçalho */
+
+  .cabecalho-admin,
+  .cabecalho-admin-principal {
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+
+  .cabecalho-admin-principal .btn-novo {
+    width: 100%;
+  }
+
+
+  /* cards de resumo */
+
+  .resumo-cursos {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+
+/* ===================================================== */
+/* CELULAR                                               */
+/* ===================================================== */
+
+@media (max-width: 600px) {
+
+  .menu-admin {
+    padding: 14px;
+  }
+
+
+  .admin-brand {
+    margin-bottom: 12px;
+  }
+
+
+  .admin-brand > i {
+    width: 38px;
+    height: 38px;
+  }
+
+
+  .admin-brand strong {
+    font-size: 1rem;
+  }
+
+
+  .admin-brand span {
+    font-size: 0.74rem;
+  }
+
+
+  .menu-admin nav {
+    display: grid;
+
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 7px;
+  }
+
+
+  .menu-item {
+    width: 100%;
+
+    min-width: 0;
+
+    flex: none;
+
+    justify-content: flex-start;
+
+    padding: 11px 12px;
+
+    font-size: 0.88rem;
+  }
+
+
+  .conteudo-admin {
+    padding: 22px 14px;
+  }
+
+
+  .cabecalho-admin h1 {
+    font-size: 1.75rem;
+  }
+
+
+  .descricao-pagina {
+    font-size: 0.92rem;
+  }
+
+
+  .resumo-cursos {
+    grid-template-columns: 1fr;
+  }
+
+
+  .resumo-card {
+    min-height: 105px;
+
+    padding: 16px;
+  }
+
+
+  .secao-cursos {
+    padding: 16px;
+  }
+
+}
+
+/* CONTEÚDO — AÇÕES PADRONIZADAS */
+
+.acoes-conteudo-admin {
+  margin-top: 16px;
+  padding-top: 14px;
+
+  border: 0;
+  border-top: 1px solid #e3eaee;
+
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+}
+
+.acoes-conteudo-admin .btn-excluir {
+  margin-left: auto;
+}
+
+@media (max-width: 650px) {
+  .acoes-conteudo-admin {
+    display: grid;
+
+    grid-template-columns:
+      1fr
+      auto
+      1fr;
+  }
+
+  .acoes-conteudo-admin .grupo-ordem {
+    display: flex;
+  }
+
+  .acoes-conteudo-admin .btn-editar,
+  .acoes-conteudo-admin .btn-excluir {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .acoes-conteudo-admin .btn-excluir {
+    margin-left: 0;
+  }
+}

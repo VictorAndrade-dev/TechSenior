@@ -1,53 +1,99 @@
 import { QueryFetchPolicy } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-data-connect.js";
-import { buscarQuizDoModulo, buscarQuizFinalDoCurso, criarQuiz, listarQuestoesDoQuiz, criarQuestaoQuiz, editarQuestaoQuiz, listarAlternativasDaQuestao, criarAlternativaQuiz, editarAlternativaQuiz, excluirQuestaoQuiz, excluirAlternativaQuiz } from "../dataconnect-generated/esm/index.esm.js";
-import { escapeHtml, normalizarVazio, proximaOrdem, trocarOrdens, configurarModais, criarBloqueio } from './AdminComum.js';
+
+import {
+  buscarQuizDoModulo,
+  buscarQuizFinalDoCurso,
+  criarQuiz,
+  listarQuestoesDoQuiz,
+  criarQuestaoQuiz,
+  editarQuestaoQuiz,
+  listarAlternativasDaQuestao,
+  criarAlternativaQuiz,
+  editarAlternativaQuiz,
+  excluirQuestaoQuiz,
+  excluirAlternativaQuiz,
+} from "../dataconnect-generated/esm/index.esm.js";
+
+import {
+  escapeHtml,
+  normalizarVazio,
+  proximaOrdem,
+  trocarOrdens,
+  configurarModais,
+  criarBloqueio,
+  configurarCamposComLimite,
+  atualizarContadoresCampos
+} from "./AdminComum.js";
 
 // Editor compartilhado; o contexto determina o tipo e nunca permite alterá-lo.
-export async function iniciarEditorQuiz({cursoId, moduloId = null}) {
-  if (document.querySelector('[data-editor-quiz]').dataset.iniciado) return;
-  document.querySelector('[data-editor-quiz]').dataset.iniciado = 'true';
+export async function iniciarEditorQuiz({ cursoId, moduloId = null }) {
+  configurarCamposComLimite();
+  
+  if (document.querySelector("[data-editor-quiz]").dataset.iniciado) return;
+  document.querySelector("[data-editor-quiz]").dataset.iniciado = "true";
   const final = moduloId === null;
-  const estadoQuiz = document.getElementById('estadoQuiz');
-  const listaQuestoes = document.getElementById('listaQuestoes');
-  const btnCriarQuiz = document.getElementById('btnCriarQuiz');
-  const btnNovaQuestao = document.getElementById('btnNovaQuestao');
-  const modalQuestao = document.getElementById('modalQuestao');
-  const formQuestao = document.getElementById('formQuestao');
-  const tituloModalQuestao = document.getElementById('tituloModalQuestao');
-  const perguntaQuiz = document.getElementById('perguntaQuiz');
-  const btnFecharModalQuestao = document.getElementById('btnFecharModalQuestao');
-  const btnCancelarQuestao = document.getElementById('btnCancelarQuestao');
-  const btnSalvarQuestao = document.getElementById('btnSalvarQuestao');
-  const modalAlternativa = document.getElementById('modalAlternativa');
-  const formAlternativa = document.getElementById('formAlternativa');
-  const tituloModalAlternativa = document.getElementById('tituloModalAlternativa');
-  const textoAlternativa = document.getElementById('textoAlternativa');
-  const alternativaCorreta = document.getElementById('alternativaCorreta');
-  const explicacaoAlternativa = document.getElementById('explicacaoAlternativa');
-  const btnFecharModalAlternativa = document.getElementById('btnFecharModalAlternativa');
-  const btnCancelarAlternativa = document.getElementById('btnCancelarAlternativa');
-  const btnSalvarAlternativa = document.getElementById('btnSalvarAlternativa');
-  const erroAlternativa = document.getElementById('erroAlternativa');
+  const estadoQuiz = document.getElementById("estadoQuiz");
+  const listaQuestoes = document.getElementById("listaQuestoes");
+  const btnCriarQuiz = document.getElementById("btnCriarQuiz");
+  const btnNovaQuestao = document.getElementById("btnNovaQuestao");
+  const modalQuestao = document.getElementById("modalQuestao");
+  const formQuestao = document.getElementById("formQuestao");
+  const tituloModalQuestao = document.getElementById("tituloModalQuestao");
+  const perguntaQuiz = document.getElementById("perguntaQuiz");
+  const btnFecharModalQuestao = document.getElementById(
+    "btnFecharModalQuestao",
+  );
+  const btnCancelarQuestao = document.getElementById("btnCancelarQuestao");
+  const btnSalvarQuestao = document.getElementById("btnSalvarQuestao");
+  const modalAlternativa = document.getElementById("modalAlternativa");
+  const formAlternativa = document.getElementById("formAlternativa");
+  const tituloModalAlternativa = document.getElementById(
+    "tituloModalAlternativa",
+  );
+  const textoAlternativa = document.getElementById("textoAlternativa");
+  const alternativaCorreta = document.getElementById("alternativaCorreta");
+  const explicacaoAlternativa = document.getElementById(
+    "explicacaoAlternativa",
+  );
+  const btnFecharModalAlternativa = document.getElementById(
+    "btnFecharModalAlternativa",
+  );
+  const btnCancelarAlternativa = document.getElementById(
+    "btnCancelarAlternativa",
+  );
+  const btnSalvarAlternativa = document.getElementById("btnSalvarAlternativa");
+  const erroAlternativa = document.getElementById("erroAlternativa");
   let quizAtual = null;
   let questoesCarregadas = [];
   let alternativasPorQuestao = new Map();
   let questaoEmEdicao = null;
   let alternativaEmEdicao = null;
   let questaoDaAlternativa = null;
-  const executarBloqueado = criarBloqueio(document.querySelector('[data-editor-quiz]'));
-  const bloquear = async operacao => {
+  const executarBloqueado = criarBloqueio(
+    document.querySelector("[data-editor-quiz]"),
+  );
+  const bloquear = async (operacao) => {
     await executarBloqueado(operacao);
     btnNovaQuestao.disabled = final && questoesCarregadas.length >= 15;
   };
   function questaoCompleta(questao) {
     const alternativas = alternativasPorQuestao.get(questao.id) || [];
-    return alternativas.length >= 2 && alternativas.length <= 5 && alternativas.filter(a => a.correta).length === 1;
+    return (
+      alternativas.length >= 2 &&
+      alternativas.length <= 5 &&
+      alternativas.filter((a) => a.correta).length === 1
+    );
   }
   async function excluirItem(mensagem, operacao, id) {
     if (!confirm(mensagem)) return;
     await bloquear(async () => {
-      try { await operacao({id}); await carregarQuiz(); }
-      catch (erro) { console.error(erro); alert('Não foi possível excluir. Atualize a página e tente novamente.'); }
+      try {
+        await operacao({ id });
+        await carregarQuiz();
+      } catch (erro) {
+        console.error(erro);
+        alert("Não foi possível excluir. Atualize a página e tente novamente.");
+      }
     });
   }
   async function carregarQuiz() {
@@ -58,10 +104,11 @@ export async function iniciarEditorQuiz({cursoId, moduloId = null}) {
     btnCriarQuiz.hidden = true;
 
     try {
-      const resposta = await (final ? buscarQuizFinalDoCurso : buscarQuizDoModulo)(
-        final ? { cursoId } : { moduloId },
-        { fetchPolicy: QueryFetchPolicy.SERVER_ONLY },
-      );
+      const resposta = await (
+        final ? buscarQuizFinalDoCurso : buscarQuizDoModulo
+      )(final ? { cursoId } : { moduloId }, {
+        fetchPolicy: QueryFetchPolicy.SERVER_ONLY,
+      });
       quizAtual = resposta.data.quizzes?.[0] || null;
 
       if (!quizAtual) {
@@ -117,7 +164,16 @@ export async function iniciarEditorQuiz({cursoId, moduloId = null}) {
     const total = questoesCarregadas.length;
     const completas = questoesCarregadas.filter(questaoCompleta).length;
     const completo = total >= 10 && total <= 15 && completas === total;
-    if (final) estadoQuiz.textContent = total + ' / 10 questões mínimas • ' + completas + ' completas • Status: ' + (completo ? 'Completo' : 'Incompleto') + (total >= 15 ? ' • Limite de 15 questões atingido.' : ' • Máximo: 15 questões.');
+    if (final)
+      estadoQuiz.textContent =
+        total +
+        " / 10 questões mínimas • " +
+        completas +
+        " completas • Status: " +
+        (completo ? "Completo" : "Incompleto") +
+        (total >= 15
+          ? " • Limite de 15 questões atingido."
+          : " • Máximo: 15 questões.");
     btnNovaQuestao.disabled = final && total >= 15;
     listaQuestoes.hidden = false;
   }
@@ -125,7 +181,8 @@ export async function iniciarEditorQuiz({cursoId, moduloId = null}) {
   function mostrarQuestoes() {
     listaQuestoes.innerHTML = "";
     if (questoesCarregadas.length === 0) {
-      listaQuestoes.innerHTML = '<div class="mensagem">Crie a primeira questão deste quiz.</div>';
+      listaQuestoes.innerHTML =
+        '<div class="mensagem">Crie a primeira questão deste quiz.</div>';
       return;
     }
 
@@ -146,17 +203,9 @@ export async function iniciarEditorQuiz({cursoId, moduloId = null}) {
           </h3>
 
           <span
-            class="badge-status ${
-              questaoCompleta(questao)
-                ? "completa"
-                : ""
-            }"
+            class="badge-status ${questaoCompleta(questao) ? "completa" : ""}"
           >
-            ${
-              questaoCompleta(questao)
-                ? "Completa"
-                : "Incompleta"
-            }
+            ${questaoCompleta(questao) ? "Completa" : "Incompleta"}
           </span>
 
         </div>
@@ -264,13 +313,11 @@ export async function iniciarEditorQuiz({cursoId, moduloId = null}) {
 
           ${
             (alternativasPorQuestao.get(questao.id) || []).length === 0
-
               ? `
                 <p class="estado-vazio-alternativas">
                   Esta questão ainda não possui alternativas.
                 </p>
               `
-
               : montarAlternativas(questao)
           }
 
@@ -279,21 +326,59 @@ export async function iniciarEditorQuiz({cursoId, moduloId = null}) {
       </div>
     `;
 
-      card.querySelector("[data-acao='subir-questao']").addEventListener("click", () => moverQuestao(questao.id, -1));
-      card.querySelector("[data-acao='descer-questao']").addEventListener("click", () => moverQuestao(questao.id, 1));
-      card.querySelector("[data-acao='editar-questao']").addEventListener("click", () => abrirEdicaoQuestao(questao.id));
-      card.querySelector("[data-acao='nova-alternativa']").addEventListener("click", () => abrirNovaAlternativa(questao.id));
-      card.querySelectorAll("[data-acao='editar-alternativa']").forEach((botao) => {
-        botao.addEventListener("click", () => abrirEdicaoAlternativa(questao.id, botao.dataset.alternativaId));
-      });
-      card.querySelectorAll("[data-acao='subir-alternativa']").forEach((botao) => {
-        botao.addEventListener("click", () => moverAlternativa(questao.id, botao.dataset.alternativaId, -1));
-      });
-      card.querySelectorAll("[data-acao='descer-alternativa']").forEach((botao) => {
-        botao.addEventListener("click", () => moverAlternativa(questao.id, botao.dataset.alternativaId, 1));
-      });
-      card.querySelector('[data-acao="excluir-questao"]').addEventListener('click', () => excluirItem('Excluir esta questão e todas as suas alternativas?', excluirQuestaoQuiz, questao.id));
-      card.querySelectorAll('[data-acao="excluir-alternativa"]').forEach(botao => botao.addEventListener('click', () => excluirItem('Excluir esta alternativa? A questão poderá ficar incompleta.', excluirAlternativaQuiz, botao.dataset.alternativaId)));
+      card
+        .querySelector("[data-acao='subir-questao']")
+        .addEventListener("click", () => moverQuestao(questao.id, -1));
+      card
+        .querySelector("[data-acao='descer-questao']")
+        .addEventListener("click", () => moverQuestao(questao.id, 1));
+      card
+        .querySelector("[data-acao='editar-questao']")
+        .addEventListener("click", () => abrirEdicaoQuestao(questao.id));
+      card
+        .querySelector("[data-acao='nova-alternativa']")
+        .addEventListener("click", () => abrirNovaAlternativa(questao.id));
+      card
+        .querySelectorAll("[data-acao='editar-alternativa']")
+        .forEach((botao) => {
+          botao.addEventListener("click", () =>
+            abrirEdicaoAlternativa(questao.id, botao.dataset.alternativaId),
+          );
+        });
+      card
+        .querySelectorAll("[data-acao='subir-alternativa']")
+        .forEach((botao) => {
+          botao.addEventListener("click", () =>
+            moverAlternativa(questao.id, botao.dataset.alternativaId, -1),
+          );
+        });
+      card
+        .querySelectorAll("[data-acao='descer-alternativa']")
+        .forEach((botao) => {
+          botao.addEventListener("click", () =>
+            moverAlternativa(questao.id, botao.dataset.alternativaId, 1),
+          );
+        });
+      card
+        .querySelector('[data-acao="excluir-questao"]')
+        .addEventListener("click", () =>
+          excluirItem(
+            "Excluir esta questão e todas as suas alternativas?",
+            excluirQuestaoQuiz,
+            questao.id,
+          ),
+        );
+      card
+        .querySelectorAll('[data-acao="excluir-alternativa"]')
+        .forEach((botao) =>
+          botao.addEventListener("click", () =>
+            excluirItem(
+              "Excluir esta alternativa? A questão poderá ficar incompleta.",
+              excluirAlternativaQuiz,
+              botao.dataset.alternativaId,
+            ),
+          ),
+        );
       listaQuestoes.appendChild(card);
     });
   }
@@ -304,12 +389,12 @@ export async function iniciarEditorQuiz({cursoId, moduloId = null}) {
       return '<p class="mensagem-alternativas">Esta questão ainda não possui alternativas.</p>';
     }
 
-    return alternativas.map((alternativa, indice) => `
+    return alternativas
+      .map(
+        (alternativa, indice) => `
     <div
       class="alternativa-admin ${
-        alternativa.correta
-          ? "alternativa-correta"
-          : ""
+        alternativa.correta ? "alternativa-correta" : ""
       }"
     >
 
@@ -386,11 +471,7 @@ export async function iniciarEditorQuiz({cursoId, moduloId = null}) {
             type="button"
             data-acao="descer-alternativa"
             data-alternativa-id="${alternativa.id}"
-            ${
-              indice === alternativas.length - 1
-                ? "disabled"
-                : ""
-            }
+            ${indice === alternativas.length - 1 ? "disabled" : ""}
             aria-label="Mover alternativa para baixo"
           >
             <i class="fa-solid fa-arrow-down"></i>
@@ -412,7 +493,9 @@ export async function iniciarEditorQuiz({cursoId, moduloId = null}) {
       </div>
 
     </div>
-  `).join("");
+  `,
+      )
+      .join("");
   }
 
   function abrirNovaQuestao() {
@@ -435,7 +518,10 @@ export async function iniciarEditorQuiz({cursoId, moduloId = null}) {
     }
     questaoEmEdicao = questao;
     perguntaQuiz.value = questao.pergunta || "";
+
     atualizarTextosModalQuestao();
+    atualizarContadoresCampos(modalQuestao);
+
     modalQuestao.hidden = false;
     perguntaQuiz.focus();
   }
@@ -443,6 +529,7 @@ export async function iniciarEditorQuiz({cursoId, moduloId = null}) {
   function prepararFormularioQuestao() {
     formQuestao.reset();
     atualizarTextosModalQuestao();
+    atualizarContadoresCampos(modalQuestao);
   }
 
   function fecharModalQuestao() {
@@ -453,18 +540,28 @@ export async function iniciarEditorQuiz({cursoId, moduloId = null}) {
 
   function atualizarTextosModalQuestao() {
     const editando = questaoEmEdicao !== null;
-    tituloModalQuestao.textContent = editando ? "Editar questão" : "Nova questão";
+    tituloModalQuestao.textContent = editando
+      ? "Editar questão"
+      : "Nova questão";
     btnSalvarQuestao.innerHTML = editando
       ? '<i class="fa-solid fa-floppy-disk" aria-hidden="true"></i> Salvar alterações'
       : '<i class="fa-solid fa-floppy-disk" aria-hidden="true"></i> Criar questão';
   }
 
   async function moverQuestaoInterno(questaoId, direcao) {
-    const indice = questoesCarregadas.findIndex((questao) => questao.id === questaoId);
+    const indice = questoesCarregadas.findIndex(
+      (questao) => questao.id === questaoId,
+    );
     const destino = indice + direcao;
-    if (indice < 0 || destino < 0 || destino >= questoesCarregadas.length) return;
+    if (indice < 0 || destino < 0 || destino >= questoesCarregadas.length)
+      return;
     try {
-      await trocarOrdens(questoesCarregadas, questoesCarregadas[indice], questoesCarregadas[destino], atualizarQuestao);
+      await trocarOrdens(
+        questoesCarregadas,
+        questoesCarregadas[indice],
+        questoesCarregadas[destino],
+        atualizarQuestao,
+      );
       await carregarQuiz();
     } catch (erro) {
       console.error("Erro ao reordenar questão:", erro);
@@ -473,7 +570,11 @@ export async function iniciarEditorQuiz({cursoId, moduloId = null}) {
   }
 
   async function atualizarQuestao(questao, ordem) {
-    await editarQuestaoQuiz({ id: questao.id, pergunta: questao.pergunta, ordem });
+    await editarQuestaoQuiz({
+      id: questao.id,
+      pergunta: questao.pergunta,
+      ordem,
+    });
   }
 
   function abrirNovaAlternativa(questaoId) {
@@ -496,17 +597,21 @@ export async function iniciarEditorQuiz({cursoId, moduloId = null}) {
     const alternativa = alternativasPorQuestao
       .get(questaoId)
       ?.find((item) => item.id === alternativaId);
+
     if (!questao || !alternativa) {
       alert("Alternativa não encontrada.");
       return;
     }
+
     questaoDaAlternativa = questao;
     alternativaEmEdicao = alternativa;
     formAlternativa.reset();
     textoAlternativa.value = alternativa.texto || "";
     alternativaCorreta.checked = Boolean(alternativa.correta);
     explicacaoAlternativa.value = alternativa.explicacao || "";
+
     atualizarTextosModalAlternativa();
+    atualizarContadoresCampos(modalAlternativa);
     modalAlternativa.hidden = false;
     textoAlternativa.focus();
   }
@@ -515,6 +620,7 @@ export async function iniciarEditorQuiz({cursoId, moduloId = null}) {
     erroAlternativa.hidden = true;
     formAlternativa.reset();
     atualizarTextosModalAlternativa();
+    atualizarContadoresCampos(modalAlternativa);
   }
 
   function fecharModalAlternativa() {
@@ -526,7 +632,9 @@ export async function iniciarEditorQuiz({cursoId, moduloId = null}) {
 
   function atualizarTextosModalAlternativa() {
     const editando = alternativaEmEdicao !== null;
-    tituloModalAlternativa.textContent = editando ? "Editar alternativa" : "Nova alternativa";
+    tituloModalAlternativa.textContent = editando
+      ? "Editar alternativa"
+      : "Nova alternativa";
     btnSalvarAlternativa.innerHTML = editando
       ? '<i class="fa-solid fa-floppy-disk" aria-hidden="true"></i> Salvar alterações'
       : '<i class="fa-solid fa-floppy-disk" aria-hidden="true"></i> Criar alternativa';
@@ -534,11 +642,18 @@ export async function iniciarEditorQuiz({cursoId, moduloId = null}) {
 
   async function moverAlternativaInterno(questaoId, alternativaId, direcao) {
     const alternativas = alternativasPorQuestao.get(questaoId) || [];
-    const indice = alternativas.findIndex((alternativa) => alternativa.id === alternativaId);
+    const indice = alternativas.findIndex(
+      (alternativa) => alternativa.id === alternativaId,
+    );
     const destino = indice + direcao;
     if (indice < 0 || destino < 0 || destino >= alternativas.length) return;
     try {
-      await trocarOrdens(alternativas, alternativas[indice], alternativas[destino], atualizarAlternativa);
+      await trocarOrdens(
+        alternativas,
+        alternativas[indice],
+        alternativas[destino],
+        atualizarAlternativa,
+      );
       await carregarQuiz();
     } catch (erro) {
       console.error("Erro ao reordenar alternativa:", erro);
@@ -556,9 +671,10 @@ export async function iniciarEditorQuiz({cursoId, moduloId = null}) {
     });
   }
 
-
-  const moverQuestao = (...args) => bloquear(() => moverQuestaoInterno(...args));
-  const moverAlternativa = (...args) => bloquear(() => moverAlternativaInterno(...args));
+  const moverQuestao = (...args) =>
+    bloquear(() => moverQuestaoInterno(...args));
+  const moverAlternativa = (...args) =>
+    bloquear(() => moverAlternativaInterno(...args));
   formQuestao.addEventListener("submit", async (evento) => {
     evento.preventDefault();
     if (btnSalvarQuestao.disabled) return;
@@ -569,7 +685,10 @@ export async function iniciarEditorQuiz({cursoId, moduloId = null}) {
       return;
     }
     const editando = questaoEmEdicao !== null;
-    if (!editando && final && questoesCarregadas.length >= 15) { alert('O teste final permite no máximo 15 questões.'); return; }
+    if (!editando && final && questoesCarregadas.length >= 15) {
+      alert("O teste final permite no máximo 15 questões.");
+      return;
+    }
     btnSalvarQuestao.disabled = true;
     try {
       if (editando) {
@@ -612,16 +731,23 @@ export async function iniciarEditorQuiz({cursoId, moduloId = null}) {
 
     const editando = alternativaEmEdicao !== null;
     const atuais = alternativasPorQuestao.get(questaoDaAlternativa.id) || [];
-    if (!editando && atuais.length >= 5) { alert('Uma questão permite no máximo 5 alternativas.'); return; }
-    if (alternativaEmEdicao?.correta && !correta && !atuais.some(a => a.correta && a.id !== alternativaEmEdicao.id)) {
-      erroAlternativa.textContent = 'Uma questão precisa possuir uma alternativa correta. Marque outra alternativa como correta antes de desmarcar esta.';
+    if (!editando && atuais.length >= 5) {
+      alert("Uma questão permite no máximo 5 alternativas.");
+      return;
+    }
+    if (
+      alternativaEmEdicao?.correta &&
+      !correta &&
+      !atuais.some((a) => a.correta && a.id !== alternativaEmEdicao.id)
+    ) {
+      erroAlternativa.textContent =
+        "Uma questão precisa possuir uma alternativa correta. Marque outra alternativa como correta antes de desmarcar esta.";
       erroAlternativa.hidden = false;
       alternativaCorreta.focus();
       return;
     }
     btnSalvarAlternativa.disabled = true;
     try {
-
       if (editando) {
         await editarAlternativaQuiz({
           id: alternativaEmEdicao.id,
@@ -631,7 +757,8 @@ export async function iniciarEditorQuiz({cursoId, moduloId = null}) {
           ordem: alternativaEmEdicao.ordem,
         });
       } else {
-        const alternativas = alternativasPorQuestao.get(questaoDaAlternativa.id) || [];
+        const alternativas =
+          alternativasPorQuestao.get(questaoDaAlternativa.id) || [];
         await criarAlternativaQuiz({
           questaoId: questaoDaAlternativa.id,
           texto,
@@ -651,13 +778,15 @@ export async function iniciarEditorQuiz({cursoId, moduloId = null}) {
     }
   });
 
-
-  btnCriarQuiz.addEventListener('click', () => bloquear(criarQuizDoModulo));
-  btnNovaQuestao.addEventListener('click', abrirNovaQuestao);
-  btnFecharModalQuestao.addEventListener('click', fecharModalQuestao);
-  btnCancelarQuestao.addEventListener('click', fecharModalQuestao);
-  btnFecharModalAlternativa.addEventListener('click', fecharModalAlternativa);
-  btnCancelarAlternativa.addEventListener('click', fecharModalAlternativa);
-  configurarModais([[modalQuestao, fecharModalQuestao], [modalAlternativa, fecharModalAlternativa]]);
+  btnCriarQuiz.addEventListener("click", () => bloquear(criarQuizDoModulo));
+  btnNovaQuestao.addEventListener("click", abrirNovaQuestao);
+  btnFecharModalQuestao.addEventListener("click", fecharModalQuestao);
+  btnCancelarQuestao.addEventListener("click", fecharModalQuestao);
+  btnFecharModalAlternativa.addEventListener("click", fecharModalAlternativa);
+  btnCancelarAlternativa.addEventListener("click", fecharModalAlternativa);
+  configurarModais([
+    [modalQuestao, fecharModalQuestao],
+    [modalAlternativa, fecharModalAlternativa],
+  ]);
   await carregarQuiz();
 }

@@ -12,6 +12,11 @@ import {
   excluirCurso,
 } from "../dataconnect-generated/esm/index.esm.js";
 
+import {
+  configurarCamposComLimite,
+  atualizarContadoresCampos
+} from "./AdminComum.js";
+
 // ==========================================
 // ESTADO
 // ==========================================
@@ -63,8 +68,6 @@ const nomeCurso = document.getElementById("nomeCurso");
 
 const descricaoCurso = document.getElementById("descricaoCurso");
 
-const contadorDescricao = document.getElementById("contadorDescricao");
-
 const erroDescricao = document.getElementById("erroDescricao");
 
 const dificuldadeCurso = document.getElementById("dificuldadeCurso");
@@ -82,6 +85,8 @@ const duracaoMinutos = document.getElementById("duracaoMinutos");
 const campoStatusCurso = document.getElementById("campoStatusCurso");
 
 const statusCurso = document.getElementById("statusCurso");
+
+configurarCamposComLimite();
 
 // ==========================================
 // AUTENTICAÇÃO
@@ -452,7 +457,7 @@ function prepararNovoCurso() {
 
   btnExcluirCurso.hidden = true;
 
-  atualizarContadorDescricao();
+  atualizarContadoresCampos(modalNovoCurso);
 
   atualizarBotaoSalvar();
 }
@@ -490,7 +495,7 @@ function abrirEdicaoCurso(id) {
 
   erroDescricao.hidden = true;
 
-  atualizarContadorDescricao();
+  atualizarContadoresCampos(modalNovoCurso);
 
   atualizarBotaoSalvar();
 
@@ -593,24 +598,6 @@ function ajustarAlturaTextarea() {
 }
 
 // ==========================================
-// CONTADOR DA DESCRIÇÃO
-// ==========================================
-
-function atualizarContadorDescricao() {
-  const quantidade = descricaoCurso.value.length;
-
-  contadorDescricao.textContent = `${quantidade} / ${LIMITE_DESCRICAO}`;
-
-  contadorDescricao.classList.remove("proximo-limite", "limite-critico");
-
-  if (quantidade >= 475) {
-    contadorDescricao.classList.add("limite-critico");
-  } else if (quantidade >= 400) {
-    contadorDescricao.classList.add("proximo-limite");
-  }
-}
-
-// ==========================================
 // VALIDAR DESCRIÇÃO
 // ==========================================
 
@@ -625,8 +612,6 @@ function descricaoValida() {
 // ==========================================
 
 descricaoCurso.addEventListener("input", () => {
-  atualizarContadorDescricao();
-
   ajustarAlturaTextarea();
 
   erroDescricao.hidden = true;
@@ -669,9 +654,9 @@ function fecharModalNovoCurso() {
 
   btnExcluirCurso.hidden = true;
 
-  atualizarContadorDescricao();
+  atualizarContadoresCampos(modalNovoCurso);
 
-  atualizarBotaoSalvar();
+  atualizarBotaoSalvar(); 
 }
 
 // ==========================================

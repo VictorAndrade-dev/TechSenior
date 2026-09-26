@@ -1,8 +1,14 @@
 import { auth } from "./Firebase-config.js";
-import { criarBloqueio, configurarModais, escapeHtml } from "./AdminComum.js";
+
+import {
+  criarBloqueio,
+  configurarModais,
+  configurarCamposComLimite,
+  atualizarContadoresCampos,
+  escapeHtml
+} from "./AdminComum.js";
 
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
-
 import { QueryFetchPolicy } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-data-connect.js";
 
 import {
@@ -40,10 +46,6 @@ const nomeModulo = document.getElementById("nomeModulo");
 
 const descricaoModulo = document.getElementById("descricaoModulo");
 
-const contadorDescricaoModulo = document.getElementById(
-  "contadorDescricaoModulo",
-);
-
 const duracaoModulo = document.getElementById("duracaoModulo");
 
 const duracaoModuloPersonalizada = document.getElementById(
@@ -58,6 +60,7 @@ const btnSalvarModulo = document.getElementById("btnSalvarModulo");
 
 const tituloModalModulo = document.getElementById("tituloModalModulo");
 
+configurarCamposComLimite();
 // ==========================================
 // ID DO CURSO
 // ==========================================
@@ -481,9 +484,11 @@ function abrirModalModulo() {
 
   duracaoModuloMinutos.value = 0;
 
-  contadorDescricaoModulo.textContent = "0 / 500";
-
   atualizarTextosDoModal();
+
+  atualizarContadoresCampos(
+    modalModulo
+  );
 
   modalModulo.hidden = false;
 
@@ -491,49 +496,49 @@ function abrirModalModulo() {
 }
 
 function abrirEdicaoModulo(moduloId) {
-  const modulo = modulosCarregados.find((item) => item.id === moduloId);
+  const modulo =
+    modulosCarregados.find(
+      (item) => item.id === moduloId
+    );
 
   if (!modulo) {
     alert("Módulo não encontrado.");
-
     return;
   }
-
   moduloEmEdicao = modulo;
-
   formModulo.reset();
 
-  nomeModulo.value = modulo.nome || "";
+  nomeModulo.value =
+    modulo.nome || "";
 
-  descricaoModulo.value = modulo.descricao || "";
+  descricaoModulo.value =
+    modulo.descricao || "";
 
-  contadorDescricaoModulo.textContent = `${descricaoModulo.value.length} / 500`;
-
-  preencherDuracaoModulo(modulo.duracaoMinutos);
-
+  preencherDuracaoModulo(
+    modulo.duracaoMinutos
+  );
   atualizarTextosDoModal();
+  atualizarContadoresCampos(
+    modalModulo
+  );
 
   modalModulo.hidden = false;
-
   nomeModulo.focus();
 }
 
 function fecharModalModulo() {
   modalModulo.hidden = true;
-
   moduloEmEdicao = null;
-
   formModulo.reset();
 
   duracaoModuloPersonalizada.hidden = true;
-
   duracaoModuloHoras.value = 0;
-
   duracaoModuloMinutos.value = 0;
 
-  contadorDescricaoModulo.textContent = "0 / 500";
-
   atualizarTextosDoModal();
+  atualizarContadoresCampos(
+    modalModulo
+  );
 }
 
 function atualizarTextosDoModal() {
@@ -595,9 +600,6 @@ duracaoModulo.addEventListener("change", () => {
   }
 });
 
-descricaoModulo.addEventListener("input", () => {
-  contadorDescricaoModulo.textContent = `${descricaoModulo.value.length} / 500`;
-});
 
 formModulo.addEventListener("submit", async (evento) => {
   evento.preventDefault();

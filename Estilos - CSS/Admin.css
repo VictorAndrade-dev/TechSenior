@@ -4663,3 +4663,66 @@ body {
     margin-left: 0;
   }
 }
+
+/* ===================================================== */
+/* CAMPOS DE TEXTO — COMPORTAMENTO PADRÃO                */
+/* ===================================================== */
+
+.campo textarea {
+  width: 100%;
+  max-width: 100%;
+
+  min-height: 110px;
+  max-height: 280px;
+
+  resize: vertical;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  line-height: 1.6;
+}
+
+
+/* contador criado automaticamente */
+
+.rodape-campo-automatico {
+  justify-content: flex-end;
+}
+
+
+.contador-caracteres {
+  transition:
+    color .2s ease,
+    font-weight .2s ease;
+}
+
+
+.contador-caracteres.proximo-limite {
+  color: #a9780b;
+}
+
+
+.contador-caracteres.limite-critico {
+  color: #c16b00;
+
+  font-weight: 700;
+}
+
+
+.contador-caracteres.limite-excedido {
+  color: #b3261e;
+
+  font-weight: 700;
+}
+
+
+.campo input.campo-limite-excedido,
+.campo textarea.campo-limite-excedido {
+  border-color: #c74c55;
+
+  background: #fff8f8;
+
+  box-shadow:
+    0 0 0 3px rgba(183, 50, 60, .08);
+}

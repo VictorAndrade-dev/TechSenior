@@ -1,84 +1,53 @@
 import { iniciarEditorQuiz } from "./AdminQuiz.js";
 
-import { criarBloqueio, configurarModais } from "./AdminComum.js";
+import {
+  criarBloqueio,
+  configurarModais,
+  configurarCamposComLimite,
+  atualizarContadoresCampos
+} from "./AdminComum.js";
 
 import { auth } from "./Firebase-config.js";
-
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
-
 import { QueryFetchPolicy } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-data-connect.js";
 
 import {
-
   meuPerfil,
-
   buscarCurso,
-
   listarModulosDoCurso,
-
   listarConteudosDoModulo,
-
   criarConteudoModulo,
-
   editarConteudoModulo,
-
   excluirConteudoModulo,
-
 } from "../dataconnect-generated/esm/index.esm.js";
-
+  
 import { supabase } from "./Supabase-config.js";
 
-
 const linkVoltarModulos = document.getElementById("linkVoltarModulos");
-
 const btnVoltarModulos = document.getElementById("btnVoltarModulos");
-
 const trilhaModulo = document.getElementById("trilhaModulo");
-
 const nomeModuloAdmin = document.getElementById("nomeModuloAdmin");
-
 const descricaoModuloAdmin = document.getElementById("descricaoModuloAdmin");
-
 const dadosModulo = document.getElementById("dadosModulo");
-
 const estadoConteudos = document.getElementById("estadoConteudos");
-
 const listaConteudos = document.getElementById("listaConteudos");
-
 const btnNovoConteudo = document.getElementById("btnNovoConteudo");
-
 const modalConteudo = document.getElementById("modalConteudo");
-
 const formConteudo = document.getElementById("formConteudo");
-
 const tituloModalConteudo = document.getElementById("tituloModalConteudo");
-
 const tipoConteudo = document.getElementById("tipoConteudo");
-
 const tituloConteudo = document.getElementById("tituloConteudo");
-
 const campoConteudo = document.getElementById("campoConteudo");
-
 const textoConteudo = document.getElementById("textoConteudo");
-
 const campoUrlConteudo = document.getElementById("campoUrlConteudo");
-
 const urlConteudo = document.getElementById("urlConteudo");
-
 const campoAltTextoConteudo = document.getElementById("campoAltTextoConteudo");
-
 const altTextoConteudo = document.getElementById("altTextoConteudo");
-
 const btnFecharModalConteudo = document.getElementById(
-
   "btnFecharModalConteudo",
-
 );
-
 const btnCancelarConteudo = document.getElementById("btnCancelarConteudo");
-
 const btnSalvarConteudo = document.getElementById("btnSalvarConteudo");
-
 
 const camposMidiaConteudo = document.getElementById("camposMidiaConteudo");
 const campoArquivoConteudo = document.getElementById("campoArquivoConteudo");
@@ -114,19 +83,17 @@ const uuid =
 
 const parametrosValidos = uuid.test(cursoId || "") && uuid.test(moduloId || "");
 
+// Configura os campos de texto com limite de caracteres
+configurarCamposComLimite();
+// ==========================================
+
+// Variáveis de estado
 let cursoAtual = null;
-
 let moduloAtual = null;
-
 let conteudosCarregados = [];
-
 let conteudoEmEdicao = null;
-
-
 let arquivoMidiaSelecionado = null;
-
 let origemMidia = "arquivo";
-
 let urlPreviewLocal = null;
 
 
@@ -490,7 +457,10 @@ function abrirNovoConteudo() {
 
 
 function abrirEdicaoConteudo(conteudoId) {
-  const conteudo = conteudosCarregados.find((item) => item.id === conteudoId);
+  const conteudo =
+    conteudosCarregados.find(
+      (item) => item.id === conteudoId
+    );
 
   if (!conteudo) {
     alert("Conteúdo não encontrado.");
@@ -498,21 +468,41 @@ function abrirEdicaoConteudo(conteudoId) {
   }
 
   conteudoEmEdicao = conteudo;
+
   formConteudo.reset();
 
   arquivoMidiaSelecionado = null;
-  origemMidia = conteudo.url ? "url" : "arquivo";
 
-  tipoConteudo.value = conteudo.tipo || "texto";
-  tituloConteudo.value = conteudo.titulo || "";
-  textoConteudo.value = conteudo.conteudo || "";
-  urlConteudo.value = conteudo.url || "";
-  altTextoConteudo.value = conteudo.altTexto || "";
+  origemMidia =
+    conteudo.url
+      ? "url"
+      : "arquivo";
+
+  tipoConteudo.value =
+    conteudo.tipo || "texto";
+
+  tituloConteudo.value =
+    conteudo.titulo || "";
+
+  textoConteudo.value =
+    conteudo.conteudo || "";
+
+  urlConteudo.value =
+    conteudo.url || "";
+
+  altTextoConteudo.value =
+    conteudo.altTexto || "";
 
   atualizarCamposConteudo();
+
   atualizarTextosModalConteudo();
 
+  atualizarContadoresCampos(
+    modalConteudo
+  );
+
   modalConteudo.hidden = false;
+
   tituloConteudo.focus();
 }
 
@@ -526,6 +516,9 @@ function prepararFormularioConteudo() {
   esconderPreviewMidia();
   atualizarCamposConteudo();
   atualizarTextosModalConteudo();
+  atualizarContadoresCampos(
+    modalConteudo
+  );
 }
 
 function fecharModalConteudo() {

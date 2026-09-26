@@ -65,3 +65,131 @@ export function configurarModais(modais) {
     });
   }
 }
+
+export function configurarCamposComLimite(root = document) {
+  const campos = root.querySelectorAll(
+    "input[maxlength], textarea[maxlength], input[data-limite], textarea[data-limite]"
+  );
+
+  campos.forEach((campo) => {
+    if (campo.dataset.limiteConfigurado === "true") return;
+
+    const limite = Number(
+      campo.dataset.limite ||
+      campo.getAttribute("maxlength")
+    );
+
+    if (!Number.isFinite(limite) || limite <= 0) return;
+
+    campo.dataset.limite = String(limite);
+    campo.dataset.limiteConfigurado = "true";
+
+    // Permite ultrapassar visualmente o limite.
+    campo.removeAttribute("maxlength");
+
+    const container =
+      campo.closest(".campo") ||
+      campo.parentElement;
+
+    if (!container) return;
+
+    let contador =
+      container.querySelector(".contador-caracteres");
+
+    if (!contador) {
+      const rodape = document.createElement("div");
+
+      rodape.className =
+        "rodape-campo rodape-campo-automatico";
+
+      contador = document.createElement("small");
+
+      contador.className =
+        "contador-caracteres";
+
+      contador.setAttribute(
+        "aria-live",
+        "polite"
+      );
+
+      rodape.appendChild(contador);
+
+      container.appendChild(rodape);
+    }
+
+    function atualizarContador() {
+      const tamanho = campo.value.length;
+
+      contador.textContent =
+        `${tamanho} / ${limite}`;
+
+      contador.classList.toggle(
+        "proximo-limite",
+        tamanho >= limite * 0.9 &&
+        tamanho <= limite
+      );
+
+      contador.classList.toggle(
+        "limite-critico",
+        tamanho === limite
+      );
+
+      contador.classList.toggle(
+        "limite-excedido",
+        tamanho > limite
+      );
+
+      campo.classList.toggle(
+        "campo-limite-excedido",
+        tamanho > limite
+      );
+
+      campo.setCustomValidity(
+        tamanho > limite
+          ? `Use no máximo ${limite} caracteres.`
+          : ""
+      );
+    }
+
+    campo.addEventListener(
+      "input",
+      atualizarContador
+    );
+
+    atualizarContador();
+  });
+}
+
+export function atualizarContadoresCampos(root = document) {
+  const campos = root.querySelectorAll(
+    "input[data-limite], textarea[data-limite], input[maxlength], textarea[maxlength]"
+  );
+
+  campos.forEach((campo) => {
+    const limite = Number(
+      campo.dataset.limite || campo.getAttribute("maxlength")
+    );
+
+    if (!Number.isFinite(limite) || limite <= 0) return;
+
+    const container = campo.closest(".campo") || campo.parentElement;
+    if (!container) return;
+
+    const contador = container.querySelector(".contador-caracteres");
+    if (!contador) return;
+
+    const tamanho = campo.value.length;
+
+    contador.textContent = `${tamanho} / ${limite}`;
+
+    contador.classList.toggle(
+      "proximo-limite",
+      tamanho >= limite * 0.9 && tamanho <= limite
+    );
+
+    contador.classList.toggle("limite-critico", tamanho === limite);
+    contador.classList.toggle("limite-excedido", tamanho > limite);
+
+    campo.classList.toggle("campo-limite-excedido", tamanho > limite);
+  });
+}

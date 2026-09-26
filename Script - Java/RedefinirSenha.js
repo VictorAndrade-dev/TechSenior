@@ -152,6 +152,32 @@ formRedefinicao.addEventListener(
     }
 
 
+    if (novaSenha.length > 20) {
+
+      mostrarMensagem(
+        "A senha deve ter no máximo 20 caracteres.",
+        "erro"
+      );
+
+      novaSenhaInput.focus();
+
+      return;
+    }
+
+
+    if (confirmarSenha.length > 20) {
+
+      mostrarMensagem(
+        "A senha deve ter no máximo 20 caracteres.",
+        "erro"
+      );
+
+      confirmarSenhaInput.focus();
+
+      return;
+    }
+
+
     if (
       novaSenha !== confirmarSenha
     ) {
@@ -303,7 +329,8 @@ function mostrarMensagem(
   tipo
 ) {
 
-  mensagem.textContent = texto;
+  mensagem.textContent =
+    texto;
 
   mensagem.className =
     `mensagem ${tipo}`;

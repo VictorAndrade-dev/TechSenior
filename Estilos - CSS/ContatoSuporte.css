@@ -409,6 +409,38 @@ main {
   cursor: not-allowed;
 }
 
+/* =========================
+CTA
+========================= */
+
+.cta {
+  margin: 100px 8%;
+  padding: 60px;
+  border-radius: 30px;
+
+  background: linear-gradient(90deg, var(--azul), var(--verde));
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  color: white;
+}
+
+.cta h2 {
+  margin-bottom: 15px;
+  color: white;
+}
+
+.cta p {
+  font-size: 20px;
+}
+
+.cta button {
+  background: white;
+  color: var(--azul);
+}
+
 
 /* ===================================== */
 /* RESPONSIVIDADE */

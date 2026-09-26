@@ -155,3 +155,24 @@ if (formContato) {
   });
 
 }
+
+// ==========================================
+// BOTÃO CTA
+// ==========================================
+
+const btnComecar = document.getElementById("btnComecar");
+
+if (btnComecar) {
+  onAuthStateChanged(auth, (usuario) => {
+    if (usuario) {
+      btnComecar.innerHTML = `
+        <i class="fa-solid fa-graduation-cap"></i>
+        Continuar aprendendo
+      `;
+    }
+
+    btnComecar.onclick = () => {
+      window.location.href = usuario ? "Cursos.html#cursos" : "Login.html";
+    };
+  });
+}

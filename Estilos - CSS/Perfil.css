@@ -169,10 +169,28 @@
   text-align: center;
 
   transition: 0.3s;
+
+  display: flex;
+
+  flex-direction: column;
+
+  height: 100%;
 }
 
 .card-curso:hover {
   transform: translateY(-8px);
+}
+
+.card-curso p {
+  color: var(--texto);
+
+  line-height: 1.6;
+
+  margin-bottom: 20px;
+}
+
+.card-curso .btn-card {
+  margin-top: auto;
 }
 
 .icone-curso {
@@ -180,7 +198,7 @@
 
   height: 70px;
 
-  margin: auto;
+  margin: 0 auto 20px;
 
   display: flex;
 
@@ -196,21 +214,13 @@
 
   font-size: 30px;
 
-  margin-bottom: 20px;
+  flex-shrink: 0;
 }
 
 .card-curso h3 {
   color: var(--titulo);
 
   margin-bottom: 15px;
-}
-
-.card-curso p {
-  color: var(--texto);
-
-  line-height: 1.6;
-
-  margin-bottom: 20px;
 }
 
 /* ==========================================

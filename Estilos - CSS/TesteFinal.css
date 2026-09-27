@@ -1,36 +1,562 @@
-/* Teste final: leitura confortável e controles independentes do quiz de módulo. */
-body { font-family: "Poppins", sans-serif; background: #f4f8f7; color: #213644; }
-body h1, body h2, body h3, body h4 { font-family: "Poppins", sans-serif; }
-html { scroll-behavior: auto; }
-#perguntaTeste, #tituloResultado { scroll-margin-top: 160px; }
-.pagina-teste { max-width: 900px; margin: 40px auto; padding: 0 24px; font-size: 1.125rem; line-height: 1.7; overflow-wrap: anywhere; }
-.pagina-teste [hidden] { display: none !important; }
-.pagina-teste h1 { font-size: clamp(1.8rem, 5vw, 2.5rem); margin: 12px 0; }
-.pagina-teste p { margin: 16px 0; }
-.pagina-teste a { color: #096354; text-decoration: underline; }
-.cartao-teste { background: #fff; padding: 32px; margin: 24px 0; border: 1px solid #b8ccc6; border-radius: 16px; }
-.pagina-teste fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
-.pagina-teste legend { font-size: 1.4rem; font-weight: 600; margin-bottom: 24px; width: 100%; }
-#alternativasTeste { display: grid; gap: 14px; }
-.alternativa-teste { display: flex; align-items: flex-start; gap: 14px; padding: 18px; border: 2px solid #73877f; border-radius: 10px; cursor: pointer; }
-.alternativa-teste:has(input:checked) { border-color: #096354; background: #e4f4ed; box-shadow: inset 4px 0 #096354; }
-.alternativa-teste input { flex: 0 0 auto; width: 24px; height: 24px; margin-top: 3px; accent-color: #096354; }
-.acoes-teste { display: flex; flex-wrap: wrap; gap: 14px; margin: 24px 0 0; }
-.pagina-teste button, .pagina-teste .botao { display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 12px 22px; border: 2px solid #096354; border-radius: 9px; background: #096354; color: #fff; font: inherit; font-weight: 600; cursor: pointer; text-decoration: none; }
-.pagina-teste .secundario { background: #fff; color: #096354; }
-.pagina-teste button:disabled { background: #e6eae8; color: #4b5953; border-color: #73877f; cursor: not-allowed; }
-body :focus-visible { outline: 3px solid #123b9c; outline-offset: 4px; }
-.revisao-questao { border-top: 1px solid #b8ccc6; margin-top: 28px; padding-top: 20px; }
-.revisao-questao h3 { font-size: 1.15rem; }
-.revisao-questao summary { cursor: pointer; color: #096354; padding: 12px 0; font-weight: 600; }
-/* Padrão.js é reutilizado, mas os controles de fonte ficam para a revisão geral. */
-#painelAcessibilidade { display: none !important; }
-@media (max-width: 600px) {
-  .pagina-teste { margin: 24px auto; padding: 0 16px; }
-  .cartao-teste { padding: 20px 16px; }
-  .acoes-teste > * { width: 100%; }
+/* ==========================================
+   TESTE FINAL
+========================================== */
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f4f8f7;
+  color: #1d2e36;
 }
+
+body h1,
+body h2,
+body h3,
+body h4 {
+  font-family: "Poppins", sans-serif;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+#perguntaTeste,
+#tituloResultado {
+  scroll-margin-top: 150px;
+}
+
+
+/* ==========================================
+   PÁGINA
+========================================== */
+
+.pagina-teste {
+  width: min(100% - 32px, 920px);
+
+  margin: 45px auto 70px;
+
+  font-size: 1.05rem;
+  line-height: 1.7;
+
+  overflow-wrap: anywhere;
+}
+
+.pagina-teste [hidden] {
+  display: none !important;
+}
+
+
+/* ==========================================
+   VOLTAR
+========================================== */
+
+#voltarCurso {
+  display: inline-flex;
+  align-items: center;
+
+  margin-bottom: 28px;
+
+  color: #126f5c;
+
+  font-weight: 600;
+  text-decoration: none;
+}
+
+#voltarCurso:hover {
+  text-decoration: underline;
+}
+
+
+/* ==========================================
+   CABEÇALHO
+========================================== */
+
+#nomeCurso {
+  width: fit-content;
+
+  margin: 0 0 8px;
+  padding: 6px 12px;
+
+  background-color: #e7f5f0;
+
+  border-radius: 999px;
+
+  color: #126f5c;
+
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.pagina-teste h1 {
+  margin: 0;
+
+  color: #17272f;
+
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+#mensagemTeste {
+  max-width: 760px;
+
+  margin: 16px 0 28px;
+
+  color: #50636c;
+
+  font-size: 1rem;
+}
+
+
+/* ==========================================
+   CARDS
+========================================== */
+
+.cartao-teste {
+  margin-top: 25px;
+  padding: 32px;
+
+  background-color: #ffffff;
+
+  border: 1px solid #d5e1dd;
+  border-radius: 16px;
+
+  box-shadow:
+    0 8px 28px rgba(22, 50, 43, 0.06);
+}
+
+.cartao-teste p:first-child {
+  margin-top: 0;
+}
+
+.cartao-teste p:last-child {
+  margin-bottom: 0;
+}
+
+
+/* ==========================================
+   INSTRUÇÕES
+========================================== */
+
+#inicioTeste p {
+  margin: 0 0 14px;
+}
+
+#inicioTeste strong {
+  color: #126f5c;
+}
+
+#quantidadeQuestoes {
+  margin-top: 24px !important;
+
+  color: #344c57;
+
+  font-weight: 600;
+}
+
+
+/* ==========================================
+   QUESTÃO
+========================================== */
+
+#numeroQuestao {
+  width: fit-content;
+
+  margin: 0 0 14px;
+  padding: 5px 11px;
+
+  background-color: #e7f5f0;
+
+  border-radius: 999px;
+
+  color: #126f5c;
+
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.pagina-teste fieldset {
+  min-width: 0;
+
+  margin: 0;
+  padding: 0;
+
+  border: 0;
+}
+
+.pagina-teste legend {
+  width: 100%;
+
+  margin-bottom: 24px;
+
+  color: #17272f;
+
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+
+/* ==========================================
+   ALTERNATIVAS
+========================================== */
+
+#alternativasTeste {
+  display: grid;
+  gap: 13px;
+}
+
+.alternativa-teste {
+  min-height: 66px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 16px 18px;
+
+  background-color: #ffffff;
+
+  border: 2px solid #d0dbd7;
+  border-radius: 11px;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.18s ease,
+    background-color 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.18s ease;
+}
+
+.alternativa-teste:hover {
+  background-color: #f7fbf9;
+
+  border-color: #7ca99e;
+}
+
+.alternativa-teste:has(input:checked) {
+  background-color: #e9f6f1;
+
+  border-color: #16866e;
+
+  box-shadow:
+    0 0 0 3px rgba(22, 134, 110, 0.12);
+}
+
+.alternativa-teste:focus-within {
+  outline: 3px solid rgba(18, 59, 156, 0.25);
+  outline-offset: 3px;
+}
+
+.alternativa-teste input {
+  width: 23px;
+  height: 23px;
+
+  flex-shrink: 0;
+
+  margin: 0;
+
+  accent-color: #16866e;
+}
+
+.alternativa-teste span {
+  color: #20343d;
+
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+
+/* ==========================================
+   CONTADOR
+========================================== */
+
+#contadorRespostas {
+  margin: 22px 0 0;
+
+  color: #60727a;
+
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+
+/* ==========================================
+   BOTÕES
+========================================== */
+
+.acoes-teste {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 12px;
+
+  margin-top: 28px;
+}
+
+.pagina-teste button,
+.pagina-teste .botao {
+  min-height: 50px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 11px 20px;
+
+  background-color: #16866e;
+
+  border: 2px solid #16866e;
+  border-radius: 9px;
+
+  color: #ffffff;
+
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+
+  text-align: center;
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.18s ease,
+    border-color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.pagina-teste button:hover:not(:disabled),
+.pagina-teste .botao:hover {
+  background-color: #10725e;
+  border-color: #10725e;
+}
+
+.pagina-teste button:active:not(:disabled),
+.pagina-teste .botao:active {
+  transform: translateY(1px);
+}
+
+
+/* SECUNDÁRIO */
+
+.pagina-teste .secundario {
+  background-color: #ffffff;
+
+  border-color: #16866e;
+
+  color: #126f5c;
+}
+
+.pagina-teste .secundario:hover {
+  background-color: #edf8f4;
+
+  color: #0d6653;
+}
+
+
+/* FINALIZAR À DIREITA */
+
+#finalizarTeste {
+  margin-left: auto;
+}
+
+
+/* DESABILITADO */
+
+.pagina-teste button:disabled {
+  background-color: #e4e9e7;
+
+  border-color: #c8d1ce;
+
+  color: #77827e;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+
+/* ==========================================
+   RESULTADO
+========================================== */
+
+#tituloResultado {
+  margin: 0 0 10px;
+
+  color: #17272f;
+
+  font-size: 1.8rem;
+}
+
+#notaResultado {
+  margin: 10px 0;
+
+  color: #126f5c;
+
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+#mensagemResultado {
+  color: #425760;
+}
+
+
+/* ==========================================
+   REVISÃO
+========================================== */
+
+#revisaoTeste {
+  margin-top: 30px;
+}
+
+#revisaoTeste > h2 {
+  margin-bottom: 8px;
+
+  font-size: 1.35rem;
+}
+
+.revisao-questao {
+  margin-top: 22px;
+  padding: 22px;
+
+  background-color: #f8fbfa;
+
+  border: 1px solid #d9e4e0;
+  border-radius: 12px;
+}
+
+.revisao-questao h3 {
+  margin: 0 0 12px;
+
+  color: #20343d;
+
+  font-size: 1.08rem;
+  line-height: 1.5;
+}
+
+.revisao-questao p {
+  margin: 8px 0;
+}
+
+.revisao-questao details {
+  margin-top: 13px;
+
+  border-top: 1px solid #d9e4e0;
+}
+
+.revisao-questao summary {
+  padding-top: 13px;
+
+  color: #126f5c;
+
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+
+/* ==========================================
+   ACESSIBILIDADE
+========================================== */
+
+body :focus-visible {
+  outline: 3px solid #123b9c;
+  outline-offset: 3px;
+}
+
+
+/*
+  Padrão.js é reutilizado.
+  Controles de tamanho da fonte serão
+  trabalhados na revisão geral.
+*/
+
+#painelAcessibilidade {
+  display: none !important;
+}
+
+
+/* ==========================================
+   RESPONSIVIDADE
+========================================== */
+
+@media (max-width: 650px) {
+
+  .pagina-teste {
+    width: min(100% - 24px, 920px);
+
+    margin: 25px auto 45px;
+
+    font-size: 1rem;
+  }
+
+  #voltarCurso {
+    margin-bottom: 22px;
+  }
+
+  .cartao-teste {
+    padding: 22px 18px;
+  }
+
+  .pagina-teste legend {
+    font-size: 1.2rem;
+  }
+
+  .alternativa-teste {
+    min-height: 62px;
+
+    padding: 14px;
+  }
+
+  .acoes-teste {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+  }
+
+  .acoes-teste > * {
+    width: 100%;
+  }
+
+  #finalizarTeste {
+    grid-column: 1 / -1;
+
+    margin-left: 0;
+  }
+
+}
+
+
+@media (max-width: 430px) {
+
+  .acoes-teste {
+    grid-template-columns: 1fr;
+  }
+
+  #finalizarTeste {
+    grid-column: auto;
+  }
+
+  .pagina-teste h1 {
+    font-size: 1.85rem;
+  }
+
+}
+
+
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto !important; }
-  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
 }

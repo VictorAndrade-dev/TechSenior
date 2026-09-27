@@ -10,6 +10,7 @@ import {
   listarModulosDoCurso,
   listarConteudosDoModulo,
   buscarQuizDoModulo,
+  buscarQuizFinalDoCursoAluno,
   listarQuestoesDoQuiz,
   listarAlternativasDaQuestao,
 } from "../dataconnect-generated/esm/index.esm.js";
@@ -45,6 +46,8 @@ let moduloPossuiQuiz = false;
 let alternativaSelecionadaQuiz = null;
 let botaoAlternativaSelecionadaQuiz = null;
 let alternativasErradasTentadas = new Set();
+
+
 
 
 
@@ -131,6 +134,15 @@ const nomeAulaAnterior =
 const nomeProximaAula =
   document.getElementById("nomeProximaAula");
 
+const testeFinalChamada =
+  document.getElementById(
+    "testeFinalChamada"
+  );
+
+const btnIniciarTesteFinal =
+  document.getElementById(
+    "btnIniciarTesteFinal"
+  );
 
 // ==========================================
 // INICIALIZAÇÃO
@@ -210,6 +222,8 @@ async function inicializarCurso(usuario) {
   await carregarModulo(
     moduloAtual
   );
+
+  await verificarTesteFinalDisponivel();
 
 }
 
@@ -1734,8 +1748,10 @@ async function concluirQuizModulo() {
     );
 
   }
+  await verificarTesteFinalDisponivel();
 
 }
+
 
 
 // ==========================================
@@ -1839,7 +1855,7 @@ function atualizarNavegacao() {
         true;
 
       nomeProximaAula.textContent =
-        "Curso concluído";
+        "Módulos concluídos";
 
     } else {
 
@@ -1953,7 +1969,7 @@ btnProximaAula.addEventListener(
 
       }
 
-
+      await verificarTesteFinalDisponivel();
       return;
 
     }
@@ -1971,7 +1987,6 @@ btnProximaAula.addEventListener(
     await carregarModulo(
       moduloAtual
     );
-
 
     // ======================================
     // SALVAR PROGRESSO
@@ -1997,7 +2012,6 @@ btnProximaAula.addEventListener(
 
   }
 );
-
 
 // ==========================================
 // ATUALIZAR PROGRESSO
@@ -2070,6 +2084,26 @@ function atualizarProgresso() {
 
 }
 
+function todosModulosConcluidos() {
+  return modulos.length > 0
+    && modulosConcluidos.length === modulos.length
+    && modulosConcluidos.every((concluido) => concluido === true);
+}
+
+async function verificarTesteFinalDisponivel() {
+  testeFinalChamada.hidden = true;
+  if (!todosModulosConcluidos()) return;
+
+  try {
+    const resultado = await buscarQuizFinalDoCursoAluno({ cursoId });
+    if (!resultado.data?.quizzes?.[0]) return;
+
+    btnIniciarTesteFinal.href = `TesteFinal.html?id=${encodeURIComponent(cursoId)}`;
+    testeFinalChamada.hidden = false;
+  } catch (erro) {
+    console.error("Erro ao buscar teste final:", erro);
+  }
+}
 
 // ==========================================
 // MENSAGEM DE ERRO

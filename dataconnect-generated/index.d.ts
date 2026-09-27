@@ -53,6 +53,18 @@ export interface BuscarQuizDoModuloVariables {
   moduloId: UUIDString;
 }
 
+export interface BuscarQuizFinalDoCursoAlunoData {
+  quizzes: ({
+    id: UUIDString;
+    tipo: string;
+    moduloId?: UUIDString | null;
+  } & Quiz_Key)[];
+}
+
+export interface BuscarQuizFinalDoCursoAlunoVariables {
+  cursoId: UUIDString;
+}
+
 export interface BuscarQuizFinalDoCursoData {
   quizzes: ({
     id: UUIDString;
@@ -531,6 +543,18 @@ export const buscarQuizDoModuloRef: BuscarQuizDoModuloRef;
 
 export function buscarQuizDoModulo(vars: BuscarQuizDoModuloVariables, options?: ExecuteQueryOptions): QueryPromise<BuscarQuizDoModuloData, BuscarQuizDoModuloVariables>;
 export function buscarQuizDoModulo(dc: DataConnect, vars: BuscarQuizDoModuloVariables, options?: ExecuteQueryOptions): QueryPromise<BuscarQuizDoModuloData, BuscarQuizDoModuloVariables>;
+
+interface BuscarQuizFinalDoCursoAlunoRef {
+  /* Allow users to create refs without passing in DataConnect */
+  (vars: BuscarQuizFinalDoCursoAlunoVariables): QueryRef<BuscarQuizFinalDoCursoAlunoData, BuscarQuizFinalDoCursoAlunoVariables>;
+  /* Allow users to pass in custom DataConnect instances */
+  (dc: DataConnect, vars: BuscarQuizFinalDoCursoAlunoVariables): QueryRef<BuscarQuizFinalDoCursoAlunoData, BuscarQuizFinalDoCursoAlunoVariables>;
+  operationName: string;
+}
+export const buscarQuizFinalDoCursoAlunoRef: BuscarQuizFinalDoCursoAlunoRef;
+
+export function buscarQuizFinalDoCursoAluno(vars: BuscarQuizFinalDoCursoAlunoVariables, options?: ExecuteQueryOptions): QueryPromise<BuscarQuizFinalDoCursoAlunoData, BuscarQuizFinalDoCursoAlunoVariables>;
+export function buscarQuizFinalDoCursoAluno(dc: DataConnect, vars: BuscarQuizFinalDoCursoAlunoVariables, options?: ExecuteQueryOptions): QueryPromise<BuscarQuizFinalDoCursoAlunoData, BuscarQuizFinalDoCursoAlunoVariables>;
 
 interface ListarQuestoesDoQuizRef {
   /* Allow users to create refs without passing in DataConnect */

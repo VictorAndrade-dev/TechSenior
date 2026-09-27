@@ -1,0 +1,36 @@
+/* Teste final: leitura confortável e controles independentes do quiz de módulo. */
+body { font-family: "Poppins", sans-serif; background: #f4f8f7; color: #213644; }
+body h1, body h2, body h3, body h4 { font-family: "Poppins", sans-serif; }
+html { scroll-behavior: auto; }
+#perguntaTeste, #tituloResultado { scroll-margin-top: 160px; }
+.pagina-teste { max-width: 900px; margin: 40px auto; padding: 0 24px; font-size: 1.125rem; line-height: 1.7; overflow-wrap: anywhere; }
+.pagina-teste [hidden] { display: none !important; }
+.pagina-teste h1 { font-size: clamp(1.8rem, 5vw, 2.5rem); margin: 12px 0; }
+.pagina-teste p { margin: 16px 0; }
+.pagina-teste a { color: #096354; text-decoration: underline; }
+.cartao-teste { background: #fff; padding: 32px; margin: 24px 0; border: 1px solid #b8ccc6; border-radius: 16px; }
+.pagina-teste fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+.pagina-teste legend { font-size: 1.4rem; font-weight: 600; margin-bottom: 24px; width: 100%; }
+#alternativasTeste { display: grid; gap: 14px; }
+.alternativa-teste { display: flex; align-items: flex-start; gap: 14px; padding: 18px; border: 2px solid #73877f; border-radius: 10px; cursor: pointer; }
+.alternativa-teste:has(input:checked) { border-color: #096354; background: #e4f4ed; box-shadow: inset 4px 0 #096354; }
+.alternativa-teste input { flex: 0 0 auto; width: 24px; height: 24px; margin-top: 3px; accent-color: #096354; }
+.acoes-teste { display: flex; flex-wrap: wrap; gap: 14px; margin: 24px 0 0; }
+.pagina-teste button, .pagina-teste .botao { display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 12px 22px; border: 2px solid #096354; border-radius: 9px; background: #096354; color: #fff; font: inherit; font-weight: 600; cursor: pointer; text-decoration: none; }
+.pagina-teste .secundario { background: #fff; color: #096354; }
+.pagina-teste button:disabled { background: #e6eae8; color: #4b5953; border-color: #73877f; cursor: not-allowed; }
+body :focus-visible { outline: 3px solid #123b9c; outline-offset: 4px; }
+.revisao-questao { border-top: 1px solid #b8ccc6; margin-top: 28px; padding-top: 20px; }
+.revisao-questao h3 { font-size: 1.15rem; }
+.revisao-questao summary { cursor: pointer; color: #096354; padding: 12px 0; font-weight: 600; }
+/* Padrão.js é reutilizado, mas os controles de fonte ficam para a revisão geral. */
+#painelAcessibilidade { display: none !important; }
+@media (max-width: 600px) {
+  .pagina-teste { margin: 24px auto; padding: 0 16px; }
+  .cartao-teste { padding: 20px 16px; }
+  .acoes-teste > * { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

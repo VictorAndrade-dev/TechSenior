@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Teste final | TechSênior</title>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "firebase/data-connect": "https://www.gstatic.com/firebasejs/12.17.1/firebase-data-connect.js"
+        }
+      }
+    </script>
+
+    <!-- Fonte -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="Estilos - CSS/Padrão.css" />
+    <link rel="stylesheet" href="Estilos - CSS/TesteFinal.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <!-- ========================================== -->
+    <!-- NAVBAR -->
+    <!-- ========================================== -->
+
+    <header>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <div class="logo">
+        <img src="Imagens/Logotipo Sem Fundo.png" alt="Logo TechSênior" />
+      </div>
+
+      <nav>
+        <a href="index.html">Início</a>
+        <a href="Cursos.html">Cursos</a>
+        <a href="Comunidade.html">Comunidade</a>
+        <a href="Sobre Nós.html">Sobre Nós</a>
+      </nav>
+
+      <a class="btn-login" id="btnUsuario" href="Login.html">
+        <i class="fa-regular fa-user"></i>
+        Entrar
+      </a>
+    </header>
+
+    <!-- ========================================== -->
+    <!-- MENU LATERAL MOBILE -->
+    <!-- ========================================== -->
+
+    <div class="sidebar" id="sidebar">
+      <button class="close-menu" id="closeMenu" aria-label="Fechar menu">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <nav class="sidebar-nav">
+        <a href="index.html">Início</a>
+        <a href="Cursos.html">Cursos</a>
+        <a href="Comunidade.html">Comunidade</a>
+        <a href="Sobre Nós.html">Sobre Nós</a>
+      </nav>
+    </div>
+
+    <!-- Fundo Escuro-->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- ========================================== -->
+    <!-- CONTEÚDO DO CURSO -->
+    <!-- ========================================== -->
+
+    <main class="pagina-teste">
+      <a id="voltarCurso" href="Cursos.html">← Voltar ao curso</a>
+      <p id="nomeCurso"></p>
+      <h1 id="tituloTeste" tabindex="-1">Teste final</h1>
+      <p id="mensagemTeste" role="status">Carregando o teste final...</p>
+
+      <section id="inicioTeste" class="cartao-teste" hidden aria-label="Instruções">
+        <p>Responda às perguntas com calma. Você pode voltar e mudar suas respostas antes de finalizar.</p>
+        <p>Para concluir o curso, você precisa de <strong>70% de acertos</strong>. Você pode tentar quantas vezes precisar.</p>
+        <p>O resultado e as explicações aparecem somente depois de finalizar. Se sair ou recarregar esta página, as respostas desta tentativa serão perdidas.</p>
+        <p id="quantidadeQuestoes"></p>
+        <button id="iniciarTeste" type="button">Iniciar teste</button>
+      </section>
+
+      <section id="tentativaTeste" class="cartao-teste" hidden aria-label="Perguntas do teste">
+        <p id="numeroQuestao"></p>
+        <fieldset>
+          <legend id="perguntaTeste" tabindex="-1"></legend>
+          <div id="alternativasTeste"></div>
+        </fieldset>
+        <p id="contadorRespostas" role="status"></p>
+        <div class="acoes-teste">
+          <button id="anteriorTeste" type="button" class="secundario">Anterior</button>
+          <button id="proximaTeste" type="button" class="secundario">Próxima</button>
+          <button id="finalizarTeste" type="button" disabled>Finalizar teste</button>
+        </div>
+      </section>
+
+      <section id="resultadoTeste" class="cartao-teste" hidden aria-label="Resultado">
+        <h2 id="tituloResultado" tabindex="-1"></h2>
+        <p id="notaResultado"></p>
+        <p id="mensagemResultado"></p>
+        <div class="acoes-teste">
+          <a id="revisarCurso" class="botao secundario" href="Cursos.html">Revisar curso</a>
+          <button id="tentarNovamente" type="button" hidden>Tentar novamente</button>
+        </div>
+        <div id="revisaoTeste"></div>
+      </section>
+      <button id="recarregarTeste" type="button" hidden>Tentar carregar novamente</button>
+    </main>
+    <footer>
+      <div class="coluna">
+        <h3>TechSênior</h3>
+
+        <p>Tecnologia ao seu alcance.</p>
+
+        <div class="footer-linha logo">
+          <div class="logo-footer">
+            <img
+              src="Imagens/Logotipo Sem Fundo.png"
+              alt="Logotipo TechSênior"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="coluna">
+        <h4>Navegação</h4>
+
+        <a href="index.html">Início</a>
+        <a href="Cursos.html">Cursos</a>
+        <a href="Comunidade.html">Comunidade</a>
+        <a href="Sobre Nós.html">Sobre Nós</a>
+      </div>
+
+      <div class="coluna">
+        <h4>Institucional</h4>
+
+        <a href="Termos de Uso.html"> Termos de Uso </a>
+
+        <a href="Política de Privacidade.html"> Política de Privacidade </a>
+
+        <a href="Declaração de Acessibilidade.html">
+          Declaração de Acessibilidade
+        </a>
+      </div>
+
+      <div class="coluna">
+        <h4>Comunidade</h4>
+
+        <a href="Regras da Comunidade.html"> Regras da Comunidade </a>
+
+        <a href="Sobre Nós.html"> Fale Conosco </a>
+
+        <div class="footer-linha redes">
+          <div class="coluna">
+            <h4>Redes Sociais</h4>
+
+            <a href="https://www.instagram.com/techsenior_tcc/">
+              <i class="fa-brands fa-instagram"></i>
+              Instagram
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div class="copyright">
+      © 2026 TechSênior • Projeto desenvolvido para o Trabalho de Conclusão de
+      Curso (TCC) do Curso Técnico em Desenvolvimento de Sistemas.
+
+      <br />
+
+      Desenvolvido pela equipe TechSênior.
+    </div>
+
+    <!-- ========================================== -->
+    <!-- JAVASCRIPT -->
+    <!-- ========================================== -->
+
+    <script type="module" src="Script - Java/TesteFinal.js"></script>
+
+    <script type="module" src="Script - Java/Padrão.js"></script>
+  </body>
+</html>

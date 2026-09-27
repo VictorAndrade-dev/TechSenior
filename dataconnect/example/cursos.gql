@@ -249,6 +249,51 @@ query BuscarQuizDoModulo(
   }
 }
 
+# ==========================================
+# TESTE FINAL - ALUNO
+# ==========================================
+
+query BuscarQuizFinalDoCursoAluno(
+  $cursoId: UUID!
+) @auth(
+  level: USER
+  insecureReason: "Usuários autenticados podem acessar o teste final de cursos ativos e publicados."
+) {
+
+  curso(id: $cursoId)
+    @redact
+    @check(
+      message: "Curso não encontrado."
+    ) {
+
+    ativo
+      @check(
+        expr: "this == true"
+        message: "Este curso não está disponível."
+      )
+
+    publicado
+      @check(
+        expr: "this == true"
+        message: "Este curso não está disponível."
+      )
+  }
+
+
+  quizzes(
+    where: {
+      cursoId: { eq: $cursoId }
+      moduloId: { isNull: true }
+      tipo: { eq: "final" }
+    }
+    limit: 1
+  ) {
+    id
+    tipo
+    moduloId
+  }
+}
+
 
 query ListarQuestoesDoQuiz(
   $quizId: UUID!

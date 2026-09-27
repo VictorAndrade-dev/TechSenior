@@ -106,6 +106,19 @@ export function buscarQuizDoModulo(dcOrVars, varsOrOptions, options) {
   return executeQuery(buscarQuizDoModuloRef(dcInstance, inputVars), inputOpts && { fetchPolicy: inputOpts.fetchPolicy });
 }
 
+export const buscarQuizFinalDoCursoAlunoRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return queryRef(dcInstance, 'BuscarQuizFinalDoCursoAluno', inputVars);
+}
+buscarQuizFinalDoCursoAlunoRef.operationName = 'BuscarQuizFinalDoCursoAluno';
+
+export function buscarQuizFinalDoCursoAluno(dcOrVars, varsOrOptions, options) {
+  
+  const { dc: dcInstance, vars: inputVars, options: inputOpts } = validateArgsWithOptions(connectorConfig, dcOrVars, varsOrOptions, options, true, true);
+  return executeQuery(buscarQuizFinalDoCursoAlunoRef(dcInstance, inputVars), inputOpts && { fetchPolicy: inputOpts.fetchPolicy });
+}
+
 export const listarQuestoesDoQuizRef = (dcOrVars, vars) => {
   const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
   dcInstance._useGeneratedSdk();

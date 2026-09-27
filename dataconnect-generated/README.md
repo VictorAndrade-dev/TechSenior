@@ -13,6 +13,7 @@ This README will guide you through the process of using the generated JavaScript
   - [*ListarModulosDoCurso*](#listarmodulosdocurso)
   - [*ListarConteudosDoModulo*](#listarconteudosdomodulo)
   - [*BuscarQuizDoModulo*](#buscarquizdomodulo)
+  - [*BuscarQuizFinalDoCursoAluno*](#buscarquizfinaldocursoaluno)
   - [*ListarQuestoesDoQuiz*](#listarquestoesdoquiz)
   - [*ListarAlternativasDaQuestao*](#listaralternativasdaquestao)
   - [*ListarCursosAdmin*](#listarcursosadmin)
@@ -637,6 +638,119 @@ const ref = buscarQuizDoModuloRef({ moduloId: ..., });
 // You can also pass in a `DataConnect` instance to the `QueryRef` function.
 const dataConnect = getDataConnect(connectorConfig);
 const ref = buscarQuizDoModuloRef(dataConnect, buscarQuizDoModuloVars);
+
+// Call `executeQuery()` on the reference to execute the query.
+// You can use the `await` keyword to wait for the promise to resolve.
+const { data } = await executeQuery(ref);
+
+console.log(data.quizzes);
+
+// Or, you can use the `Promise` API.
+executeQuery(ref).then((response) => {
+  const data = response.data;
+  console.log(data.quizzes);
+});
+```
+
+## BuscarQuizFinalDoCursoAluno
+You can execute the `BuscarQuizFinalDoCursoAluno` query using the following action shortcut function, or by calling `executeQuery()` after calling the following `QueryRef` function, both of which are defined in [dataconnect-generated/index.d.ts](./index.d.ts):
+```typescript
+buscarQuizFinalDoCursoAluno(vars: BuscarQuizFinalDoCursoAlunoVariables, options?: ExecuteQueryOptions): QueryPromise<BuscarQuizFinalDoCursoAlunoData, BuscarQuizFinalDoCursoAlunoVariables>;
+
+interface BuscarQuizFinalDoCursoAlunoRef {
+  ...
+  /* Allow users to create refs without passing in DataConnect */
+  (vars: BuscarQuizFinalDoCursoAlunoVariables): QueryRef<BuscarQuizFinalDoCursoAlunoData, BuscarQuizFinalDoCursoAlunoVariables>;
+}
+export const buscarQuizFinalDoCursoAlunoRef: BuscarQuizFinalDoCursoAlunoRef;
+```
+You can also pass in a `DataConnect` instance to the action shortcut function or `QueryRef` function.
+```typescript
+buscarQuizFinalDoCursoAluno(dc: DataConnect, vars: BuscarQuizFinalDoCursoAlunoVariables, options?: ExecuteQueryOptions): QueryPromise<BuscarQuizFinalDoCursoAlunoData, BuscarQuizFinalDoCursoAlunoVariables>;
+
+interface BuscarQuizFinalDoCursoAlunoRef {
+  ...
+  (dc: DataConnect, vars: BuscarQuizFinalDoCursoAlunoVariables): QueryRef<BuscarQuizFinalDoCursoAlunoData, BuscarQuizFinalDoCursoAlunoVariables>;
+}
+export const buscarQuizFinalDoCursoAlunoRef: BuscarQuizFinalDoCursoAlunoRef;
+```
+
+If you need the name of the operation without creating a ref, you can retrieve the operation name by calling the `operationName` property on the buscarQuizFinalDoCursoAlunoRef:
+```typescript
+const name = buscarQuizFinalDoCursoAlunoRef.operationName;
+console.log(name);
+```
+
+### Variables
+The `BuscarQuizFinalDoCursoAluno` query requires an argument of type `BuscarQuizFinalDoCursoAlunoVariables`, which is defined in [dataconnect-generated/index.d.ts](./index.d.ts). It has the following fields:
+
+```typescript
+export interface BuscarQuizFinalDoCursoAlunoVariables {
+  cursoId: UUIDString;
+}
+```
+### Return Type
+Recall that executing the `BuscarQuizFinalDoCursoAluno` query returns a `QueryPromise` that resolves to an object with a `data` property.
+
+The `data` property is an object of type `BuscarQuizFinalDoCursoAlunoData`, which is defined in [dataconnect-generated/index.d.ts](./index.d.ts). It has the following fields:
+```typescript
+export interface BuscarQuizFinalDoCursoAlunoData {
+  quizzes: ({
+    id: UUIDString;
+    tipo: string;
+    moduloId?: UUIDString | null;
+  } & Quiz_Key)[];
+}
+```
+### Using `BuscarQuizFinalDoCursoAluno`'s action shortcut function
+
+```typescript
+import { getDataConnect } from 'firebase/data-connect';
+import { connectorConfig, buscarQuizFinalDoCursoAluno, BuscarQuizFinalDoCursoAlunoVariables } from '@dataconnect/generated';
+
+// The `BuscarQuizFinalDoCursoAluno` query requires an argument of type `BuscarQuizFinalDoCursoAlunoVariables`:
+const buscarQuizFinalDoCursoAlunoVars: BuscarQuizFinalDoCursoAlunoVariables = {
+  cursoId: ..., 
+};
+
+// Call the `buscarQuizFinalDoCursoAluno()` function to execute the query.
+// You can use the `await` keyword to wait for the promise to resolve.
+const { data } = await buscarQuizFinalDoCursoAluno(buscarQuizFinalDoCursoAlunoVars);
+// Variables can be defined inline as well.
+const { data } = await buscarQuizFinalDoCursoAluno({ cursoId: ..., });
+
+// You can also pass in a `DataConnect` instance to the action shortcut function.
+const dataConnect = getDataConnect(connectorConfig);
+const { data } = await buscarQuizFinalDoCursoAluno(dataConnect, buscarQuizFinalDoCursoAlunoVars);
+
+console.log(data.quizzes);
+
+// Or, you can use the `Promise` API.
+buscarQuizFinalDoCursoAluno(buscarQuizFinalDoCursoAlunoVars).then((response) => {
+  const data = response.data;
+  console.log(data.quizzes);
+});
+```
+
+### Using `BuscarQuizFinalDoCursoAluno`'s `QueryRef` function
+
+```typescript
+import { getDataConnect, executeQuery } from 'firebase/data-connect';
+import { connectorConfig, buscarQuizFinalDoCursoAlunoRef, BuscarQuizFinalDoCursoAlunoVariables } from '@dataconnect/generated';
+
+// The `BuscarQuizFinalDoCursoAluno` query requires an argument of type `BuscarQuizFinalDoCursoAlunoVariables`:
+const buscarQuizFinalDoCursoAlunoVars: BuscarQuizFinalDoCursoAlunoVariables = {
+  cursoId: ..., 
+};
+
+// Call the `buscarQuizFinalDoCursoAlunoRef()` function to get a reference to the query.
+const ref = buscarQuizFinalDoCursoAlunoRef(buscarQuizFinalDoCursoAlunoVars);
+// Variables can be defined inline as well.
+const ref = buscarQuizFinalDoCursoAlunoRef({ cursoId: ..., });
+
+// You can also pass in a `DataConnect` instance to the `QueryRef` function.
+const dataConnect = getDataConnect(connectorConfig);
+const ref = buscarQuizFinalDoCursoAlunoRef(dataConnect, buscarQuizFinalDoCursoAlunoVars);
 
 // Call `executeQuery()` on the reference to execute the query.
 // You can use the `await` keyword to wait for the promise to resolve.

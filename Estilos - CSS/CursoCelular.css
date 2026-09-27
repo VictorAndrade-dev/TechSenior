@@ -874,12 +874,12 @@
   align-items: center;
   justify-content: center;
 
-  gap: 9px;
+  gap: 8px;
 
   width: fit-content;
 
-  margin: 16px 0 0 auto;
-  padding: 11px 17px;
+  margin: 14px 0 0 auto;
+  padding: 9px 14px;
 
   border: 0;
   border-radius: 8px;
@@ -888,11 +888,10 @@
   color: #ffffff;
 
   font: inherit;
-  font-size: 0.98rem;
+  font-size: 0.9rem;
   font-weight: 600;
 
   cursor: pointer;
-}ursor: pointer;
 }
 
 .btn-proxima-questao:hover {
@@ -902,6 +901,64 @@
 .btn-proxima-questao[hidden] {
   display: none;
 }
+
+
+.teste-final-chamada {
+  margin-top: 25px;
+  padding: 20px;
+
+  border: 1px solid #cfe3dc;
+  border-radius: 12px;
+
+  background: #f3faf7;
+}
+
+.teste-final-chamada[hidden] {
+  display: none;
+}
+
+.teste-final-etiqueta {
+  color: #16866e;
+
+  font-size: 0.85rem;
+  font-weight: 700;
+
+  text-transform: uppercase;
+}
+
+.teste-final-chamada h2 {
+  margin: 6px 0 8px;
+}
+
+.teste-final-chamada p {
+  margin: 0 0 16px;
+}
+
+.btn-iniciar-teste-final {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  text-decoration: none;
+  padding: 11px 18px;
+
+  border: 0;
+  border-radius: 8px;
+
+  background: #096354;
+  color: #fff;
+
+  font: inherit;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.btn-iniciar-teste-final:focus-visible {
+  outline: 3px solid #123b9c;
+  outline-offset: 4px;
+}
+
 
 
 /* ========================================== */

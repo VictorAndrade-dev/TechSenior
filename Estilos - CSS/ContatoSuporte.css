@@ -131,7 +131,7 @@ main {
 .duvida-pergunta i {
   flex-shrink: 0;
   color: #2463eb;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   transition: transform 0.25s ease;
 }
 
@@ -351,7 +351,7 @@ main {
   margin-bottom: 15px;
 
   font-family: "Poppins", sans-serif;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   line-height: 1.5;
 }
 
@@ -500,7 +500,7 @@ CTA
   }
 
   .duvida-resposta p {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
   }
 
   .formulario-contato form {
@@ -509,7 +509,7 @@ CTA
 
   .campo input,
   .campo textarea {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 }
 

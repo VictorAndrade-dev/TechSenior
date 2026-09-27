@@ -9,7 +9,7 @@
 }
 
 body {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Poppins", sans-serif;
     background-color: #f5f8fa;
     color: #666666;
 }
@@ -131,7 +131,7 @@ body {
 
     background-color: #ffffff;
 
-    font-family: "Open Sans", sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 16px;
 
     color: #333333;
@@ -170,7 +170,7 @@ body {
     background-color: #2463eb;
     color: #ffffff;
 
-    font-family: "Open Sans", sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 17px;
     font-weight: 600;
 
@@ -206,7 +206,7 @@ body {
 .mensagem {
     margin-top: 18px;
 
-    font-size: 15px;
+    font-size: 1rem;
     line-height: 1.5;
 
     text-align: center;
@@ -269,7 +269,7 @@ body {
     }
 
     .cabecalho-recuperacao p {
-        font-size: 15px;
+        font-size: 1rem;
     }
 
     .campo input,
@@ -294,6 +294,6 @@ body {
     }
 
     .cabecalho-recuperacao p {
-        font-size: 14px;
+        font-size: 1rem;
     }
 }

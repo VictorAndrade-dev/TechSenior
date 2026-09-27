@@ -173,7 +173,7 @@ body:has(.pagina-curso) > header .btn-login {
 .card-progresso p {
   margin: 0;
   color: #40564e;
-  font-size: 0.875rem;
+  font-size: 0.95rem;
   line-height: 1.5;
 }
 
@@ -254,15 +254,15 @@ body:has(.pagina-curso) > header .btn-login {
 .informacoes-modulo strong,
 .informacoes-modulo span { overflow-wrap: anywhere; }
 
-.informacoes-modulo strong { color: inherit; font-size: 0.9rem; font-weight: 600; line-height: 1.4; }
-.informacoes-modulo span { color: var(--curso-texto-suave); font-size: 0.8rem; line-height: 1.4; }
+.informacoes-modulo strong { color: inherit; font-size: 0.95rem; font-weight: 600; line-height: 1.45; }
+.informacoes-modulo span { color: var(--curso-texto-suave); font-size: 0.95rem; line-height: 1.45; }
 .modulo.ativo .informacoes-modulo span { color: var(--curso-azul-escuro); font-weight: 600; }
 .modulo:has(> i.fa-check) .informacoes-modulo span { color: var(--curso-verde); font-weight: 600; }
 .modulo > i { flex: 0 0 auto; color: var(--curso-azul); font-size: 1rem; }
 .modulo:has(> i.fa-check) > i { color: var(--curso-verde); }
 .modulo.bloqueado > i { color: #596874; }
 
-.carregando-modulos { margin: 0.75rem 0; color: var(--curso-texto-suave); font-size: 0.9rem; text-align: center; }
+.carregando-modulos { margin: 0.75rem 0; color: var(--curso-texto-suave); font-size: 0.95rem; text-align: center; }
 
 .card-ajuda {
   display: flex;
@@ -281,8 +281,8 @@ body:has(.pagina-curso) > header .btn-login {
 .card-ajuda:hover { border-color: #9db9df; background: #eaf3ff; }
 .icone-ajuda { display: grid; flex: 0 0 2.625rem; width: 2.625rem; height: 2.625rem; place-items: center; border-radius: 50%; background: var(--curso-azul); color: var(--curso-branco); font-size: 1.1rem; }
 .texto-ajuda { display: flex; flex: 1; min-width: 0; flex-direction: column; }
-.texto-ajuda strong { color: var(--curso-azul-escuro); font-size: 0.925rem; line-height: 1.4; }
-.texto-ajuda span { color: var(--curso-texto-suave); font-size: 0.8rem; line-height: 1.4; }
+.texto-ajuda strong { color: var(--curso-azul-escuro); font-size: 1rem; line-height: 1.4; }
+.texto-ajuda span { color: var(--curso-texto-suave); font-size: 0.95rem; line-height: 1.45; }
 .card-ajuda > i { color: var(--curso-azul); }
 
 /* 6. Conteúdo central */
@@ -298,7 +298,7 @@ body:has(.pagina-curso) > header .btn-login {
   border-radius: 999rem;
   background: var(--curso-azul-claro);
   color: var(--curso-azul-escuro);
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   line-height: 1.3;
@@ -371,7 +371,7 @@ body:has(.pagina-curso) > header .btn-login {
 
 .quiz-cabecalho { display: flex; align-items: flex-start; gap: 0.875rem; margin-bottom: 1.5rem; }
 .quiz-icone { display: grid; flex: 0 0 3rem; width: 3rem; height: 3rem; place-items: center; border-radius: 50%; background: var(--curso-azul); color: var(--curso-branco); font-size: 1.25rem; }
-.quiz-identificacao { display: block; margin-bottom: 0.375rem; color: var(--curso-azul-escuro); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; line-height: 1.4; text-transform: uppercase; }
+.quiz-identificacao { display: block; margin-bottom: 0.375rem; color: var(--curso-azul-escuro); font-size: 0.9rem; font-weight: 700; letter-spacing: 0.04em; line-height: 1.4; text-transform: uppercase; }
 .quiz-cabecalho h2 { margin: 0; color: var(--curso-texto); font-size: clamp(1.15rem, 2vw, 1.4rem); font-weight: 700; line-height: 1.45; overflow-wrap: anywhere; }
 .quiz-alternativas { display: flex; flex-direction: column; gap: 0.75rem; }
 
@@ -417,11 +417,11 @@ body:has(.pagina-curso) > header .btn-login {
 /* 10. Chamada do teste final */
 .teste-final-chamada { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; margin-top: 1.75rem; padding: 1.5rem; border: 0.0625rem solid #b8d8cc; border-left: 0.35rem solid var(--curso-verde); border-radius: 1rem; background: linear-gradient(135deg, #f2faf6 0%, #edf4ff 100%); }
 .teste-final-chamada[hidden] { display: none; }
-.teste-final-etiqueta { color: var(--curso-verde); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.05em; line-height: 1.4; text-transform: uppercase; }
+.teste-final-etiqueta { color: var(--curso-verde); font-size: 0.9rem; font-weight: 700; letter-spacing: 0.05em; line-height: 1.4; text-transform: uppercase; }
 .teste-final-chamada h2 { margin: 0.35rem 0 0.5rem; color: var(--curso-texto); font-size: 1.4rem; font-weight: 700; line-height: 1.35; }
 .teste-final-chamada p { max-width: 52ch; margin: 0; color: var(--curso-texto-suave); font-size: 1rem; line-height: 1.65; }
 
-.btn-iniciar-teste-final { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; gap: 0.625rem; min-height: 3.25rem; padding: 0.75rem 1.125rem; border: 0.125rem solid var(--curso-verde); border-radius: 0.75rem; background: var(--curso-verde); color: var(--curso-branco); font-size: 0.95rem; font-weight: 700; line-height: 1.4; text-align: center; text-decoration: none; }
+.btn-iniciar-teste-final { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; gap: 0.625rem; min-height: 3.25rem; padding: 0.75rem 1.125rem; border: 0.125rem solid var(--curso-verde); border-radius: 0.75rem; background: var(--curso-verde); color: var(--curso-branco); font-size: 1rem; font-weight: 700; line-height: 1.4; text-align: center; text-decoration: none; }
 .btn-iniciar-teste-final:hover { border-color: #0d5e4b; background: #0d5e4b; }
 
 /* 11. Navegação entre aulas */
@@ -435,7 +435,7 @@ body:has(.pagina-curso) > header .btn-login {
 .btn-aula strong,
 .btn-aula small { overflow-wrap: anywhere; }
 .btn-aula strong { font-size: 1rem; font-weight: 700; line-height: 1.4; }
-.btn-aula small { color: var(--curso-texto-suave); font-size: 0.8rem; line-height: 1.4; }
+.btn-aula small { color: var(--curso-texto-suave); font-size: 0.95rem; line-height: 1.45; }
 
 .btn-aula.proxima { justify-content: flex-end; border-color: var(--curso-azul); background: var(--curso-azul); color: var(--curso-branco); text-align: right; }
 .btn-aula.proxima small { color: #e9f1ff; }
@@ -456,7 +456,7 @@ body:has(.pagina-curso) > header .btn-login {
 .titulo-card { display: flex; align-items: center; gap: 0.625rem; margin-bottom: 0.75rem; }
 .titulo-card i { flex: 0 0 auto; font-size: 1.15rem; }
 .titulo-card h2 { margin: 0; color: inherit; font-size: 1rem; font-weight: 700; line-height: 1.4; }
-.card-informacao p { margin: 0; color: var(--curso-texto-suave); font-size: 0.9rem; line-height: 1.7; overflow-wrap: anywhere; }
+.card-informacao p { margin: 0; color: var(--curso-texto-suave); font-size: 0.95rem; line-height: 1.7; overflow-wrap: anywhere; }
 .card-sobre { border-color: #c9d9ee; background: #f5f8fd; }
 .card-sobre .titulo-card,
 .card-lembrete .titulo-card { color: var(--curso-azul-escuro); }
@@ -496,7 +496,7 @@ body:has(.pagina-curso) > header .btn-login {
   }
   body:has(.pagina-curso) > header .logo { flex-basis: 7rem; width: 7rem; height: 4.25rem; }
   body:has(.pagina-curso) > header .logo img { height: 8.5rem; }
-  body:has(.pagina-curso) > header .btn-login { padding: 0.65rem 1rem; font-size: 0.95rem; }
+  body:has(.pagina-curso) > header .btn-login { padding: 0.65rem 1rem; font-size: 1rem; }
   .pagina-curso { padding: 1.25rem 0.75rem 3rem; }
   .curso-layout { display: flex; flex-direction: column; }
   .coluna-esquerda,

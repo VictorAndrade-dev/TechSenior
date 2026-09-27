@@ -148,7 +148,7 @@
   display: block;
   margin-bottom: 0.25rem;
   color: var(--perfil-verde);
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: 0.05em;
   line-height: 1.4;
@@ -190,7 +190,7 @@
 
 .resumo-card.concluido i { color: var(--perfil-verde); }
 .resumo-card strong { color: var(--perfil-texto); font-size: 1.75rem; line-height: 1.2; }
-.resumo-card span { color: var(--perfil-texto-suave); font-size: 0.9rem; line-height: 1.45; }
+.resumo-card span { color: var(--perfil-texto-suave); font-size: 0.95rem; line-height: 1.5; }
 
 /* Cursos */
 .cards-cursos {
@@ -235,7 +235,7 @@
   border-radius: 999rem;
   background: #eef2f5;
   color: #475865;
-  font-size: 0.75rem;
+  font-size: 0.95rem;
   font-weight: 700;
   line-height: 1.4;
   text-align: center;
@@ -265,7 +265,7 @@
 .progresso { margin: auto 0 1.125rem; padding-top: 0.25rem; }
 .progresso-textos { display: flex; align-items: flex-end; justify-content: space-between; gap: 0.75rem; margin-bottom: 0.55rem; }
 .progresso-textos strong { color: var(--perfil-verde); font-size: 1.05rem; }
-.progresso-textos span { color: var(--perfil-texto-suave); font-size: 0.75rem; line-height: 1.4; text-align: right; }
+.progresso-textos span { color: var(--perfil-texto-suave); font-size: 0.95rem; line-height: 1.45; text-align: right; }
 
 .barra {
   width: 100%;
@@ -291,7 +291,7 @@
   background: var(--perfil-azul);
   color: #fff;
   font: inherit;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 700;
   line-height: 1.4;
   text-align: center;
@@ -320,7 +320,7 @@
   border-radius: 999rem;
   background: var(--perfil-verde-claro);
   color: #0c604c;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   font-weight: 600;
   line-height: 1.4;
 }
@@ -352,8 +352,8 @@
 }
 
 .config-icone.sair { background: #fff2f0; color: #a4372d; }
-.config-card h3 { margin: 0 0 0.2rem; color: var(--perfil-texto); font-size: 1rem; font-weight: 700; line-height: 1.4; }
-.config-card p { margin: 0; color: var(--perfil-texto-suave); font-size: 0.875rem; line-height: 1.5; }
+.config-card h3 { margin: 0 0 0.2rem; color: var(--perfil-texto); font-size: 1.05rem; font-weight: 700; line-height: 1.4; }
+.config-card p { margin: 0; color: var(--perfil-texto-suave); font-size: 0.95rem; line-height: 1.55; }
 .btn-config { flex: 0 0 auto; }
 .btn-config.secundario { border-color: #a9bfdc; background: #fff; color: var(--perfil-azul-escuro); }
 .btn-config.secundario:hover { border-color: var(--perfil-azul); background: var(--perfil-azul-claro); }

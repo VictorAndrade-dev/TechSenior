@@ -73,7 +73,7 @@
 
   color: var(--azul);
 
-  font-size: 15px;
+  font-size: 1rem;
 
   text-decoration: none;
 
@@ -135,6 +135,8 @@
 
   font-weight: 600;
 
+  font-size: 1rem;
+
   margin-bottom: 8px;
 }
 
@@ -173,7 +175,7 @@
 
   background: transparent;
 
-  font-size: 16px;
+  font-size: 1rem;
 
   color: var(--texto);
 }
@@ -188,6 +190,8 @@
   cursor: pointer;
 
   color: var(--texto);
+
+  font-size: 1rem;
 }
 
 /* ==========================================
@@ -213,7 +217,7 @@
 }
 
 .termos label {
-  font-size: 14px;
+  font-size: 0.95rem;
 
   color: var(--texto);
 
@@ -272,6 +276,8 @@
   margin-top: 25px;
 
   color: var(--texto);
+
+  font-size: 1rem;
 }
 
 .login-link a {
@@ -296,6 +302,7 @@
   gap: 12px;
   margin: 20px 0;
   color: var(--texto);
+  font-size: 1rem;
 }
 
 .separador::before,
@@ -321,7 +328,7 @@
   background: var(--branco);
   color: var(--titulo);
 
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 600;
 
   cursor: pointer;
@@ -357,6 +364,6 @@
   }
 
   .termos label {
-    font-size: 13px;
+    font-size: 0.95rem;
   }
 }

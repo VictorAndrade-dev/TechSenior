@@ -184,7 +184,7 @@ a.btn-novo {
   margin-top: 2px;
 
   color: rgba(255, 255, 255, 0.58);
-  font-size: 0.78rem;
+  font-size: 0.85rem;
   font-weight: 400;
 }
 
@@ -304,7 +304,7 @@ a.btn-novo {
 
   color: var(--admin-teal);
 
-  font-size: 0.72rem;
+  font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.16em;
 }
@@ -671,7 +671,7 @@ a.btn-novo {
 
   color: var(--admin-teal);
 
-  font-size: 0.68rem;
+  font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.13em;
 }
@@ -872,7 +872,7 @@ a.btn-novo {
 
   background: #f7f9fa;
 
-  font-size: 0.78rem;
+  font-size: 0.85rem;
 }
 
 .curso-detalhes i {
@@ -911,7 +911,7 @@ a.btn-novo {
   border: 1px solid transparent;
   border-radius: 999px;
 
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   font-weight: 700;
 }
 
@@ -975,7 +975,7 @@ a.btn-novo {
 .modulo-numero span {
   color: #6d8392;
 
-  font-size: 0.64rem;
+  font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1575,7 +1575,7 @@ a.btn-novo {
 .texto-opcional {
   color: #758795;
 
-  font-size: 0.78rem;
+  font-size: 0.85rem;
   font-weight: 400;
 }
 
@@ -1770,7 +1770,7 @@ a.btn-novo {
 .texto-alternativa-correta small {
   color: #708391;
 
-  font-size: 0.78rem;
+  font-size: 0.85rem;
   font-weight: 400;
   line-height: 1.4;
 }
@@ -1874,7 +1874,7 @@ a.btn-novo {
 
   color: #718391;
 
-  font-size: 0.74rem;
+  font-size: 0.85rem;
   line-height: 1.35;
 }
 
@@ -1956,7 +1956,7 @@ a.btn-novo {
 .area-upload-imagem span {
   color: #748795;
 
-  font-size: 0.74rem;
+  font-size: 0.85rem;
 }
 
 .preview-imagem-conteudo {
@@ -2249,7 +2249,7 @@ a.btn-novo {
   background: #f2f6f8;
   color: #526d7d;
 
-  font-size: 0.78rem;
+  font-size: 0.85rem;
   font-weight: 700;
 }
 
@@ -2324,7 +2324,7 @@ a.btn-novo {
 
   border-radius: 999px;
 
-  font-size: 0.72rem;
+  font-size: 0.82rem;
 
   flex-shrink: 0;
   width: fit-content;
@@ -2752,7 +2752,7 @@ a.btn-novo {
   }
 
   .admin-brand span {
-    font-size: 0.74rem;
+    font-size: 0.82rem;
   }
 
   .menu-admin nav {

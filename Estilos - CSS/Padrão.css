@@ -1262,71 +1262,37 @@ html[data-tema="escuro"] #btnAcessibilidade {
    ACESSIBILIDADE — LEITURA POR VOZ
 ======================================== */
 
-#opcoesAcessibilidade
-  .a11y-grupo:has(.fa-volume-high) {
-
+.a11y-secao[aria-labelledby="a11yLeitura"] .a11y-grupo {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-
   gap: 0.55rem;
   width: 100%;
 }
 
-#opcoesAcessibilidade
-  .a11y-grupo:has(.fa-volume-high)
-  button {
-
-  display: grid;
-
-  grid-template-columns:
-    1rem
-    minmax(0, 1fr)
-    1rem;
-
+.a11y-secao[aria-labelledby="a11yLeitura"] .a11y-grupo button {
+  display: inline-flex;
   align-items: center;
-
+  justify-content: center;
+  gap: 0.45rem;
   width: 100%;
   min-width: 0;
   min-height: 3.2rem;
-
   padding: 0.55rem 0.65rem;
-
   border-radius: 0.75rem;
-
   font-size: 0.9rem;
-  line-height: 1;
-
+  line-height: 1.2;
   white-space: nowrap;
 }
 
-#opcoesAcessibilidade
-  .a11y-grupo:has(.fa-volume-high)
-  button i {
-
-  grid-column: 1;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 1rem;
-  height: 1rem;
-
+.a11y-secao[aria-labelledby="a11yLeitura"] .a11y-grupo button i {
+  flex: 0 0 auto;
+  width: 1em;
   margin: 0;
-
-  position: static;
-  transform: none;
+  text-align: center;
 }
 
-#opcoesAcessibilidade
-  .a11y-grupo:has(.fa-volume-high)
-  button span {
-
-  grid-column: 2;
-
-  width: 100%;
-
-  text-align: center;
+.a11y-secao[aria-labelledby="a11yLeitura"] .a11y-grupo button:disabled {
+  opacity: 0.68;
 }
 
 
@@ -1566,6 +1532,16 @@ html[data-tema="escuro"] #btnAcessibilidade {
 
   .a11y-grupo button {
     flex: 1 1 calc(33.333% - 0.5rem);
+  }
+
+  .a11y-secao[aria-labelledby="a11yLeitura"] .a11y-grupo {
+    gap: 0.35rem;
+  }
+
+  .a11y-secao[aria-labelledby="a11yLeitura"] .a11y-grupo button {
+    gap: 0.3rem;
+    padding-inline: 0.4rem;
+    font-size: 0.82rem;
   }
 }
 

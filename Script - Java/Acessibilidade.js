@@ -91,9 +91,18 @@ export function configurarAcessibilidade(sidebar, destinoDrawer) {
     <section class="a11y-secao" aria-labelledby="a11yLeitura">
       <h3 id="a11yLeitura">Leitura por voz</h3>
       <div class="a11y-grupo">
-        <button type="button" id="ouvirPagina"><i class="fa-solid fa-volume-high" aria-hidden="true"></i> Ouvir</button>
-        <button type="button" id="pausarVoz" disabled><i class="fa-solid fa-pause" aria-hidden="true"></i> <span>Pausar</span></button>
-        <button type="button" id="pararVoz" disabled><i class="fa-solid fa-stop" aria-hidden="true"></i> Parar</button>
+        <button type="button" id="ouvirPagina">
+          <i class="fa-solid fa-volume-high" aria-hidden="true"></i>
+          <span>Ouvir</span>
+        </button>
+        <button type="button" id="pausarVoz" disabled>
+          <i class="fa-solid fa-pause" aria-hidden="true"></i>
+          <span>Pausar</span>
+        </button>
+        <button type="button" id="pararVoz" disabled>
+          <i class="fa-solid fa-stop" aria-hidden="true"></i>
+          <span>Parar</span>
+        </button>
       </div>
     </section>
     <section class="a11y-secao" aria-labelledby="a11yVelocidade">

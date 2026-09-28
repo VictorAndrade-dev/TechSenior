@@ -437,6 +437,56 @@ html[data-tema="escuro"] .pagina-curso {
 .btn-aula.proxima:disabled { border-color: var(--curso-borda); background: var(--curso-fundo); color: var(--curso-texto-suave); }
 .btn-aula.proxima:disabled small { color: var(--curso-texto-suave); }
 
+/* Próxima aula — contraste no tema escuro */
+html[data-tema="escuro"]
+  .pagina-curso
+  .btn-aula.proxima:not(:disabled) {
+
+  border-color: #3f82f5;
+
+  background: #245fbd;
+
+  color: #ffffff;
+
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.18);
+}
+
+html[data-tema="escuro"]
+  .pagina-curso
+  .btn-aula.proxima:not(:disabled)
+  strong {
+
+  color: #ffffff;
+}
+
+html[data-tema="escuro"]
+  .pagina-curso
+  .btn-aula.proxima:not(:disabled)
+  small {
+
+  color: #eaf2ff;
+}
+
+html[data-tema="escuro"]
+  .pagina-curso
+  .btn-aula.proxima:not(:disabled)
+  i {
+
+  color: #ffffff;
+}
+
+html[data-tema="escuro"]
+  .pagina-curso
+  .btn-aula.proxima:hover:not(:disabled) {
+
+  border-color: #4a8cff;
+
+  background: #1d4f9d;
+
+  transform: translateY(-1px);
+}
+
 /* 12. Coluna direita */
 .coluna-direita {
   position: sticky;

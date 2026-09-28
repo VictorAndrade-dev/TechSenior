@@ -16,8 +16,8 @@
     />
 
     <!-- CSS -->
-    <link rel="stylesheet" href="Estilos - CSS/RegrasComunidade.css" />
     <link rel="stylesheet" href="Estilos - CSS/Padrão.css" />
+    <link rel="stylesheet" href="Estilos - CSS/TermosUso.css" />
 
     <!-- Ícones -->
     <link
@@ -27,10 +27,10 @@
   <script type="importmap">{"imports":{"firebase/data-connect":"https://www.gstatic.com/firebasejs/12.17.1/firebase-data-connect.js"}}</script>
 </head>
 
-  <body>
+  <body class="nav-v2">
     <!-- HEADER -->
     <header>
-      <button class="menu-toggle" id="menuToggle">
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menu">
         <i class="fa-solid fa-bars"></i>
       </button>
 
@@ -53,22 +53,30 @@
 
     <!-- MENU LATERAL -->
     <div class="sidebar" id="sidebar">
-      <button class="close-menu" id="closeMenu">
-        <i class="fa-solid fa-xmark"></i>
+      <button class="close-menu" id="closeMenu" type="button">
+        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        <span class="sr-only">Fechar painel</span>
       </button>
 
-      <nav class="sidebar-nav">
-        <a href="index.html">Início</a>
+      <div class="drawer-usuario" id="drawerUsuario"></div>
 
-        <a href="Cursos.html">Cursos</a>
+      <nav class="sidebar-nav" aria-label="Navegação do painel">
+        <a href="index.html"> Início </a>
+
+        <a href="Cursos.html"> Cursos </a>
 
         <a href="ContatoSuporte.html">Contato e Suporte</a>
 
-        <a href="Sobre Nós.html">Sobre Nós</a>
+        <a href="Sobre Nós.html"> Sobre Nós </a>
       </nav>
+
+      <div class="drawer-secao" id="drawerPreferencias"></div>
+      <div class="drawer-secao" id="drawerAdmin" hidden></div>
+      <div class="drawer-secao drawer-conta" id="drawerConta"></div>
     </div>
 
     <!-- FUNDO ESCURO -->
+
     <div class="overlay" id="overlay"></div>
 
     <!-- ==========================
@@ -255,5 +263,23 @@
     </div>
 
     <script type="module" src="Script - Java/Padrão.js"></script>
+  <nav class="bottom-nav" aria-label="Navegação principal">
+      <a href="index.html">
+        <i class="fa-solid fa-house" aria-hidden="true"></i>
+        <span>Início</span>
+      </a>
+      <a href="Cursos.html">
+        <i class="fa-solid fa-book-open" aria-hidden="true"></i>
+        <span>Cursos</span>
+      </a>
+      <a href="ContatoSuporte.html">
+        <i class="fa-solid fa-headset" aria-hidden="true"></i>
+        <span>Suporte</span>
+      </a>
+      <button type="button" id="abrirContaMobile" aria-controls="sidebar" aria-expanded="false">
+        <i class="fa-solid fa-user" aria-hidden="true"></i>
+        <span>Perfil</span>
+      </button>
+    </nav>
   </body>
 </html>

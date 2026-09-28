@@ -106,7 +106,7 @@
   position: absolute;
   bottom: 25px;
   left: -40px;
-  background: white;
+  background: var(--superficie);
   padding: 18px 25px;
   border-radius: 15px;
   display: flex;
@@ -260,7 +260,7 @@
 }
 
 .estatistica {
-  background: white;
+  background: var(--superficie);
   text-align: center;
   padding: 35px 20px;
   border-radius: 20px;
@@ -311,7 +311,7 @@
 }
 
 .depoimento-card {
-  background: white;
+  background: var(--superficie);
   padding: 35px;
   border-radius: 20px;
   box-shadow: var(--sombra);
@@ -388,7 +388,7 @@
 }
 
 .cta .btn-principal {
-  background: white;
+  background: var(--superficie);
   color: var(--azul);
 }
 
@@ -714,9 +714,7 @@ html[data-tamanho-fonte="70"] {
   font-size: 70%;
 }
 
-html[data-tamanho-fonte="80"] {
-  font-size: 80%;
-}
+
 
 html[data-tamanho-fonte="90"] {
   font-size: 90%;
@@ -734,10 +732,9 @@ html[data-tamanho-fonte="120"] {
   font-size: 120%;
 }
 
-html[data-tamanho-fonte="130"] {
-  font-size: 130%;
-}
+
 
 html[data-tamanho-fonte="140"] {
   font-size: 140%;
 }
+@media (max-width: 600px) { .cursos-preview { grid-template-columns: minmax(0, 1fr); } }

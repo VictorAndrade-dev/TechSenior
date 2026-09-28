@@ -1,0 +1,589 @@
+/* 1. Variáveis locais e base */
+.pagina-curso {
+  --curso-azul: var(--primary, #1f5fc4);
+  --curso-azul-escuro: var(--primary-hover, #174eac);
+  --curso-azul-claro: color-mix(in srgb, var(--primary, #1f5fc4) 9%, var(--surface, #fff));
+  --curso-verde: var(--accent, #147a63);
+  --curso-verde-claro: var(--accent-soft, #edf8f4);
+  --curso-amarelo: #9a5a08;
+  --curso-amarelo-claro: #fff8e8;
+  --curso-vermelho: #a4372d;
+  --curso-vermelho-claro: #fff2f0;
+  --curso-texto: var(--text, #243444);
+  --curso-texto-suave: var(--text-muted, #526474);
+  --curso-borda: var(--border, #d8e1e8);
+  --curso-fundo: var(--bg, #f4f7fa);
+  --curso-branco: var(--surface, #fff);
+  --curso-superficie-elevada: var(--surface-elevated, #fff);
+  --curso-sombra: var(--shadow, 0 16px 38px rgba(15, 46, 78, 0.09));
+  --curso-em-acao: #fff;
+  --curso-raio: 1rem;
+  min-height: calc(100vh - 6.25rem);
+  padding: 1.5rem clamp(1rem, 2.5vw, 2.5rem) 3.5rem;
+  overflow-x: clip;
+  background: var(--curso-fundo);
+  color: var(--curso-texto);
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+html[data-tema="escuro"] .pagina-curso {
+  --curso-azul: var(--primary, #6ea8ff);
+  --curso-azul-escuro: #b9d2ff;
+  --curso-azul-claro: rgba(110, 168, 255, 0.11);
+  --curso-verde: var(--accent, #55d69c);
+  --curso-verde-claro: rgba(85, 214, 156, 0.11);
+  --curso-amarelo: #f3c66a;
+  --curso-amarelo-claro: rgba(243, 198, 106, 0.11);
+  --curso-vermelho: #ff9389;
+  --curso-vermelho-claro: rgba(255, 147, 137, 0.11);
+  --curso-texto: var(--text, #e6edf2);
+  --curso-texto-suave: var(--text-muted, #b9c8d2);
+  --curso-borda: var(--border, rgba(153, 190, 204, 0.24));
+  --curso-fundo: var(--bg, #061f2e);
+  --curso-branco: var(--surface, #0b2b3c);
+  --curso-superficie-elevada: var(--surface-elevated, #10384a);
+  --curso-em-acao: #061f2e;
+}
+
+.pagina-curso *,
+.pagina-curso *::before,
+.pagina-curso *::after { box-sizing: border-box; }
+
+.pagina-curso h1,
+.pagina-curso h2,
+.pagina-curso h3,
+.pagina-curso h4,
+.pagina-curso button,
+.pagina-curso input,
+.pagina-curso textarea,
+.pagina-curso select { font-family: "Poppins", sans-serif; }
+
+.pagina-curso :where(section) { padding: 0; }
+.pagina-curso button,
+.pagina-curso a { -webkit-tap-highlight-color: transparent; }
+
+.pagina-curso :focus-visible {
+  outline: 0.1875rem solid var(--curso-azul-escuro);
+  outline-offset: 0.1875rem;
+}
+
+/* 2. Layout */
+.curso-layout {
+  display: grid;
+  grid-template-columns: minmax(15.5rem, 17rem) minmax(0, 1fr) minmax(14rem, 15rem);
+  align-items: start;
+  gap: clamp(1rem, 1.6vw, 1.5rem);
+  width: 100%;
+  max-width: 93.75rem;
+  margin: 0 auto;
+}
+
+.coluna-esquerda,
+.conteudo-aula,
+.coluna-direita { min-width: 0; }
+
+.coluna-esquerda,
+.conteudo-aula {
+  border: 0.0625rem solid var(--curso-borda);
+  border-radius: var(--curso-raio);
+  background: var(--curso-branco);
+  box-shadow: var(--curso-sombra);
+}
+
+/* 3. Coluna esquerda */
+.coluna-esquerda { padding: 1.125rem; }
+
+.btn-voltar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  min-height: 3.25rem;
+  padding: 0.75rem 0.875rem;
+  border: 0.0625rem solid transparent;
+  border-radius: 0.75rem;
+  color: var(--curso-azul-escuro);
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.35;
+  text-decoration: none;
+}
+
+.btn-voltar:hover {
+  border-color: var(--curso-borda);
+  background: var(--curso-azul-claro);
+}
+
+.btn-voltar i { flex: 0 0 auto; font-size: 1.1rem; }
+
+/* 4. Progresso */
+.card-progresso {
+  margin-top: 0.75rem;
+  padding: 1.125rem;
+  border: 0.0625rem solid var(--curso-borda);
+  border-radius: 0.875rem;
+  background: var(--curso-verde-claro);
+}
+
+.card-progresso h2 {
+  margin: 0 0 0.75rem;
+  color: var(--curso-texto);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.porcentagem-progresso {
+  margin-bottom: 0.625rem;
+  color: var(--curso-verde);
+  font-size: clamp(2rem, 3vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.barra-progresso {
+  width: 100%;
+  height: 0.75rem;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+  border: 0.0625rem solid var(--curso-borda);
+  border-radius: 999rem;
+  background: color-mix(in srgb, var(--curso-verde) 15%, var(--curso-branco));
+}
+
+.progresso-preenchido {
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--curso-verde);
+  transition: width 0.3s ease;
+}
+
+.card-progresso p {
+  margin: 0;
+  color: var(--curso-texto-suave);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* 5. Módulos */
+.lista-modulos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  margin-top: 1.25rem;
+}
+
+.lista-modulos h2 {
+  margin: 0 0 0.25rem;
+  color: var(--curso-texto);
+  font-size: 1.075rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.modulo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  min-height: 4.75rem;
+  padding: 0.75rem;
+  border: 0.0625rem solid var(--curso-borda);
+  border-radius: 0.75rem;
+  background: var(--curso-branco);
+  color: var(--curso-texto);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.modulo:hover:not(:disabled) { border-color: var(--curso-azul); background: var(--curso-azul-claro); }
+
+.modulo.ativo {
+  border-color: var(--curso-azul);
+  background: var(--curso-azul-claro);
+  box-shadow: inset 0.25rem 0 var(--curso-azul);
+}
+
+.modulo:has(> i.fa-check) { border-color: var(--curso-verde); background: var(--curso-verde-claro); }
+
+.modulo.bloqueado {
+  border-style: dashed;
+  background: var(--curso-azul-claro);
+  color: var(--curso-texto-suave);
+  cursor: not-allowed;
+}
+
+.numero-modulo {
+  display: grid;
+  flex: 0 0 2.375rem;
+  width: 2.375rem;
+  height: 2.375rem;
+  place-items: center;
+  border: 0.0625rem solid var(--curso-borda);
+  border-radius: 50%;
+  background: var(--curso-azul-claro);
+  color: var(--curso-texto);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.modulo.ativo .numero-modulo { border-color: var(--curso-azul); background: var(--curso-azul); color: var(--curso-em-acao); }
+.modulo:has(> i.fa-check) .numero-modulo { border-color: var(--curso-verde); background: var(--curso-verde); color: var(--curso-em-acao); }
+
+.informacoes-modulo {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.informacoes-modulo strong,
+.informacoes-modulo span { overflow-wrap: anywhere; }
+
+.informacoes-modulo strong { color: inherit; font-size: 0.95rem; font-weight: 600; line-height: 1.45; }
+.informacoes-modulo span { color: var(--curso-texto-suave); font-size: 0.95rem; line-height: 1.45; }
+.modulo.ativo .informacoes-modulo span { color: var(--curso-azul-escuro); font-weight: 600; }
+.modulo:has(> i.fa-check) .informacoes-modulo span { color: var(--curso-verde); font-weight: 600; }
+.modulo > i { flex: 0 0 auto; color: var(--curso-azul); font-size: 1rem; }
+.modulo:has(> i.fa-check) > i { color: var(--curso-verde); }
+.modulo.bloqueado > i { color: var(--curso-texto-suave); }
+
+.carregando-modulos { margin: 0.75rem 0; color: var(--curso-texto-suave); font-size: 0.95rem; text-align: center; }
+
+.card-ajuda {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 5.5rem;
+  margin-top: 1.5rem;
+  padding: 0.875rem;
+  border: 0.0625rem solid var(--curso-borda);
+  border-radius: 0.875rem;
+  background: var(--curso-azul-claro);
+  color: var(--curso-texto);
+  text-decoration: none;
+}
+
+.card-ajuda:hover { border-color: var(--curso-azul); background: var(--curso-azul-claro); }
+.icone-ajuda { display: grid; flex: 0 0 2.625rem; width: 2.625rem; height: 2.625rem; place-items: center; border-radius: 50%; background: var(--curso-azul); color: var(--curso-em-acao); font-size: 1.1rem; }
+.texto-ajuda { display: flex; flex: 1; min-width: 0; flex-direction: column; }
+.texto-ajuda strong { color: var(--curso-azul-escuro); font-size: 1rem; line-height: 1.4; }
+.texto-ajuda span { color: var(--curso-texto-suave); font-size: 0.95rem; line-height: 1.45; }
+.card-ajuda > i { color: var(--curso-azul); }
+
+/* 6. Conteúdo central */
+.conteudo-aula { padding: clamp(1.5rem, 3vw, 2.75rem); }
+.cabecalho-aula { padding-bottom: 1.5rem; border-bottom: 0.0625rem solid var(--curso-borda); }
+
+.identificacao-modulo {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.875rem;
+  margin-bottom: 0.75rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: 999rem;
+  background: var(--curso-azul-claro);
+  color: var(--curso-azul-escuro);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.cabecalho-aula h1 {
+  max-width: 23ch;
+  margin: 0;
+  color: var(--curso-azul-escuro);
+  font-size: clamp(2rem, 3.2vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.18;
+  overflow-wrap: anywhere;
+}
+
+.descricao-aula { max-width: 65ch; margin: 1rem 0 0; color: var(--curso-texto-suave); font-size: 1.075rem; line-height: 1.75; overflow-wrap: anywhere; }
+.conteudo-principal { padding-top: 1.5rem; }
+.secao-aula { margin-bottom: 1.75rem; }
+
+.titulo-conteudo { display: flex; align-items: center; gap: 0.75rem; max-width: 68ch; margin-bottom: 0.875rem; }
+.titulo-conteudo i { flex: 0 0 auto; color: var(--curso-azul); font-size: 1.35rem; }
+.titulo-conteudo h2 { margin: 0; color: var(--curso-texto); font-size: clamp(1.25rem, 2vw, 1.55rem); font-weight: 700; line-height: 1.35; overflow-wrap: anywhere; }
+
+.secao-aula p,
+.bloco-destaque-texto p { max-width: 68ch; margin: 0.75rem 0; color: var(--curso-texto); font-size: 1.05rem; line-height: 1.8; overflow-wrap: anywhere; }
+
+.estado-carregamento { display: flex; min-height: 12rem; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; color: var(--curso-texto-suave); text-align: center; }
+.estado-carregamento i { color: var(--curso-azul); font-size: 2rem; }
+.estado-carregamento p { margin: 0; font-size: 1rem; }
+
+/* 7. Mídia */
+.imagem-aula,
+.video-aula { display: flex; width: 100%; max-width: 52rem; justify-content: center; margin: 1.25rem 0 0; overflow: hidden; border-radius: 0.875rem; background: var(--curso-azul-claro); }
+
+.imagem-aula img,
+.video-aula video,
+.video-aula iframe { display: block; width: 100%; max-width: 100%; border: 0; }
+
+.imagem-aula img { height: auto; max-height: 34rem; object-fit: contain; }
+.video-aula video,
+.video-aula iframe { aspect-ratio: 16 / 9; background: #111820; }
+.video-aula video { height: auto; max-height: 34rem; }
+
+/* 8. Destaques */
+.bloco-destaque,
+.dica-aula { width: 100%; max-width: 68ch; border-radius: 0.875rem; }
+
+.bloco-destaque { margin: 1.5rem 0 2rem; padding: 1.25rem 1.375rem; border: 0.0625rem solid; }
+.bloco-destaque-titulo { display: flex; align-items: center; gap: 0.625rem; margin-bottom: 0.5rem; font-size: 1.05rem; line-height: 1.4; }
+.bloco-destaque-titulo i { flex: 0 0 auto; font-size: 1.2rem; }
+.bloco-destaque-texto p { margin: 0.5rem 0 0; }
+.bloco-dica { border-color: var(--curso-borda); background: var(--curso-verde-claro); }
+.bloco-dica .bloco-destaque-titulo { color: var(--curso-verde); }
+.bloco-importante { border-color: var(--curso-borda); background: var(--curso-amarelo-claro); }
+.bloco-importante .bloco-destaque-titulo { color: var(--curso-amarelo); }
+
+.dica-aula { display: flex; align-items: flex-start; gap: 0.875rem; margin-top: 1.25rem; padding: 1rem 1.125rem; border: 0.0625rem solid var(--curso-borda); background: var(--curso-verde-claro); }
+.dica-aula[hidden] { display: none; }
+.icone-dica { display: grid; flex: 0 0 2.25rem; width: 2.25rem; height: 2.25rem; place-items: center; color: var(--curso-verde); font-size: 1.25rem; }
+.dica-aula p { margin: 0; color: var(--curso-texto); font-size: 1rem; line-height: 1.65; }
+.dica-aula strong { color: var(--curso-verde); }
+
+/* 9. Quiz do módulo */
+.quiz-modulo { width: 100%; margin-top: 1.75rem; padding: clamp(1.25rem, 2.5vw, 2rem); border: 0.0625rem solid var(--curso-borda); border-radius: 1rem; background: var(--curso-azul-claro); }
+.quiz-modulo[hidden],
+.quiz-feedback[hidden],
+.btn-proxima-questao[hidden] { display: none; }
+
+.quiz-cabecalho { display: flex; align-items: flex-start; gap: 0.875rem; margin-bottom: 1.5rem; }
+.quiz-icone { display: grid; flex: 0 0 3rem; width: 3rem; height: 3rem; place-items: center; border-radius: 50%; background: var(--curso-azul); color: var(--curso-em-acao); font-size: 1.25rem; }
+.quiz-identificacao { display: block; margin-bottom: 0.375rem; color: var(--curso-azul-escuro); font-size: 0.9rem; font-weight: 700; letter-spacing: 0.04em; line-height: 1.4; text-transform: uppercase; }
+.quiz-cabecalho h2 { margin: 0; color: var(--curso-texto); font-size: clamp(1.15rem, 2vw, 1.4rem); font-weight: 700; line-height: 1.45; overflow-wrap: anywhere; }
+.quiz-alternativas { display: flex; flex-direction: column; gap: 0.75rem; }
+
+.opcao-quiz {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  width: 100%;
+  min-height: 4.25rem;
+  padding: 0.875rem 1rem;
+  border: 0.125rem solid var(--curso-borda);
+  border-radius: 0.75rem;
+  background: var(--curso-branco);
+  color: var(--curso-texto);
+  font: inherit;
+  font-size: 1rem;
+  line-height: 1.55;
+  text-align: left;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.opcao-quiz:hover:not(:disabled) { border-color: var(--curso-azul); background: var(--curso-azul-claro); }
+.opcao-quiz:disabled { cursor: default; }
+.letra-alternativa { display: grid; flex: 0 0 2.25rem; width: 2.25rem; height: 2.25rem; place-items: center; border: 0.0625rem solid var(--curso-borda); border-radius: 50%; background: var(--curso-azul-claro); color: var(--curso-texto); font-weight: 700; }
+
+.opcao-quiz.selecionada { border-color: var(--curso-azul); background: var(--curso-azul-claro); box-shadow: inset 0.25rem 0 var(--curso-azul); }
+.opcao-quiz.selecionada .letra-alternativa { border-color: var(--curso-azul); background: var(--curso-azul); color: var(--curso-em-acao); }
+.opcao-quiz.correta { border-color: var(--curso-verde); background: var(--curso-verde-claro); box-shadow: inset 0.25rem 0 var(--curso-verde); }
+.opcao-quiz.correta .letra-alternativa { border-color: var(--curso-verde); background: var(--curso-verde); color: var(--curso-em-acao); }
+.opcao-quiz.errada { border-color: var(--curso-vermelho); background: var(--curso-vermelho-claro); box-shadow: inset 0.25rem 0 var(--curso-vermelho); }
+.opcao-quiz.errada .letra-alternativa { border-color: var(--curso-vermelho); background: var(--curso-vermelho); color: var(--curso-em-acao); }
+
+.quiz-feedback { margin-top: 1rem; padding: 1rem 1.125rem; border: 0.0625rem solid var(--curso-borda); border-radius: 0.75rem; background: var(--curso-branco); color: var(--curso-texto); font-size: 1rem; font-weight: 500; line-height: 1.65; overflow-wrap: anywhere; }
+.quiz-feedback.correto { border-color: var(--curso-verde); border-left: 0.3rem solid var(--curso-verde); background: var(--curso-verde-claro); color: var(--curso-texto); }
+.quiz-feedback.errado { border-color: var(--curso-vermelho); border-left: 0.3rem solid var(--curso-vermelho); background: var(--curso-vermelho-claro); color: var(--curso-texto); }
+
+.btn-proxima-questao { display: flex; align-items: center; justify-content: center; gap: 0.625rem; min-height: 3.25rem; margin: 1.25rem 0 0 auto; padding: 0.75rem 1.25rem; border: 0.125rem solid var(--curso-azul); border-radius: 0.75rem; background: var(--curso-azul); color: var(--curso-em-acao); font: inherit; font-weight: 700; cursor: pointer; }
+.btn-proxima-questao:hover:not(:disabled) { border-color: var(--curso-azul-escuro); background: var(--curso-azul-escuro); }
+.btn-proxima-questao:disabled { border-color: var(--curso-borda); background: var(--curso-fundo); color: var(--curso-texto-suave); cursor: not-allowed; }
+
+/* 10. Chamada do teste final */
+.teste-final-chamada { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; margin-top: 1.75rem; padding: 1.5rem; border: 0.0625rem solid var(--curso-borda); border-left: 0.35rem solid var(--curso-verde); border-radius: 1rem; background: linear-gradient(135deg, var(--curso-verde-claro) 0%, var(--curso-azul-claro) 100%); }
+.teste-final-chamada[hidden] { display: none; }
+.teste-final-etiqueta { color: var(--curso-verde); font-size: 0.9rem; font-weight: 700; letter-spacing: 0.05em; line-height: 1.4; text-transform: uppercase; }
+.teste-final-chamada h2 { margin: 0.35rem 0 0.5rem; color: var(--curso-texto); font-size: 1.4rem; font-weight: 700; line-height: 1.35; }
+.teste-final-chamada p { max-width: 52ch; margin: 0; color: var(--curso-texto-suave); font-size: 1rem; line-height: 1.65; }
+
+.btn-iniciar-teste-final { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; gap: 0.625rem; min-height: 3.25rem; padding: 0.75rem 1.125rem; border: 0.125rem solid var(--curso-verde); border-radius: 0.75rem; background: var(--curso-verde); color: var(--curso-em-acao); font-size: 1rem; font-weight: 700; line-height: 1.4; text-align: center; text-decoration: none; }
+.btn-iniciar-teste-final:hover {
+  border-color: color-mix(in srgb, var(--curso-verde) 82%, #000);
+  background: color-mix(in srgb, var(--curso-verde) 82%, #000);
+}
+
+/* 11. Navegação entre aulas */
+.navegacao-aulas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-top: 1.75rem; padding-top: 1.5rem; border-top: 0.0625rem solid var(--curso-borda); }
+
+.btn-aula { display: flex; align-items: center; gap: 0.875rem; min-width: 0; min-height: 4.75rem; padding: 0.875rem 1rem; border: 0.125rem solid var(--curso-borda); border-radius: 0.875rem; background: var(--curso-branco); color: var(--curso-azul-escuro); font: inherit; text-align: left; cursor: pointer; }
+.btn-aula:hover:not(:disabled) { border-color: var(--curso-azul); background: var(--curso-azul-claro); }
+.btn-aula:disabled { border-color: var(--curso-borda); background: var(--curso-fundo); color: var(--curso-texto-suave); cursor: not-allowed; }
+.btn-aula i { flex: 0 0 auto; font-size: 1.15rem; }
+.btn-aula span { display: flex; min-width: 0; flex-direction: column; gap: 0.125rem; }
+.btn-aula strong,
+.btn-aula small { overflow-wrap: anywhere; }
+.btn-aula strong { font-size: 1rem; font-weight: 700; line-height: 1.4; }
+.btn-aula small { color: var(--curso-texto-suave); font-size: 0.95rem; line-height: 1.45; }
+
+.btn-aula.proxima { justify-content: flex-end; border-color: var(--curso-azul); background: var(--curso-azul); color: var(--curso-em-acao); text-align: right; }
+.btn-aula.proxima small { color: #e9f1ff; }
+.btn-aula.proxima:hover:not(:disabled) { border-color: var(--curso-azul-escuro); background: var(--curso-azul-escuro); }
+.btn-aula.proxima:disabled { border-color: var(--curso-borda); background: var(--curso-fundo); color: var(--curso-texto-suave); }
+.btn-aula.proxima:disabled small { color: var(--curso-texto-suave); }
+
+/* Próxima aula — contraste no tema escuro */
+html[data-tema="escuro"]
+  .pagina-curso
+  .btn-aula.proxima:not(:disabled) {
+
+  border-color: #3f82f5;
+
+  background: #245fbd;
+
+  color: #ffffff;
+
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.18);
+}
+
+html[data-tema="escuro"]
+  .pagina-curso
+  .btn-aula.proxima:not(:disabled)
+  strong {
+
+  color: #ffffff;
+}
+
+html[data-tema="escuro"]
+  .pagina-curso
+  .btn-aula.proxima:not(:disabled)
+  small {
+
+  color: #eaf2ff;
+}
+
+html[data-tema="escuro"]
+  .pagina-curso
+  .btn-aula.proxima:not(:disabled)
+  i {
+
+  color: #ffffff;
+}
+
+html[data-tema="escuro"]
+  .pagina-curso
+  .btn-aula.proxima:hover:not(:disabled) {
+
+  border-color: #4a8cff;
+
+  background: #1d4f9d;
+
+  transform: translateY(-1px);
+}
+
+/* 12. Coluna direita */
+.coluna-direita {
+  position: sticky;
+  top: 6.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+.card-informacao { padding: 1.125rem; border: 0.0625rem solid var(--curso-borda); border-radius: 0.875rem; background: var(--curso-branco); }
+.card-informacao[hidden] { display: none; }
+.titulo-card { display: flex; align-items: center; gap: 0.625rem; margin-bottom: 0.75rem; }
+.titulo-card i { flex: 0 0 auto; font-size: 1.15rem; }
+.titulo-card h2 { margin: 0; color: inherit; font-size: 1rem; font-weight: 700; line-height: 1.4; }
+.card-informacao p { margin: 0; color: var(--curso-texto-suave); font-size: 0.95rem; line-height: 1.7; overflow-wrap: anywhere; }
+.card-sobre { border-color: var(--curso-borda); background: var(--curso-azul-claro); }
+.card-sobre .titulo-card,
+.card-lembrete .titulo-card { color: var(--curso-azul-escuro); }
+.card-dica { border-color: var(--curso-borda); background: var(--curso-verde-claro); }
+.card-dica .titulo-card { color: var(--curso-verde); }
+.card-atencao { border-color: var(--curso-borda); background: var(--curso-amarelo-claro); }
+.card-atencao .titulo-card { color: var(--curso-amarelo); }
+.card-sabia { border-color: var(--curso-borda); background: var(--curso-azul-claro); }
+.card-sabia .titulo-card { color: var(--curso-azul-escuro); }
+.card-lembrete { border-color: var(--curso-borda); background: var(--curso-azul-claro); }
+
+/* 13. Acessibilidade */
+@media (prefers-reduced-motion: reduce) {
+  .pagina-curso *,
+  .pagina-curso *::before,
+  .pagina-curso *::after {
+    scroll-behavior: auto;
+    transition-duration: 0.01ms;
+  }
+}
+
+/* 14. Responsividade */
+@media (min-width: 75.0625rem) {
+  .coluna-esquerda {
+    position: sticky;
+    top: 6.5rem;
+    max-height: calc(100dvh - 8rem);
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+  }
+}
+
+@media (min-width: 62.5625rem) and (max-width: 75rem) {
+  .curso-layout { grid-template-columns: minmax(15rem, 17rem) minmax(0, 1fr); }
+  .conteudo-aula { padding: 1.75rem; }
+  .coluna-direita {
+    position: static;
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  }
+}
+
+@media (max-width: 62.5rem) {
+  .pagina-curso { padding: 1.25rem 1rem 3rem; }
+  .curso-layout { grid-template-columns: minmax(0, 1fr); }
+  .coluna-esquerda,
+  .conteudo-aula,
+  .coluna-direita { width: 100%; }
+  .coluna-esquerda { order: 1; }
+  .conteudo-aula { order: 2; padding: clamp(1.5rem, 4vw, 2rem); }
+  .coluna-direita {
+    position: static;
+    order: 3;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 47.9375rem) {
+  .pagina-curso { padding: 1rem 0.75rem 3rem; }
+  .coluna-direita { grid-template-columns: minmax(0, 1fr); }
+  .cabecalho-aula h1 { font-size: clamp(1.75rem, 8vw, 2.25rem); }
+  .teste-final-chamada { align-items: stretch; flex-direction: column; }
+  .btn-iniciar-teste-final,
+  .btn-proxima-questao { width: 100%; }
+  .navegacao-aulas { grid-template-columns: minmax(0, 1fr); }
+  .btn-aula { width: 100%; }
+}
+
+@media (max-width: 30rem) {
+  .pagina-curso { padding-inline: 0.5rem; }
+  .coluna-esquerda,
+  .conteudo-aula { border-radius: 0.875rem; }
+  .coluna-esquerda { padding: 0.875rem; }
+  .conteudo-aula { padding: 1.25rem 1rem; }
+  .secao-aula p,
+  .bloco-destaque-texto p,
+  .descricao-aula { font-size: 1rem; }
+  .bloco-destaque,
+  .quiz-modulo,
+  .teste-final-chamada { padding: 1rem; }
+  .quiz-cabecalho { gap: 0.75rem; }
+  .quiz-icone { flex-basis: 2.625rem; width: 2.625rem; height: 2.625rem; }
+  .opcao-quiz { align-items: flex-start; min-height: 4rem; padding: 0.875rem; }
+}

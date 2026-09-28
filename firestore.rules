@@ -19,6 +19,16 @@ service cloud.firestore {
         && request.resource.data.tipo == resource.data.tipo
         && request.resource.data.email == resource.data.email;
 
+      match /atividade/{dataChave} {
+        allow read, delete: if ehDonoDoPerfil(uid);
+        allow create, update: if ehDonoDoPerfil(uid)
+          && request.resource.data.dataChave == dataChave
+          && request.resource.data.keys().hasOnly(['dataChave', 'primeiroAcesso', 'ultimoAcesso', 'cursoId', 'moduloAtual', 'cursoNome', 'moduloNome'])
+          && request.resource.data.cursoId is string
+          && request.resource.data.moduloAtual is int
+          && request.resource.data.ultimoAcesso == request.time;
+      }
+
       match /progresso/{cursoId} {
         allow read, write: if ehDonoDoPerfil(uid);
       }

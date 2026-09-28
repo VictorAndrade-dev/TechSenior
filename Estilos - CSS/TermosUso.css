@@ -73,7 +73,7 @@
 ================================ */
 
 .termos-container p {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Poppins", sans-serif;
 
   color: var(--texto);
 
@@ -91,7 +91,7 @@
 }
 
 .termos-container li {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Poppins", sans-serif;
 
   color: var(--texto);
 

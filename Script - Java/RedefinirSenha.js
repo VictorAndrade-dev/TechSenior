@@ -1,3 +1,4 @@
+import { configurarValidacaoSenha } from "./ValidacaoSenha.js";
 import { auth } from "./Firebase-config.js";
 
 import {
@@ -44,6 +45,8 @@ const oobCode =
 // VALIDAR LINK DE RECUPERAÇÃO
 // ========================================
 
+const validarSenha = configurarValidacaoSenha(novaSenhaInput, confirmarSenhaInput);
+
 async function validarLink() {
 
   if (
@@ -63,11 +66,14 @@ async function validarLink() {
 
 
   try {
-
+    bloquearFormulario();
+    mostrarMensagem("Verificando o link de recuperação...", "");
     await verifyPasswordResetCode(
       auth,
       oobCode
     );
+    novaSenhaInput.disabled = confirmarSenhaInput.disabled = btnRedefinir.disabled = false;
+    mostrarMensagem("", "");
 
   } catch (erro) {
 
@@ -139,59 +145,7 @@ formRedefinicao.addEventListener(
     }
 
 
-    if (novaSenha.length < 6) {
-
-      mostrarMensagem(
-        "A senha deve ter pelo menos 6 caracteres.",
-        "erro"
-      );
-
-      novaSenhaInput.focus();
-
-      return;
-    }
-
-
-    if (novaSenha.length > 20) {
-
-      mostrarMensagem(
-        "A senha deve ter no máximo 20 caracteres.",
-        "erro"
-      );
-
-      novaSenhaInput.focus();
-
-      return;
-    }
-
-
-    if (confirmarSenha.length > 20) {
-
-      mostrarMensagem(
-        "A senha deve ter no máximo 20 caracteres.",
-        "erro"
-      );
-
-      confirmarSenhaInput.focus();
-
-      return;
-    }
-
-
-    if (
-      novaSenha !== confirmarSenha
-    ) {
-
-      mostrarMensagem(
-        "As senhas não coincidem.",
-        "erro"
-      );
-
-      confirmarSenhaInput.focus();
-
-      return;
-    }
-
+    if (!validarSenha()) { formRedefinicao.reportValidity(); return; }
 
     if (!oobCode) {
 

@@ -14,20 +14,38 @@ If a user is not using a supported framework, they can use the generated SDK dir
 Here's an example of how to use it with the first 5 operations:
 
 ```js
-import { cadastrarUsuario, meuPerfil, excluirUsuarioPorEmail, atualizarNomeUsuario } from '@dataconnect/generated';
+import { listarCursos, buscarCurso, listarModulosDoCurso, listarConteudosDoModulo, criarCurso, criarModulo, criarConteudoModulo, buscarQuizDoModulo, buscarQuizFinalDoCursoAluno, listarQuestoesDoQuiz } from '@dataconnect/generated';
 
 
-// Operation CadastrarUsuario:  For variables, look at type CadastrarUsuarioVars in ../index.d.ts
-const { data } = await CadastrarUsuario(dataConnect, cadastrarUsuarioVars);
+// Operation ListarCursos: 
+const { data } = await ListarCursos(dataConnect);
 
-// Operation MeuPerfil: 
-const { data } = await MeuPerfil(dataConnect);
+// Operation BuscarCurso:  For variables, look at type BuscarCursoVars in ../index.d.ts
+const { data } = await BuscarCurso(dataConnect, buscarCursoVars);
 
-// Operation ExcluirUsuarioPorEmail:  For variables, look at type ExcluirUsuarioPorEmailVars in ../index.d.ts
-const { data } = await ExcluirUsuarioPorEmail(dataConnect, excluirUsuarioPorEmailVars);
+// Operation ListarModulosDoCurso:  For variables, look at type ListarModulosDoCursoVars in ../index.d.ts
+const { data } = await ListarModulosDoCurso(dataConnect, listarModulosDoCursoVars);
 
-// Operation AtualizarNomeUsuario:  For variables, look at type AtualizarNomeUsuarioVars in ../index.d.ts
-const { data } = await AtualizarNomeUsuario(dataConnect, atualizarNomeUsuarioVars);
+// Operation ListarConteudosDoModulo:  For variables, look at type ListarConteudosDoModuloVars in ../index.d.ts
+const { data } = await ListarConteudosDoModulo(dataConnect, listarConteudosDoModuloVars);
+
+// Operation CriarCurso:  For variables, look at type CriarCursoVars in ../index.d.ts
+const { data } = await CriarCurso(dataConnect, criarCursoVars);
+
+// Operation CriarModulo:  For variables, look at type CriarModuloVars in ../index.d.ts
+const { data } = await CriarModulo(dataConnect, criarModuloVars);
+
+// Operation CriarConteudoModulo:  For variables, look at type CriarConteudoModuloVars in ../index.d.ts
+const { data } = await CriarConteudoModulo(dataConnect, criarConteudoModuloVars);
+
+// Operation BuscarQuizDoModulo:  For variables, look at type BuscarQuizDoModuloVars in ../index.d.ts
+const { data } = await BuscarQuizDoModulo(dataConnect, buscarQuizDoModuloVars);
+
+// Operation BuscarQuizFinalDoCursoAluno:  For variables, look at type BuscarQuizFinalDoCursoAlunoVars in ../index.d.ts
+const { data } = await BuscarQuizFinalDoCursoAluno(dataConnect, buscarQuizFinalDoCursoAlunoVars);
+
+// Operation ListarQuestoesDoQuiz:  For variables, look at type ListarQuestoesDoQuizVars in ../index.d.ts
+const { data } = await ListarQuestoesDoQuiz(dataConnect, listarQuestoesDoQuizVars);
 
 
 ```

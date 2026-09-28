@@ -5,6 +5,377 @@ export const connectorConfig = {
   service: 'tech-senior-service',
   location: 'southamerica-east1'
 };
+export const listarCursosRef = (dc) => {
+  const { dc: dcInstance} = validateArgs(connectorConfig, dc, undefined);
+  dcInstance._useGeneratedSdk();
+  return queryRef(dcInstance, 'ListarCursos');
+}
+listarCursosRef.operationName = 'ListarCursos';
+
+export function listarCursos(dcOrOptions, options) {
+  
+  const { dc: dcInstance, vars: inputVars, options: inputOpts } = validateArgsWithOptions(connectorConfig, dcOrOptions, options, undefined,false, false);
+  return executeQuery(listarCursosRef(dcInstance, inputVars), inputOpts && { fetchPolicy: inputOpts.fetchPolicy });
+}
+
+export const buscarCursoRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return queryRef(dcInstance, 'BuscarCurso', inputVars);
+}
+buscarCursoRef.operationName = 'BuscarCurso';
+
+export function buscarCurso(dcOrVars, varsOrOptions, options) {
+  
+  const { dc: dcInstance, vars: inputVars, options: inputOpts } = validateArgsWithOptions(connectorConfig, dcOrVars, varsOrOptions, options, true, true);
+  return executeQuery(buscarCursoRef(dcInstance, inputVars), inputOpts && { fetchPolicy: inputOpts.fetchPolicy });
+}
+
+export const listarModulosDoCursoRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return queryRef(dcInstance, 'ListarModulosDoCurso', inputVars);
+}
+listarModulosDoCursoRef.operationName = 'ListarModulosDoCurso';
+
+export function listarModulosDoCurso(dcOrVars, varsOrOptions, options) {
+  
+  const { dc: dcInstance, vars: inputVars, options: inputOpts } = validateArgsWithOptions(connectorConfig, dcOrVars, varsOrOptions, options, true, true);
+  return executeQuery(listarModulosDoCursoRef(dcInstance, inputVars), inputOpts && { fetchPolicy: inputOpts.fetchPolicy });
+}
+
+export const listarConteudosDoModuloRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return queryRef(dcInstance, 'ListarConteudosDoModulo', inputVars);
+}
+listarConteudosDoModuloRef.operationName = 'ListarConteudosDoModulo';
+
+export function listarConteudosDoModulo(dcOrVars, varsOrOptions, options) {
+  
+  const { dc: dcInstance, vars: inputVars, options: inputOpts } = validateArgsWithOptions(connectorConfig, dcOrVars, varsOrOptions, options, true, true);
+  return executeQuery(listarConteudosDoModuloRef(dcInstance, inputVars), inputOpts && { fetchPolicy: inputOpts.fetchPolicy });
+}
+
+export const criarCursoRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return mutationRef(dcInstance, 'CriarCurso', inputVars);
+}
+criarCursoRef.operationName = 'CriarCurso';
+
+export function criarCurso(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars } = validateArgs(connectorConfig, dcOrVars, vars, true);
+  return executeMutation(criarCursoRef(dcInstance, inputVars));
+}
+
+export const criarModuloRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return mutationRef(dcInstance, 'CriarModulo', inputVars);
+}
+criarModuloRef.operationName = 'CriarModulo';
+
+export function criarModulo(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars } = validateArgs(connectorConfig, dcOrVars, vars, true);
+  return executeMutation(criarModuloRef(dcInstance, inputVars));
+}
+
+export const criarConteudoModuloRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return mutationRef(dcInstance, 'CriarConteudoModulo', inputVars);
+}
+criarConteudoModuloRef.operationName = 'CriarConteudoModulo';
+
+export function criarConteudoModulo(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars } = validateArgs(connectorConfig, dcOrVars, vars, true);
+  return executeMutation(criarConteudoModuloRef(dcInstance, inputVars));
+}
+
+export const buscarQuizDoModuloRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return queryRef(dcInstance, 'BuscarQuizDoModulo', inputVars);
+}
+buscarQuizDoModuloRef.operationName = 'BuscarQuizDoModulo';
+
+export function buscarQuizDoModulo(dcOrVars, varsOrOptions, options) {
+  
+  const { dc: dcInstance, vars: inputVars, options: inputOpts } = validateArgsWithOptions(connectorConfig, dcOrVars, varsOrOptions, options, true, true);
+  return executeQuery(buscarQuizDoModuloRef(dcInstance, inputVars), inputOpts && { fetchPolicy: inputOpts.fetchPolicy });
+}
+
+export const buscarQuizFinalDoCursoAlunoRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return queryRef(dcInstance, 'BuscarQuizFinalDoCursoAluno', inputVars);
+}
+buscarQuizFinalDoCursoAlunoRef.operationName = 'BuscarQuizFinalDoCursoAluno';
+
+export function buscarQuizFinalDoCursoAluno(dcOrVars, varsOrOptions, options) {
+  
+  const { dc: dcInstance, vars: inputVars, options: inputOpts } = validateArgsWithOptions(connectorConfig, dcOrVars, varsOrOptions, options, true, true);
+  return executeQuery(buscarQuizFinalDoCursoAlunoRef(dcInstance, inputVars), inputOpts && { fetchPolicy: inputOpts.fetchPolicy });
+}
+
+export const listarQuestoesDoQuizRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return queryRef(dcInstance, 'ListarQuestoesDoQuiz', inputVars);
+}
+listarQuestoesDoQuizRef.operationName = 'ListarQuestoesDoQuiz';
+
+export function listarQuestoesDoQuiz(dcOrVars, varsOrOptions, options) {
+  
+  const { dc: dcInstance, vars: inputVars, options: inputOpts } = validateArgsWithOptions(connectorConfig, dcOrVars, varsOrOptions, options, true, true);
+  return executeQuery(listarQuestoesDoQuizRef(dcInstance, inputVars), inputOpts && { fetchPolicy: inputOpts.fetchPolicy });
+}
+
+export const listarAlternativasDaQuestaoRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return queryRef(dcInstance, 'ListarAlternativasDaQuestao', inputVars);
+}
+listarAlternativasDaQuestaoRef.operationName = 'ListarAlternativasDaQuestao';
+
+export function listarAlternativasDaQuestao(dcOrVars, varsOrOptions, options) {
+  
+  const { dc: dcInstance, vars: inputVars, options: inputOpts } = validateArgsWithOptions(connectorConfig, dcOrVars, varsOrOptions, options, true, true);
+  return executeQuery(listarAlternativasDaQuestaoRef(dcInstance, inputVars), inputOpts && { fetchPolicy: inputOpts.fetchPolicy });
+}
+
+export const listarCursosAdminRef = (dc) => {
+  const { dc: dcInstance} = validateArgs(connectorConfig, dc, undefined);
+  dcInstance._useGeneratedSdk();
+  return queryRef(dcInstance, 'ListarCursosAdmin');
+}
+listarCursosAdminRef.operationName = 'ListarCursosAdmin';
+
+export function listarCursosAdmin(dcOrOptions, options) {
+  
+  const { dc: dcInstance, vars: inputVars, options: inputOpts } = validateArgsWithOptions(connectorConfig, dcOrOptions, options, undefined,false, false);
+  return executeQuery(listarCursosAdminRef(dcInstance, inputVars), inputOpts && { fetchPolicy: inputOpts.fetchPolicy });
+}
+
+export const editarCursoRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return mutationRef(dcInstance, 'EditarCurso', inputVars);
+}
+editarCursoRef.operationName = 'EditarCurso';
+
+export function editarCurso(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars } = validateArgs(connectorConfig, dcOrVars, vars, true);
+  return executeMutation(editarCursoRef(dcInstance, inputVars));
+}
+
+export const editarModuloRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return mutationRef(dcInstance, 'EditarModulo', inputVars);
+}
+editarModuloRef.operationName = 'EditarModulo';
+
+export function editarModulo(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars } = validateArgs(connectorConfig, dcOrVars, vars, true);
+  return executeMutation(editarModuloRef(dcInstance, inputVars));
+}
+
+export const editarConteudoModuloRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return mutationRef(dcInstance, 'EditarConteudoModulo', inputVars);
+}
+editarConteudoModuloRef.operationName = 'EditarConteudoModulo';
+
+export function editarConteudoModulo(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars } = validateArgs(connectorConfig, dcOrVars, vars, true);
+  return executeMutation(editarConteudoModuloRef(dcInstance, inputVars));
+}
+
+export const criarQuizRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return mutationRef(dcInstance, 'CriarQuiz', inputVars);
+}
+criarQuizRef.operationName = 'CriarQuiz';
+
+export function criarQuiz(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars } = validateArgs(connectorConfig, dcOrVars, vars, true);
+  return executeMutation(criarQuizRef(dcInstance, inputVars));
+}
+
+export const editarQuizRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return mutationRef(dcInstance, 'EditarQuiz', inputVars);
+}
+editarQuizRef.operationName = 'EditarQuiz';
+
+export function editarQuiz(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars } = validateArgs(connectorConfig, dcOrVars, vars, true);
+  return executeMutation(editarQuizRef(dcInstance, inputVars));
+}
+
+export const criarQuestaoQuizRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return mutationRef(dcInstance, 'CriarQuestaoQuiz', inputVars);
+}
+criarQuestaoQuizRef.operationName = 'CriarQuestaoQuiz';
+
+export function criarQuestaoQuiz(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars } = validateArgs(connectorConfig, dcOrVars, vars, true);
+  return executeMutation(criarQuestaoQuizRef(dcInstance, inputVars));
+}
+
+export const editarQuestaoQuizRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return mutationRef(dcInstance, 'EditarQuestaoQuiz', inputVars);
+}
+editarQuestaoQuizRef.operationName = 'EditarQuestaoQuiz';
+
+export function editarQuestaoQuiz(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars } = validateArgs(connectorConfig, dcOrVars, vars, true);
+  return executeMutation(editarQuestaoQuizRef(dcInstance, inputVars));
+}
+
+export const criarAlternativaQuizRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return mutationRef(dcInstance, 'CriarAlternativaQuiz', inputVars);
+}
+criarAlternativaQuizRef.operationName = 'CriarAlternativaQuiz';
+
+export function criarAlternativaQuiz(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars } = validateArgs(connectorConfig, dcOrVars, vars, true);
+  return executeMutation(criarAlternativaQuizRef(dcInstance, inputVars));
+}
+
+export const editarAlternativaQuizRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return mutationRef(dcInstance, 'EditarAlternativaQuiz', inputVars);
+}
+editarAlternativaQuizRef.operationName = 'EditarAlternativaQuiz';
+
+export function editarAlternativaQuiz(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars } = validateArgs(connectorConfig, dcOrVars, vars, true);
+  return executeMutation(editarAlternativaQuizRef(dcInstance, inputVars));
+}
+
+export const excluirCursoRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return mutationRef(dcInstance, 'ExcluirCurso', inputVars);
+}
+excluirCursoRef.operationName = 'ExcluirCurso';
+
+export function excluirCurso(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars } = validateArgs(connectorConfig, dcOrVars, vars, true);
+  return executeMutation(excluirCursoRef(dcInstance, inputVars));
+}
+
+export const buscarQuizFinalDoCursoRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return queryRef(dcInstance, 'BuscarQuizFinalDoCurso', inputVars);
+}
+buscarQuizFinalDoCursoRef.operationName = 'BuscarQuizFinalDoCurso';
+
+export function buscarQuizFinalDoCurso(dcOrVars, varsOrOptions, options) {
+  
+  const { dc: dcInstance, vars: inputVars, options: inputOpts } = validateArgsWithOptions(connectorConfig, dcOrVars, varsOrOptions, options, true, true);
+  return executeQuery(buscarQuizFinalDoCursoRef(dcInstance, inputVars), inputOpts && { fetchPolicy: inputOpts.fetchPolicy });
+}
+
+export const excluirConteudoModuloRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return mutationRef(dcInstance, 'ExcluirConteudoModulo', inputVars);
+}
+excluirConteudoModuloRef.operationName = 'ExcluirConteudoModulo';
+
+export function excluirConteudoModulo(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars } = validateArgs(connectorConfig, dcOrVars, vars, true);
+  return executeMutation(excluirConteudoModuloRef(dcInstance, inputVars));
+}
+
+export const excluirAlternativaQuizRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return mutationRef(dcInstance, 'ExcluirAlternativaQuiz', inputVars);
+}
+excluirAlternativaQuizRef.operationName = 'ExcluirAlternativaQuiz';
+
+export function excluirAlternativaQuiz(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars } = validateArgs(connectorConfig, dcOrVars, vars, true);
+  return executeMutation(excluirAlternativaQuizRef(dcInstance, inputVars));
+}
+
+export const excluirQuestaoQuizRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return mutationRef(dcInstance, 'ExcluirQuestaoQuiz', inputVars);
+}
+excluirQuestaoQuizRef.operationName = 'ExcluirQuestaoQuiz';
+
+export function excluirQuestaoQuiz(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars } = validateArgs(connectorConfig, dcOrVars, vars, true);
+  return executeMutation(excluirQuestaoQuizRef(dcInstance, inputVars));
+}
+
+export const excluirModuloRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return mutationRef(dcInstance, 'ExcluirModulo', inputVars);
+}
+excluirModuloRef.operationName = 'ExcluirModulo';
+
+export function excluirModulo(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars } = validateArgs(connectorConfig, dcOrVars, vars, true);
+  return executeMutation(excluirModuloRef(dcInstance, inputVars));
+}
+
+export const criarSolicitacaoSuporteRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return mutationRef(dcInstance, 'CriarSolicitacaoSuporte', inputVars);
+}
+criarSolicitacaoSuporteRef.operationName = 'CriarSolicitacaoSuporte';
+
+export function criarSolicitacaoSuporte(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars } = validateArgs(connectorConfig, dcOrVars, vars, true);
+  return executeMutation(criarSolicitacaoSuporteRef(dcInstance, inputVars));
+}
+
+export const listarSolicitacoesSuporteRef = (dc) => {
+  const { dc: dcInstance} = validateArgs(connectorConfig, dc, undefined);
+  dcInstance._useGeneratedSdk();
+  return queryRef(dcInstance, 'ListarSolicitacoesSuporte');
+}
+listarSolicitacoesSuporteRef.operationName = 'ListarSolicitacoesSuporte';
+
+export function listarSolicitacoesSuporte(dcOrOptions, options) {
+  
+  const { dc: dcInstance, vars: inputVars, options: inputOpts } = validateArgsWithOptions(connectorConfig, dcOrOptions, options, undefined,false, false);
+  return executeQuery(listarSolicitacoesSuporteRef(dcInstance, inputVars), inputOpts && { fetchPolicy: inputOpts.fetchPolicy });
+}
+
+export const atualizarStatusSuporteRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return mutationRef(dcInstance, 'AtualizarStatusSuporte', inputVars);
+}
+atualizarStatusSuporteRef.operationName = 'AtualizarStatusSuporte';
+
+export function atualizarStatusSuporte(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars } = validateArgs(connectorConfig, dcOrVars, vars, true);
+  return executeMutation(atualizarStatusSuporteRef(dcInstance, inputVars));
+}
+
 export const cadastrarUsuarioRef = (dcOrVars, vars) => {
   const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
   dcInstance._useGeneratedSdk();
@@ -52,5 +423,17 @@ atualizarNomeUsuarioRef.operationName = 'AtualizarNomeUsuario';
 export function atualizarNomeUsuario(dcOrVars, vars) {
   const { dc: dcInstance, vars: inputVars } = validateArgs(connectorConfig, dcOrVars, vars, true);
   return executeMutation(atualizarNomeUsuarioRef(dcInstance, inputVars));
+}
+
+export const excluirMinhaContaRef = (dc) => {
+  const { dc: dcInstance} = validateArgs(connectorConfig, dc, undefined);
+  dcInstance._useGeneratedSdk();
+  return mutationRef(dcInstance, 'ExcluirMinhaConta');
+}
+excluirMinhaContaRef.operationName = 'ExcluirMinhaConta';
+
+export function excluirMinhaConta(dc) {
+  const { dc: dcInstance, vars: inputVars } = validateArgs(connectorConfig, dc, undefined);
+  return executeMutation(excluirMinhaContaRef(dcInstance, inputVars));
 }
 

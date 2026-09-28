@@ -1,178 +1,45 @@
 import { auth } from "./Firebase-config.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
-
-// ==========================================
-// DÚVIDAS FREQUENTES
-// ==========================================
-
-const duvidas = document.querySelectorAll(".duvida");
-
-duvidas.forEach((duvida) => {
+import { enviarSuporte } from "./ServicoSuporte.js";
+for (const duvida of document.querySelectorAll(".duvida")) {
   const botao = duvida.querySelector(".duvida-pergunta");
-
-  botao.addEventListener("click", () => {
-    const estaAtiva = duvida.classList.contains("ativa");
-
-    // Fecha todas as dúvidas
-    duvidas.forEach((outraDuvida) => {
-      outraDuvida.classList.remove("ativa");
-
-      const outroBotao = outraDuvida.querySelector(".duvida-pergunta");
-
-      outroBotao.setAttribute("aria-expanded", "false");
-    });
-
-    // Abre a dúvida selecionada
-    if (!estaAtiva) {
-      duvida.classList.add("ativa");
-
-      botao.setAttribute("aria-expanded", "true");
-    }
+  botao?.addEventListener("click", () => {
+    const ativa = duvida.classList.toggle("ativa");
+    botao.setAttribute("aria-expanded", String(ativa));
+    const resposta = duvida.querySelector(".duvida-resposta");
+    if (resposta) resposta.hidden = !ativa;
   });
-});
-
-
-// ==========================================
-// FORMULÁRIO DE CONTATO
-// ==========================================
-
-const formContato = document.getElementById("formContato");
-
-const mensagemFeedback =
-  document.getElementById("mensagemFeedback");
-
-const btnEnviar = document.getElementById("btnEnviar");
-
-
-// ==========================================
-// VERIFICAR USUÁRIO LOGADO
-// ==========================================
-
+  const resposta = duvida.querySelector(".duvida-resposta");
+  if (resposta) resposta.hidden = true;
+}
+const form = document.getElementById("formContato"), feedback = document.getElementById("mensagemFeedback"), enviar = document.getElementById("btnEnviar");
+feedback.setAttribute("role", "status");
+document.getElementById("assunto").maxLength = 120;
+document.getElementById("mensagem").maxLength = 5000;
 onAuthStateChanged(auth, (usuario) => {
-
-  if (usuario) {
-
-    console.log("Usuário autenticado:", usuario.email);
-
-  } else {
-
-    console.log("Nenhum usuário autenticado.");
-
+  for (const [id, valor] of [["nome", usuario?.displayName || ""], ["email", usuario?.email || ""]]) {
+    const campo = document.getElementById(id);
+    if (campo) { campo.value = valor; campo.readOnly = true; campo.required = false; }
   }
-
+  enviar.disabled = !usuario;
+  if (!usuario) {
+    feedback.textContent = "Entre na sua conta para enviar uma solicitação. ";
+    const link = document.createElement("a"); link.href = "Login.html"; link.textContent = "Entrar"; feedback.append(link);
+  } else feedback.textContent = "Sua solicitação será vinculada à sua conta.";
 });
-
-
-// ==========================================
-// ENVIO DO FORMULÁRIO
-// ==========================================
-
-if (formContato) {
-
-  formContato.addEventListener("submit", (evento) => {
-
-    evento.preventDefault();
-
-    const nome =
-      document.getElementById("nome").value.trim();
-
-    const email =
-      document.getElementById("email").value.trim();
-
-    const assunto =
-      document.getElementById("assunto").value.trim();
-
-    const mensagem =
-      document.getElementById("mensagem").value.trim();
-
-
-    // ==========================================
-    // LIMPA MENSAGEM ANTERIOR
-    // ==========================================
-
-    mensagemFeedback.textContent = "";
-
-    mensagemFeedback.className = "mensagem-feedback";
-
-
-    // ==========================================
-    // VALIDAÇÃO DOS CAMPOS
-    // ==========================================
-
-    if (!nome || !email || !assunto || !mensagem) {
-
-      mensagemFeedback.textContent =
-        "Por favor, preencha todos os campos.";
-
-      mensagemFeedback.classList.add("erro");
-
-      return;
-    }
-
-
-    // ==========================================
-    // VALIDAÇÃO DO E-MAIL
-    // ==========================================
-
-    const formatoEmail =
-      /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!formatoEmail.test(email)) {
-
-      mensagemFeedback.textContent =
-        "Digite um endereço de e-mail válido.";
-
-      mensagemFeedback.classList.add("erro");
-
-      return;
-    }
-
-
-    // ==========================================
-    // ENVIO SIMULADO
-    // ==========================================
-
-    btnEnviar.disabled = true;
-
-    btnEnviar.textContent = "Enviando...";
-
-
-    setTimeout(() => {
-
-      mensagemFeedback.textContent =
-        "Mensagem enviada com sucesso! Nossa equipe recebeu sua mensagem.";
-
-      mensagemFeedback.classList.add("sucesso");
-
-      formContato.reset();
-
-      btnEnviar.disabled = false;
-
-      btnEnviar.textContent = "Enviar mensagem";
-
-    }, 1000);
-
-  });
-
-}
-
-// ==========================================
-// BOTÃO CTA
-// ==========================================
-
-const btnComecar = document.getElementById("btnComecar");
-
-if (btnComecar) {
-  onAuthStateChanged(auth, (usuario) => {
-    if (usuario) {
-      btnComecar.innerHTML = `
-        <i class="fa-solid fa-graduation-cap"></i>
-        Continuar aprendendo
-      `;
-    }
-
-    btnComecar.onclick = () => {
-      window.location.href = usuario ? "Cursos.html#cursos" : "Login.html";
-    };
-  });
-}
+form.addEventListener("submit", async (evento) => {
+  evento.preventDefault();
+  if (enviar.disabled) return;
+  enviar.disabled = true; feedback.className = "mensagem-feedback"; feedback.textContent = "Enviando...";
+  try {
+    await enviarSuporte(document.getElementById("assunto").value, document.getElementById("mensagem").value);
+    feedback.textContent = "Solicitação enviada com sucesso. Nossa equipe recebeu sua mensagem.";
+    feedback.classList.add("sucesso");
+    document.getElementById("assunto").value = ""; document.getElementById("mensagem").value = "";
+  } catch (erro) {
+    console.error(erro); feedback.textContent = "Não foi possível enviar a solicitação. Confira os campos e tente novamente. Sua mensagem foi mantida.";
+    feedback.classList.add("erro");
+  } finally { enviar.disabled = !auth.currentUser; }
+});
+const comecar = document.getElementById("btnComecar");
+comecar?.addEventListener("click", () => { location.href = auth.currentUser ? "Cursos.html" : "Login.html"; });

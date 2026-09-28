@@ -1,0 +1,550 @@
+<!doctype html>
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Gerenciar módulo | TechSênior</title>
+
+    <link rel="stylesheet" href="Estilos - CSS/Padrão.css" />
+    <link rel="stylesheet" href="Estilos - CSS/Admin.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <script type="importmap">
+      {
+        "imports": {
+          "firebase/data-connect": "https://www.gstatic.com/firebasejs/12.17.1/firebase-data-connect.js"
+        }
+      }
+    </script>
+  </head>
+
+  <body class="admin-page nav-v2">
+    <header>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menu" aria-controls="sidebar" aria-expanded="false"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+      <div class="logo"><img src="Imagens/Logo-TechSenior-Light.svg" data-logo-tema alt="TechSênior" /></div>
+      <nav aria-label="Navegação principal"><a href="index.html">Início</a><a href="Cursos.html">Cursos</a><a href="ContatoSuporte.html">Contato e Suporte</a><a href="Sobre Nós.html">Sobre Nós</a><a href="Admin.html" aria-current="page">Administração</a></nav>
+      <a class="btn-login" id="btnUsuario" href="Login.html"><i class="fa-regular fa-user" aria-hidden="true"></i>Entrar</a>
+    </header>
+    <div class="sidebar" id="sidebar">
+      <button class="close-menu" id="closeMenu" type="button" aria-label="Fechar painel"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      <div class="drawer-usuario" id="drawerUsuario"></div>
+      <nav class="sidebar-nav" aria-label="Navegação do painel"><a href="index.html">Início</a><a href="Cursos.html">Cursos</a><a href="ContatoSuporte.html">Contato e Suporte</a><a href="Sobre Nós.html">Sobre Nós</a><a href="Admin.html" aria-current="page">Administração</a></nav>
+      <div class="drawer-secao" id="drawerPreferencias"></div><div class="drawer-secao" id="drawerAdmin" hidden></div><div class="drawer-secao drawer-conta" id="drawerConta"></div>
+    </div>
+    <div class="overlay" id="overlay"></div>
+
+    <aside class="menu-admin">
+      <div class="admin-brand">
+        <i class="fa-solid fa-shield-halved"></i>
+
+        <div>
+          <strong>TechSênior</strong>
+
+          <span>Painel Admin</span>
+        </div>
+      </div>
+
+      <nav>
+        <a href="Admin.html" class="menu-item">
+          <i class="fa-solid fa-book"></i>
+
+          Cursos
+        </a>
+
+        <a
+          id="linkVoltarModulos"
+          href="AdminModulos.html"
+          class="menu-item ativo"
+        >
+          <i class="fa-solid fa-layer-group"></i>
+
+          Módulos
+        </a>
+
+        <a href="index.html" class="menu-item">
+          <i class="fa-solid fa-house"></i>
+
+          Voltar ao site
+        </a>
+      </nav>
+    </aside>
+
+    <main class="conteudo-admin">
+      <!-- CABEÇALHO -->
+
+      <header
+        class="cabecalho-admin cabecalho-admin-principal cabecalho-editor-modulo"
+      >
+        <div>
+          <a id="btnVoltarModulos" class="link-voltar" href="AdminModulos.html">
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Voltar aos módulos
+          </a>
+
+          <p id="trilhaModulo" class="subtitulo-admin">CURSO &gt; MÓDULO</p>
+
+          <h1 id="nomeModuloAdmin">Gerenciar módulo</h1>
+
+          <p id="descricaoModuloAdmin" class="descricao-pagina">
+            Carregando informações do módulo...
+          </p>
+        </div>
+      </header>
+
+      <!-- RESUMO DO MÓDULO -->
+
+      <section class="resumo-modulo-admin">
+        <div class="resumo-modulo-icone">
+          <i class="fa-solid fa-layer-group"></i>
+        </div>
+
+        <div class="resumo-modulo-conteudo">
+          <span class="etiqueta-secao"> INFORMAÇÕES DO MÓDULO </span>
+
+          <p id="dadosModulo" class="dados-modulo">Carregando dados...</p>
+        </div>
+      </section>
+
+      <!-- CONTEÚDOS -->
+
+      <section
+        id="secaoConteudos"
+        class="secao-cursos painel-modulo secao-editor-admin secao-conteudos-admin"
+      >
+        <div class="editor-secao-cabecalho">
+          <div class="editor-secao-titulo">
+            <div class="editor-secao-icone icone-conteudos">
+              <i class="fa-solid fa-file-lines"></i>
+            </div>
+
+            <div>
+              <span class="etiqueta-secao"> CONTEÚDO </span>
+
+              <h2>Conteúdos do módulo</h2>
+
+              <p>Organize os materiais apresentados ao aluno nesta etapa.</p>
+            </div>
+          </div>
+
+          <button id="btnNovoConteudo" class="btn-novo" type="button">
+            <i class="fa-solid fa-plus"></i>
+
+            Novo conteúdo
+          </button>
+        </div>
+
+        <div id="estadoConteudos" class="mensagem">Carregando conteúdos...</div>
+
+        <div
+          id="listaConteudos"
+          class="lista-cursos lista-conteudos-admin"
+          hidden
+        ></div>
+      </section>
+
+      <!-- QUIZ -->
+
+      <section
+        data-editor-quiz
+        class="secao-cursos painel-modulo secao-editor-admin secao-quiz-admin"
+      >
+        <div class="editor-secao-cabecalho">
+          <div class="editor-secao-titulo">
+            <div class="editor-secao-icone icone-quiz">
+              <i class="fa-solid fa-circle-question"></i>
+            </div>
+
+            <div>
+              <span class="etiqueta-secao"> AVALIAÇÃO </span>
+
+              <h2>Quiz do módulo</h2>
+
+              <p>
+                Crie perguntas para revisar o conteúdo antes do aluno avançar.
+              </p>
+            </div>
+          </div>
+
+          <div class="acoes-cabecalho">
+            <button id="btnCriarQuiz" class="btn-novo" type="button" hidden>
+              <i class="fa-solid fa-circle-plus"></i>
+
+              Criar quiz
+            </button>
+
+            <button id="btnNovaQuestao" class="btn-novo" type="button" hidden>
+              <i class="fa-solid fa-plus"></i>
+
+              Nova pergunta
+            </button>
+          </div>
+        </div>
+
+        <div id="estadoQuiz" class="mensagem estado-quiz-admin" role="status">
+          Carregando quiz...
+        </div>
+
+        <div id="listaQuestoes" class="lista-questoes" hidden></div>
+      </section>
+    </main>
+
+    <div id="modalConteudo" class="modal" hidden>
+      <div class="modal-conteudo">
+        <div class="modal-cabecalho">
+          <div>
+            <p class="subtitulo">Conteúdo do módulo</p>
+
+            <h2 id="tituloModalConteudo">Criar conteúdo</h2>
+          </div>
+
+          <button
+            id="btnFecharModalConteudo"
+            class="btn-fechar"
+            type="button"
+            aria-label="Fechar"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <form id="formConteudo">
+          <div class="campo">
+            <label for="tipoConteudo">Tipo de conteúdo</label>
+            <select id="tipoConteudo" required>
+              <option value="texto">Texto</option>
+              <option value="imagem">Imagem</option>
+              <option value="video">Vídeo</option>
+              <option value="importante">Importante</option>
+              <option value="dica">Dica</option>
+            </select>
+          </div>
+
+          <div class="campo">
+            <label for="tituloConteudo">
+              Título <span class="texto-opcional">(opcional)</span>
+            </label>
+            <input id="tituloConteudo" type="text" maxlength="120" />
+          </div>
+
+          <div id="campoConteudo" class="campo">
+            <label for="textoConteudo">Conteúdo</label>
+            <textarea id="textoConteudo" rows="5" maxlength="5000"></textarea>
+          </div>
+
+          <div id="camposMidiaConteudo" class="campos-imagem-conteudo" hidden>
+            <div class="campo">
+              <span id="rotuloOrigemMidia" class="rotulo-campo">
+                Origem da mídia
+              </span>
+
+              <div class="seletor-origem-imagem">
+                <button
+                  id="btnOrigemArquivo"
+                  class="btn-origem-imagem ativo"
+                  type="button"
+                >
+                  <i class="fa-solid fa-arrow-up-from-bracket"></i>
+
+                  <span>
+                    <strong>Enviar arquivo</strong>
+                    <small id="descricaoOrigemArquivo">
+                      Escolha um arquivo do computador
+                    </small>
+                  </span>
+                </button>
+
+                <button
+                  id="btnOrigemUrl"
+                  class="btn-origem-imagem"
+                  type="button"
+                >
+                  <i class="fa-solid fa-link"></i>
+
+                  <span>
+                    <strong>Usar link</strong>
+                    <small id="descricaoOrigemUrl">
+                      Cole o endereço do arquivo
+                    </small>
+                  </span>
+                </button>
+              </div>
+            </div>
+
+            <div id="campoArquivoConteudo" class="campo">
+              <label id="rotuloArquivoMidia" for="arquivoConteudo">
+                Arquivo
+              </label>
+
+              <label for="arquivoConteudo" class="area-upload-imagem">
+                <i id="iconeUploadMidia" class="fa-regular fa-image"></i>
+
+                <strong id="textoUploadMidia">
+                  Clique para escolher um arquivo
+                </strong>
+
+                <span id="ajudaUploadMidia">
+                  JPG, PNG ou WEBP • máximo 5 MB
+                </span>
+              </label>
+
+              <input
+                id="arquivoConteudo"
+                class="input-arquivo-imagem"
+                type="file"
+                accept="image/jpeg,image/png,image/webp"
+              />
+            </div>
+
+            <div id="campoUrlConteudo" class="campo" hidden>
+              <label id="rotuloUrlMidia" for="urlConteudo"> URL </label>
+
+              <input id="urlConteudo" type="url" placeholder="https://..." />
+            </div>
+
+            <div
+              id="previewMidiaConteudo"
+              class="preview-imagem-conteudo"
+              hidden
+            >
+              <span class="rotulo-campo"> Pré-visualização </span>
+
+              <div class="preview-imagem-caixa">
+                <img id="imagemPreviewConteudo" src="" alt="" hidden />
+
+                <video
+                  id="videoPreviewConteudo"
+                  controls
+                  preload="metadata"
+                  hidden
+                ></video>
+
+                <iframe
+                  id="youtubePreviewConteudo"
+                  title="Pré-visualização do vídeo"
+                  allow="
+                    accelerometer;
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    gyroscope;
+                    picture-in-picture;
+                  "
+                  allowfullscreen
+                  hidden
+                ></iframe>
+              </div>
+            </div>
+
+            <div id="campoAltTextoConteudo" class="campo">
+              <label id="rotuloAltTextoConteudo" for="altTextoConteudo">
+                Texto alternativo
+              </label>
+
+              <input
+                id="altTextoConteudo"
+                type="text"
+                maxlength="250"
+                placeholder="Descreva a mídia"
+              />
+
+              <small id="ajudaAltTextoConteudo" class="ajuda-campo">
+                Descreva de forma breve o conteúdo da mídia.
+              </small>
+            </div>
+          </div>
+
+          <div class="acoes-formulario">
+            <div></div>
+
+            <div class="acoes-formulario-direita">
+              <button
+                id="btnCancelarConteudo"
+                class="btn-cancelar"
+                type="button"
+              >
+                Cancelar
+              </button>
+
+              <button id="btnSalvarConteudo" class="btn-novo" type="submit">
+                <i class="fa-solid fa-floppy-disk"></i>
+
+                Criar conteúdo
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="modalQuestao" class="modal" hidden>
+      <div class="modal-conteudo">
+        <div class="modal-cabecalho">
+          <div>
+            <p class="subtitulo">Quiz do módulo</p>
+
+            <h2 id="tituloModalQuestao">Criar pergunta</h2>
+          </div>
+
+          <button
+            id="btnFecharModalQuestao"
+            class="btn-fechar"
+            type="button"
+            aria-label="Fechar"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <form id="formQuestao">
+          <div class="campo">
+            <label for="perguntaQuiz">Pergunta</label>
+
+            <textarea
+              id="perguntaQuiz"
+              rows="4"
+              required
+              maxlength="1000"
+            ></textarea>
+          </div>
+
+          <div class="acoes-formulario">
+            <div></div>
+
+            <div class="acoes-formulario-direita">
+              <button
+                id="btnCancelarQuestao"
+                class="btn-cancelar"
+                type="button"
+              >
+                Cancelar
+              </button>
+
+              <button id="btnSalvarQuestao" class="btn-novo" type="submit">
+                <i class="fa-solid fa-floppy-disk"></i>
+
+                Criar pergunta
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="modalAlternativa" class="modal" hidden>
+      <div class="modal-conteudo">
+        <div class="modal-cabecalho">
+          <div>
+            <p class="subtitulo">Alternativa da pergunta</p>
+
+            <h2 id="tituloModalAlternativa">Criar alternativa</h2>
+          </div>
+
+          <button
+            id="btnFecharModalAlternativa"
+            class="btn-fechar"
+            type="button"
+            aria-label="Fechar"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <form id="formAlternativa">
+          <p id="erroAlternativa" class="erro-campo" role="alert" hidden></p>
+
+          <div class="campo">
+            <label for="textoAlternativa">Texto da alternativa</label>
+
+            <textarea
+              id="textoAlternativa"
+              rows="3"
+              required
+              maxlength="1000"
+            ></textarea>
+          </div>
+
+          <div class="campo campo-checkbox campo-alternativa-correta">
+            <label
+              for="alternativaCorreta"
+              class="controle-alternativa-correta"
+            >
+              <input id="alternativaCorreta" type="checkbox" />
+
+              <span class="check-alternativa-correta">
+                <i class="fa-solid fa-check"></i>
+              </span>
+
+              <span class="texto-alternativa-correta">
+                <strong> Alternativa correta </strong>
+
+                <small>
+                  Marque esta opção se ela for a resposta correta da pergunta.
+                </small>
+              </span>
+            </label>
+          </div>
+
+          <div class="campo">
+            <label for="explicacaoAlternativa"
+              >Explicação <span class="texto-opcional">(opcional)</span></label
+            >
+
+            <textarea
+              id="explicacaoAlternativa"
+              rows="3"
+              maxlength="1500"
+            ></textarea>
+          </div>
+
+          <div class="acoes-formulario">
+            <div></div>
+
+            <div class="acoes-formulario-direita">
+              <button
+                id="btnCancelarAlternativa"
+                class="btn-cancelar"
+                type="button"
+              >
+                Cancelar
+              </button>
+
+              <button id="btnSalvarAlternativa" class="btn-novo" type="submit">
+                <i class="fa-solid fa-floppy-disk"></i>
+
+                Criar alternativa
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <footer>
+      <div class="coluna"><h3>TechSênior</h3><p>Tecnologia ao seu alcance.</p><div class="footer-linha logo"><div class="logo-footer"><img src="Imagens/Logo-TechSenior-Light.svg" data-logo-tema alt="TechSênior" /></div></div></div>
+      <div class="coluna"><h4>Navegação</h4><a href="index.html">Início</a><a href="Cursos.html">Cursos</a><a href="ContatoSuporte.html">Contato e Suporte</a><a href="Sobre Nós.html">Sobre Nós</a></div>
+      <div class="coluna"><h4>Institucional</h4><a href="Termos de Uso.html">Termos de Uso</a><a href="Política de Privacidade.html">Política de Privacidade</a><a href="Declaração de Acessibilidade.html">Declaração de Acessibilidade</a></div>
+      <div class="coluna"><h4>Contato e Suporte</h4><a href="Regras da Comunidade.html">Regras da Comunidade</a><a href="ContatoSuporte.html">Fale Conosco</a><div class="footer-linha redes"><div class="coluna"><h4>Redes Sociais</h4><a href="https://www.instagram.com/techsenior_tcc/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram" aria-hidden="true"></i> Instagram</a></div></div></div>
+    </footer>
+    <div class="copyright">© 2026 TechSênior • Projeto desenvolvido para o Trabalho de Conclusão de Curso (TCC) do Curso Técnico em Desenvolvimento de Sistemas.<br />Desenvolvido pela equipe TechSênior.</div>
+    <nav class="bottom-nav" aria-label="Navegação principal"><a href="index.html"><i class="fa-solid fa-house" aria-hidden="true"></i><span>Início</span></a><a href="Cursos.html"><i class="fa-solid fa-book-open" aria-hidden="true"></i><span>Cursos</span></a><a href="ContatoSuporte.html"><i class="fa-solid fa-headset" aria-hidden="true"></i><span>Suporte</span></a><button type="button" id="abrirContaMobile" aria-controls="sidebar" aria-expanded="false"><i class="fa-solid fa-user" aria-hidden="true"></i><span>Perfil</span></button></nav>
+    <script type="module" src="Script - Java/Padrão.js"></script>
+    <script type="module" src="Script - Java/AdminModulo.js"></script>
+  </body>
+</html>

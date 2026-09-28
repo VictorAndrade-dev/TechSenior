@@ -1,13 +1,41 @@
-import { db } from "./Firebase-config.js";
+import { registrarAtividade } from "./ServicoAtividade.js";
+import { auth, db } from "./Firebase-config.js";
 import {
   doc,
   getDoc,
   serverTimestamp,
   setDoc,
+  runTransaction,
 } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
 function criarProgressoVazio(totalModulos) {
   return new Array(totalModulos).fill(false);
+}
+
+// Abrir um módulo salva a posição sem sobrescrever conclusões feitas em outra aba.
+export async function salvarPosicaoCurso(uid, cursoId, moduloAtual, totalModulos) {
+  if (auth.currentUser?.uid !== uid) throw new Error("Sessão inválida.");
+  const referencia = doc(db, "usuarios", uid, "progresso", cursoId);
+  await runTransaction(db, async (transacao) => {
+    const anterior = await transacao.get(referencia);
+    transacao.set(referencia, {
+      moduloAtual,
+      atualizadoEm: serverTimestamp(),
+      ...(!anterior.exists() ? { modulosConcluidos: criarProgressoVazio(totalModulos), percentual: 0 } : {}),
+    }, { merge: true });
+  });
+}
+
+function dadosTesteFinal(dados = {}) {
+  return {
+    testeFinalAprovado: dados.testeFinalAprovado === true,
+    melhorNota: Number.isFinite(dados.melhorNota) ? dados.melhorNota : 0,
+    tentativasTesteFinal: Number.isInteger(dados.tentativasTesteFinal)
+      ? dados.tentativasTesteFinal : 0,
+    cursoConcluido: dados.cursoConcluido === true,
+    concluidoEm: dados.concluidoEm || null,
+    ultimoResultadoTesteFinal: dados.ultimoResultadoTesteFinal || null,
+  };
 }
 
 export async function carregarProgressoCurso(uid, cursoId, totalModulos) {
@@ -16,6 +44,7 @@ export async function carregarProgressoCurso(uid, cursoId, totalModulos) {
 
   if (!documento.exists()) {
     return {
+      ...dadosTesteFinal(),
       moduloAtual: 0,
       modulosConcluidos: criarProgressoVazio(totalModulos),
     };
@@ -28,6 +57,7 @@ export async function carregarProgressoCurso(uid, cursoId, totalModulos) {
 
   if (modulosConcluidos.length !== totalModulos) {
     return {
+      ...dadosTesteFinal(dados),
       moduloAtual: 0,
       modulosConcluidos: criarProgressoVazio(totalModulos),
     };
@@ -39,7 +69,48 @@ export async function carregarProgressoCurso(uid, cursoId, totalModulos) {
     ? dados.moduloAtual
     : 0;
 
-  return { moduloAtual, modulosConcluidos };
+  return { ...dadosTesteFinal(dados), iniciado: true, moduloAtual, modulosConcluidos };
+}
+
+// Transação preserva a melhor nota e evita perder incrementos entre abas.
+// O identificador torna uma repetição do mesmo envio idempotente.
+export async function salvarResultadoTesteFinal(
+  uid, cursoId, { tentativaId, acertos, total, totalModulos },
+) {
+  if (auth.currentUser?.uid !== uid) throw new Error("Sessão inválida.");
+  if (!tentativaId || !Number.isInteger(total) || total <= 0
+    || !Number.isInteger(acertos) || acertos < 0 || acertos > total
+    || !Number.isInteger(totalModulos) || totalModulos <= 0) {
+    throw new Error("Resultado inválido.");
+  }
+  const percentual = Math.round((acertos / total) * 100);
+  const referencia = doc(db, "usuarios", uid, "progresso", cursoId);
+  const salvo = await runTransaction(db, async (transacao) => {
+    const documento = await transacao.get(referencia);
+    const dados = documento.data() || {};
+    const anterior = dadosTesteFinal(dados);
+    if (dados.ultimoResultadoTesteFinal?.tentativaId === tentativaId) return anterior;
+    // Uma aprovação já registrada não pode ser desfeita por outra aba.
+    if (anterior.testeFinalAprovado) return anterior;
+    if (dados.modulosConcluidos?.length !== totalModulos
+      || !dados.modulosConcluidos.every((concluido) => concluido === true)) {
+      throw new Error("Conclua todos os módulos antes de finalizar o teste.");
+    }
+    const aprovado = percentual >= 70;
+    const resultado = {
+      testeFinalAprovado: aprovado,
+      melhorNota: Math.max(anterior.melhorNota, percentual),
+      tentativasTesteFinal: anterior.tentativasTesteFinal + 1,
+      cursoConcluido: aprovado,
+      ultimoResultadoTesteFinal: { tentativaId, acertos, total, percentual },
+      atualizadoEm: serverTimestamp(),
+      ...(aprovado ? { concluidoEm: serverTimestamp() } : {}),
+    };
+    transacao.set(referencia, resultado, { merge: true });
+    return { ...anterior, ...resultado };
+  });
+  await registrarAtividade(cursoId, totalModulos - 1).catch((erro) => console.warn("Atividade não registrada", erro));
+  return salvo;
 }
 
 export async function salvarProgressoCurso(
@@ -48,6 +119,7 @@ export async function salvarProgressoCurso(
   moduloAtual,
   modulosConcluidos,
 ) {
+  if (auth.currentUser?.uid !== uid) throw new Error("Sessão inválida.");
   const concluidos = modulosConcluidos.filter(Boolean).length;
   const percentual = Math.round((concluidos / modulosConcluidos.length) * 100);
 
@@ -61,4 +133,5 @@ export async function salvarProgressoCurso(
     },
     { merge: true },
   );
+  await registrarAtividade(cursoId, moduloAtual).catch((erro) => console.warn("Atividade não registrada", erro));
 }

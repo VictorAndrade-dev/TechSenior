@@ -1,1014 +1,382 @@
-/* =====================================
-   HERO
-===================================== */
-
-.hero {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 80px;
-  padding: 60px 8%;
-  min-height: 80vh;
+/* 1. Base da página */
+.pagina-sobre {
+  overflow-x: clip;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Poppins", sans-serif;
 }
 
-.hero-texto {
-  flex: 1;
-}
+.pagina-sobre *,
+.pagina-sobre *::before,
+.pagina-sobre *::after { box-sizing: border-box; }
 
-.hero-texto h1 {
-  line-height: 1.2;
-  color: var(--titulo);
-  margin-bottom: 25px;
-}
-
-.hero-texto p {
-  font-size: 20px;
-  line-height: 1.8;
-  color: var(--texto);
-  margin-bottom: 40px;
-  max-width: 650px;
-}
-
-.hero-img {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-}
-
-.hero-img img {
+.pagina-sobre :where(section) {
   width: 100%;
-  max-width: 550px;
-  border-radius: 30px;
-  box-shadow: var(--sombra);
-  transition: 0.4s;
+  padding: clamp(3.5rem, 6vw, 6rem) clamp(1.25rem, 6vw, 6rem);
 }
 
-.hero-img img:hover {
-  transform: scale(1.03);
+.pagina-sobre :where(h1, h2, h3, h4) {
+  color: var(--heading);
+  overflow-wrap: anywhere;
 }
 
-/* =====================================
-   NOSSA MISSÃO
-===================================== */
+.pagina-sobre :where(p, span) { overflow-wrap: anywhere; }
 
-.missao {
-  padding: 80px 8%;
-  scroll-margin-top: 110px;
+.pagina-sobre p {
+  color: var(--text-muted);
+  font-size: clamp(1rem, 1.2vw, 1.1rem);
+  line-height: 1.72;
 }
 
-.missao-card {
-  display: flex;
-  align-items: center;
-  gap: 50px;
-  background: #fff;
-  padding: 50px;
-  border-radius: 30px;
-  box-shadow: var(--sombra);
-  border-left: 8px solid var(--verde);
-}
-
-.missao-icone {
-  flex-shrink: 0;
-}
-
-.missao-icone img {
-  width: 140px;
-}
-
-.missao-texto h2 {
-  margin-bottom: 20px;
-}
-
-.missao-texto p {
-  font-size: 20px;
-  line-height: 1.8;
-  color: var(--texto);
-}
-
-/* =====================================
-   NOSSA HISTÓRIA
-===================================== */
-
-/* --- SEÇÃO: NOSSA HISTÓRIA (CORRIGIDO SEM ESPAÇO VAZIO) --- */
-.historia {
-  background-color: #ffffff;
-  padding: 80px 8%;
-}
-
-.historia-container {
-  max-width: 1200px;
-  margin: 0 auto;
+.pagina-sobre img {
   display: block;
-  /* Remove o flexbox para permitir o encaixe perfeito */
+  max-width: 100%;
 }
 
-/* Faz a imagem flutuar na direita e o texto ocupar o resto */
-.historia-imagem {
-  float: right;
-  width: 42%;
-  /* Define o tamanho ideal para a foto */
-  margin-left: 50px;
-  /* Afasta o texto da imagem */
-  margin-bottom: 30px;
-  /* Afasta os elementos de baixo */
-  margin-top: 300px;
-}
-
-.historia-imagem img {
-  width: 100%;
-  height: auto;
-  max-height: 450px;
-  object-fit: cover;
-  border-radius: 30px;
-  box-shadow: var(--sombra);
-}
-
-.historia-texto .titulo-secao {
-  display: flex;
+/* 2. Hero */
+.pagina-sobre .hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(22rem, 0.95fr);
   align-items: center;
-  gap: 10px;
-  color: var(--verde);
-  font-size: 18px;
-  font-weight: 600;
+  gap: clamp(2.5rem, 6vw, 6rem);
+  max-width: 93.75rem;
+  min-height: auto;
+  margin: 0 auto;
+  padding-block: clamp(4rem, 7vw, 6.5rem);
+}
+
+.pagina-sobre .hero-texto { min-width: 0; }
+
+.pagina-sobre .hero-texto h1 {
+  max-width: 14ch;
+  margin: 0 0 1.25rem;
+  color: var(--heading);
+  font-size: clamp(2.6rem, 5.2vw, 4.8rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+.pagina-sobre .hero-texto p {
+  max-width: 62ch;
+  margin: 0 0 2rem;
+  font-size: clamp(1.05rem, 1.35vw, 1.2rem);
+}
+
+.pagina-sobre .hero .btn-principal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  min-height: 3.25rem;
+  padding: 0.8rem 1.25rem;
+  border: 0;
+  border-radius: 0.8rem;
+  background: var(--primary);
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.pagina-sobre .hero .btn-principal:hover { background: var(--primary-hover); }
+
+html[data-tema="escuro"] .pagina-sobre .hero .btn-principal {
+  color: #061f2e;
+}
+
+.pagina-sobre .hero-img {
+  min-width: 0;
+  padding: clamp(0.4rem, 1.5vw, 1rem);
+  border: 1px solid var(--border);
+  border-radius: 1.75rem;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.pagina-sobre .hero-img img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 1.25rem;
+  object-fit: cover;
+}
+
+/* 3. Missão */
+.pagina-sobre .missao {
+  max-width: 93.75rem;
+  margin: 0 auto;
+  padding-top: 1rem;
+  scroll-margin-top: 6rem;
+}
+
+.pagina-sobre .missao-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  padding: clamp(1.5rem, 4vw, 3rem);
+  border: 1px solid var(--border);
+  border-left: 0.4rem solid var(--accent);
+  border-radius: 1.25rem;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.pagina-sobre .missao-icone {
+  display: grid;
+  width: clamp(4rem, 8vw, 5.5rem);
+  aspect-ratio: 1;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: clamp(1.6rem, 3vw, 2.25rem);
+}
+
+.pagina-sobre .missao-texto h2 {
+  margin: 0 0 0.65rem;
+  font-size: clamp(1.8rem, 3vw, 2.65rem);
+}
+
+.pagina-sobre .missao-texto p { max-width: 75ch; margin: 0; }
+
+/* 4. História */
+.pagina-sobre .historia {
+  background: color-mix(in srgb, var(--surface) 62%, var(--bg));
+}
+
+.pagina-sobre .historia-container {
+  display: grid;
+  grid-template-columns: minmax(20rem, 0.85fr) minmax(0, 1.15fr);
+  align-items: center;
+  gap: clamp(2.5rem, 6vw, 6rem);
+  max-width: 93.75rem;
+  margin: 0 auto;
+}
+
+.pagina-sobre .historia-imagem img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  max-height: 38rem;
+  border-radius: 1.5rem;
+  object-fit: cover;
+  box-shadow: var(--shadow);
+}
+
+.pagina-sobre .historia-texto { min-width: 0; }
+
+.pagina-sobre .historia-texto > .titulo-secao {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  max-width: none;
+  margin: 0 0 0.75rem;
+  color: var(--accent);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  margin-bottom: 15px;
 }
 
-.historia-texto h2 {
-  color: var(--titulo);
-  margin-bottom: 25px;
+.pagina-sobre .historia-texto h2 {
+  max-width: 24ch;
+  margin: 0 0 1rem;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  line-height: 1.2;
 }
 
-.linha {
-  width: 60px;
-  height: 4px;
-  background-color: var(--azul);
-  margin-bottom: 25px;
-  border-radius: 2px;
+.pagina-sobre .linha {
+  width: 4rem;
+  height: 0.3rem;
+  margin-bottom: 1.5rem;
+  border-radius: 999px;
+  background: var(--primary);
 }
 
-.historia-texto p {
-  font-size: 20px;
-  color: var(--texto);
-  margin-bottom: 20px;
-  line-height: 1.8;
+.pagina-sobre .historia-texto > p {
+  max-width: 70ch;
+  margin: 0 0 1rem;
+  text-align: left;
 }
 
-/* Garante que os cards fiquem bem posicionados abaixo de tudo */
-.historia-destaques {
-  clear: both;
-  /* Limpa o float para os cards começarem na linha de baixo */
-  display: flex;
-  gap: 25px;
-  margin-top: 40px;
-  padding-top: 10px;
+.pagina-sobre .historia-destaques {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
 }
 
-.destaque {
-  flex: 1;
-  background: #ffffff;
-  border-left: 6px solid var(--azul);
-  padding: 25px;
-  border-radius: 0 20px 20px 0;
+.pagina-sobre .destaque {
   display: flex;
   align-items: flex-start;
-  gap: 15px;
-  box-shadow: var(--sombra);
-  transition: 0.35s;
+  gap: 0.85rem;
+  min-width: 0;
+  padding: 1.15rem;
+  border: 1px solid var(--border);
+  border-left: 0.3rem solid var(--primary);
+  border-radius: 0.9rem;
+  background: var(--surface);
 }
 
-.destaque:nth-child(2) {
-  border-left-color: var(--verde);
+.pagina-sobre .destaque:nth-child(2) { border-left-color: var(--accent); }
+.pagina-sobre .destaque i { flex: 0 0 auto; color: var(--primary); font-size: 1.35rem; }
+.pagina-sobre .destaque:nth-child(2) i { color: var(--accent); }
+.pagina-sobre .destaque h4 { margin: 0 0 0.25rem; font-size: 1.05rem; }
+.pagina-sobre .destaque span { color: var(--text-muted); font-size: 0.95rem; line-height: 1.55; }
+
+/* 5. Títulos e cards de conteúdo */
+.pagina-sobre .titulo-secao {
+  max-width: 52rem;
+  margin: 0 auto 2.5rem;
 }
 
-.destaque:hover {
-  transform: translateY(-5px);
+.pagina-sobre .titulo-secao h2 {
+  margin: 0 0 0.75rem;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  line-height: 1.2;
+  text-align: center;
 }
 
-.destaque i {
-  font-size: 26px;
-  color: var(--azul);
-  margin-top: 2px;
-}
+.pagina-sobre .titulo-secao p { margin: 0; text-align: left; }
 
-.destaque:nth-child(2) i {
-  color: var(--verde);
-}
-
-.destaque h4 {
-  font-size: 20px;
-  color: var(--titulo);
-  margin-bottom: 6px;
-  font-weight: 700;
-}
-
-.destaque span {
-  font-size: 16px;
-  color: var(--texto);
+.pagina-sobre .subtitulo {
   display: block;
-  line-height: 1.5;
+  margin-bottom: 0.65rem;
+  color: var(--accent);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-align: center;
+  text-transform: uppercase;
 }
 
-/* =====================================
-   POR QUE CRIAMOS
-===================================== */
-
-.projeto {
-  padding: 80px 8%;
+.pagina-sobre :is(.valores-cards, .impacto-cards) {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+  max-width: 93.75rem;
+  margin: 0 auto;
 }
 
-.projeto-container {
-  display: flex;
+.pagina-sobre :is(.valor-card, .impacto-card) {
+  min-width: 0;
+  padding: clamp(1.4rem, 2.5vw, 2rem);
+  border: 1px solid var(--border);
+  border-top: 0.3rem solid var(--primary);
+  border-radius: 1rem;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.pagina-sobre :is(.valor-card, .impacto-card):nth-child(2) { border-top-color: var(--accent); }
+.pagina-sobre :is(.valor-card, .impacto-card) i { color: var(--primary); font-size: 2rem; }
+.pagina-sobre :is(.valor-card, .impacto-card):nth-child(2) i { color: var(--accent); }
+.pagina-sobre :is(.valor-card, .impacto-card) h3 { margin: 1rem 0 0.5rem; font-size: 1.3rem; }
+.pagina-sobre :is(.valor-card, .impacto-card) p { margin: 0; text-align: left; }
+
+/* 6. ODS */
+.pagina-sobre .ods {
+  background: color-mix(in srgb, var(--surface) 62%, var(--bg));
+}
+
+.pagina-sobre .ods-container {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: space-between;
-  gap: 70px;
+  gap: clamp(2rem, 5vw, 5rem);
+  max-width: 93.75rem;
+  margin: 0 auto;
 }
 
-.projeto-texto {
-  flex: 1;
+.pagina-sobre .ods-texto { max-width: 70ch; }
+.pagina-sobre .ods-texto .subtitulo { text-align: left; }
+.pagina-sobre .ods-texto h2 { margin: 0 0 1rem; font-size: clamp(2rem, 3.5vw, 3rem); line-height: 1.2; }
+.pagina-sobre .ods-texto p { margin: 0; text-align: left; }
+
+.pagina-sobre .ods-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(9rem, 12rem));
+  gap: 1rem;
 }
 
-.projeto-texto .subtitulo {
-  display: inline-block;
-  color: var(--verde);
-  font-weight: 600;
-  margin-bottom: 15px;
+.pagina-sobre .ods-card {
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: var(--surface);
+  text-align: center;
+  box-shadow: var(--shadow);
 }
 
-.projeto-texto h2 {
-  color: var(--titulo);
-  margin-bottom: 25px;
+.pagina-sobre .ods-card img { width: 100%; aspect-ratio: 1; border-radius: 0.65rem; object-fit: cover; }
+.pagina-sobre .ods-card h3 { margin: 0.85rem 0 0.2rem; font-size: 1.1rem; }
+.pagina-sobre .ods-card p { margin: 0; font-size: 0.9rem; line-height: 1.45; text-align: center; }
+
+/* 7. Equipe */
+.pagina-sobre .integrantes {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+  max-width: 93.75rem;
+  margin: 0 auto;
 }
 
-.projeto-texto p {
-  font-size: 20px;
-  color: var(--texto);
-  line-height: 1.8;
-  margin-bottom: 20px;
+.pagina-sobre .membro {
+  min-width: 0;
+  padding: 1rem 1rem 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: var(--surface);
+  box-shadow: var(--shadow);
 }
 
-.projeto-imagem {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-}
-
-.projeto-imagem img {
+.pagina-sobre .membro img {
   width: 100%;
-  max-width: 500px;
-  border-radius: 30px;
-  box-shadow: var(--sombra);
-  transition: 0.4s;
-}
-
-.projeto-imagem img:hover {
-  transform: scale(1.03);
-}
-
-/* =====================================
-   NOSSOS VALORES
-===================================== */
-
-.valores {
-  padding: 80px 8%;
-  text-align: center;
-}
-
-.titulo-secao {
-  max-width: 750px;
-  margin: 0 auto 60px;
-}
-
-.subtitulo {
-  display: inline-block;
-  color: var(--verde);
-  font-weight: 600;
-  font-size: 18px;
-  margin-bottom: 15px;
-}
-
-.titulo-secao h2 {
-  color: var(--titulo);
-  margin-bottom: 20px;
-}
-
-.titulo-secao p {
-  font-size: 20px;
-  color: var(--texto);
-  line-height: 1.8;
-}
-
-.valores-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 30px;
-}
-
-.valor-card {
-  background: white;
-  padding: 40px 30px;
-  border-radius: 25px;
-  box-shadow: var(--sombra);
-  transition: 0.35s;
-}
-
-.valor-card:hover {
-  transform: translateY(-10px);
-}
-
-.valor-card i {
-  font-size: 52px;
-  color: var(--azul);
-  margin-bottom: 25px;
-}
-
-.valor-card h3 {
-  margin-bottom: 20px;
-  color: var(--titulo);
-}
-
-.valor-card p {
-  color: var(--texto);
-  line-height: 1.7;
-}
-
-.valores {
-  padding: 90px 8%;
-  background: #f8fbfc;
-}
-
-.valores-cards {
-  margin-top: 60px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
-}
-
-.valor-card {
-  background: white;
-  padding: 40px 30px;
-  border-radius: 25px;
-  box-shadow: var(--sombra);
-  text-align: center;
-  transition: 0.35s;
-}
-
-.valor-card:hover {
-  transform: translateY(-10px);
-}
-
-.valor-card i {
-  font-size: 42px;
-  color: var(--verde);
-  margin-bottom: 20px;
-}
-
-.valor-card h3 {
-  color: var(--titulo);
-  margin-bottom: 18px;
-}
-
-.valor-card p {
-  color: var(--texto);
-  line-height: 1.8;
-}
-
-/* =====================================
-   ODS
-===================================== */
-
-.ods {
-  padding: 90px 8%;
-}
-
-.ods-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 80px;
-}
-
-.ods-texto {
-  flex: 1;
-}
-
-.ods-texto h2 {
-  color: var(--titulo);
-  margin-bottom: 20px;
-}
-
-.ods-texto p {
-  font-size: 20px;
-  color: var(--texto);
-  line-height: 1.8;
-  margin-bottom: 35px;
-}
-
-.ods-cards {
-  display: flex;
-  gap: 25px;
-  flex-wrap: wrap;
-}
-
-.ods-card {
-  background: white;
-  width: 220px;
-  padding: 30px;
-  text-align: center;
-  border-radius: 25px;
-  box-shadow: var(--sombra);
-  transition: 0.35s;
-}
-
-.ods-card:first-child {
-  border-top: 6px solid #c5192d;
-}
-
-.ods-card:last-child {
-  border-top: 6px solid #fd9d24;
-}
-
-.ods-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.12);
-}
-
-.ods-card img {
-  width: 110px;
-  margin-bottom: 20px;
-}
-
-.ods-card h3 {
-  color: var(--titulo);
-  margin-bottom: 10px;
-}
-
-.ods-card p {
-  font-size: 16px;
-  color: var(--texto);
-  line-height: 1.6;
-}
-
-.ods-ilustracao {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-}
-
-.ods-ilustracao img {
-  width: 100%;
-  max-width: 420px;
-}
-
-/* =====================================
-   EQUIPE
-===================================== */
-
-.equipe {
-  padding: 90px 8%;
-  text-align: center;
-}
-
-.integrantes {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 35px;
-  margin-top: 60px;
-}
-
-.membro {
-  background: white;
-  padding: 35px 25px;
-  border-radius: 25px;
-  box-shadow: var(--sombra);
-  transition: 0.35s;
-}
-
-.membro:hover {
-  transform: translateY(-10px);
-}
-
-.membro img {
-  width: 170px;
-  height: 170px;
-  border-radius: 50%;
+  aspect-ratio: 4 / 3;
+  border-radius: 0.75rem;
   object-fit: cover;
-  border: 5px solid var(--verde);
-  margin-bottom: 25px;
 }
 
-.membro h3 {
-  color: var(--titulo);
-  margin-bottom: 10px;
+.pagina-sobre .membro h3 { margin: 1rem 0 0.2rem; font-size: 1.25rem; }
+.pagina-sobre .membro .cargo { display: block; min-height: 2.8em; color: var(--accent); font-size: 0.95rem; font-weight: 700; line-height: 1.4; }
+.pagina-sobre .membro p { margin: 0.75rem 0 0; font-size: 0.98rem; text-align: left; }
+
+/* 8. Responsividade */
+@media (max-width: 1000px) {
+  .pagina-sobre .hero,
+  .pagina-sobre .historia-container { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; }
+  .pagina-sobre .hero-texto h1 { font-size: clamp(2.5rem, 7vw, 4rem); }
+  .pagina-sobre :is(.valores-cards, .impacto-cards) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pagina-sobre :is(.valor-card, .impacto-card):last-child { grid-column: 1 / -1; }
+  .pagina-sobre .ods-container { grid-template-columns: minmax(0, 1fr); }
+  .pagina-sobre .ods-cards { grid-template-columns: repeat(2, minmax(9rem, 1fr)); max-width: 30rem; }
+  .pagina-sobre .integrantes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
-.membro .cargo {
-  display: inline-block;
-  color: var(--azul);
-  font-weight: 600;
-  margin-bottom: 18px;
+@media (max-width: 767px) {
+  .pagina-sobre :where(section) { padding: 3.25rem 1rem; }
+  .pagina-sobre .hero,
+  .pagina-sobre .historia-container { grid-template-columns: minmax(0, 1fr); }
+  .pagina-sobre .hero { padding-block: 3.5rem; }
+  .pagina-sobre .hero-texto h1 { max-width: none; font-size: clamp(2.35rem, 11vw, 3.4rem); text-align: center; }
+  .pagina-sobre .hero-texto h1 br { display: none; }
+  .pagina-sobre .hero-texto p { text-align: left; }
+  .pagina-sobre .hero .btn-principal { width: 100%; }
+  .pagina-sobre .hero-img { order: -1; }
+  .pagina-sobre .hero-img img { aspect-ratio: 16 / 10; }
+  .pagina-sobre .missao-card { grid-template-columns: minmax(0, 1fr); }
+  .pagina-sobre .missao-icone { margin-inline: auto; }
+  .pagina-sobre .missao-texto h2 { text-align: center; }
+  .pagina-sobre .historia-imagem img { aspect-ratio: 16 / 11; max-height: 28rem; }
+  .pagina-sobre .historia-destaques,
+  .pagina-sobre :is(.valores-cards, .impacto-cards),
+  .pagina-sobre .integrantes { grid-template-columns: minmax(0, 1fr); }
+  .pagina-sobre :is(.valor-card, .impacto-card):last-child { grid-column: auto; }
+  .pagina-sobre .membro .cargo { min-height: 0; }
 }
 
-.membro p {
-  color: var(--texto);
-  line-height: 1.7;
-}
-
-/* =====================================
-   NOSSO IMPACTO
-===================================== */
-
-.impacto {
-  padding: 90px 8%;
-  background: #f8fbfc;
-}
-
-.impacto-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
-  margin-top: 60px;
-}
-
-.impacto-card {
-  background: white;
-  padding: 40px 30px;
-  border-radius: 25px;
-  text-align: center;
-  box-shadow: var(--sombra);
-  transition: 0.35s;
-}
-
-.impacto-card:hover {
-  transform: translateY(-10px);
-}
-
-.impacto-card i {
-  font-size: 52px;
-  color: var(--verde);
-  margin-bottom: 25px;
-}
-
-.impacto-card h3 {
-  color: var(--titulo);
-  margin-bottom: 15px;
-}
-
-.impacto-card p {
-  color: var(--texto);
-  line-height: 1.8;
-}
-
-/* =========================
-CTA
-========================= */
-
-.cta {
-  margin: 100px 8%;
-  padding: 60px;
-  border-radius: 30px;
-
-  background: linear-gradient(90deg, var(--azul), var(--verde));
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  color: white;
-}
-
-.cta h2 {
-  margin-bottom: 15px;
-  color: white;
-}
-
-.cta p {
-  font-size: 20px;
-}
-
-.cta button {
-  background: white;
-  color: var(--azul);
-}
-
-.valor-card,
-.membro,
-.impacto-card {
-  position: relative;
-  overflow: hidden;
-}
-
-.valor-card::before,
-.membro::before,
-.impacto-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 6px;
-  background: linear-gradient(90deg, var(--azul), var(--verde));
-}
-
-/* ========================================
-   RESPONSIVIDADE - CELULAR
-======================================== */
-
-@media (max-width: 768px) {
-  /* ===== HERO ===== */
-
-  .hero {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-
-    gap: 45px;
-    padding: 70px 6%;
-    min-height: auto;
-  }
-
-  .hero-texto {
-    width: 100%;
-    order: 1;
-  }
-
-  .hero-texto h1 {
-    font-size: 42px;
-    line-height: 1.2;
-    margin-bottom: 25px;
-  }
-
-  .hero-texto p {
-    font-size: 18px;
-    line-height: 1.8;
-    margin-bottom: 35px;
-  }
-
-  .hero-texto .btn-principal {
-    width: 100%;
-    max-width: 290px;
-    margin: auto;
-  }
-
-  .hero-imagem {
-    order: 2;
-    margin-top: 20px;
-  }
-
-  .hero-imagem img {
-    width: 100%;
-    max-width: 340px;
-    display: block;
-    margin: auto;
-  }
-
-  /* ========================================
-    NOSSA MISSÃO - MOBILE
-    ======================================== */
-
-  .missao {
-    width: 100%;
-    padding: 0 6%;
-    margin: 60px 0;
-  }
-
-  .missao-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-
-    padding: 35px 25px;
-    gap: 25px;
-
-    border-radius: 24px;
-  }
-
-  .missao-icone img {
-    width: 100px;
-    height: auto;
-  }
-
-  .missao-texto {
-    width: 100%;
-  }
-
-  .missao-texto h2 {
-    font-size: 32px;
-    margin-bottom: 18px;
-  }
-
-  .missao-texto p {
-    font-size: 18px;
-    line-height: 1.8;
-  }
-
-  /* ========================================
-    NOSSA HISTÓRIA - MOBILE
-    ======================================== */
-
-  .historia {
-    padding: 60px 6%;
-  }
-
-  .historia-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .historia-imagem {
-    width: 100%;
-    margin: 0 0 35px;
-    float: none;
-  }
-
-  .historia-imagem img {
-    width: 100%;
-    max-width: 340px;
-    display: block;
-    margin: auto;
-    border-radius: 22px;
-  }
-
-  .historia-texto {
-    width: 100%;
-    text-align: center;
-  }
-
-  .historia-texto .titulo-secao {
-    justify-content: center;
-  }
-
-  .historia-texto h2 {
-    font-size: 34px;
-  }
-
-  .historia-texto p {
-    font-size: 18px;
-    line-height: 1.8;
-  }
-
-  .linha {
-    margin: 20px auto 30px;
-  }
-
-  .historia-destaques {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-
-    margin-top: 35px;
-
-    clear: none;
-  }
-
-  .destaque {
-    width: 100%;
-    padding: 22px;
-  }
-
-  /* ========================================
-    NOSSOS VALORES - MOBILE
-    ======================================== */
-
-  .valores {
-    padding: 60px 6%;
-  }
-
-  .valores h2 {
-    font-size: 34px;
-  }
-
-  .valores-subtitulo {
-    font-size: 18px;
-    line-height: 1.7;
-    margin-bottom: 40px;
-  }
-
-  .valores-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .valor-card {
-    width: 100%;
-    padding: 30px 25px;
-  }
-
-  .valor-card i {
-    font-size: 34px;
-  }
-
-  .valor-card h3 {
-    font-size: 24px;
-    margin: 18px 0 12px;
-  }
-
-  .valor-card p {
-    font-size: 17px;
-    line-height: 1.8;
-  }
-
-  /* ========================================
-    ODS - MOBILE
-    ======================================== */
-
-  .ods {
-    padding: 60px 6%;
-  }
-
-  .ods-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 40px;
-  }
-
-  .ods-texto {
-    width: 100%;
-  }
-
-  .ods-texto h2 {
-    font-size: 34px;
-  }
-
-  .ods-texto p {
-    font-size: 18px;
-    line-height: 1.8;
-  }
-
-  .ods-cards {
-    width: 100%;
-
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-
-    gap: 20px;
-  }
-
-  .ods-card {
-    flex: 1;
-    max-width: 180px;
-
-    padding: 25px 20px;
-  }
-
-  .ods-card img {
-    width: 90px;
-    margin-bottom: 15px;
-  }
-
-  .ods-card h3 {
-    font-size: 22px;
-  }
-
-  .ods-card p {
-    font-size: 16px;
-  }
-
-  /* ========================================
-    EQUIPE - MOBILE
-    ======================================== */
-
-  .equipe {
-    padding: 60px 6%;
-  }
-
-  .equipe .titulo-secao {
-    text-align: center;
-    margin-bottom: 45px;
-  }
-
-  .equipe .titulo-secao h2 {
-    font-size: 34px;
-  }
-
-  .equipe .titulo-secao p {
-    font-size: 18px;
-    line-height: 1.8;
-    max-width: 600px;
-    margin: 20px auto 0;
-  }
-
-  .integrantes {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-  }
-
-  .membro {
-    width: 100%;
-    max-width: 360px;
-  }
-
-  .membro img {
-    width: 160px;
-    height: 160px;
-  }
-
-  .membro h3 {
-    font-size: 26px;
-  }
-
-  .cargo {
-    font-size: 17px;
-  }
-
-  .membro p {
-    font-size: 17px;
-    line-height: 1.7;
-  }
-
-  /* ========================================
-    NOSSO IMPACTO - MOBILE
-    ======================================== */
-
-  .impacto {
-    padding: 60px 6%;
-  }
-
-  .impacto .titulo-secao {
-    text-align: center;
-    margin-bottom: 45px;
-  }
-
-  .impacto .titulo-secao h2 {
-    font-size: 34px;
-  }
-
-  .impacto .titulo-secao p {
-    font-size: 18px;
-    line-height: 1.8;
-    max-width: 600px;
-    margin: 20px auto 0;
-  }
-
-  .impacto-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-  }
-
-  .impacto-card {
-    width: 100%;
-    padding: 30px 25px;
-  }
-
-  .impacto-card i {
-    font-size: 42px;
-    margin-bottom: 18px;
-  }
-
-  .impacto-card h3 {
-    font-size: 24px;
-    margin-bottom: 12px;
-  }
-
-  .impacto-card p {
-    font-size: 17px;
-    line-height: 1.8;
-  }
-
-  /* ========================================
-    CTA - MOBILE
-    ======================================== */
-
-  .cta {
-    padding: 60px 6%;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    text-align: center;
-    gap: 35px;
-  }
-
-  .cta h2 {
-    font-size: 34px;
-    line-height: 1.3;
-    margin-bottom: 18px;
-  }
-
-  .cta p {
-    font-size: 18px;
-    line-height: 1.8;
-    max-width: 500px;
-    margin: 0 auto;
-  }
-
-  .cta .btn-principal {
-    width: 100%;
-    max-width: 320px;
-    padding: 18px 30px;
-    font-size: 18px;
-  }
+@media (max-width: 420px) {
+  .pagina-sobre .ods-cards { grid-template-columns: minmax(0, 1fr); max-width: 15rem; }
+  .pagina-sobre .missao-card,
+  .pagina-sobre :is(.valor-card, .impacto-card) { padding: 1.25rem; }
 }

@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Painel Administrativo | TechSênior</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="Estilos - CSS/Padrão.css" />
+    <link rel="stylesheet" href="Estilos - CSS/Admin.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <script type="importmap">
+      {
+        "imports": {
+          "firebase/data-connect": "https://www.gstatic.com/firebasejs/12.17.1/firebase-data-connect.js"
+        }
+      }
+    </script>
+  </head>
+
+  <body class="admin-page nav-v2">
+    <header>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menu" aria-controls="sidebar" aria-expanded="false">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+      </button>
+      <div class="logo">
+        <img src="Imagens/Logo-TechSenior-Light.svg" data-logo-tema alt="TechSênior" />
+      </div>
+      <nav aria-label="Navegação principal">
+        <a href="index.html">Início</a>
+        <a href="Cursos.html">Cursos</a>
+        <a href="ContatoSuporte.html">Contato e Suporte</a>
+        <a href="Sobre Nós.html">Sobre Nós</a>
+        <a href="Admin.html" aria-current="page">Administração</a>
+      </nav>
+      <a class="btn-login" id="btnUsuario" href="Login.html">
+        <i class="fa-regular fa-user" aria-hidden="true"></i>
+        Entrar
+      </a>
+    </header>
+
+    <div class="sidebar" id="sidebar">
+      <button class="close-menu" id="closeMenu" type="button" aria-label="Fechar painel">
+        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+      </button>
+      <div class="drawer-usuario" id="drawerUsuario"></div>
+      <nav class="sidebar-nav" aria-label="Navegação do painel">
+        <a href="index.html">Início</a>
+        <a href="Cursos.html">Cursos</a>
+        <a href="ContatoSuporte.html">Contato e Suporte</a>
+        <a href="Sobre Nós.html">Sobre Nós</a>
+        <a href="Admin.html" aria-current="page">Administração</a>
+      </nav>
+      <div class="drawer-secao" id="drawerPreferencias"></div>
+      <div class="drawer-secao" id="drawerAdmin" hidden></div>
+      <div class="drawer-secao drawer-conta" id="drawerConta"></div>
+    </div>
+    <div class="overlay" id="overlay"></div>
+
+    <aside class="menu-admin">
+      <div class="admin-brand">
+        <i class="fa-solid fa-shield-halved"></i>
+
+        <div>
+          <strong>TechSênior</strong>
+          <span>Painel Admin</span>
+        </div>
+      </div>
+
+      <nav>
+        <a href="Admin.html" class="menu-item ativo">
+          <i class="fa-solid fa-book"></i>
+          Cursos
+        </a>
+
+        <a href="#suporteAdmin" class="menu-item">Solicitações de suporte</a>
+        <a href="index.html" class="menu-item">
+          <i class="fa-solid fa-house"></i>
+          Voltar ao site
+        </a>
+      </nav>
+    </aside>
+
+    <main class="conteudo-admin">
+      <header class="cabecalho-admin cabecalho-admin-principal">
+        <div>
+          <p class="subtitulo-admin">PAINEL ADMINISTRATIVO</p>
+          <h1>Gerenciar cursos</h1>
+          <p class="descricao-pagina">
+            Cadastre, edite e organize os cursos disponíveis na plataforma.
+          </p>
+        </div>
+
+        <button id="btnNovoCurso" class="btn-novo" type="button">
+          <i class="fa-solid fa-plus"></i>
+          Novo curso
+        </button>
+      </header>
+
+      <section class="resumo-cursos">
+        <article class="resumo-card resumo-total">
+          <div class="resumo-icone">
+            <i class="fa-solid fa-book-open"></i>
+          </div>
+
+          <div>
+            <span>Total de cursos</span>
+            <strong id="totalCursos">0</strong>
+            <small>Cadastrados na plataforma</small>
+          </div>
+        </article>
+
+        <article class="resumo-card resumo-publicados">
+          <div class="resumo-icone">
+            <i class="fa-solid fa-circle-check"></i>
+          </div>
+
+          <div>
+            <span>Publicados</span>
+            <strong id="totalPublicados">0</strong>
+            <small>Visíveis para os alunos</small>
+          </div>
+        </article>
+
+        <article class="resumo-card resumo-rascunhos">
+          <div class="resumo-icone">
+            <i class="fa-solid fa-file-lines"></i>
+          </div>
+
+          <div>
+            <span>Rascunhos</span>
+            <strong id="totalRascunhos">0</strong>
+            <small>Em preparação</small>
+          </div>
+        </article>
+
+        <article class="resumo-card resumo-desativados">
+          <div class="resumo-icone">
+            <i class="fa-solid fa-circle-minus"></i>
+          </div>
+
+          <div>
+            <span>Desativados</span>
+            <strong id="totalDesativados">0</strong>
+            <small>Ocultos da plataforma</small>
+          </div>
+        </article>
+      </section>
+
+      <section class="secao-cursos">
+        <div class="titulo-secao">
+          <div>
+            <span class="etiqueta-secao"> CONTEÚDO </span>
+
+            <h2>Cursos cadastrados</h2>
+
+            <p>Gerencie os cursos e acesse seus módulos.</p>
+          </div>
+        </div>
+
+        <div id="estadoCarregamento" class="mensagem">Carregando cursos...</div>
+
+        <div id="listaCursosAdmin" class="lista-cursos" hidden></div>
+      </section>
+      <section id="suporteAdmin" hidden aria-labelledby="tituloSuporteAdmin">
+        <div class="titulo-secao titulo-secao-com-acao">
+          <div>
+            <span class="etiqueta-secao">ATENDIMENTO</span>
+            <h2 id="tituloSuporteAdmin">Solicitações de suporte</h2>
+            <p>Acompanhe e atualize os pedidos enviados pelos usuários.</p>
+          </div>
+          <button type="button" id="atualizarSuporte" class="btn-cancelar">
+            <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+            Atualizar solicitações
+          </button>
+        </div>
+        <p id="estadoSuporte" class="mensagem" role="status"></p>
+        <div id="listaSuporte"></div>
+      </section>
+    </main>
+
+    <div id="modalNovoCurso" class="modal" hidden>
+      <div class="modal-conteudo">
+        <div class="modal-cabecalho">
+          <div>
+            <p class="subtitulo">Novo curso</p>
+            <h2 id="tituloModalCurso">Criar curso</h2>
+          </div>
+
+          <button
+            id="btnFecharModal"
+            class="btn-fechar"
+            type="button"
+            aria-label="Fechar"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <form id="formNovoCurso">
+          <div class="campo">
+            <label for="nomeCurso"> Nome do curso </label>
+
+            <input
+              id="nomeCurso"
+              type="text"
+              required
+              minlength="3"
+              maxlength="70"
+              placeholder="Ex.: Segurança Digital"
+            />
+
+            <small class="ajuda-campo"> Entre 3 e 70 caracteres. </small>
+          </div>
+
+          <div class="campo campo-descricao">
+            <label for="descricaoCurso"> Descrição do curso </label>
+
+            <textarea
+              id="descricaoCurso"
+              rows="3"
+              minlength="30"
+              maxlength="500"
+              aria-describedby="ajudaDescricao erroDescricao"
+            ></textarea>
+
+            <div class="rodape-campo">
+              <small id="ajudaDescricao" class="ajuda-campo">
+                Explique de forma breve o que será aprendido no curso.
+              </small>
+
+              <small id="contadorDescricao" class="contador-caracteres">
+                0 / 500
+              </small>
+            </div>
+
+            <small id="erroDescricao" class="erro-campo" hidden>
+              Escreva pelo menos 30 caracteres ou deixe a descrição vazia.
+            </small>
+          </div>
+
+          <div class="linha-campos">
+            <div class="campo">
+              <label for="dificuldadeCurso"> Dificuldade </label>
+
+              <select id="dificuldadeCurso" required>
+                <option value="" selected disabled>Selecione</option>
+
+                <option value="Iniciante">Iniciante</option>
+                <option value="Intermediário">Intermediário</option>
+                <option value="Avançado">Avançado</option>
+              </select>
+            </div>
+
+            <div class="campo">
+              <label for="cargaHorariaCurso"> Duração estimada </label>
+
+              <select id="cargaHorariaCurso" required>
+                <option value="" selected disabled>Selecione</option>
+
+                <option value="15">15 minutos</option>
+                <option value="30">30 minutos</option>
+                <option value="45">45 minutos</option>
+                <option value="60">1 hora</option>
+                <option value="90">1h30</option>
+                <option value="120">2 horas</option>
+                <option value="personalizada">Personalizada...</option>
+              </select>
+
+              <small class="ajuda-campo">
+                Escolha uma duração aproximada do curso.
+              </small>
+
+              <div
+                id="duracaoPersonalizada"
+                class="duracao-personalizada"
+                hidden
+              >
+                <div class="campo">
+                  <label for="duracaoHoras"> Horas </label>
+
+                  <input
+                    id="duracaoHoras"
+                    type="number"
+                    min="0"
+                    max="24"
+                    value="0"
+                  />
+                </div>
+
+                <div class="campo">
+                  <label for="duracaoMinutos"> Minutos </label>
+
+                  <input
+                    id="duracaoMinutos"
+                    type="number"
+                    min="0"
+                    max="59"
+                    step="5"
+                    value="0"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="campo">
+            <label for="iconeCurso"> Ícone do curso </label>
+
+            <select id="iconeCurso">
+              <option value="fa-solid fa-book">📘 Curso geral</option>
+
+              <option value="fa-solid fa-mobile-screen">📱 Celular</option>
+
+              <option value="fa-solid fa-globe">🌐 Internet</option>
+
+              <option value="fa-solid fa-users">👥 Redes sociais</option>
+
+              <option value="fa-solid fa-envelope">✉️ E-mail</option>
+
+              <option value="fa-solid fa-cart-shopping">🛒 Compras</option>
+
+              <option value="fa-solid fa-shield-halved">
+                🛡️ Segurança digital
+              </option>
+
+              <option value="fa-solid fa-map-location-dot">
+                🗺️ Mapas e transporte
+              </option>
+
+              <option value="fa-solid fa-comments">💬 Comunicação</option>
+
+              <option value="fa-solid fa-graduation-cap">🎓 Aprendizado</option>
+            </select>
+          </div>
+
+          <div id="campoStatusCurso" class="campo" hidden>
+            <label for="statusCurso"> Status do curso </label>
+
+            <select id="statusCurso">
+              <option value="rascunho">Rascunho</option>
+
+              <option value="publicado">Publicado</option>
+
+              <option value="desativado">Desativado</option>
+            </select>
+
+            <small class="ajuda-campo">
+              Cursos publicados ficam visíveis para os alunos.
+            </small>
+          </div>
+
+          <p class="aviso-rascunho">
+            O curso será criado como rascunho e não ficará visível para os
+            alunos até ser publicado.
+          </p>
+
+          <div class="acoes-formulario">
+            <button
+              id="btnExcluirCurso"
+              class="btn-excluir"
+              type="button"
+              hidden
+            >
+              <i class="fa-solid fa-trash"></i>
+              Excluir curso
+            </button>
+
+            <div class="acoes-formulario-direita">
+              <button id="btnCancelarCurso" class="btn-cancelar" type="button">
+                Cancelar
+              </button>
+
+              <button id="btnSalvarCurso" class="btn-novo" type="submit">
+                <i class="fa-solid fa-floppy-disk"></i>
+                Criar curso
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <footer>
+      <div class="coluna">
+        <h3>TechSênior</h3>
+        <p>Tecnologia ao seu alcance.</p>
+        <div class="footer-linha logo">
+          <div class="logo-footer">
+            <img src="Imagens/Logo-TechSenior-Light.svg" data-logo-tema alt="TechSênior" />
+          </div>
+        </div>
+      </div>
+      <div class="coluna">
+        <h4>Navegação</h4>
+        <a href="index.html">Início</a>
+        <a href="Cursos.html">Cursos</a>
+        <a href="ContatoSuporte.html">Contato e Suporte</a>
+        <a href="Sobre Nós.html">Sobre Nós</a>
+      </div>
+      <div class="coluna">
+        <h4>Institucional</h4>
+        <a href="Termos de Uso.html">Termos de Uso</a>
+        <a href="Política de Privacidade.html">Política de Privacidade</a>
+        <a href="Declaração de Acessibilidade.html">Declaração de Acessibilidade</a>
+      </div>
+      <div class="coluna">
+        <h4>Contato e Suporte</h4>
+        <a href="Regras da Comunidade.html">Regras da Comunidade</a>
+        <a href="ContatoSuporte.html">Fale Conosco</a>
+        <div class="footer-linha redes">
+          <div class="coluna">
+            <h4>Redes Sociais</h4>
+            <a href="https://www.instagram.com/techsenior_tcc/" target="_blank" rel="noopener noreferrer">
+              <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+              Instagram
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <div class="copyright">
+      © 2026 TechSênior • Projeto desenvolvido para o Trabalho de Conclusão de Curso (TCC) do Curso Técnico em Desenvolvimento de Sistemas.<br />
+      Desenvolvido pela equipe TechSênior.
+    </div>
+
+    <nav class="bottom-nav" aria-label="Navegação principal">
+      <a href="index.html"><i class="fa-solid fa-house" aria-hidden="true"></i><span>Início</span></a>
+      <a href="Cursos.html"><i class="fa-solid fa-book-open" aria-hidden="true"></i><span>Cursos</span></a>
+      <a href="ContatoSuporte.html"><i class="fa-solid fa-headset" aria-hidden="true"></i><span>Suporte</span></a>
+      <button type="button" id="abrirContaMobile" aria-controls="sidebar" aria-expanded="false">
+        <i class="fa-solid fa-user" aria-hidden="true"></i><span>Perfil</span>
+      </button>
+    </nav>
+
+    <script type="module" src="Script - Java/Padrão.js"></script>
+    <script type="module" src="Script - Java/Admin.js"></script>
+    <script type="module" src="Script - Java/AdminSuporte.js"></script>
+  </body>
+</html>

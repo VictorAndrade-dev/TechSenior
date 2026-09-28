@@ -124,3 +124,13 @@ type Certificado @table(key: ["usuario", "curso"]) {
   dataEmissao: Timestamp @default(expr: "request.time")
   hashVerificacao: String!
 }
+
+
+type SolicitacaoSuporte @table {
+  usuario: Usuario!
+  assunto: String!
+  mensagem: String!
+  status: String! @default(value: "Nova")
+  criadoEm: Timestamp! @default(expr: "request.time")
+  atualizadoEm: Timestamp! @default(expr: "request.time")
+}

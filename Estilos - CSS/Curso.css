@@ -209,7 +209,7 @@ body:has(.pagina-curso) > header .btn-login {
   transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
-.modulo:hover:not(:disabled) { border-color: #9eb8dd; background: #f8fbff; }
+.modulo:hover:not(:disabled) { border-color: #9eb8dd; background: var(--curso-azul-claro); }
 
 .modulo.ativo {
   border-color: var(--curso-azul);
@@ -217,11 +217,11 @@ body:has(.pagina-curso) > header .btn-login {
   box-shadow: inset 0.25rem 0 var(--curso-azul);
 }
 
-.modulo:has(> i.fa-check) { border-color: #b8d8cc; background: #f5fbf8; }
+.modulo:has(> i.fa-check) { border-color: #b8d8cc; background: var(--curso-verde-claro); }
 
 .modulo.bloqueado {
   border-style: dashed;
-  background: #f4f6f8;
+  background: var(--curso-azul-claro);
   color: #586571;
   cursor: not-allowed;
 }
@@ -234,7 +234,7 @@ body:has(.pagina-curso) > header .btn-login {
   place-items: center;
   border: 0.0625rem solid #ccd6df;
   border-radius: 50%;
-  background: #eef2f5;
+  background: var(--curso-azul-claro);
   color: #384957;
   font-size: 0.95rem;
   font-weight: 700;
@@ -273,12 +273,12 @@ body:has(.pagina-curso) > header .btn-login {
   padding: 0.875rem;
   border: 0.0625rem solid #cbdcf1;
   border-radius: 0.875rem;
-  background: #f2f7fd;
+  background: var(--curso-azul-claro);
   color: var(--curso-texto);
   text-decoration: none;
 }
 
-.card-ajuda:hover { border-color: #9db9df; background: #eaf3ff; }
+.card-ajuda:hover { border-color: #9db9df; background: var(--curso-azul-claro); }
 .icone-ajuda { display: grid; flex: 0 0 2.625rem; width: 2.625rem; height: 2.625rem; place-items: center; border-radius: 50%; background: var(--curso-azul); color: var(--curso-branco); font-size: 1.1rem; }
 .texto-ajuda { display: flex; flex: 1; min-width: 0; flex-direction: column; }
 .texto-ajuda strong { color: var(--curso-azul-escuro); font-size: 1rem; line-height: 1.4; }
@@ -333,7 +333,7 @@ body:has(.pagina-curso) > header .btn-login {
 
 /* 7. Mídia */
 .imagem-aula,
-.video-aula { display: flex; width: 100%; max-width: 52rem; justify-content: center; margin: 1.25rem 0 0; overflow: hidden; border-radius: 0.875rem; background: #eef2f5; }
+.video-aula { display: flex; width: 100%; max-width: 52rem; justify-content: center; margin: 1.25rem 0 0; overflow: hidden; border-radius: 0.875rem; background: var(--curso-azul-claro); }
 
 .imagem-aula img,
 .video-aula video,
@@ -364,7 +364,7 @@ body:has(.pagina-curso) > header .btn-login {
 .dica-aula strong { color: var(--curso-verde); }
 
 /* 9. Quiz do módulo */
-.quiz-modulo { width: 100%; margin-top: 1.75rem; padding: clamp(1.25rem, 2.5vw, 2rem); border: 0.0625rem solid #c8d9ef; border-radius: 1rem; background: #f8fbff; }
+.quiz-modulo { width: 100%; margin-top: 1.75rem; padding: clamp(1.25rem, 2.5vw, 2rem); border: 0.0625rem solid #c8d9ef; border-radius: 1rem; background: var(--curso-azul-claro); }
 .quiz-modulo[hidden],
 .quiz-feedback[hidden],
 .btn-proxima-questao[hidden] { display: none; }
@@ -397,7 +397,7 @@ body:has(.pagina-curso) > header .btn-login {
 
 .opcao-quiz:hover:not(:disabled) { border-color: var(--curso-azul); background: var(--curso-azul-claro); }
 .opcao-quiz:disabled { cursor: default; }
-.letra-alternativa { display: grid; flex: 0 0 2.25rem; width: 2.25rem; height: 2.25rem; place-items: center; border: 0.0625rem solid #b7c5d1; border-radius: 50%; background: #edf1f4; color: #334552; font-weight: 700; }
+.letra-alternativa { display: grid; flex: 0 0 2.25rem; width: 2.25rem; height: 2.25rem; place-items: center; border: 0.0625rem solid #b7c5d1; border-radius: 50%; background: var(--curso-azul-claro); color: var(--curso-texto); font-weight: 700; }
 
 .opcao-quiz.selecionada { border-color: var(--curso-azul); background: var(--curso-azul-claro); box-shadow: inset 0.25rem 0 var(--curso-azul); }
 .opcao-quiz.selecionada .letra-alternativa { border-color: var(--curso-azul); background: var(--curso-azul); color: var(--curso-branco); }
@@ -457,16 +457,16 @@ body:has(.pagina-curso) > header .btn-login {
 .titulo-card i { flex: 0 0 auto; font-size: 1.15rem; }
 .titulo-card h2 { margin: 0; color: inherit; font-size: 1rem; font-weight: 700; line-height: 1.4; }
 .card-informacao p { margin: 0; color: var(--curso-texto-suave); font-size: 0.95rem; line-height: 1.7; overflow-wrap: anywhere; }
-.card-sobre { border-color: #c9d9ee; background: #f5f8fd; }
+.card-sobre { border-color: #c9d9ee; background: var(--curso-azul-claro); }
 .card-sobre .titulo-card,
 .card-lembrete .titulo-card { color: var(--curso-azul-escuro); }
-.card-dica { border-color: #c8dfd6; background: #f3faf7; }
+.card-dica { border-color: #c8dfd6; background: var(--curso-verde-claro); }
 .card-dica .titulo-card { color: var(--curso-verde); }
-.card-atencao { border-color: #ead7aa; background: #fffaf0; }
+.card-atencao { border-color: #ead7aa; background: var(--curso-amarelo-claro); }
 .card-atencao .titulo-card { color: var(--curso-amarelo); }
-.card-sabia { border-color: #d7d0e9; background: #f8f6fc; }
+.card-sabia { border-color: #d7d0e9; background: var(--curso-azul-claro); }
 .card-sabia .titulo-card { color: #53408c; }
-.card-lembrete { border-color: #ccd9e9; background: #f5f8fc; }
+.card-lembrete { border-color: #ccd9e9; background: var(--curso-azul-claro); }
 
 /* 13. Acessibilidade */
 @media (prefers-reduced-motion: reduce) {

@@ -458,7 +458,7 @@ a.btn-novo {
   padding-right: 11px;
 
   border: 1px solid #d0dbe1;
-  background: #ffffff;
+  background: var(--superficie);
   color: #526979;
 }
 
@@ -485,7 +485,7 @@ a.btn-novo {
   padding: 11px 18px;
 
   border: 1px solid #ccd4da;
-  background: #ffffff;
+  background: var(--superficie);
   color: #25313c;
 }
 
@@ -1278,7 +1278,7 @@ a.btn-novo {
   overflow: hidden;
 
   border-radius: 7px;
-  background: #ffffff;
+  background: var(--superficie);
 }
 
 .conteudo-admin-card .curso-icone {
@@ -1486,7 +1486,7 @@ a.btn-novo {
   border: 1px solid #cfdbe2;
   border-radius: 6px;
 
-  background: #ffffff;
+  background: var(--superficie);
   color: var(--admin-text);
 
   transition:
@@ -1745,7 +1745,7 @@ a.btn-novo {
   border: 2px solid #aebdc5;
   border-radius: 6px;
 
-  background: #ffffff;
+  background: var(--superficie);
   color: transparent;
 
   transition:
@@ -1992,7 +1992,7 @@ a.btn-novo {
 
   object-fit: contain;
 
-  background: #ffffff;
+  background: var(--superficie);
 }
 
 .preview-imagem-caixa video {
@@ -2059,7 +2059,7 @@ a.btn-novo {
   border: 1px solid #d8e4e8;
   border-radius: 9px;
 
-  background: #ffffff;
+  background: var(--superficie);
 
   box-shadow:
     0 8px 24px rgba(10, 41, 57, 0.05);
@@ -2864,3 +2864,7 @@ a.btn-novo {
     scroll-behavior: auto !important;
   }
 }
+/* O painel administrativo mantém seu espaçamento próprio ao reutilizar a acessibilidade. */
+.conteudo-admin > section { padding: 0; }
+.conteudo-admin > #suporteAdmin { padding: 2rem 0; }
+.cabecalho-admin { position: static; box-shadow: none; background: transparent; }

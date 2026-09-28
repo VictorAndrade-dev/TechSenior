@@ -115,7 +115,7 @@ html {
   margin-top: 25px;
   padding: 32px;
 
-  background-color: #ffffff;
+  background-color: var(--superficie);
 
   border: 1px solid #d5e1dd;
   border-radius: 16px;
@@ -215,7 +215,7 @@ html {
 
   padding: 16px 18px;
 
-  background-color: #ffffff;
+  background-color: var(--superficie);
 
   border: 2px solid #d0dbd7;
   border-radius: 11px;
@@ -343,7 +343,7 @@ html {
 /* SECUNDÁRIO */
 
 .pagina-teste .secundario {
-  background-color: #ffffff;
+  background-color: var(--superficie);
 
   border-color: #16866e;
 
@@ -475,9 +475,7 @@ body :focus-visible {
   trabalhados na revisão geral.
 */
 
-#painelAcessibilidade {
-  display: none !important;
-}
+
 
 
 /* ==========================================

@@ -132,6 +132,7 @@ function iniciarTentativa() {
 }
 
 function renderizarQuestao() {
+  document.dispatchEvent(new Event("techsenior:parar-leitura"));
   const questao = questoes[indiceQuestao];
   elementos.numeroQuestao.textContent = `Questão ${indiceQuestao + 1} de ${questoes.length}`;
   elementos.perguntaTeste.textContent = questao.pergunta;

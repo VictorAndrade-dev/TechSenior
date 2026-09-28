@@ -15,7 +15,7 @@
 
     margin: 0 auto;
 
-    background-color: #ffffff;
+    background-color: var(--superficie);
 
     border: 1px solid #e8edf3;
     border-radius: 16px;
@@ -53,7 +53,7 @@
     font-size: 16px;
     line-height: 1.6;
 
-    color: #666666;
+    color: var(--texto);
 }
 
 
@@ -78,7 +78,7 @@
     font-size: 16px;
     font-weight: 600;
 
-    color: #333333;
+    color: var(--texto-forte);
 }
 
 .campo input {
@@ -90,12 +90,12 @@
     border: 2px solid #e8edf3;
     border-radius: 8px;
 
-    background-color: #ffffff;
+    background-color: var(--superficie);
 
     font-family: "Poppins", sans-serif;
     font-size: 16px;
 
-    color: #333333;
+    color: var(--texto-forte);
 
     outline: none;
 
@@ -153,7 +153,7 @@
 .texto-senha p {
     font-size: 1rem;
 
-    color: #666666;
+    color: var(--texto);
 }
 
 
@@ -174,7 +174,7 @@
     border: 2px solid #2463eb;
     border-radius: 8px;
 
-    background-color: #ffffff;
+    background-color: var(--superficie);
 
     color: #2463eb;
 
@@ -268,9 +268,9 @@
     border: 2px solid #d8dee6;
     border-radius: 8px;
 
-    background-color: #ffffff;
+    background-color: var(--superficie);
 
-    color: #555555;
+    color: var(--texto);
 
     font-size: 16px;
     font-weight: 600;

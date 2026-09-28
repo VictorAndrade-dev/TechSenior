@@ -33,237 +33,288 @@
     />
   </head>
 
-  <body>
-    <!-- HEADER -->
-    <header>
-      <button class="menu-toggle" id="menuToggle">
-        <i class="fa-solid fa-bars"></i>
-      </button>
+  <!-- HEADER -->
+  <header>
+    <button
+      class="menu-toggle"
+      id="menuToggle"
+      type="button"
+      aria-label="Abrir menu"
+      aria-controls="sidebar"
+      aria-expanded="false"
+    >
+      <i class="fa-solid fa-bars" aria-hidden="true"></i>
+    </button>
 
-      <div class="logo">
-        <img src="Imagens/Logotipo Sem Fundo.png" alt="Logo TechSênior" />
-      </div>
+    <div class="logo">
+      <img
+        src="Imagens/Logo-TechSenior-Light.svg"
+        data-logo-tema
+        alt="TechSênior"
+      />
+    </div>
 
-      <nav>
-        <a href="index.html">Início</a>
-        <a href="Cursos.html">Cursos</a>
-        <a href="ContatoSuporte.html">Contato e Suporte</a>
-        <a href="Sobre Nós.html">Sobre Nós</a>
-      </nav>
+    <nav aria-label="Navegação principal">
+      <a href="index.html">Início</a>
+      <a href="Cursos.html" aria-current="page">Cursos</a>
+      <a href="ContatoSuporte.html">Contato e Suporte</a>
+      <a href="Sobre Nós.html">Sobre Nós</a>
+    </nav>
 
-      <button class="btn-login" id="btnUsuario" type="button">
-        <i class="fa-regular fa-user"></i>Entrar
-      </button>
-    </header>
+    <a class="btn-login" id="btnUsuario" href="Login.html">
+      <i class="fa-regular fa-user" aria-hidden="true"></i>
+      Entrar
+    </a>
+  </header>
 
+  <body class="cursos-page nav-v2">
     <!-- MENU LATERAL -->
     <div class="sidebar" id="sidebar">
-      <button class="close-menu" id="closeMenu">
-        <i class="fa-solid fa-xmark"></i>
+      <button class="close-menu" id="closeMenu" type="button">
+        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        <span class="sr-only">Fechar painel</span>
       </button>
 
-      <nav class="sidebar-nav">
+      <div class="drawer-usuario" id="drawerUsuario"></div>
+
+      <nav class="sidebar-nav" aria-label="Navegação do painel">
         <a href="index.html">Início</a>
 
-        <a href="Cursos.html">Cursos</a>
+        <a href="Cursos.html" aria-current="page">Cursos</a>
 
         <a href="ContatoSuporte.html">Contato e Suporte</a>
 
         <a href="Sobre Nós.html">Sobre Nós</a>
       </nav>
+
+      <div class="drawer-secao" id="drawerPreferencias"></div>
+
+      <div class="drawer-secao" id="drawerAdmin" hidden></div>
+
+      <div class="drawer-secao drawer-conta" id="drawerConta"></div>
     </div>
 
     <!-- FUNDO ESCURO -->
     <div class="overlay" id="overlay"></div>
 
     <!-- HERO -->
-    <section class="hero" id="inicio">
-      <div class="hero-texto">
-        <h1>Aprenda tecnologia<br />no seu ritmo</h1>
+    <main>
+      <section class="hero" id="inicio">
+        <div class="hero-texto">
+          <h1>Aprenda tecnologia<br />no seu ritmo</h1>
 
-        <p>
-          Cursos simples e práticos para ajudar você a usar celulares,
-          computadores e internet com mais segurança e confiança.
-        </p>
+          <p>
+            Cursos simples e práticos para ajudar você a usar celulares,
+            computadores e internet com mais segurança e confiança.
+          </p>
 
-        <button class="btn-principal" id="btnCursos">
-          <i class="fa-solid fa-arrow-down"></i>
+          <button class="btn-principal" id="btnCursos">
+            <i class="fa-solid fa-arrow-down"></i>
 
-          Conheça nossos cursos
-        </button>
-      </div>
+            Conheça nossos cursos
+          </button>
+        </div>
 
-      <div class="hero-img">
-        <img
-          src="Imagens/Avô e neto usando um notebook.jpg"
-          alt="Casal de idosos utilizando um celular"
-        />
-      </div>
-    </section>
+        <div class="hero-img">
+          <img
+            src="Imagens/Avô e neto usando um notebook.jpg"
+            alt="Casal de idosos utilizando um celular"
+          />
+        </div>
+      </section>
 
-    <!-- CURSOS -->
-    <section class="cursos" id="cursos">
-      <h2>Escolha por onde quer começar</h2>
+      <!-- CURSOS -->
+      <section class="cursos" id="cursos">
+        <h2>Escolha por onde quer começar</h2>
 
-      <div class="cards" id="listaCursos">
-        <p class="mensagem-cursos">Carregando cursos...</p>
-      </div>
-    </section>
+        <div class="cards" id="listaCursos">
+          <p class="mensagem-cursos">Carregando cursos...</p>
+        </div>
+      </section>
 
-    <!-- MODAL DINÂMICO DO CURSO -->
-    <div class="modal" id="modalCurso">
-      <div class="modal-conteudo-curso">
-        <button
-          class="fechar-modal"
-          id="fecharModalCurso"
-          type="button"
-          aria-label="Fechar"
-        >
-          <i class="fa-solid fa-xmark"></i>
-        </button>
+      <!-- MODAL DINÂMICO DO CURSO -->
+      <div class="modal" id="modalCurso">
+        <div class="modal-conteudo-curso">
+          <button
+            class="fechar-modal"
+            id="fecharModalCurso"
+            type="button"
+            aria-label="Fechar detalhes do curso"
+          >
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          </button>
 
-        <h2 id="modalCursoTitulo"></h2>
+          <!-- CABEÇALHO -->
+          <div class="modal-cabecalho">
+            <div class="modal-titulo-bloco">
+              <h2 id="modalCursoTitulo">Curso</h2>
 
-        <p id="modalCursoDescricao"></p>
-
-        <div class="info-curso">
-          <div class="info-item">
-            <i class="fa-solid fa-signal"></i>
-            <span id="modalCursoDificuldade"></span>
+              <p id="modalCursoDescricao">Conheça este curso do TechSênior.</p>
+            </div>
           </div>
 
-          <div class="info-item">
+          <!-- INFORMAÇÕES RÁPIDAS -->
+          <div class="modal-resumo-curso" aria-label="Informações do curso">
+            <div class="modal-chip">
+              <i class="fa-solid fa-signal" aria-hidden="true"></i>
+
+              <span>
+                <small>Nível</small>
+                <strong id="modalCursoDificuldade"> Iniciante </strong>
+              </span>
+            </div>
+
+            <div class="modal-chip">
+              <i class="fa-regular fa-clock" aria-hidden="true"></i>
+
+              <span>
+                <small>Duração</small>
+                <strong id="modalCursoDuracao"> 0 minutos </strong>
+              </span>
+            </div>
+
+            <div class="modal-chip">
+              <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+
+              <span>
+                <small>Conteúdo</small>
+                <strong id="modalCursoQuantidadeModulos">
+                  Carregando...
+                </strong>
+              </span>
+            </div>
+          </div>
+
+          <!-- PROGRESSO DO USUÁRIO -->
+          <div class="modal-progresso" id="modalCursoProgresso" hidden>
+            <div class="modal-progresso-cabecalho">
+              <strong>Seu progresso</strong>
+
+              <span id="modalCursoProgressoTexto"> 0 de 0 módulos </span>
+            </div>
+
+            <div
+              class="modal-progresso-barra"
+              role="progressbar"
+              id="modalCursoProgressoBarra"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="0"
+            >
+              <span id="modalCursoProgressoPreenchimento"></span>
+            </div>
+          </div>
+
+          <!-- CONTEÚDOS DO CURSO -->
+          <section
+            class="modal-aprendizados"
+            id="modalCursoAprendizados"
+            hidden
+          >
+            <h3>O que você vai aprender</h3>
+
+            <ul id="modalCursoListaAprendizados"></ul>
+          </section>
+
+          <p
+            class="modal-mensagem-estrutura"
+            id="modalCursoMensagemEstrutura"
+            aria-live="polite"
+            hidden
+          ></p>
+
+          <!-- AÇÃO -->
+          <div class="modal-acoes">
+            <a href="#" class="btn-principal" id="btnIniciarCurso">
+              <i class="fa-solid fa-play" aria-hidden="true"></i>
+
+              Iniciar Curso
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- BENEFÍCIOS -->
+      <section class="beneficios" id="beneficios">
+        <h2>O que você vai encontrar nos cursos</h2>
+
+        <div class="beneficios-grid">
+          <div class="beneficio">
+            <i class="fa-solid fa-video"></i>
+            <h3>Vídeos Simples</h3>
+            <p>Aulas em vídeo com linguagem fácil.</p>
+          </div>
+
+          <div class="beneficio">
             <i class="fa-regular fa-clock"></i>
-            <span id="modalCursoDuracao"></span>
+            <h3>Aprenda no seu tempo</h3>
+            <p>Sem pressa e sem complicação.</p>
+          </div>
+
+          <div class="beneficio">
+            <i class="fa-solid fa-shield"></i>
+            <h3>Navegue com segurança</h3>
+            <p>Aprenda a evitar golpes e fraudes.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="faq" id="faq">
+        <h2>Ficou com alguma dúvida?</h2>
+
+        <div class="pergunta">
+          <button class="accordion" type="button">
+            <span>Como faço para me cadastrar?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+
+          <div class="resposta">
+            <p>Basta clicar em Entrar e criar sua conta gratuitamente.</p>
           </div>
         </div>
 
-        <a id="btnIniciarCurso" class="btn-principal" href="#">
+        <div class="pergunta">
+          <button class="accordion" type="button">
+            <span>Os cursos são gratuitos?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+
+          <div class="resposta">
+            <p>Sim. Todos os cursos do TechSênior são gratuitos.</p>
+          </div>
+        </div>
+
+        <div class="pergunta">
+          <button class="accordion" type="button">
+            <span>Posso assistir pelo celular?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+
+          <div class="resposta">
+            <p>
+              Sim. Os cursos funcionam em celulares, tablets e computadores.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="cta">
+        <div>
+          <h2>Está pronto para aprender?</h2>
+
+          <p>No TechSênior, você aprende de forma simples, prática e segura.</p>
+        </div>
+
+        <button class="btn-principal" id="btnComecar">
           <i class="fa-solid fa-play"></i>
-          Iniciar Curso
-        </a>
-      </div>
-    </div>
-
-    <!-- ==================================
-     MODAL DINÂMICO DO CURSO
-================================== -->
-
-    <div class="modal" id="modalCurso">
-      <div class="modal-conteudo-curso">
-        <button
-          class="fechar-modal"
-          id="fecharModalCurso"
-          type="button"
-          aria-label="Fechar detalhes do curso"
-        >
-          <i class="fa-solid fa-xmark"></i>
+          Começar agora
         </button>
+      </section>
 
-        <h2 id="modalCursoTitulo">
-          <i class="fa-solid fa-book"></i>
-          Curso
-        </h2>
-
-        <p id="modalCursoDescricao">Carregando informações do curso...</p>
-
-        <div class="info-curso">
-          <div class="info-item">
-            <i class="fa-solid fa-signal"></i>
-            <span id="modalCursoDificuldade"> Iniciante </span>
-          </div>
-
-          <div class="info-item">
-            <i class="fa-regular fa-clock"></i>
-            <span id="modalCursoDuracao"> 0 minutos </span>
-          </div>
-        </div>
-
-        <a href="#" class="btn-principal" id="btnIniciarCurso">
-          <i class="fa-solid fa-play"></i>
-          Iniciar Curso
-        </a>
-      </div>
-    </div>
-
-    <!-- BENEFÍCIOS -->
-    <section class="beneficios" id="beneficios">
-      <h2>O que você vai encontrar nos cursos</h2>
-
-      <div class="beneficios-grid">
-        <div class="beneficio">
-          <i class="fa-solid fa-video"></i>
-          <h3>Vídeos Simples</h3>
-          <p>Aulas em vídeo com linguagem fácil.</p>
-        </div>
-
-        <div class="beneficio">
-          <i class="fa-regular fa-clock"></i>
-          <h3>Aprenda no seu tempo</h3>
-          <p>Sem pressa e sem complicação.</p>
-        </div>
-
-        <div class="beneficio">
-          <i class="fa-solid fa-shield"></i>
-          <h3>Navegue com segurança</h3>
-          <p>Aprenda a evitar golpes e fraudes.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="faq" id="faq">
-      <h2>Ficou com alguma dúvida?</h2>
-
-      <div class="pergunta">
-        <button class="accordion" type="button">
-          <span>Como faço para me cadastrar?</span>
-          <i class="fa-solid fa-chevron-down"></i>
-        </button>
-
-        <div class="resposta">
-          <p>Basta clicar em Entrar e criar sua conta gratuitamente.</p>
-        </div>
-      </div>
-
-      <div class="pergunta">
-        <button class="accordion" type="button">
-          <span>Os cursos são gratuitos?</span>
-          <i class="fa-solid fa-chevron-down"></i>
-        </button>
-
-        <div class="resposta">
-          <p>Sim. Todos os cursos do TechSênior são gratuitos.</p>
-        </div>
-      </div>
-
-      <div class="pergunta">
-        <button class="accordion" type="button">
-          <span>Posso assistir pelo celular?</span>
-          <i class="fa-solid fa-chevron-down"></i>
-        </button>
-
-        <div class="resposta">
-          <p>Sim. Os cursos funcionam em celulares, tablets e computadores.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="cta">
-      <div>
-        <h2>Está pronto para aprender?</h2>
-
-        <p>No TechSênior, você aprende de forma simples, prática e segura.</p>
-      </div>
-
-      <button class="btn-principal" id="btnComecar">
-        <i class="fa-solid fa-play"></i>
-        Começar agora
-      </button>
-    </section>
-
-    <!-- RODAPÉ -->
+      <!-- RODAPÉ -->
+    </main>
     <footer>
       <div class="coluna">
         <h3>TechSênior</h3>
@@ -272,8 +323,9 @@
         <div class="footer-linha logo">
           <div class="logo-footer">
             <img
-              src="Imagens/Logotipo Sem Fundo.png"
-              alt="Logotipo TechSênior"
+              src="Imagens/Logo-TechSenior-Light.svg"
+              data-logo-tema
+              alt="TechSênior"
             />
           </div>
         </div>
@@ -305,7 +357,10 @@
           <div class="coluna">
             <h4>Redes Sociais</h4>
 
-            <a href="https://www.instagram.com/techsenior_tcc/"
+            <a
+              href="https://www.instagram.com/techsenior_tcc/"
+              target="_blank"
+              rel="noopener noreferrer"
               ><i class="fa-brands fa-instagram"></i> Instagram</a
             >
           </div>
@@ -318,6 +373,37 @@
       Curso (TCC) do Curso Técnico em Desenvolvimento de Sistemas.<br />
       Desenvolvido por: Equipe do TechSênior
     </div>
+
+    <nav class="bottom-nav" aria-label="Navegação principal">
+      <a href="index.html">
+        <i class="fa-solid fa-house" aria-hidden="true"></i>
+
+        <span>Início</span>
+      </a>
+
+      <a href="Cursos.html" aria-current="page">
+        <i class="fa-solid fa-book-open" aria-hidden="true"></i>
+
+        <span>Cursos</span>
+      </a>
+
+      <a href="ContatoSuporte.html">
+        <i class="fa-solid fa-headset" aria-hidden="true"></i>
+
+        <span>Suporte</span>
+      </a>
+
+      <button
+        type="button"
+        id="abrirContaMobile"
+        aria-controls="sidebar"
+        aria-expanded="false"
+      >
+        <i class="fa-solid fa-user" aria-hidden="true"></i>
+
+        <span>Perfil</span>
+      </button>
+    </nav>
 
     <script type="module" src="Script - Java/Padrão.js"></script>
     <script type="module" src="Script - Java/Cursos.js"></script>

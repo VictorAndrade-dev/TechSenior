@@ -1,0 +1,38 @@
+mutation CriarSolicitacaoSuporte(
+  $assunto: String!
+  $mensagem: String!
+) @auth(level: USER) @transaction {
+  query @redact @check(expr: "response.query.usuarios.size() == 1 && vars.assunto.size() > 0 && vars.assunto.size() <= 120 && vars.mensagem.size() > 0 && vars.mensagem.size() <= 5000", message: "Perfil ou conteúdo da solicitação inválido.") {
+    usuarios(where: {firebaseUid: {eq_expr: "auth.uid"}}, limit: 1) { id }
+  }
+  solicitacaoSuporte_insert(data: {
+    usuarioId_expr: "response.query.usuarios[0].id"
+    assunto: $assunto
+    mensagem: $mensagem
+    status: "Nova"
+  })
+}
+
+query ListarSolicitacoesSuporte @auth(level: USER) {
+  usuarios(where: {firebaseUid: {eq_expr: "auth.uid"}}, limit: 1) @redact @check(message: "Administrador não encontrado.") {
+  id
+  tipoUsuario { nome @check(expr: "this == 'Administrador'", message: "Apenas administradores podem acessar o suporte.") }
+}
+  solicitacaoSuportes(orderBy: [{criadoEm: DESC}]) {
+    id assunto mensagem status criadoEm atualizadoEm
+    usuario { nome email }
+  }
+}
+
+mutation AtualizarStatusSuporte(
+  $id: UUID!
+  $status: String!
+) @auth(level: USER) @transaction {
+  query @redact @check(expr: "response.query.usuarios.size() == 1 && vars.status in ['Nova', 'Em atendimento', 'Resolvida']", message: "Administrador ou status inválido.") {
+    usuarios(where: {firebaseUid: {eq_expr: "auth.uid"}}, limit: 1) {
+  id
+  tipoUsuario { nome @check(expr: "this == 'Administrador'", message: "Apenas administradores podem acessar o suporte.") }
+}
+  }
+  solicitacaoSuporte_update(id: $id, data: {status: $status, atualizadoEm_expr: "request.time"})
+}

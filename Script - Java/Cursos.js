@@ -2,7 +2,12 @@ import { auth } from "./Firebase-config.js";
 
 import {
   listarCursos,
+  listarModulosDoCurso,
 } from "../dataconnect-generated/esm/index.esm.js";
+
+import {
+  carregarProgressoCurso,
+} from "./ServicoProgresso.js";
 
 import {
   onAuthStateChanged
@@ -38,7 +43,48 @@ const modalCursoDuracao =
 const btnIniciarCurso =
   document.getElementById("btnIniciarCurso");
 
+const modalCursoQuantidadeModulos =
+  document.getElementById(
+    "modalCursoQuantidadeModulos"
+  );
+
+const modalCursoAprendizados =
+  document.getElementById(
+    "modalCursoAprendizados"
+  );
+
+const modalCursoListaAprendizados =
+  document.getElementById(
+    "modalCursoListaAprendizados"
+  );
+
+const modalCursoMensagemEstrutura =
+  document.getElementById(
+    "modalCursoMensagemEstrutura"
+  );
+
+const modalCursoProgresso =
+  document.getElementById(
+    "modalCursoProgresso"
+  );
+
+const modalCursoProgressoTexto =
+  document.getElementById(
+    "modalCursoProgressoTexto"
+  );
+
+const modalCursoProgressoBarra =
+  document.getElementById(
+    "modalCursoProgressoBarra"
+  );
+
+const modalCursoProgressoPreenchimento =
+  document.getElementById(
+    "modalCursoProgressoPreenchimento"
+  );
+
 let usuarioAtual = null;
+let focoAntesModal;
 let cursoSelecionado = null;
 
 
@@ -49,10 +95,23 @@ let cursoSelecionado = null;
 // LOGIN
 // ==========================================
 
-onAuthStateChanged(auth, (usuario) => {
-  usuarioAtual = usuario;
-});
+onAuthStateChanged(
+  auth,
+  (usuario) => {
+    usuarioAtual =
+      usuario;
 
+    if (
+      cursoSelecionado &&
+      modalCurso?.style.display ===
+        "flex"
+    ) {
+      carregarEstruturaCurso(
+        cursoSelecionado
+      );
+    }
+  }
+);
 
 // ==========================================
 // CARREGAR CURSOS DO BANCO
@@ -190,27 +249,32 @@ function mostrarCursos(cursos) {
 // ABRIR MODAL
 // ==========================================
 
-function abrirModalCurso(curso) {
+async function abrirModalCurso(curso) {
+  focoAntesModal =
+    document.activeElement;
 
   cursoSelecionado =
     curso;
 
-  modalCursoTitulo.innerHTML = "";
+  modalCurso.setAttribute(
+    "role",
+    "dialog"
+  );
 
-  const icone =
-    document.createElement("i");
+  modalCurso.setAttribute(
+    "aria-modal",
+    "true"
+  );
 
-  icone.className =
-    curso.icone ||
-    "fa-solid fa-book-open";
+  modalCurso.setAttribute(
+    "aria-labelledby",
+    "modalCursoTitulo"
+  );
 
-  const textoTitulo =
-    document.createTextNode(
-      ` ${curso.nome}`
-    );
 
-  modalCursoTitulo.appendChild(icone);
-  modalCursoTitulo.appendChild(textoTitulo);
+  // Título simples e centralizado.
+  modalCursoTitulo.textContent =
+    curso.nome;
 
 
   modalCursoDescricao.textContent =
@@ -225,18 +289,336 @@ function abrirModalCurso(curso) {
 
   modalCursoDuracao.textContent =
     curso.cargaHoraria
-      ? `${curso.cargaHoraria} minutos`
-      : "Duração não informada";
+      ? `${curso.cargaHoraria} min`
+      : "Não informada";
 
 
-  configurarBotaoIniciar(curso);
+  prepararEstruturaModal();
+
+  configurarBotaoIniciar(
+    curso,
+    null
+  );
 
 
   modalCurso.style.display =
     "flex";
 
+  fecharModalCurso.focus();
+
+
+  await carregarEstruturaCurso(
+    curso
+  );
 }
 
+function prepararEstruturaModal() {
+  modalCursoQuantidadeModulos.textContent =
+    usuarioAtual
+      ? "Carregando..."
+      : "Faça login";
+
+  modalCursoAprendizados.hidden =
+    true;
+
+  modalCursoListaAprendizados
+    .replaceChildren();
+
+  modalCursoMensagemEstrutura.hidden =
+    true;
+
+  modalCursoMensagemEstrutura.textContent =
+    "";
+
+  modalCursoProgresso.hidden =
+    true;
+
+  modalCursoProgressoTexto.textContent =
+    "";
+
+  modalCursoProgressoBarra
+    .setAttribute(
+      "aria-valuenow",
+      "0"
+    );
+
+  modalCursoProgressoPreenchimento
+    .style.width = "0%";
+}
+
+
+async function carregarEstruturaCurso(
+  curso
+) {
+  if (!curso?.id) {
+    return;
+  }
+
+
+  // A consulta de módulos exige autenticação.
+  if (!usuarioAtual) {
+    modalCursoQuantidadeModulos.textContent =
+      "Após entrar";
+
+    modalCursoMensagemEstrutura.textContent =
+      "Entre na sua conta para visualizar os módulos e seu progresso neste curso.";
+
+    modalCursoMensagemEstrutura.hidden =
+      false;
+
+    configurarBotaoIniciar(
+      curso,
+      null
+    );
+
+    return;
+  }
+
+
+  try {
+    const resultado =
+      await listarModulosDoCurso({
+        cursoId: curso.id,
+      });
+
+
+    // Evita atualizar o modal errado
+    // caso outro curso tenha sido aberto.
+    if (
+      cursoSelecionado?.id !==
+      curso.id
+    ) {
+      return;
+    }
+
+
+    const modulos =
+      resultado.data?.modulos || [];
+
+
+    modalCursoQuantidadeModulos.textContent =
+      modulos.length === 1
+        ? "1 módulo"
+        : `${modulos.length} módulos`;
+
+
+    renderizarAprendizados(
+      modulos
+    );
+
+
+    const progresso =
+      await carregarProgressoCurso(
+        usuarioAtual.uid,
+        curso.id,
+        modulos.length
+      );
+
+
+    if (
+      cursoSelecionado?.id !==
+      curso.id
+    ) {
+      return;
+    }
+
+
+    renderizarProgresso(
+      progresso,
+      modulos.length
+    );
+
+
+    configurarBotaoIniciar(
+      curso,
+      progresso
+    );
+
+  } catch (erro) {
+    console.error(
+      "Erro ao carregar estrutura do curso:",
+      erro
+    );
+
+
+    modalCursoQuantidadeModulos.textContent =
+      "Indisponível";
+
+    modalCursoAprendizados.hidden =
+      true;
+
+    modalCursoProgresso.hidden =
+      true;
+
+    modalCursoMensagemEstrutura.textContent =
+      "Não foi possível carregar os módulos deste curso agora.";
+
+    modalCursoMensagemEstrutura.hidden =
+      false;
+
+
+    configurarBotaoIniciar(
+      curso,
+      null
+    );
+  }
+}
+
+
+function renderizarAprendizados(
+  modulos
+) {
+  modalCursoListaAprendizados
+    .replaceChildren();
+
+
+  if (modulos.length === 0) {
+    modalCursoAprendizados.hidden =
+      true;
+
+    modalCursoMensagemEstrutura.textContent =
+      "A estrutura deste curso ainda está sendo preparada.";
+
+    modalCursoMensagemEstrutura.hidden =
+      false;
+
+    return;
+  }
+
+
+  const principais =
+    modulos.slice(0, 3);
+
+
+  principais.forEach(
+    (modulo) => {
+      const item =
+        document.createElement("li");
+
+      const icone =
+        document.createElement("i");
+
+      icone.className =
+        "fa-solid fa-check";
+
+      icone.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+
+      const texto =
+        document.createElement("span");
+
+      texto.textContent =
+        modulo.nome;
+
+
+      item.append(
+        icone,
+        texto
+      );
+
+
+      modalCursoListaAprendizados
+        .append(item);
+    }
+  );
+
+
+  if (modulos.length > 3) {
+    const restante =
+      modulos.length - 3;
+
+    const item =
+      document.createElement("li");
+
+    item.className =
+      "modal-mais-modulos";
+
+    item.textContent =
+      restante === 1
+        ? "+ 1 módulo"
+        : `+ ${restante} módulos`;
+
+
+    modalCursoListaAprendizados
+      .append(item);
+  }
+
+
+  modalCursoAprendizados.hidden =
+    false;
+
+  modalCursoMensagemEstrutura.hidden =
+    true;
+}
+
+
+function renderizarProgresso(
+  progresso,
+  totalModulos
+) {
+  if (
+    !progresso ||
+    totalModulos <= 0
+  ) {
+    modalCursoProgresso.hidden =
+      true;
+
+    return;
+  }
+
+
+  const concluidos =
+    progresso.modulosConcluidos
+      ?.filter(Boolean)
+      .length || 0;
+
+
+  // Nunca começou:
+  // não precisa mostrar barra 0%.
+  if (
+    !progresso.iniciado &&
+    concluidos === 0 &&
+    !progresso.cursoConcluido
+  ) {
+    modalCursoProgresso.hidden =
+      true;
+
+    return;
+  }
+
+
+  const percentual =
+    Math.round(
+      (
+        concluidos /
+        totalModulos
+      ) *
+      100
+    );
+
+
+  modalCursoProgressoTexto.textContent =
+    `${concluidos} de ${totalModulos} módulos`;
+
+
+  modalCursoProgressoBarra
+    .setAttribute(
+      "aria-valuenow",
+      String(percentual)
+    );
+
+
+  modalCursoProgressoPreenchimento
+    .style.width =
+      `${percentual}%`;
+
+
+  modalCursoProgresso.hidden =
+    false;
+}
 
 // ==========================================
 // DESTINO DO CURSO
@@ -257,10 +639,13 @@ function obterDestinoCurso(curso) {
 // CONFIGURAR BOTÃO INICIAR
 // ==========================================
 
-function configurarBotaoIniciar(curso) {
-
+function configurarBotaoIniciar(
+  curso,
+  progresso = null
+) {
   const destino =
     obterDestinoCurso(curso);
+
 
   btnIniciarCurso.classList.remove(
     "desabilitado"
@@ -271,38 +656,72 @@ function configurarBotaoIniciar(curso) {
   );
 
 
-  if (destino) {
-
+  if (!destino) {
     btnIniciarCurso.innerHTML = `
-      <i class="fa-solid fa-play"></i>
-      Iniciar Curso
+      <i class="fa-regular fa-clock"></i>
+      Em breve
     `;
 
     btnIniciarCurso.dataset.destino =
-      destino;
+      "";
+
+    btnIniciarCurso.classList.add(
+      "desabilitado"
+    );
+
+    btnIniciarCurso.setAttribute(
+      "aria-disabled",
+      "true"
+    );
 
     return;
+  }
 
+
+  btnIniciarCurso.dataset.destino =
+    destino;
+
+
+  if (!usuarioAtual) {
+    btnIniciarCurso.innerHTML = `
+      <i class="fa-solid fa-right-to-bracket"></i>
+      Entrar para iniciar
+    `;
+
+    return;
+  }
+
+
+  if (progresso?.cursoConcluido) {
+    btnIniciarCurso.innerHTML = `
+      <i class="fa-solid fa-rotate-right"></i>
+      Revisar curso
+    `;
+
+    return;
+  }
+
+
+  const jaComecou =
+    progresso?.iniciado === true ||
+    progresso?.modulosConcluidos
+      ?.some(Boolean);
+
+
+  if (jaComecou) {
+    btnIniciarCurso.innerHTML = `
+      <i class="fa-solid fa-play"></i>
+      Continuar curso
+    `;
+
+    return;
   }
 
 
   btnIniciarCurso.innerHTML = `
-    <i class="fa-regular fa-clock"></i>
-    Em breve
+    <i class="fa-solid fa-play"></i>
+    Iniciar curso
   `;
-
-  btnIniciarCurso.dataset.destino =
-    "";
-
-  btnIniciarCurso.classList.add(
-    "desabilitado"
-  );
-
-  btnIniciarCurso.setAttribute(
-    "aria-disabled",
-    "true"
-  );
-
 }
 
 
@@ -362,6 +781,7 @@ function fecharModal() {
   modalCurso.style.display =
     "none";
 
+  focoAntesModal?.focus();
   cursoSelecionado =
     null;
 
@@ -773,3 +1193,10 @@ if (btnCursos) {
 // ==========================================
 
 carregarCursosDoBanco();
+modalCurso?.addEventListener("keydown", (evento) => {
+  if (evento.key !== "Tab") return;
+  const controles = [...modalCurso.querySelectorAll("button, a[href]")].filter((el) => !el.disabled && el.getClientRects().length);
+  const primeiro = controles[0], ultimo = controles.at(-1);
+  if (evento.shiftKey && document.activeElement === primeiro) { evento.preventDefault(); ultimo?.focus(); }
+  if (!evento.shiftKey && document.activeElement === ultimo) { evento.preventDefault(); primeiro?.focus(); }
+});

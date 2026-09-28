@@ -40,7 +40,7 @@
       </button>
 
       <div class="logo">
-        <img src="Imagens/Logotipo Sem Fundo.png" alt="Logo TechSênior" />
+        <img src="Imagens/Logo-TechSenior-Light.svg" alt="Logo TechSênior" />
       </div>
 
       <nav>
@@ -135,7 +135,13 @@
               </div>
             </section>
 
-            <section class="meus-cursos" aria-labelledby="tituloMeusCursos">
+            <section class="frequencia-estudos" aria-labelledby="tituloFrequencia">
+<h2 id="tituloFrequencia">Sua frequência de estudos</h2>
+<p id="resumoFrequencia" role="status">Carregando atividade...</p>
+<div id="semanaEstudos" class="semana-estudos"></div>
+<h3>Última atividade</h3><div id="ultimaAtividade"></div>
+</section>
+<section class="meus-cursos" aria-labelledby="tituloMeusCursos">
               <div class="secao-cabecalho">
                 <div>
                   <span class="secao-etiqueta">Continue de onde parou</span>
@@ -206,7 +212,18 @@
           </div>
         </div>
       </section>
-    </main>
+    <section class="zona-perigo"><h2>Zona de perigo</h2>
+<p>Apague permanentemente sua conta, progresso e informações associadas.</p>
+<button type="button" id="abrirExcluirConta">Excluir minha conta</button></section>
+<dialog id="dialogExcluirConta" aria-labelledby="tituloExcluirConta">
+<form id="formExcluirConta"><h2 id="tituloExcluirConta">Excluir minha conta</h2>
+<p>Esta ação é permanente. Seus dados, solicitações de suporte e progresso serão apagados. Não será possível recuperá-los.</p>
+<div id="campoSenhaExclusao"><label for="senhaExclusao">Senha atual</label><input id="senhaExclusao" type="password" autocomplete="current-password"></div>
+<p id="avisoGoogleExclusao" hidden>Confirme sua identidade na janela do Google para continuar.</p>
+<p id="erroExclusao" role="status"></p>
+<div class="acoes-conta"><button type="button" id="cancelarExclusao">Cancelar</button><button type="submit" id="confirmarExclusao">Confirmar exclusão permanente</button></div>
+</form></dialog>
+</main>
 
     <!-- ==================================
         FOOTER
@@ -221,7 +238,7 @@
         <div class="footer-linha logo">
           <div class="logo-footer">
             <img
-              src="Imagens/Logotipo Sem Fundo.png"
+              src="Imagens/Logo-TechSenior-Light.svg"
               alt="Logotipo TechSênior"
             />
           </div>
@@ -253,7 +270,7 @@
       </div>
 
       <div class="coluna">
-        <h4>Comunidade</h4>
+        <h4>Contato e Suporte</h4>
 
         <a href="Regras da Comunidade.html"> Regras da Comunidade </a>
 
@@ -263,7 +280,7 @@
           <div class="coluna">
             <h4>Redes Sociais</h4>
 
-            <a href="https://www.instagram.com/techsenior_tcc/">
+            <a href="https://www.instagram.com/techsenior_tcc/" target="_blank" rel="noopener noreferrer">
               <i class="fa-brands fa-instagram"></i>
               Instagram
             </a>

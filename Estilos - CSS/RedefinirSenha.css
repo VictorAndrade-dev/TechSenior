@@ -11,7 +11,7 @@
 body {
     font-family: "Poppins", sans-serif;
     background-color: #f5f8fa;
-    color: #666666;
+    color: var(--texto);
 }
 
 
@@ -38,7 +38,7 @@ body {
     width: 100%;
     max-width: 480px;
 
-    background-color: #ffffff;
+    background-color: var(--superficie);
 
     padding: 45px 40px;
 
@@ -91,7 +91,7 @@ body {
 .cabecalho-redefinicao p {
     font-size: 16px;
     line-height: 1.6;
-    color: #666666;
+    color: var(--texto);
 }
 
 
@@ -114,7 +114,7 @@ body {
     font-size: 16px;
     font-weight: 600;
 
-    color: #333333;
+    color: var(--texto-forte);
 
     margin-bottom: 8px;
 }
@@ -129,12 +129,12 @@ body {
     border: 2px solid #e8edf3;
     border-radius: 8px;
 
-    background-color: #ffffff;
+    background-color: var(--superficie);
 
     font-family: "Poppins", sans-serif;
     font-size: 16px;
 
-    color: #333333;
+    color: var(--texto-forte);
 
     outline: none;
 

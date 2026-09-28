@@ -1,3 +1,5 @@
+import { listarAtividade, resumirAtividade } from "./ServicoAtividade.js";
+import { excluirConta } from "./ServicoConta.js";
 import { auth } from "./Firebase-config.js";
 import {
   onAuthStateChanged,
@@ -28,9 +30,11 @@ const totalModulosConcluidos = document.getElementById("totalModulosConcluidos")
 const btnSair = document.getElementById("btnSair");
 
 let uidInicializado = null;
+let excluindoConta = false;
 
 onAuthStateChanged(auth, async (usuario) => {
   if (!usuario) {
+    if (excluindoConta) return;
     window.location.replace("Login.html");
     return;
   }
@@ -41,6 +45,7 @@ onAuthStateChanged(auth, async (usuario) => {
   const [resultadoPerfil, resultadoCursos] = await Promise.allSettled([
     carregarIdentidade(usuario),
     carregarCursos(usuario.uid),
+    carregarFrequencia(usuario.uid),
   ]);
 
   if (resultadoPerfil.status === "rejected") {
@@ -108,6 +113,12 @@ function aplicarIdentidade(usuario, dados) {
   atualizarBotaoUsuario(nome);
   configurarAvatar(usuario.photoURL, nome);
   tipoConta.textContent = identificarTipoConta(usuario.providerData);
+  const senhaLocal = usuario.providerData.some((p) => p.providerId === "password");
+  const alterarSenha = document.querySelector('a[href="EsqueciSenha.html"]');
+  if (alterarSenha) alterarSenha.closest(".config-card").hidden = !senhaLocal;
+  document.getElementById("campoSenhaExclusao").hidden = !senhaLocal;
+  document.getElementById("senhaExclusao").required = senhaLocal;
+  document.getElementById("avisoGoogleExclusao").hidden = senhaLocal;
 }
 
 function atualizarBotaoUsuario(nome) {
@@ -217,6 +228,7 @@ async function carregarCursoComProgresso(uid, curso) {
 
   return {
     ...curso,
+    iniciado: progresso.iniciado === true,
     cursoConcluido: progresso.cursoConcluido === true,
     modulosConcluidos,
     percentual,
@@ -226,10 +238,10 @@ async function carregarCursoComProgresso(uid, curso) {
 
 function renderizarCursos(cursos, possuiFalhas) {
   const iniciados = cursos.filter(
-    (curso) => curso.percentual > 0 || curso.cursoConcluido,
+    (curso) => curso.iniciado || curso.percentual > 0 || curso.cursoConcluido,
   );
   const novos = cursos.filter(
-    (curso) => curso.percentual === 0 && !curso.cursoConcluido,
+    (curso) => !curso.iniciado && curso.percentual === 0 && !curso.cursoConcluido,
   );
 
   atualizarResumo(iniciados);
@@ -402,3 +414,60 @@ if (btnSair) {
     }
   });
 }
+
+async function carregarFrequencia(uid) {
+  const resumo = document.getElementById("resumoFrequencia");
+  try {
+    const atividades = await listarAtividade(uid);
+    const { semana, sequencia, diasAtivos, estudouHoje } = resumirAtividade(atividades);
+    resumo.textContent = diasAtivos + " dias ativos nos últimos 7 dias • Sequência atual: " + sequencia + " dias." + (!estudouHoje && sequencia ? " Estude hoje para manter sua sequência." : "");
+    const container = document.getElementById("semanaEstudos");
+    container.replaceChildren();
+    for (const dia of semana) {
+      const item = document.createElement("div");
+      item.className = "dia-estudo" + (dia.ativo ? " ativo" : "");
+      item.textContent = dia.data.toLocaleDateString("pt-BR", {weekday: "short"}) + " " + (dia.ativo ? "✓" : "—");
+      item.setAttribute("aria-label", dia.data.toLocaleDateString("pt-BR") + (dia.ativo ? ": dia ativo" : ": sem atividade"));
+      container.append(item);
+    }
+    const ultima = document.getElementById("ultimaAtividade");
+    ultima.replaceChildren();
+    if (!atividades.length) { ultima.textContent = "Seu histórico começa quando você estudar um curso. Vamos começar?"; return; }
+    const atividade = atividades[0];
+    const texto = document.createElement("p");
+    const data = atividade.ultimoAcesso?.toDate?.();
+    texto.textContent = (atividade.cursoNome || "Curso") + " • " + (atividade.moduloNome || "Módulo " + (atividade.moduloAtual + 1)) + (data ? " • " + data.toLocaleString("pt-BR") : "");
+    const link = document.createElement("a");
+    link.href = "Curso.html?id=" + encodeURIComponent(atividade.cursoId);
+    link.textContent = "Continuar";
+    ultima.append(texto, link);
+  } catch (erro) { console.error(erro); resumo.textContent = "Não foi possível carregar sua atividade. Tente atualizar a página."; }
+}
+
+const dialogExcluir = document.getElementById("dialogExcluirConta");
+const confirmarExclusao = document.getElementById("confirmarExclusao");
+const cancelarExclusao = document.getElementById("cancelarExclusao");
+document.getElementById("abrirExcluirConta").addEventListener("click", () => {
+  document.getElementById("formExcluirConta").reset();
+  document.getElementById("erroExclusao").textContent = "";
+  dialogExcluir.showModal();
+  cancelarExclusao.focus();
+});
+cancelarExclusao.addEventListener("click", () => dialogExcluir.close());
+dialogExcluir.addEventListener("cancel", (evento) => { if (confirmarExclusao.disabled) evento.preventDefault(); });
+document.getElementById("formExcluirConta").addEventListener("submit", async (evento) => {
+  evento.preventDefault();
+  if (confirmarExclusao.disabled) return;
+  confirmarExclusao.disabled = cancelarExclusao.disabled = true;
+  const mensagem = document.getElementById("erroExclusao");
+  mensagem.textContent = "Confirmando sua identidade e excluindo seus dados...";
+  try {
+    excluindoConta = true;
+    await excluirConta(document.getElementById("senhaExclusao").value);
+    window.location.replace("index.html");
+  } catch (erro) {
+    excluindoConta = false;
+    mensagem.textContent = erro.code?.startsWith("auth/") ? "Não foi possível confirmar sua identidade. Confira sua senha ou tente novamente com Google." : erro.message;
+    confirmarExclusao.disabled = cancelarExclusao.disabled = false;
+  }
+});

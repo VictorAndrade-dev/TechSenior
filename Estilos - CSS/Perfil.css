@@ -41,7 +41,7 @@
 .estado-lista {
   border: 0.0625rem solid var(--perfil-borda);
   border-radius: 0.875rem;
-  background: #fff;
+  background: var(--superficie);
   color: var(--perfil-texto-suave);
   font-size: 1rem;
   line-height: 1.65;
@@ -178,7 +178,7 @@
   padding: 1.25rem;
   border: 0.0625rem solid var(--perfil-borda);
   border-radius: 1rem;
-  background: #fff;
+  background: var(--superficie);
 }
 
 .resumo-card i {
@@ -207,7 +207,7 @@
   padding: 1.375rem;
   border: 0.0625rem solid var(--perfil-borda);
   border-radius: 1rem;
-  background: #fff;
+  background: var(--superficie);
 }
 
 .card-curso-topo {
@@ -335,7 +335,7 @@
   padding: 1rem 1.125rem;
   border: 0.0625rem solid var(--perfil-borda);
   border-radius: 1rem;
-  background: #fff;
+  background: var(--superficie);
 }
 
 .config-identificacao { display: flex; min-width: 0; align-items: center; gap: 1rem; }
@@ -355,7 +355,7 @@
 .config-card h3 { margin: 0 0 0.2rem; color: var(--perfil-texto); font-size: 1.05rem; font-weight: 700; line-height: 1.4; }
 .config-card p { margin: 0; color: var(--perfil-texto-suave); font-size: 0.95rem; line-height: 1.55; }
 .btn-config { flex: 0 0 auto; }
-.btn-config.secundario { border-color: #a9bfdc; background: #fff; color: var(--perfil-azul-escuro); }
+.btn-config.secundario { border-color: #a9bfdc; background: var(--superficie); color: var(--perfil-azul-escuro); }
 .btn-config.secundario:hover { border-color: var(--perfil-azul); background: var(--perfil-azul-claro); }
 
 .btn-sair { flex: 0 0 auto; border-color: #a4372d; background: #a4372d; }

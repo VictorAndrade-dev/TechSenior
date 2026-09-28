@@ -1,130 +1,56 @@
 import { auth } from "./Firebase-config.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
-
-//Botão Começar (CTA)
-
+import { listarCursos } from "../dataconnect-generated/esm/index.esm.js";
 const btnComecar = document.getElementById("btnComecar");
+onAuthStateChanged(auth, (usuario) => {
+  if (!btnComecar) return;
 
-if (btnComecar) {
-  onAuthStateChanged(auth, (usuario) => {
-    if (usuario) {
-      btnComecar.innerHTML = `
-        <i class="fa-solid fa-graduation-cap"></i>
-        Continuar aprendendo
-      `;
-    }
+  const icone = document.createElement("i");
 
-    btnComecar.onclick = () => {
-      window.location.href = usuario ? "Cursos.html#cursos" : "Login.html";
-    };
-  });
-}
+  icone.className = usuario
+    ? "fa-solid fa-graduation-cap"
+    : "fa-solid fa-play";
 
-// ==========================================
-// ANIMAÇÃO AO APARECER - PÁGINA INICIAL
-// ==========================================
+  icone.setAttribute("aria-hidden", "true");
 
-const elementos = document.querySelectorAll(
-  ".hero-texto, .hero-img, .sobre-texto, .sobre-imagem, .ajuda-card, .curso-card, .estatistica, .depoimento-card, .cta",
-);
+  const texto = usuario
+    ? "Continuar aprendendo"
+    : "Começar agora";
 
-const observador = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = "1";
+  btnComecar.replaceChildren(
+    icone,
+    document.createTextNode(texto)
+  );
 
-        entry.target.style.transform = "translateY(0)";
-
-        observador.unobserve(entry.target);
-      }
-    });
-  },
-
-  {
-    threshold: 0.2,
-  },
-);
-
-// Configuração inicial e ativação
-
-elementos.forEach((elemento) => {
-  elemento.style.opacity = "0";
-
-  elemento.style.transform = "translateY(40px)";
-
-  elemento.style.transition = "0.7s ease";
-
-  observador.observe(elemento);
+  btnComecar.onclick = () => {
+    location.href = usuario
+      ? "Cursos.html"
+      : "Login.html";
+  };
 });
 
-//Seção Cursos
-
-document.querySelectorAll('a[href*="#"]').forEach((link) => {
-  link.addEventListener("click", function (e) {
-    const destino = this.getAttribute("href");
-
-    if (destino.includes("#")) {
-      e.preventDefault();
-
-      const url = destino.split("#")[0];
-      const id = destino.split("#")[1];
-
-      // Se for outra página
-      if (url && url !== window.location.pathname.split("/").pop()) {
-        window.location.href = destino;
-
-        return;
-      }
-
-      const elemento = document.getElementById(id);
-
-      if (elemento) {
-        elemento.scrollIntoView({
-          behavior: "smooth",
-        });
-      }
+document.getElementById("btnInicio")?.addEventListener("click", () => document.getElementById("sobre")?.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth"}));
+const destaque = document.getElementById("cursosDestaque");
+try {
+  const resposta = await listarCursos();
+  const cursos = resposta.data?.cursos || [];
+  document.getElementById("quantidadeCursos").textContent = String(cursos.length);
+  destaque.replaceChildren();
+  if (!cursos.length) destaque.textContent = "Novos cursos aparecerão aqui quando estiverem disponíveis.";
+  for (const curso of cursos.slice(0, 3)) {
+    const card = document.createElement("article"); card.className = "curso-card";
+    if (curso.imagem && /^https:\/\//i.test(curso.imagem)) {
+      const imagem = document.createElement("img"); imagem.src = curso.imagem; imagem.alt = ""; imagem.loading = "lazy"; imagem.className = "destaque-imagem"; card.append(imagem);
+    } else {
+      const icone = document.createElement("i"); icone.className = /^fa-(solid|regular|brands) fa-[a-z0-9-]+$/.test(curso.icone || "") ? curso.icone : "fa-solid fa-book-open"; icone.setAttribute("aria-hidden", "true"); card.append(icone);
     }
-  });
-});
-
-
-//BOTÃO CONHEÇA NOSSA PÁGINA
-
-const btnInicio = document.querySelector(".btn-principal");
-
-if (btnInicio) {
-  btnInicio.addEventListener("click", () => {
-    scrollSuave(document.getElementById("sobre"));
-  });
-}
-
-function scrollSuave(destino, duracao = 2000) {
-  const inicio = window.pageYOffset;
-  const fim = destino.offsetTop - 80;
-  const distancia = fim - inicio;
-
-  let inicioTempo = null;
-
-  function animacao(tempoAtual) {
-    if (!inicioTempo) inicioTempo = tempoAtual;
-
-    const tempoDecorrido = tempoAtual - inicioTempo;
-
-    const progresso = Math.min(tempoDecorrido / duracao, 1);
-
-    // Ease In Out
-    const ease =
-      progresso < 0.5
-        ? 2 * progresso * progresso
-        : 1 - Math.pow(-2 * progresso + 2, 2) / 2;
-
-    window.scrollTo(0, inicio + distancia * ease);
-
-    if (progresso < 1) {
-      requestAnimationFrame(animacao);
-    }
+    const titulo = document.createElement("h3"); titulo.textContent = curso.nome;
+    const descricao = document.createElement("p"); descricao.textContent = curso.descricao || "Conheça o conteúdo deste curso.";
+    const detalhes = document.createElement("p"); detalhes.textContent = curso.dificuldade + " • " + curso.cargaHoraria + " minutos";
+    const link = document.createElement("a"); link.href = "Curso.html?id=" + encodeURIComponent(curso.id); link.textContent = "Ver curso";
+    card.append(titulo, descricao, detalhes, link); destaque.append(card);
   }
-
-  requestAnimationFrame(animacao);
+} catch (erro) {
+  console.error(erro); destaque.textContent = "Não foi possível carregar os cursos. Tente novamente mais tarde.";
+  document.getElementById("quantidadeCursos").textContent = "Indisponível";
 }

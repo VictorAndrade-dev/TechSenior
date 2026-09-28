@@ -395,6 +395,49 @@ exports.excluirModulo = function excluirModulo(dcOrVars, vars) {
 }
 ;
 
+const criarSolicitacaoSuporteRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return mutationRef(dcInstance, 'CriarSolicitacaoSuporte', inputVars);
+}
+criarSolicitacaoSuporteRef.operationName = 'CriarSolicitacaoSuporte';
+exports.criarSolicitacaoSuporteRef = criarSolicitacaoSuporteRef;
+
+exports.criarSolicitacaoSuporte = function criarSolicitacaoSuporte(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars } = validateArgs(connectorConfig, dcOrVars, vars, true);
+  return executeMutation(criarSolicitacaoSuporteRef(dcInstance, inputVars));
+}
+;
+
+const listarSolicitacoesSuporteRef = (dc) => {
+  const { dc: dcInstance} = validateArgs(connectorConfig, dc, undefined);
+  dcInstance._useGeneratedSdk();
+  return queryRef(dcInstance, 'ListarSolicitacoesSuporte');
+}
+listarSolicitacoesSuporteRef.operationName = 'ListarSolicitacoesSuporte';
+exports.listarSolicitacoesSuporteRef = listarSolicitacoesSuporteRef;
+
+exports.listarSolicitacoesSuporte = function listarSolicitacoesSuporte(dcOrOptions, options) {
+  
+  const { dc: dcInstance, vars: inputVars, options: inputOpts } = validateArgsWithOptions(connectorConfig, dcOrOptions, options, undefined,false, false);
+  return executeQuery(listarSolicitacoesSuporteRef(dcInstance, inputVars), inputOpts && { fetchPolicy: inputOpts.fetchPolicy });
+}
+;
+
+const atualizarStatusSuporteRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return mutationRef(dcInstance, 'AtualizarStatusSuporte', inputVars);
+}
+atualizarStatusSuporteRef.operationName = 'AtualizarStatusSuporte';
+exports.atualizarStatusSuporteRef = atualizarStatusSuporteRef;
+
+exports.atualizarStatusSuporte = function atualizarStatusSuporte(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars } = validateArgs(connectorConfig, dcOrVars, vars, true);
+  return executeMutation(atualizarStatusSuporteRef(dcInstance, inputVars));
+}
+;
+
 const cadastrarUsuarioRef = (dcOrVars, vars) => {
   const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
   dcInstance._useGeneratedSdk();
@@ -449,5 +492,19 @@ exports.atualizarNomeUsuarioRef = atualizarNomeUsuarioRef;
 exports.atualizarNomeUsuario = function atualizarNomeUsuario(dcOrVars, vars) {
   const { dc: dcInstance, vars: inputVars } = validateArgs(connectorConfig, dcOrVars, vars, true);
   return executeMutation(atualizarNomeUsuarioRef(dcInstance, inputVars));
+}
+;
+
+const excluirMinhaContaRef = (dc) => {
+  const { dc: dcInstance} = validateArgs(connectorConfig, dc, undefined);
+  dcInstance._useGeneratedSdk();
+  return mutationRef(dcInstance, 'ExcluirMinhaConta');
+}
+excluirMinhaContaRef.operationName = 'ExcluirMinhaConta';
+exports.excluirMinhaContaRef = excluirMinhaContaRef;
+
+exports.excluirMinhaConta = function excluirMinhaConta(dc) {
+  const { dc: dcInstance, vars: inputVars } = validateArgs(connectorConfig, dc, undefined);
+  return executeMutation(excluirMinhaContaRef(dcInstance, inputVars));
 }
 ;

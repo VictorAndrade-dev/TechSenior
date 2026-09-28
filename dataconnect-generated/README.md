@@ -18,6 +18,7 @@ This README will guide you through the process of using the generated JavaScript
   - [*ListarAlternativasDaQuestao*](#listaralternativasdaquestao)
   - [*ListarCursosAdmin*](#listarcursosadmin)
   - [*BuscarQuizFinalDoCurso*](#buscarquizfinaldocurso)
+  - [*ListarSolicitacoesSuporte*](#listarsolicitacoessuporte)
   - [*MeuPerfil*](#meuperfil)
 - [**Mutations**](#mutations)
   - [*CriarCurso*](#criarcurso)
@@ -37,9 +38,12 @@ This README will guide you through the process of using the generated JavaScript
   - [*ExcluirAlternativaQuiz*](#excluiralternativaquiz)
   - [*ExcluirQuestaoQuiz*](#excluirquestaoquiz)
   - [*ExcluirModulo*](#excluirmodulo)
+  - [*CriarSolicitacaoSuporte*](#criarsolicitacaosuporte)
+  - [*AtualizarStatusSuporte*](#atualizarstatussuporte)
   - [*CadastrarUsuario*](#cadastrarusuario)
   - [*ExcluirUsuarioPorEmail*](#excluirusuarioporemail)
   - [*AtualizarNomeUsuario*](#atualizarnomeusuario)
+  - [*ExcluirMinhaConta*](#excluirminhaconta)
 
 # Accessing the connector
 A connector is a collection of Queries and Mutations. One SDK is generated for each connector - this SDK is generated for the connector `example`. You can find more information about connectors in the [Data Connect documentation](https://firebase.google.com/docs/data-connect#how-does).
@@ -1206,6 +1210,108 @@ console.log(data.quizzes);
 executeQuery(ref).then((response) => {
   const data = response.data;
   console.log(data.quizzes);
+});
+```
+
+## ListarSolicitacoesSuporte
+You can execute the `ListarSolicitacoesSuporte` query using the following action shortcut function, or by calling `executeQuery()` after calling the following `QueryRef` function, both of which are defined in [dataconnect-generated/index.d.ts](./index.d.ts):
+```typescript
+listarSolicitacoesSuporte(options?: ExecuteQueryOptions): QueryPromise<ListarSolicitacoesSuporteData, undefined>;
+
+interface ListarSolicitacoesSuporteRef {
+  ...
+  /* Allow users to create refs without passing in DataConnect */
+  (): QueryRef<ListarSolicitacoesSuporteData, undefined>;
+}
+export const listarSolicitacoesSuporteRef: ListarSolicitacoesSuporteRef;
+```
+You can also pass in a `DataConnect` instance to the action shortcut function or `QueryRef` function.
+```typescript
+listarSolicitacoesSuporte(dc: DataConnect, options?: ExecuteQueryOptions): QueryPromise<ListarSolicitacoesSuporteData, undefined>;
+
+interface ListarSolicitacoesSuporteRef {
+  ...
+  (dc: DataConnect): QueryRef<ListarSolicitacoesSuporteData, undefined>;
+}
+export const listarSolicitacoesSuporteRef: ListarSolicitacoesSuporteRef;
+```
+
+If you need the name of the operation without creating a ref, you can retrieve the operation name by calling the `operationName` property on the listarSolicitacoesSuporteRef:
+```typescript
+const name = listarSolicitacoesSuporteRef.operationName;
+console.log(name);
+```
+
+### Variables
+The `ListarSolicitacoesSuporte` query has no variables.
+### Return Type
+Recall that executing the `ListarSolicitacoesSuporte` query returns a `QueryPromise` that resolves to an object with a `data` property.
+
+The `data` property is an object of type `ListarSolicitacoesSuporteData`, which is defined in [dataconnect-generated/index.d.ts](./index.d.ts). It has the following fields:
+```typescript
+export interface ListarSolicitacoesSuporteData {
+  solicitacaoSuportes: ({
+    id: UUIDString;
+    assunto: string;
+    mensagem: string;
+    status: string;
+    criadoEm: TimestampString;
+    atualizadoEm: TimestampString;
+    usuario: {
+      nome: string;
+      email: string;
+    };
+  } & SolicitacaoSuporte_Key)[];
+}
+```
+### Using `ListarSolicitacoesSuporte`'s action shortcut function
+
+```typescript
+import { getDataConnect } from 'firebase/data-connect';
+import { connectorConfig, listarSolicitacoesSuporte } from '@dataconnect/generated';
+
+
+// Call the `listarSolicitacoesSuporte()` function to execute the query.
+// You can use the `await` keyword to wait for the promise to resolve.
+const { data } = await listarSolicitacoesSuporte();
+
+// You can also pass in a `DataConnect` instance to the action shortcut function.
+const dataConnect = getDataConnect(connectorConfig);
+const { data } = await listarSolicitacoesSuporte(dataConnect);
+
+console.log(data.solicitacaoSuportes);
+
+// Or, you can use the `Promise` API.
+listarSolicitacoesSuporte().then((response) => {
+  const data = response.data;
+  console.log(data.solicitacaoSuportes);
+});
+```
+
+### Using `ListarSolicitacoesSuporte`'s `QueryRef` function
+
+```typescript
+import { getDataConnect, executeQuery } from 'firebase/data-connect';
+import { connectorConfig, listarSolicitacoesSuporteRef } from '@dataconnect/generated';
+
+
+// Call the `listarSolicitacoesSuporteRef()` function to get a reference to the query.
+const ref = listarSolicitacoesSuporteRef();
+
+// You can also pass in a `DataConnect` instance to the `QueryRef` function.
+const dataConnect = getDataConnect(connectorConfig);
+const ref = listarSolicitacoesSuporteRef(dataConnect);
+
+// Call `executeQuery()` on the reference to execute the query.
+// You can use the `await` keyword to wait for the promise to resolve.
+const { data } = await executeQuery(ref);
+
+console.log(data.solicitacaoSuportes);
+
+// Or, you can use the `Promise` API.
+executeQuery(ref).then((response) => {
+  const data = response.data;
+  console.log(data.solicitacaoSuportes);
 });
 ```
 
@@ -3342,6 +3448,230 @@ executeMutation(ref).then((response) => {
 });
 ```
 
+## CriarSolicitacaoSuporte
+You can execute the `CriarSolicitacaoSuporte` mutation using the following action shortcut function, or by calling `executeMutation()` after calling the following `MutationRef` function, both of which are defined in [dataconnect-generated/index.d.ts](./index.d.ts):
+```typescript
+criarSolicitacaoSuporte(vars: CriarSolicitacaoSuporteVariables): MutationPromise<CriarSolicitacaoSuporteData, CriarSolicitacaoSuporteVariables>;
+
+interface CriarSolicitacaoSuporteRef {
+  ...
+  /* Allow users to create refs without passing in DataConnect */
+  (vars: CriarSolicitacaoSuporteVariables): MutationRef<CriarSolicitacaoSuporteData, CriarSolicitacaoSuporteVariables>;
+}
+export const criarSolicitacaoSuporteRef: CriarSolicitacaoSuporteRef;
+```
+You can also pass in a `DataConnect` instance to the action shortcut function or `MutationRef` function.
+```typescript
+criarSolicitacaoSuporte(dc: DataConnect, vars: CriarSolicitacaoSuporteVariables): MutationPromise<CriarSolicitacaoSuporteData, CriarSolicitacaoSuporteVariables>;
+
+interface CriarSolicitacaoSuporteRef {
+  ...
+  (dc: DataConnect, vars: CriarSolicitacaoSuporteVariables): MutationRef<CriarSolicitacaoSuporteData, CriarSolicitacaoSuporteVariables>;
+}
+export const criarSolicitacaoSuporteRef: CriarSolicitacaoSuporteRef;
+```
+
+If you need the name of the operation without creating a ref, you can retrieve the operation name by calling the `operationName` property on the criarSolicitacaoSuporteRef:
+```typescript
+const name = criarSolicitacaoSuporteRef.operationName;
+console.log(name);
+```
+
+### Variables
+The `CriarSolicitacaoSuporte` mutation requires an argument of type `CriarSolicitacaoSuporteVariables`, which is defined in [dataconnect-generated/index.d.ts](./index.d.ts). It has the following fields:
+
+```typescript
+export interface CriarSolicitacaoSuporteVariables {
+  assunto: string;
+  mensagem: string;
+}
+```
+### Return Type
+Recall that executing the `CriarSolicitacaoSuporte` mutation returns a `MutationPromise` that resolves to an object with a `data` property.
+
+The `data` property is an object of type `CriarSolicitacaoSuporteData`, which is defined in [dataconnect-generated/index.d.ts](./index.d.ts). It has the following fields:
+```typescript
+export interface CriarSolicitacaoSuporteData {
+  solicitacaoSuporte_insert: SolicitacaoSuporte_Key;
+}
+```
+### Using `CriarSolicitacaoSuporte`'s action shortcut function
+
+```typescript
+import { getDataConnect } from 'firebase/data-connect';
+import { connectorConfig, criarSolicitacaoSuporte, CriarSolicitacaoSuporteVariables } from '@dataconnect/generated';
+
+// The `CriarSolicitacaoSuporte` mutation requires an argument of type `CriarSolicitacaoSuporteVariables`:
+const criarSolicitacaoSuporteVars: CriarSolicitacaoSuporteVariables = {
+  assunto: ..., 
+  mensagem: ..., 
+};
+
+// Call the `criarSolicitacaoSuporte()` function to execute the mutation.
+// You can use the `await` keyword to wait for the promise to resolve.
+const { data } = await criarSolicitacaoSuporte(criarSolicitacaoSuporteVars);
+// Variables can be defined inline as well.
+const { data } = await criarSolicitacaoSuporte({ assunto: ..., mensagem: ..., });
+
+// You can also pass in a `DataConnect` instance to the action shortcut function.
+const dataConnect = getDataConnect(connectorConfig);
+const { data } = await criarSolicitacaoSuporte(dataConnect, criarSolicitacaoSuporteVars);
+
+console.log(data.solicitacaoSuporte_insert);
+
+// Or, you can use the `Promise` API.
+criarSolicitacaoSuporte(criarSolicitacaoSuporteVars).then((response) => {
+  const data = response.data;
+  console.log(data.solicitacaoSuporte_insert);
+});
+```
+
+### Using `CriarSolicitacaoSuporte`'s `MutationRef` function
+
+```typescript
+import { getDataConnect, executeMutation } from 'firebase/data-connect';
+import { connectorConfig, criarSolicitacaoSuporteRef, CriarSolicitacaoSuporteVariables } from '@dataconnect/generated';
+
+// The `CriarSolicitacaoSuporte` mutation requires an argument of type `CriarSolicitacaoSuporteVariables`:
+const criarSolicitacaoSuporteVars: CriarSolicitacaoSuporteVariables = {
+  assunto: ..., 
+  mensagem: ..., 
+};
+
+// Call the `criarSolicitacaoSuporteRef()` function to get a reference to the mutation.
+const ref = criarSolicitacaoSuporteRef(criarSolicitacaoSuporteVars);
+// Variables can be defined inline as well.
+const ref = criarSolicitacaoSuporteRef({ assunto: ..., mensagem: ..., });
+
+// You can also pass in a `DataConnect` instance to the `MutationRef` function.
+const dataConnect = getDataConnect(connectorConfig);
+const ref = criarSolicitacaoSuporteRef(dataConnect, criarSolicitacaoSuporteVars);
+
+// Call `executeMutation()` on the reference to execute the mutation.
+// You can use the `await` keyword to wait for the promise to resolve.
+const { data } = await executeMutation(ref);
+
+console.log(data.solicitacaoSuporte_insert);
+
+// Or, you can use the `Promise` API.
+executeMutation(ref).then((response) => {
+  const data = response.data;
+  console.log(data.solicitacaoSuporte_insert);
+});
+```
+
+## AtualizarStatusSuporte
+You can execute the `AtualizarStatusSuporte` mutation using the following action shortcut function, or by calling `executeMutation()` after calling the following `MutationRef` function, both of which are defined in [dataconnect-generated/index.d.ts](./index.d.ts):
+```typescript
+atualizarStatusSuporte(vars: AtualizarStatusSuporteVariables): MutationPromise<AtualizarStatusSuporteData, AtualizarStatusSuporteVariables>;
+
+interface AtualizarStatusSuporteRef {
+  ...
+  /* Allow users to create refs without passing in DataConnect */
+  (vars: AtualizarStatusSuporteVariables): MutationRef<AtualizarStatusSuporteData, AtualizarStatusSuporteVariables>;
+}
+export const atualizarStatusSuporteRef: AtualizarStatusSuporteRef;
+```
+You can also pass in a `DataConnect` instance to the action shortcut function or `MutationRef` function.
+```typescript
+atualizarStatusSuporte(dc: DataConnect, vars: AtualizarStatusSuporteVariables): MutationPromise<AtualizarStatusSuporteData, AtualizarStatusSuporteVariables>;
+
+interface AtualizarStatusSuporteRef {
+  ...
+  (dc: DataConnect, vars: AtualizarStatusSuporteVariables): MutationRef<AtualizarStatusSuporteData, AtualizarStatusSuporteVariables>;
+}
+export const atualizarStatusSuporteRef: AtualizarStatusSuporteRef;
+```
+
+If you need the name of the operation without creating a ref, you can retrieve the operation name by calling the `operationName` property on the atualizarStatusSuporteRef:
+```typescript
+const name = atualizarStatusSuporteRef.operationName;
+console.log(name);
+```
+
+### Variables
+The `AtualizarStatusSuporte` mutation requires an argument of type `AtualizarStatusSuporteVariables`, which is defined in [dataconnect-generated/index.d.ts](./index.d.ts). It has the following fields:
+
+```typescript
+export interface AtualizarStatusSuporteVariables {
+  id: UUIDString;
+  status: string;
+}
+```
+### Return Type
+Recall that executing the `AtualizarStatusSuporte` mutation returns a `MutationPromise` that resolves to an object with a `data` property.
+
+The `data` property is an object of type `AtualizarStatusSuporteData`, which is defined in [dataconnect-generated/index.d.ts](./index.d.ts). It has the following fields:
+```typescript
+export interface AtualizarStatusSuporteData {
+  solicitacaoSuporte_update?: SolicitacaoSuporte_Key | null;
+}
+```
+### Using `AtualizarStatusSuporte`'s action shortcut function
+
+```typescript
+import { getDataConnect } from 'firebase/data-connect';
+import { connectorConfig, atualizarStatusSuporte, AtualizarStatusSuporteVariables } from '@dataconnect/generated';
+
+// The `AtualizarStatusSuporte` mutation requires an argument of type `AtualizarStatusSuporteVariables`:
+const atualizarStatusSuporteVars: AtualizarStatusSuporteVariables = {
+  id: ..., 
+  status: ..., 
+};
+
+// Call the `atualizarStatusSuporte()` function to execute the mutation.
+// You can use the `await` keyword to wait for the promise to resolve.
+const { data } = await atualizarStatusSuporte(atualizarStatusSuporteVars);
+// Variables can be defined inline as well.
+const { data } = await atualizarStatusSuporte({ id: ..., status: ..., });
+
+// You can also pass in a `DataConnect` instance to the action shortcut function.
+const dataConnect = getDataConnect(connectorConfig);
+const { data } = await atualizarStatusSuporte(dataConnect, atualizarStatusSuporteVars);
+
+console.log(data.solicitacaoSuporte_update);
+
+// Or, you can use the `Promise` API.
+atualizarStatusSuporte(atualizarStatusSuporteVars).then((response) => {
+  const data = response.data;
+  console.log(data.solicitacaoSuporte_update);
+});
+```
+
+### Using `AtualizarStatusSuporte`'s `MutationRef` function
+
+```typescript
+import { getDataConnect, executeMutation } from 'firebase/data-connect';
+import { connectorConfig, atualizarStatusSuporteRef, AtualizarStatusSuporteVariables } from '@dataconnect/generated';
+
+// The `AtualizarStatusSuporte` mutation requires an argument of type `AtualizarStatusSuporteVariables`:
+const atualizarStatusSuporteVars: AtualizarStatusSuporteVariables = {
+  id: ..., 
+  status: ..., 
+};
+
+// Call the `atualizarStatusSuporteRef()` function to get a reference to the mutation.
+const ref = atualizarStatusSuporteRef(atualizarStatusSuporteVars);
+// Variables can be defined inline as well.
+const ref = atualizarStatusSuporteRef({ id: ..., status: ..., });
+
+// You can also pass in a `DataConnect` instance to the `MutationRef` function.
+const dataConnect = getDataConnect(connectorConfig);
+const ref = atualizarStatusSuporteRef(dataConnect, atualizarStatusSuporteVars);
+
+// Call `executeMutation()` on the reference to execute the mutation.
+// You can use the `await` keyword to wait for the promise to resolve.
+const { data } = await executeMutation(ref);
+
+console.log(data.solicitacaoSuporte_update);
+
+// Or, you can use the `Promise` API.
+executeMutation(ref).then((response) => {
+  const data = response.data;
+  console.log(data.solicitacaoSuporte_update);
+});
+```
+
 ## CadastrarUsuario
 You can execute the `CadastrarUsuario` mutation using the following action shortcut function, or by calling `executeMutation()` after calling the following `MutationRef` function, both of which are defined in [dataconnect-generated/index.d.ts](./index.d.ts):
 ```typescript
@@ -3669,6 +3999,117 @@ console.log(data.usuario_updateMany);
 executeMutation(ref).then((response) => {
   const data = response.data;
   console.log(data.usuario_updateMany);
+});
+```
+
+## ExcluirMinhaConta
+You can execute the `ExcluirMinhaConta` mutation using the following action shortcut function, or by calling `executeMutation()` after calling the following `MutationRef` function, both of which are defined in [dataconnect-generated/index.d.ts](./index.d.ts):
+```typescript
+excluirMinhaConta(): MutationPromise<ExcluirMinhaContaData, undefined>;
+
+interface ExcluirMinhaContaRef {
+  ...
+  /* Allow users to create refs without passing in DataConnect */
+  (): MutationRef<ExcluirMinhaContaData, undefined>;
+}
+export const excluirMinhaContaRef: ExcluirMinhaContaRef;
+```
+You can also pass in a `DataConnect` instance to the action shortcut function or `MutationRef` function.
+```typescript
+excluirMinhaConta(dc: DataConnect): MutationPromise<ExcluirMinhaContaData, undefined>;
+
+interface ExcluirMinhaContaRef {
+  ...
+  (dc: DataConnect): MutationRef<ExcluirMinhaContaData, undefined>;
+}
+export const excluirMinhaContaRef: ExcluirMinhaContaRef;
+```
+
+If you need the name of the operation without creating a ref, you can retrieve the operation name by calling the `operationName` property on the excluirMinhaContaRef:
+```typescript
+const name = excluirMinhaContaRef.operationName;
+console.log(name);
+```
+
+### Variables
+The `ExcluirMinhaConta` mutation has no variables.
+### Return Type
+Recall that executing the `ExcluirMinhaConta` mutation returns a `MutationPromise` that resolves to an object with a `data` property.
+
+The `data` property is an object of type `ExcluirMinhaContaData`, which is defined in [dataconnect-generated/index.d.ts](./index.d.ts). It has the following fields:
+```typescript
+export interface ExcluirMinhaContaData {
+  certificado_deleteMany: number;
+  usuarioModulo_deleteMany: number;
+  usuarioCurso_deleteMany: number;
+  solicitacaoSuporte_deleteMany: number;
+  usuario_deleteMany: number;
+}
+```
+### Using `ExcluirMinhaConta`'s action shortcut function
+
+```typescript
+import { getDataConnect } from 'firebase/data-connect';
+import { connectorConfig, excluirMinhaConta } from '@dataconnect/generated';
+
+
+// Call the `excluirMinhaConta()` function to execute the mutation.
+// You can use the `await` keyword to wait for the promise to resolve.
+const { data } = await excluirMinhaConta();
+
+// You can also pass in a `DataConnect` instance to the action shortcut function.
+const dataConnect = getDataConnect(connectorConfig);
+const { data } = await excluirMinhaConta(dataConnect);
+
+console.log(data.certificado_deleteMany);
+console.log(data.usuarioModulo_deleteMany);
+console.log(data.usuarioCurso_deleteMany);
+console.log(data.solicitacaoSuporte_deleteMany);
+console.log(data.usuario_deleteMany);
+
+// Or, you can use the `Promise` API.
+excluirMinhaConta().then((response) => {
+  const data = response.data;
+  console.log(data.certificado_deleteMany);
+  console.log(data.usuarioModulo_deleteMany);
+  console.log(data.usuarioCurso_deleteMany);
+  console.log(data.solicitacaoSuporte_deleteMany);
+  console.log(data.usuario_deleteMany);
+});
+```
+
+### Using `ExcluirMinhaConta`'s `MutationRef` function
+
+```typescript
+import { getDataConnect, executeMutation } from 'firebase/data-connect';
+import { connectorConfig, excluirMinhaContaRef } from '@dataconnect/generated';
+
+
+// Call the `excluirMinhaContaRef()` function to get a reference to the mutation.
+const ref = excluirMinhaContaRef();
+
+// You can also pass in a `DataConnect` instance to the `MutationRef` function.
+const dataConnect = getDataConnect(connectorConfig);
+const ref = excluirMinhaContaRef(dataConnect);
+
+// Call `executeMutation()` on the reference to execute the mutation.
+// You can use the `await` keyword to wait for the promise to resolve.
+const { data } = await executeMutation(ref);
+
+console.log(data.certificado_deleteMany);
+console.log(data.usuarioModulo_deleteMany);
+console.log(data.usuarioCurso_deleteMany);
+console.log(data.solicitacaoSuporte_deleteMany);
+console.log(data.usuario_deleteMany);
+
+// Or, you can use the `Promise` API.
+executeMutation(ref).then((response) => {
+  const data = response.data;
+  console.log(data.certificado_deleteMany);
+  console.log(data.usuarioModulo_deleteMany);
+  console.log(data.usuarioCurso_deleteMany);
+  console.log(data.solicitacaoSuporte_deleteMany);
+  console.log(data.usuario_deleteMany);
 });
 ```
 

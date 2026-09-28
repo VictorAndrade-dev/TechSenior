@@ -1,3 +1,4 @@
+import { escapeHtml } from "./AdminComum.js";
 import { auth } from "./Firebase-config.js";
 
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
@@ -219,7 +220,7 @@ function mostrarCursos(cursos) {
 
     card.innerHTML = `
       <div class="curso-icone">
-        <i class="${curso.icone || "fa-solid fa-book"}"></i>
+        <i class="${escapeHtml(curso.icone || "fa-solid fa-book")}"></i>
       </div>
 
       <div class="curso-info">
@@ -227,7 +228,7 @@ function mostrarCursos(cursos) {
         <div class="curso-titulo">
 
           <h3>
-            ${curso.nome}
+            ${escapeHtml(curso.nome)}
           </h3>
 
           <span class="status ${status.classe}">
@@ -237,14 +238,14 @@ function mostrarCursos(cursos) {
         </div>
 
         <p>
-          ${curso.descricao || "Curso sem descrição."}
+          ${escapeHtml(curso.descricao || "Curso sem descrição.")}
         </p>
 
         <div class="curso-detalhes">
 
           <span>
             <i class="fa-solid fa-signal"></i>
-            ${curso.dificuldade}
+            ${escapeHtml(curso.dificuldade)}
           </span>
 
           <span>
@@ -880,7 +881,7 @@ btnExcluirCurso.addEventListener("click", async () => {
   const curso = cursoEmEdicao;
 
   const confirmou = confirm(
-    `Excluir "${curso.nome}"?\n\n` +
+    `Excluir "${escapeHtml(curso.nome)}"?\n\n` +
     "Esta ação é permanente e não poderá ser desfeita.",
   );
 

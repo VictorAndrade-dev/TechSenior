@@ -1,3 +1,4 @@
+import { registrarAtividade } from "./ServicoAtividade.js";
 import { auth, db } from "./Firebase-config.js";
 import {
   doc,
@@ -9,6 +10,20 @@ import {
 
 function criarProgressoVazio(totalModulos) {
   return new Array(totalModulos).fill(false);
+}
+
+// Abrir um módulo salva a posição sem sobrescrever conclusões feitas em outra aba.
+export async function salvarPosicaoCurso(uid, cursoId, moduloAtual, totalModulos) {
+  if (auth.currentUser?.uid !== uid) throw new Error("Sessão inválida.");
+  const referencia = doc(db, "usuarios", uid, "progresso", cursoId);
+  await runTransaction(db, async (transacao) => {
+    const anterior = await transacao.get(referencia);
+    transacao.set(referencia, {
+      moduloAtual,
+      atualizadoEm: serverTimestamp(),
+      ...(!anterior.exists() ? { modulosConcluidos: criarProgressoVazio(totalModulos), percentual: 0 } : {}),
+    }, { merge: true });
+  });
 }
 
 function dadosTesteFinal(dados = {}) {
@@ -54,7 +69,7 @@ export async function carregarProgressoCurso(uid, cursoId, totalModulos) {
     ? dados.moduloAtual
     : 0;
 
-  return { ...dadosTesteFinal(dados), moduloAtual, modulosConcluidos };
+  return { ...dadosTesteFinal(dados), iniciado: true, moduloAtual, modulosConcluidos };
 }
 
 // Transação preserva a melhor nota e evita perder incrementos entre abas.
@@ -70,7 +85,7 @@ export async function salvarResultadoTesteFinal(
   }
   const percentual = Math.round((acertos / total) * 100);
   const referencia = doc(db, "usuarios", uid, "progresso", cursoId);
-  return runTransaction(db, async (transacao) => {
+  const salvo = await runTransaction(db, async (transacao) => {
     const documento = await transacao.get(referencia);
     const dados = documento.data() || {};
     const anterior = dadosTesteFinal(dados);
@@ -94,6 +109,8 @@ export async function salvarResultadoTesteFinal(
     transacao.set(referencia, resultado, { merge: true });
     return { ...anterior, ...resultado };
   });
+  await registrarAtividade(cursoId, totalModulos - 1).catch((erro) => console.warn("Atividade não registrada", erro));
+  return salvo;
 }
 
 export async function salvarProgressoCurso(
@@ -102,6 +119,7 @@ export async function salvarProgressoCurso(
   moduloAtual,
   modulosConcluidos,
 ) {
+  if (auth.currentUser?.uid !== uid) throw new Error("Sessão inválida.");
   const concluidos = modulosConcluidos.filter(Boolean).length;
   const percentual = Math.round((concluidos / modulosConcluidos.length) * 100);
 
@@ -115,4 +133,5 @@ export async function salvarProgressoCurso(
     },
     { merge: true },
   );
+  await registrarAtividade(cursoId, moduloAtual).catch((erro) => console.warn("Atividade não registrada", erro));
 }

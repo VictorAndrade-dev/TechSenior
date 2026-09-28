@@ -13,7 +13,8 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="Estilos - CSS/Admin.css" />
+    <link rel="stylesheet" href="Estilos - CSS/Padrão.css" />
+<link rel="stylesheet" href="Estilos - CSS/Admin.css" />
 
     <link
       rel="stylesheet"
@@ -46,7 +47,8 @@
           Cursos
         </a>
 
-        <a href="index.html" class="menu-item">
+        <a href="#suporteAdmin" class="menu-item">Solicitações de suporte</a>
+<a href="index.html" class="menu-item">
           <i class="fa-solid fa-house"></i>
           Voltar ao site
         </a>
@@ -134,7 +136,7 @@
 
         <div id="listaCursosAdmin" class="lista-cursos" hidden></div>
       </section>
-    </main>
+    <section id="suporteAdmin" hidden aria-labelledby="tituloSuporteAdmin"><h2 id="tituloSuporteAdmin">Solicitações de suporte</h2><button type="button" id="atualizarSuporte">Atualizar solicitações</button><p id="estadoSuporte" role="status"></p><div id="listaSuporte"></div></section></main>
 
     <div id="modalNovoCurso" class="modal" hidden>
       <div class="modal-conteudo">
@@ -339,5 +341,6 @@
     </div>
 
     <script type="module" src="Script - Java/Admin.js"></script>
-  </body>
+  <script type="module" src="Script - Java/Padrão.js"></script>
+<script type="module" src="Script - Java/AdminSuporte.js"></script></body>
 </html>

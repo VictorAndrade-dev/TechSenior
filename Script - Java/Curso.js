@@ -1,8 +1,11 @@
+import { escapeHtml } from "./AdminComum.js";
+import { registrarAtividade } from "./ServicoAtividade.js";
 import { auth } from "./Firebase-config.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 import {
   carregarProgressoCurso,
   salvarProgressoCurso,
+  salvarPosicaoCurso,
 } from "./ServicoProgresso.js";
 
 import {
@@ -389,7 +392,7 @@ function renderizarModulos() {
       <div class="informacoes-modulo">
 
         <strong>
-          ${modulo.titulo || `Módulo ${indice + 1}`}
+          ${escapeHtml(modulo.titulo || `Módulo ${indice + 1}`)}
         </strong>
 
         <span>
@@ -483,6 +486,11 @@ async function carregarModulo(indice) {
   // ========================================
 
   renderizarConteudos(conteudos);
+  salvarPosicaoCurso(auth.currentUser.uid, cursoId, indice, modulos.length).catch((erro) => console.warn("Não foi possível salvar a posição do curso.", erro));
+  document.dispatchEvent(new Event("techsenior:parar-leitura"));
+  registrarAtividade(cursoId, indice, cursoAtual?.nome || "", modulo.nome || "").catch((erro) => {
+    console.warn("Não foi possível registrar sua atividade.", erro);
+  });
 
 
   // ========================================
@@ -502,7 +510,7 @@ async function carregarModulo(indice) {
 
 
   // Esses cards pertenciam ao modelo estático
-  // antigo do CursoCelular.
+  // antigo do curso estático.
   // Agora dica/importante são conteúdos ordenáveis.
 
   [
@@ -1185,6 +1193,7 @@ async function carregarQuizModulo(modulo) {
 }
 
 function renderizarQuestaoQuiz() {
+  document.dispatchEvent(new Event("techsenior:parar-leitura"));
 
   const questao =
     questoesQuiz[indiceQuestaoQuiz];

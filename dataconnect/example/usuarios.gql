@@ -73,3 +73,12 @@ mutation AtualizarNomeUsuario(
     }
   )
 }
+
+# Sem identificadores fornecidos pelo cliente. A transação remove todas as dependências.
+mutation ExcluirMinhaConta @auth(level: USER) @transaction {
+  certificado_deleteMany(where: {usuario: {firebaseUid: {eq_expr: "auth.uid"}}})
+  usuarioModulo_deleteMany(where: {usuario: {firebaseUid: {eq_expr: "auth.uid"}}})
+  usuarioCurso_deleteMany(where: {usuario: {firebaseUid: {eq_expr: "auth.uid"}}})
+  solicitacaoSuporte_deleteMany(where: {usuario: {firebaseUid: {eq_expr: "auth.uid"}}})
+  usuario_deleteMany(where: {firebaseUid: {eq_expr: "auth.uid"}})
+}

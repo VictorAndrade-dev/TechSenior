@@ -60,7 +60,7 @@
   display: flex;
   align-items: center;
   gap: 50px;
-  background: #fff;
+  background: var(--superficie);
   padding: 50px;
   border-radius: 30px;
   box-shadow: var(--sombra);
@@ -91,7 +91,7 @@
 
 /* --- SEÇÃO: NOSSA HISTÓRIA (CORRIGIDO SEM ESPAÇO VAZIO) --- */
 .historia {
-  background-color: #ffffff;
+  background-color: var(--superficie);
   padding: 80px 8%;
 }
 
@@ -166,7 +166,7 @@
 
 .destaque {
   flex: 1;
-  background: #ffffff;
+  background: var(--superficie);
   border-left: 6px solid var(--azul);
   padding: 25px;
   border-radius: 0 20px 20px 0;
@@ -305,7 +305,7 @@
 }
 
 .valor-card {
-  background: white;
+  background: var(--superficie);
   padding: 40px 30px;
   border-radius: 25px;
   box-shadow: var(--sombra);
@@ -345,7 +345,7 @@
 }
 
 .valor-card {
-  background: white;
+  background: var(--superficie);
   padding: 40px 30px;
   border-radius: 25px;
   box-shadow: var(--sombra);
@@ -411,7 +411,7 @@
 }
 
 .ods-card {
-  background: white;
+  background: var(--superficie);
   width: 220px;
   padding: 30px;
   text-align: center;
@@ -477,7 +477,7 @@
 }
 
 .membro {
-  background: white;
+  background: var(--superficie);
   padding: 35px 25px;
   border-radius: 25px;
   box-shadow: var(--sombra);
@@ -531,7 +531,7 @@
 }
 
 .impacto-card {
-  background: white;
+  background: var(--superficie);
   padding: 40px 30px;
   border-radius: 25px;
   text-align: center;
@@ -587,7 +587,7 @@ CTA
 }
 
 .cta button {
-  background: white;
+  background: var(--superficie);
   color: var(--azul);
 }
 

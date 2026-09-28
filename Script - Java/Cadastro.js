@@ -1,3 +1,4 @@
+import { configurarValidacaoSenha } from "./ValidacaoSenha.js";
 import { auth } from "./Firebase-config.js";
 
 import {
@@ -19,6 +20,7 @@ import {
 
 const mostrarSenha = document.getElementById("mostrarSenha");
 const senha = document.getElementById("senha");
+const validarSenha = configurarValidacaoSenha(senha, document.getElementById("confirmarSenha"));
 
 if (mostrarSenha) {
 
@@ -58,6 +60,7 @@ if (formCadastro) {
   formCadastro.addEventListener("submit", async (evento) => {
 
     evento.preventDefault();
+    if (!validarSenha()) { formCadastro.reportValidity(); return; }
 
 
     // ======================================
@@ -235,7 +238,7 @@ if (formCadastro) {
       } else if (erro.code === "auth/weak-password") {
 
         alert(
-          "A senha é muito fraca. Use pelo menos 6 caracteres."
+          "A senha é muito fraca. Confira as regras indicadas no formulário."
         );
 
       } else {

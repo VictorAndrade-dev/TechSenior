@@ -23,6 +23,15 @@ export interface AtualizarNomeUsuarioVariables {
   nome: string;
 }
 
+export interface AtualizarStatusSuporteData {
+  solicitacaoSuporte_update?: SolicitacaoSuporte_Key | null;
+}
+
+export interface AtualizarStatusSuporteVariables {
+  id: UUIDString;
+  status: string;
+}
+
 export interface BuscarCursoData {
   curso?: {
     id: UUIDString;
@@ -170,6 +179,15 @@ export interface CriarQuizVariables {
   tipo: string;
 }
 
+export interface CriarSolicitacaoSuporteData {
+  solicitacaoSuporte_insert: SolicitacaoSuporte_Key;
+}
+
+export interface CriarSolicitacaoSuporteVariables {
+  assunto: string;
+  mensagem: string;
+}
+
 export interface Curso_Key {
   id: UUIDString;
   __typename?: 'Curso_Key';
@@ -271,6 +289,14 @@ export interface ExcluirCursoData {
 
 export interface ExcluirCursoVariables {
   id: UUIDString;
+}
+
+export interface ExcluirMinhaContaData {
+  certificado_deleteMany: number;
+  usuarioModulo_deleteMany: number;
+  usuarioCurso_deleteMany: number;
+  solicitacaoSuporte_deleteMany: number;
+  usuario_deleteMany: number;
 }
 
 export interface ExcluirModuloData {
@@ -386,6 +412,21 @@ export interface ListarQuestoesDoQuizVariables {
   quizId: UUIDString;
 }
 
+export interface ListarSolicitacoesSuporteData {
+  solicitacaoSuportes: ({
+    id: UUIDString;
+    assunto: string;
+    mensagem: string;
+    status: string;
+    criadoEm: TimestampString;
+    atualizadoEm: TimestampString;
+    usuario: {
+      nome: string;
+      email: string;
+    };
+  } & SolicitacaoSuporte_Key)[];
+}
+
 export interface MeuPerfilData {
   usuarios: ({
     id: UUIDString;
@@ -414,6 +455,11 @@ export interface QuestaoQuiz_Key {
 export interface Quiz_Key {
   id: UUIDString;
   __typename?: 'Quiz_Key';
+}
+
+export interface SolicitacaoSuporte_Key {
+  id: UUIDString;
+  __typename?: 'SolicitacaoSuporte_Key';
 }
 
 export interface StatusCurso_Key {
@@ -772,6 +818,42 @@ export const excluirModuloRef: ExcluirModuloRef;
 export function excluirModulo(vars: ExcluirModuloVariables): MutationPromise<ExcluirModuloData, ExcluirModuloVariables>;
 export function excluirModulo(dc: DataConnect, vars: ExcluirModuloVariables): MutationPromise<ExcluirModuloData, ExcluirModuloVariables>;
 
+interface CriarSolicitacaoSuporteRef {
+  /* Allow users to create refs without passing in DataConnect */
+  (vars: CriarSolicitacaoSuporteVariables): MutationRef<CriarSolicitacaoSuporteData, CriarSolicitacaoSuporteVariables>;
+  /* Allow users to pass in custom DataConnect instances */
+  (dc: DataConnect, vars: CriarSolicitacaoSuporteVariables): MutationRef<CriarSolicitacaoSuporteData, CriarSolicitacaoSuporteVariables>;
+  operationName: string;
+}
+export const criarSolicitacaoSuporteRef: CriarSolicitacaoSuporteRef;
+
+export function criarSolicitacaoSuporte(vars: CriarSolicitacaoSuporteVariables): MutationPromise<CriarSolicitacaoSuporteData, CriarSolicitacaoSuporteVariables>;
+export function criarSolicitacaoSuporte(dc: DataConnect, vars: CriarSolicitacaoSuporteVariables): MutationPromise<CriarSolicitacaoSuporteData, CriarSolicitacaoSuporteVariables>;
+
+interface ListarSolicitacoesSuporteRef {
+  /* Allow users to create refs without passing in DataConnect */
+  (): QueryRef<ListarSolicitacoesSuporteData, undefined>;
+  /* Allow users to pass in custom DataConnect instances */
+  (dc: DataConnect): QueryRef<ListarSolicitacoesSuporteData, undefined>;
+  operationName: string;
+}
+export const listarSolicitacoesSuporteRef: ListarSolicitacoesSuporteRef;
+
+export function listarSolicitacoesSuporte(options?: ExecuteQueryOptions): QueryPromise<ListarSolicitacoesSuporteData, undefined>;
+export function listarSolicitacoesSuporte(dc: DataConnect, options?: ExecuteQueryOptions): QueryPromise<ListarSolicitacoesSuporteData, undefined>;
+
+interface AtualizarStatusSuporteRef {
+  /* Allow users to create refs without passing in DataConnect */
+  (vars: AtualizarStatusSuporteVariables): MutationRef<AtualizarStatusSuporteData, AtualizarStatusSuporteVariables>;
+  /* Allow users to pass in custom DataConnect instances */
+  (dc: DataConnect, vars: AtualizarStatusSuporteVariables): MutationRef<AtualizarStatusSuporteData, AtualizarStatusSuporteVariables>;
+  operationName: string;
+}
+export const atualizarStatusSuporteRef: AtualizarStatusSuporteRef;
+
+export function atualizarStatusSuporte(vars: AtualizarStatusSuporteVariables): MutationPromise<AtualizarStatusSuporteData, AtualizarStatusSuporteVariables>;
+export function atualizarStatusSuporte(dc: DataConnect, vars: AtualizarStatusSuporteVariables): MutationPromise<AtualizarStatusSuporteData, AtualizarStatusSuporteVariables>;
+
 interface CadastrarUsuarioRef {
   /* Allow users to create refs without passing in DataConnect */
   (vars: CadastrarUsuarioVariables): MutationRef<CadastrarUsuarioData, CadastrarUsuarioVariables>;
@@ -819,4 +901,16 @@ export const atualizarNomeUsuarioRef: AtualizarNomeUsuarioRef;
 
 export function atualizarNomeUsuario(vars: AtualizarNomeUsuarioVariables): MutationPromise<AtualizarNomeUsuarioData, AtualizarNomeUsuarioVariables>;
 export function atualizarNomeUsuario(dc: DataConnect, vars: AtualizarNomeUsuarioVariables): MutationPromise<AtualizarNomeUsuarioData, AtualizarNomeUsuarioVariables>;
+
+interface ExcluirMinhaContaRef {
+  /* Allow users to create refs without passing in DataConnect */
+  (): MutationRef<ExcluirMinhaContaData, undefined>;
+  /* Allow users to pass in custom DataConnect instances */
+  (dc: DataConnect): MutationRef<ExcluirMinhaContaData, undefined>;
+  operationName: string;
+}
+export const excluirMinhaContaRef: ExcluirMinhaContaRef;
+
+export function excluirMinhaConta(): MutationPromise<ExcluirMinhaContaData, undefined>;
+export function excluirMinhaConta(dc: DataConnect): MutationPromise<ExcluirMinhaContaData, undefined>;
 

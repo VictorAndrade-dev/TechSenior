@@ -46,7 +46,7 @@
         <!-- LOGO -->
 
         <div class="cadastro-logo">
-          <img src="Imagens/Logotipo Sem Fundo.png" alt="Logo TechSênior" />
+          <img src="Imagens/Logo-TechSenior-Light.svg" alt="Logo TechSênior" />
         </div>
 
         <!-- TÍTULO -->
@@ -98,12 +98,12 @@
 
               <input
                 type="password"
-                id="senha"
+                id="senha" minlength="10" maxlength="32" autocomplete="new-password"
                 placeholder="Crie uma senha"
                 required
               />
 
-              <button type="button" class="mostrar-senha" id="mostrarSenha">
+              <button type="button" class="mostrar-senha" id="mostrarSenha" aria-label="Mostrar ou ocultar senha">
                 <i class="fa-solid fa-eye"></i>
               </button>
             </div>
@@ -117,7 +117,7 @@
 
               <input
                 type="password"
-                id="confirmarSenha"
+                id="confirmarSenha" minlength="10" maxlength="32" autocomplete="new-password"
                 placeholder="Confirme sua senha"
                 required
               />
@@ -171,5 +171,6 @@
     </script>
 
     <script type="module" src="Script - Java/Cadastro.js"></script>
-  </body>
+  <script type="module" src="Script - Java/Padrão.js"></script>
+</body>
 </html>

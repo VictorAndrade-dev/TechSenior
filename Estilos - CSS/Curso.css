@@ -1,19 +1,22 @@
 /* 1. Variáveis locais e base */
 .pagina-curso {
-  --curso-azul: #1f5fc4;
-  --curso-azul-escuro: #123f8c;
-  --curso-azul-claro: #edf4ff;
-  --curso-verde: #147a63;
-  --curso-verde-claro: #edf8f4;
+  --curso-azul: var(--primary, #1f5fc4);
+  --curso-azul-escuro: var(--primary-hover, #174eac);
+  --curso-azul-claro: color-mix(in srgb, var(--primary, #1f5fc4) 9%, var(--surface, #fff));
+  --curso-verde: var(--accent, #147a63);
+  --curso-verde-claro: var(--accent-soft, #edf8f4);
   --curso-amarelo: #9a5a08;
   --curso-amarelo-claro: #fff8e8;
   --curso-vermelho: #a4372d;
   --curso-vermelho-claro: #fff2f0;
-  --curso-texto: #243444;
-  --curso-texto-suave: #526474;
-  --curso-borda: #d8e1e8;
-  --curso-fundo: #f4f7fa;
-  --curso-branco: #fff;
+  --curso-texto: var(--text, #243444);
+  --curso-texto-suave: var(--text-muted, #526474);
+  --curso-borda: var(--border, #d8e1e8);
+  --curso-fundo: var(--bg, #f4f7fa);
+  --curso-branco: var(--surface, #fff);
+  --curso-superficie-elevada: var(--surface-elevated, #fff);
+  --curso-sombra: var(--shadow, 0 16px 38px rgba(15, 46, 78, 0.09));
+  --curso-em-acao: #fff;
   --curso-raio: 1rem;
   min-height: calc(100vh - 6.25rem);
   padding: 1.5rem clamp(1rem, 2.5vw, 2.5rem) 3.5rem;
@@ -25,36 +28,23 @@
   line-height: 1.7;
 }
 
-/* Ajustes locais do header, sem alterar o padrão das demais páginas. */
-body:has(.pagina-curso) > header {
-  min-height: 5.5rem;
-  padding: 0.25rem 5%;
-}
-
-body:has(.pagina-curso) > header .logo {
-  position: relative;
-  flex: 0 0 8.75rem;
-  width: 8.75rem;
-  height: 4.75rem;
-  overflow: hidden;
-}
-
-body:has(.pagina-curso) > header .logo img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: auto;
-  max-width: none;
-  height: 9.5rem;
-  transform: translate(-50%, -50%);
-}
-
-body:has(.pagina-curso) > header nav { gap: 1.5rem; }
-
-body:has(.pagina-curso) > header .btn-login {
-  padding: 0.75rem 1.35rem;
-  border-radius: 0.875rem;
-  font-size: 1rem;
+html[data-tema="escuro"] .pagina-curso {
+  --curso-azul: var(--primary, #6ea8ff);
+  --curso-azul-escuro: #b9d2ff;
+  --curso-azul-claro: rgba(110, 168, 255, 0.11);
+  --curso-verde: var(--accent, #55d69c);
+  --curso-verde-claro: rgba(85, 214, 156, 0.11);
+  --curso-amarelo: #f3c66a;
+  --curso-amarelo-claro: rgba(243, 198, 106, 0.11);
+  --curso-vermelho: #ff9389;
+  --curso-vermelho-claro: rgba(255, 147, 137, 0.11);
+  --curso-texto: var(--text, #e6edf2);
+  --curso-texto-suave: var(--text-muted, #b9c8d2);
+  --curso-borda: var(--border, rgba(153, 190, 204, 0.24));
+  --curso-fundo: var(--bg, #061f2e);
+  --curso-branco: var(--surface, #0b2b3c);
+  --curso-superficie-elevada: var(--surface-elevated, #10384a);
+  --curso-em-acao: #061f2e;
 }
 
 .pagina-curso *,
@@ -82,11 +72,11 @@ body:has(.pagina-curso) > header .btn-login {
 /* 2. Layout */
 .curso-layout {
   display: grid;
-  grid-template-columns: minmax(14.5rem, 16.5rem) minmax(34rem, 1fr) minmax(12.5rem, 14.5rem);
+  grid-template-columns: minmax(15.5rem, 17rem) minmax(0, 1fr) minmax(14rem, 15rem);
   align-items: start;
   gap: clamp(1rem, 1.6vw, 1.5rem);
   width: 100%;
-  max-width: 100rem;
+  max-width: 93.75rem;
   margin: 0 auto;
 }
 
@@ -99,6 +89,7 @@ body:has(.pagina-curso) > header .btn-login {
   border: 0.0625rem solid var(--curso-borda);
   border-radius: var(--curso-raio);
   background: var(--curso-branco);
+  box-shadow: var(--curso-sombra);
 }
 
 /* 3. Coluna esquerda */
@@ -121,7 +112,7 @@ body:has(.pagina-curso) > header .btn-login {
 }
 
 .btn-voltar:hover {
-  border-color: #c8d9f3;
+  border-color: var(--curso-borda);
   background: var(--curso-azul-claro);
 }
 
@@ -131,7 +122,7 @@ body:has(.pagina-curso) > header .btn-login {
 .card-progresso {
   margin-top: 0.75rem;
   padding: 1.125rem;
-  border: 0.0625rem solid #cfe5dc;
+  border: 0.0625rem solid var(--curso-borda);
   border-radius: 0.875rem;
   background: var(--curso-verde-claro);
 }
@@ -157,9 +148,9 @@ body:has(.pagina-curso) > header .btn-login {
   height: 0.75rem;
   margin-bottom: 0.75rem;
   overflow: hidden;
-  border: 0.0625rem solid #c5d9d1;
+  border: 0.0625rem solid var(--curso-borda);
   border-radius: 999rem;
-  background: #dfe9e5;
+  background: color-mix(in srgb, var(--curso-verde) 15%, var(--curso-branco));
 }
 
 .progresso-preenchido {
@@ -172,7 +163,7 @@ body:has(.pagina-curso) > header .btn-login {
 
 .card-progresso p {
   margin: 0;
-  color: #40564e;
+  color: var(--curso-texto-suave);
   font-size: 0.95rem;
   line-height: 1.5;
 }
@@ -209,7 +200,7 @@ body:has(.pagina-curso) > header .btn-login {
   transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
-.modulo:hover:not(:disabled) { border-color: #9eb8dd; background: var(--curso-azul-claro); }
+.modulo:hover:not(:disabled) { border-color: var(--curso-azul); background: var(--curso-azul-claro); }
 
 .modulo.ativo {
   border-color: var(--curso-azul);
@@ -217,12 +208,12 @@ body:has(.pagina-curso) > header .btn-login {
   box-shadow: inset 0.25rem 0 var(--curso-azul);
 }
 
-.modulo:has(> i.fa-check) { border-color: #b8d8cc; background: var(--curso-verde-claro); }
+.modulo:has(> i.fa-check) { border-color: var(--curso-verde); background: var(--curso-verde-claro); }
 
 .modulo.bloqueado {
   border-style: dashed;
   background: var(--curso-azul-claro);
-  color: #586571;
+  color: var(--curso-texto-suave);
   cursor: not-allowed;
 }
 
@@ -232,16 +223,16 @@ body:has(.pagina-curso) > header .btn-login {
   width: 2.375rem;
   height: 2.375rem;
   place-items: center;
-  border: 0.0625rem solid #ccd6df;
+  border: 0.0625rem solid var(--curso-borda);
   border-radius: 50%;
   background: var(--curso-azul-claro);
-  color: #384957;
+  color: var(--curso-texto);
   font-size: 0.95rem;
   font-weight: 700;
 }
 
-.modulo.ativo .numero-modulo { border-color: var(--curso-azul); background: var(--curso-azul); color: var(--curso-branco); }
-.modulo:has(> i.fa-check) .numero-modulo { border-color: var(--curso-verde); background: var(--curso-verde); color: var(--curso-branco); }
+.modulo.ativo .numero-modulo { border-color: var(--curso-azul); background: var(--curso-azul); color: var(--curso-em-acao); }
+.modulo:has(> i.fa-check) .numero-modulo { border-color: var(--curso-verde); background: var(--curso-verde); color: var(--curso-em-acao); }
 
 .informacoes-modulo {
   display: flex;
@@ -260,7 +251,7 @@ body:has(.pagina-curso) > header .btn-login {
 .modulo:has(> i.fa-check) .informacoes-modulo span { color: var(--curso-verde); font-weight: 600; }
 .modulo > i { flex: 0 0 auto; color: var(--curso-azul); font-size: 1rem; }
 .modulo:has(> i.fa-check) > i { color: var(--curso-verde); }
-.modulo.bloqueado > i { color: #596874; }
+.modulo.bloqueado > i { color: var(--curso-texto-suave); }
 
 .carregando-modulos { margin: 0.75rem 0; color: var(--curso-texto-suave); font-size: 0.95rem; text-align: center; }
 
@@ -271,15 +262,15 @@ body:has(.pagina-curso) > header .btn-login {
   min-height: 5.5rem;
   margin-top: 1.5rem;
   padding: 0.875rem;
-  border: 0.0625rem solid #cbdcf1;
+  border: 0.0625rem solid var(--curso-borda);
   border-radius: 0.875rem;
   background: var(--curso-azul-claro);
   color: var(--curso-texto);
   text-decoration: none;
 }
 
-.card-ajuda:hover { border-color: #9db9df; background: var(--curso-azul-claro); }
-.icone-ajuda { display: grid; flex: 0 0 2.625rem; width: 2.625rem; height: 2.625rem; place-items: center; border-radius: 50%; background: var(--curso-azul); color: var(--curso-branco); font-size: 1.1rem; }
+.card-ajuda:hover { border-color: var(--curso-azul); background: var(--curso-azul-claro); }
+.icone-ajuda { display: grid; flex: 0 0 2.625rem; width: 2.625rem; height: 2.625rem; place-items: center; border-radius: 50%; background: var(--curso-azul); color: var(--curso-em-acao); font-size: 1.1rem; }
 .texto-ajuda { display: flex; flex: 1; min-width: 0; flex-direction: column; }
 .texto-ajuda strong { color: var(--curso-azul-escuro); font-size: 1rem; line-height: 1.4; }
 .texto-ajuda span { color: var(--curso-texto-suave); font-size: 0.95rem; line-height: 1.45; }
@@ -352,25 +343,25 @@ body:has(.pagina-curso) > header .btn-login {
 .bloco-destaque-titulo { display: flex; align-items: center; gap: 0.625rem; margin-bottom: 0.5rem; font-size: 1.05rem; line-height: 1.4; }
 .bloco-destaque-titulo i { flex: 0 0 auto; font-size: 1.2rem; }
 .bloco-destaque-texto p { margin: 0.5rem 0 0; }
-.bloco-dica { border-color: #bdded2; background: var(--curso-verde-claro); }
+.bloco-dica { border-color: var(--curso-borda); background: var(--curso-verde-claro); }
 .bloco-dica .bloco-destaque-titulo { color: var(--curso-verde); }
-.bloco-importante { border-color: #ead39b; background: var(--curso-amarelo-claro); }
+.bloco-importante { border-color: var(--curso-borda); background: var(--curso-amarelo-claro); }
 .bloco-importante .bloco-destaque-titulo { color: var(--curso-amarelo); }
 
-.dica-aula { display: flex; align-items: flex-start; gap: 0.875rem; margin-top: 1.25rem; padding: 1rem 1.125rem; border: 0.0625rem solid #bdded2; background: var(--curso-verde-claro); }
+.dica-aula { display: flex; align-items: flex-start; gap: 0.875rem; margin-top: 1.25rem; padding: 1rem 1.125rem; border: 0.0625rem solid var(--curso-borda); background: var(--curso-verde-claro); }
 .dica-aula[hidden] { display: none; }
 .icone-dica { display: grid; flex: 0 0 2.25rem; width: 2.25rem; height: 2.25rem; place-items: center; color: var(--curso-verde); font-size: 1.25rem; }
 .dica-aula p { margin: 0; color: var(--curso-texto); font-size: 1rem; line-height: 1.65; }
 .dica-aula strong { color: var(--curso-verde); }
 
 /* 9. Quiz do módulo */
-.quiz-modulo { width: 100%; margin-top: 1.75rem; padding: clamp(1.25rem, 2.5vw, 2rem); border: 0.0625rem solid #c8d9ef; border-radius: 1rem; background: var(--curso-azul-claro); }
+.quiz-modulo { width: 100%; margin-top: 1.75rem; padding: clamp(1.25rem, 2.5vw, 2rem); border: 0.0625rem solid var(--curso-borda); border-radius: 1rem; background: var(--curso-azul-claro); }
 .quiz-modulo[hidden],
 .quiz-feedback[hidden],
 .btn-proxima-questao[hidden] { display: none; }
 
 .quiz-cabecalho { display: flex; align-items: flex-start; gap: 0.875rem; margin-bottom: 1.5rem; }
-.quiz-icone { display: grid; flex: 0 0 3rem; width: 3rem; height: 3rem; place-items: center; border-radius: 50%; background: var(--curso-azul); color: var(--curso-branco); font-size: 1.25rem; }
+.quiz-icone { display: grid; flex: 0 0 3rem; width: 3rem; height: 3rem; place-items: center; border-radius: 50%; background: var(--curso-azul); color: var(--curso-em-acao); font-size: 1.25rem; }
 .quiz-identificacao { display: block; margin-bottom: 0.375rem; color: var(--curso-azul-escuro); font-size: 0.9rem; font-weight: 700; letter-spacing: 0.04em; line-height: 1.4; text-transform: uppercase; }
 .quiz-cabecalho h2 { margin: 0; color: var(--curso-texto); font-size: clamp(1.15rem, 2vw, 1.4rem); font-weight: 700; line-height: 1.45; overflow-wrap: anywhere; }
 .quiz-alternativas { display: flex; flex-direction: column; gap: 0.75rem; }
@@ -382,7 +373,7 @@ body:has(.pagina-curso) > header .btn-login {
   width: 100%;
   min-height: 4.25rem;
   padding: 0.875rem 1rem;
-  border: 0.125rem solid #cbd7e2;
+  border: 0.125rem solid var(--curso-borda);
   border-radius: 0.75rem;
   background: var(--curso-branco);
   color: var(--curso-texto);
@@ -397,39 +388,42 @@ body:has(.pagina-curso) > header .btn-login {
 
 .opcao-quiz:hover:not(:disabled) { border-color: var(--curso-azul); background: var(--curso-azul-claro); }
 .opcao-quiz:disabled { cursor: default; }
-.letra-alternativa { display: grid; flex: 0 0 2.25rem; width: 2.25rem; height: 2.25rem; place-items: center; border: 0.0625rem solid #b7c5d1; border-radius: 50%; background: var(--curso-azul-claro); color: var(--curso-texto); font-weight: 700; }
+.letra-alternativa { display: grid; flex: 0 0 2.25rem; width: 2.25rem; height: 2.25rem; place-items: center; border: 0.0625rem solid var(--curso-borda); border-radius: 50%; background: var(--curso-azul-claro); color: var(--curso-texto); font-weight: 700; }
 
 .opcao-quiz.selecionada { border-color: var(--curso-azul); background: var(--curso-azul-claro); box-shadow: inset 0.25rem 0 var(--curso-azul); }
-.opcao-quiz.selecionada .letra-alternativa { border-color: var(--curso-azul); background: var(--curso-azul); color: var(--curso-branco); }
+.opcao-quiz.selecionada .letra-alternativa { border-color: var(--curso-azul); background: var(--curso-azul); color: var(--curso-em-acao); }
 .opcao-quiz.correta { border-color: var(--curso-verde); background: var(--curso-verde-claro); box-shadow: inset 0.25rem 0 var(--curso-verde); }
-.opcao-quiz.correta .letra-alternativa { border-color: var(--curso-verde); background: var(--curso-verde); color: var(--curso-branco); }
+.opcao-quiz.correta .letra-alternativa { border-color: var(--curso-verde); background: var(--curso-verde); color: var(--curso-em-acao); }
 .opcao-quiz.errada { border-color: var(--curso-vermelho); background: var(--curso-vermelho-claro); box-shadow: inset 0.25rem 0 var(--curso-vermelho); }
-.opcao-quiz.errada .letra-alternativa { border-color: var(--curso-vermelho); background: var(--curso-vermelho); color: var(--curso-branco); }
+.opcao-quiz.errada .letra-alternativa { border-color: var(--curso-vermelho); background: var(--curso-vermelho); color: var(--curso-em-acao); }
 
 .quiz-feedback { margin-top: 1rem; padding: 1rem 1.125rem; border: 0.0625rem solid var(--curso-borda); border-radius: 0.75rem; background: var(--curso-branco); color: var(--curso-texto); font-size: 1rem; font-weight: 500; line-height: 1.65; overflow-wrap: anywhere; }
-.quiz-feedback.correto { border-color: #aed5c6; border-left: 0.3rem solid var(--curso-verde); background: var(--curso-verde-claro); color: #0b5a47; }
-.quiz-feedback.errado { border-color: #e1b7b3; border-left: 0.3rem solid var(--curso-vermelho); background: var(--curso-vermelho-claro); color: #7f2821; }
+.quiz-feedback.correto { border-color: var(--curso-verde); border-left: 0.3rem solid var(--curso-verde); background: var(--curso-verde-claro); color: var(--curso-texto); }
+.quiz-feedback.errado { border-color: var(--curso-vermelho); border-left: 0.3rem solid var(--curso-vermelho); background: var(--curso-vermelho-claro); color: var(--curso-texto); }
 
-.btn-proxima-questao { display: flex; align-items: center; justify-content: center; gap: 0.625rem; min-height: 3.25rem; margin: 1.25rem 0 0 auto; padding: 0.75rem 1.25rem; border: 0.125rem solid var(--curso-azul); border-radius: 0.75rem; background: var(--curso-azul); color: var(--curso-branco); font: inherit; font-weight: 700; cursor: pointer; }
+.btn-proxima-questao { display: flex; align-items: center; justify-content: center; gap: 0.625rem; min-height: 3.25rem; margin: 1.25rem 0 0 auto; padding: 0.75rem 1.25rem; border: 0.125rem solid var(--curso-azul); border-radius: 0.75rem; background: var(--curso-azul); color: var(--curso-em-acao); font: inherit; font-weight: 700; cursor: pointer; }
 .btn-proxima-questao:hover:not(:disabled) { border-color: var(--curso-azul-escuro); background: var(--curso-azul-escuro); }
-.btn-proxima-questao:disabled { border-color: #9aa8b4; background: #dfe5e9; color: #44535f; cursor: not-allowed; }
+.btn-proxima-questao:disabled { border-color: var(--curso-borda); background: var(--curso-fundo); color: var(--curso-texto-suave); cursor: not-allowed; }
 
 /* 10. Chamada do teste final */
-.teste-final-chamada { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; margin-top: 1.75rem; padding: 1.5rem; border: 0.0625rem solid #b8d8cc; border-left: 0.35rem solid var(--curso-verde); border-radius: 1rem; background: linear-gradient(135deg, #f2faf6 0%, #edf4ff 100%); }
+.teste-final-chamada { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; margin-top: 1.75rem; padding: 1.5rem; border: 0.0625rem solid var(--curso-borda); border-left: 0.35rem solid var(--curso-verde); border-radius: 1rem; background: linear-gradient(135deg, var(--curso-verde-claro) 0%, var(--curso-azul-claro) 100%); }
 .teste-final-chamada[hidden] { display: none; }
 .teste-final-etiqueta { color: var(--curso-verde); font-size: 0.9rem; font-weight: 700; letter-spacing: 0.05em; line-height: 1.4; text-transform: uppercase; }
 .teste-final-chamada h2 { margin: 0.35rem 0 0.5rem; color: var(--curso-texto); font-size: 1.4rem; font-weight: 700; line-height: 1.35; }
 .teste-final-chamada p { max-width: 52ch; margin: 0; color: var(--curso-texto-suave); font-size: 1rem; line-height: 1.65; }
 
-.btn-iniciar-teste-final { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; gap: 0.625rem; min-height: 3.25rem; padding: 0.75rem 1.125rem; border: 0.125rem solid var(--curso-verde); border-radius: 0.75rem; background: var(--curso-verde); color: var(--curso-branco); font-size: 1rem; font-weight: 700; line-height: 1.4; text-align: center; text-decoration: none; }
-.btn-iniciar-teste-final:hover { border-color: #0d5e4b; background: #0d5e4b; }
+.btn-iniciar-teste-final { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; gap: 0.625rem; min-height: 3.25rem; padding: 0.75rem 1.125rem; border: 0.125rem solid var(--curso-verde); border-radius: 0.75rem; background: var(--curso-verde); color: var(--curso-em-acao); font-size: 1rem; font-weight: 700; line-height: 1.4; text-align: center; text-decoration: none; }
+.btn-iniciar-teste-final:hover {
+  border-color: color-mix(in srgb, var(--curso-verde) 82%, #000);
+  background: color-mix(in srgb, var(--curso-verde) 82%, #000);
+}
 
 /* 11. Navegação entre aulas */
 .navegacao-aulas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-top: 1.75rem; padding-top: 1.5rem; border-top: 0.0625rem solid var(--curso-borda); }
 
-.btn-aula { display: flex; align-items: center; gap: 0.875rem; min-width: 0; min-height: 4.75rem; padding: 0.875rem 1rem; border: 0.125rem solid #b7c9e2; border-radius: 0.875rem; background: var(--curso-branco); color: var(--curso-azul-escuro); font: inherit; text-align: left; cursor: pointer; }
+.btn-aula { display: flex; align-items: center; gap: 0.875rem; min-width: 0; min-height: 4.75rem; padding: 0.875rem 1rem; border: 0.125rem solid var(--curso-borda); border-radius: 0.875rem; background: var(--curso-branco); color: var(--curso-azul-escuro); font: inherit; text-align: left; cursor: pointer; }
 .btn-aula:hover:not(:disabled) { border-color: var(--curso-azul); background: var(--curso-azul-claro); }
-.btn-aula:disabled { border-color: #d3dbe1; background: #f1f3f5; color: #677580; cursor: not-allowed; }
+.btn-aula:disabled { border-color: var(--curso-borda); background: var(--curso-fundo); color: var(--curso-texto-suave); cursor: not-allowed; }
 .btn-aula i { flex: 0 0 auto; font-size: 1.15rem; }
 .btn-aula span { display: flex; min-width: 0; flex-direction: column; gap: 0.125rem; }
 .btn-aula strong,
@@ -437,11 +431,11 @@ body:has(.pagina-curso) > header .btn-login {
 .btn-aula strong { font-size: 1rem; font-weight: 700; line-height: 1.4; }
 .btn-aula small { color: var(--curso-texto-suave); font-size: 0.95rem; line-height: 1.45; }
 
-.btn-aula.proxima { justify-content: flex-end; border-color: var(--curso-azul); background: var(--curso-azul); color: var(--curso-branco); text-align: right; }
+.btn-aula.proxima { justify-content: flex-end; border-color: var(--curso-azul); background: var(--curso-azul); color: var(--curso-em-acao); text-align: right; }
 .btn-aula.proxima small { color: #e9f1ff; }
 .btn-aula.proxima:hover:not(:disabled) { border-color: var(--curso-azul-escuro); background: var(--curso-azul-escuro); }
-.btn-aula.proxima:disabled { border-color: #d3dbe1; background: #f1f3f5; color: #677580; }
-.btn-aula.proxima:disabled small { color: #677580; }
+.btn-aula.proxima:disabled { border-color: var(--curso-borda); background: var(--curso-fundo); color: var(--curso-texto-suave); }
+.btn-aula.proxima:disabled small { color: var(--curso-texto-suave); }
 
 /* 12. Coluna direita */
 .coluna-direita {
@@ -457,16 +451,16 @@ body:has(.pagina-curso) > header .btn-login {
 .titulo-card i { flex: 0 0 auto; font-size: 1.15rem; }
 .titulo-card h2 { margin: 0; color: inherit; font-size: 1rem; font-weight: 700; line-height: 1.4; }
 .card-informacao p { margin: 0; color: var(--curso-texto-suave); font-size: 0.95rem; line-height: 1.7; overflow-wrap: anywhere; }
-.card-sobre { border-color: #c9d9ee; background: var(--curso-azul-claro); }
+.card-sobre { border-color: var(--curso-borda); background: var(--curso-azul-claro); }
 .card-sobre .titulo-card,
 .card-lembrete .titulo-card { color: var(--curso-azul-escuro); }
-.card-dica { border-color: #c8dfd6; background: var(--curso-verde-claro); }
+.card-dica { border-color: var(--curso-borda); background: var(--curso-verde-claro); }
 .card-dica .titulo-card { color: var(--curso-verde); }
-.card-atencao { border-color: #ead7aa; background: var(--curso-amarelo-claro); }
+.card-atencao { border-color: var(--curso-borda); background: var(--curso-amarelo-claro); }
 .card-atencao .titulo-card { color: var(--curso-amarelo); }
-.card-sabia { border-color: #d7d0e9; background: var(--curso-azul-claro); }
-.card-sabia .titulo-card { color: #53408c; }
-.card-lembrete { border-color: #ccd9e9; background: var(--curso-azul-claro); }
+.card-sabia { border-color: var(--curso-borda); background: var(--curso-azul-claro); }
+.card-sabia .titulo-card { color: var(--curso-azul-escuro); }
+.card-lembrete { border-color: var(--curso-borda); background: var(--curso-azul-claro); }
 
 /* 13. Acessibilidade */
 @media (prefers-reduced-motion: reduce) {
@@ -479,38 +473,55 @@ body:has(.pagina-curso) > header .btn-login {
 }
 
 /* 14. Responsividade */
-@media (max-width: 82rem) {
-  .curso-layout { grid-template-columns: minmax(13.5rem, 14.5rem) minmax(29rem, 1fr) minmax(12rem, 13.5rem); }
-  .conteudo-aula { padding: 1.75rem; }
-}
-
-@media (max-width: 67.5rem) {
-  .curso-layout { grid-template-columns: minmax(15rem, 17rem) minmax(0, 1fr); }
-  .coluna-direita { position: static; grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
-}
-
-@media (max-width: 48rem) {
-  body:has(.pagina-curso) > header {
-    min-height: 4.75rem;
-    padding: 0.2rem 4%;
+@media (min-width: 75.0625rem) {
+  .coluna-esquerda {
+    position: sticky;
+    top: 6.5rem;
+    max-height: calc(100dvh - 8rem);
+    overflow-y: auto;
+    scrollbar-gutter: stable;
   }
-  body:has(.pagina-curso) > header .logo { flex-basis: 7rem; width: 7rem; height: 4.25rem; }
-  body:has(.pagina-curso) > header .logo img { height: 8.5rem; }
-  body:has(.pagina-curso) > header .btn-login { padding: 0.65rem 1rem; font-size: 1rem; }
-  .pagina-curso { padding: 1.25rem 0.75rem 3rem; }
-  .curso-layout { display: flex; flex-direction: column; }
+}
+
+@media (min-width: 62.5625rem) and (max-width: 75rem) {
+  .curso-layout { grid-template-columns: minmax(15rem, 17rem) minmax(0, 1fr); }
+  .conteudo-aula { padding: 1.75rem; }
+  .coluna-direita {
+    position: static;
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  }
+}
+
+@media (max-width: 62.5rem) {
+  .pagina-curso { padding: 1.25rem 1rem 3rem; }
+  .curso-layout { grid-template-columns: minmax(0, 1fr); }
   .coluna-esquerda,
   .conteudo-aula,
   .coluna-direita { width: 100%; }
   .coluna-esquerda { order: 1; }
-  .conteudo-aula { order: 2; padding: clamp(1.25rem, 5vw, 1.75rem); }
-  .coluna-direita { order: 3; display: flex; }
-  .cabecalho-aula h1 { font-size: clamp(1.75rem, 8vw, 2.25rem); }
-  .teste-final-chamada { align-items: stretch; flex-direction: column; }
-  .btn-iniciar-teste-final { width: 100%; }
+  .conteudo-aula { order: 2; padding: clamp(1.5rem, 4vw, 2rem); }
+  .coluna-direita {
+    position: static;
+    order: 3;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
-@media (max-width: 34rem) {
+@media (max-width: 47.9375rem) {
+  .pagina-curso { padding: 1rem 0.75rem 3rem; }
+  .coluna-direita { grid-template-columns: minmax(0, 1fr); }
+  .cabecalho-aula h1 { font-size: clamp(1.75rem, 8vw, 2.25rem); }
+  .teste-final-chamada { align-items: stretch; flex-direction: column; }
+  .btn-iniciar-teste-final,
+  .btn-proxima-questao { width: 100%; }
+  .navegacao-aulas { grid-template-columns: minmax(0, 1fr); }
+  .btn-aula { width: 100%; }
+}
+
+@media (max-width: 30rem) {
   .pagina-curso { padding-inline: 0.5rem; }
   .coluna-esquerda,
   .conteudo-aula { border-radius: 0.875rem; }
@@ -525,7 +536,4 @@ body:has(.pagina-curso) > header .btn-login {
   .quiz-cabecalho { gap: 0.75rem; }
   .quiz-icone { flex-basis: 2.625rem; width: 2.625rem; height: 2.625rem; }
   .opcao-quiz { align-items: flex-start; min-height: 4rem; padding: 0.875rem; }
-  .btn-proxima-questao { width: 100%; }
-  .navegacao-aulas { grid-template-columns: 1fr; }
-  .btn-aula { width: 100%; }
 }

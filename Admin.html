@@ -14,7 +14,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="Estilos - CSS/Padrão.css" />
-<link rel="stylesheet" href="Estilos - CSS/Admin.css" />
+    <link rel="stylesheet" href="Estilos - CSS/Admin.css" />
 
     <link
       rel="stylesheet"
@@ -30,7 +30,45 @@
     </script>
   </head>
 
-  <body>
+  <body class="admin-page nav-v2">
+    <header>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menu" aria-controls="sidebar" aria-expanded="false">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+      </button>
+      <div class="logo">
+        <img src="Imagens/Logo-TechSenior-Light.svg" data-logo-tema alt="TechSênior" />
+      </div>
+      <nav aria-label="Navegação principal">
+        <a href="index.html">Início</a>
+        <a href="Cursos.html">Cursos</a>
+        <a href="ContatoSuporte.html">Contato e Suporte</a>
+        <a href="Sobre Nós.html">Sobre Nós</a>
+        <a href="Admin.html" aria-current="page">Administração</a>
+      </nav>
+      <a class="btn-login" id="btnUsuario" href="Login.html">
+        <i class="fa-regular fa-user" aria-hidden="true"></i>
+        Entrar
+      </a>
+    </header>
+
+    <div class="sidebar" id="sidebar">
+      <button class="close-menu" id="closeMenu" type="button" aria-label="Fechar painel">
+        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+      </button>
+      <div class="drawer-usuario" id="drawerUsuario"></div>
+      <nav class="sidebar-nav" aria-label="Navegação do painel">
+        <a href="index.html">Início</a>
+        <a href="Cursos.html">Cursos</a>
+        <a href="ContatoSuporte.html">Contato e Suporte</a>
+        <a href="Sobre Nós.html">Sobre Nós</a>
+        <a href="Admin.html" aria-current="page">Administração</a>
+      </nav>
+      <div class="drawer-secao" id="drawerPreferencias"></div>
+      <div class="drawer-secao" id="drawerAdmin" hidden></div>
+      <div class="drawer-secao drawer-conta" id="drawerConta"></div>
+    </div>
+    <div class="overlay" id="overlay"></div>
+
     <aside class="menu-admin">
       <div class="admin-brand">
         <i class="fa-solid fa-shield-halved"></i>
@@ -48,7 +86,7 @@
         </a>
 
         <a href="#suporteAdmin" class="menu-item">Solicitações de suporte</a>
-<a href="index.html" class="menu-item">
+        <a href="index.html" class="menu-item">
           <i class="fa-solid fa-house"></i>
           Voltar ao site
         </a>
@@ -136,7 +174,22 @@
 
         <div id="listaCursosAdmin" class="lista-cursos" hidden></div>
       </section>
-    <section id="suporteAdmin" hidden aria-labelledby="tituloSuporteAdmin"><h2 id="tituloSuporteAdmin">Solicitações de suporte</h2><button type="button" id="atualizarSuporte">Atualizar solicitações</button><p id="estadoSuporte" role="status"></p><div id="listaSuporte"></div></section></main>
+      <section id="suporteAdmin" hidden aria-labelledby="tituloSuporteAdmin">
+        <div class="titulo-secao titulo-secao-com-acao">
+          <div>
+            <span class="etiqueta-secao">ATENDIMENTO</span>
+            <h2 id="tituloSuporteAdmin">Solicitações de suporte</h2>
+            <p>Acompanhe e atualize os pedidos enviados pelos usuários.</p>
+          </div>
+          <button type="button" id="atualizarSuporte" class="btn-cancelar">
+            <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+            Atualizar solicitações
+          </button>
+        </div>
+        <p id="estadoSuporte" class="mensagem" role="status"></p>
+        <div id="listaSuporte"></div>
+      </section>
+    </main>
 
     <div id="modalNovoCurso" class="modal" hidden>
       <div class="modal-conteudo">
@@ -340,7 +393,60 @@
       </div>
     </div>
 
+    <footer>
+      <div class="coluna">
+        <h3>TechSênior</h3>
+        <p>Tecnologia ao seu alcance.</p>
+        <div class="footer-linha logo">
+          <div class="logo-footer">
+            <img src="Imagens/Logo-TechSenior-Light.svg" data-logo-tema alt="TechSênior" />
+          </div>
+        </div>
+      </div>
+      <div class="coluna">
+        <h4>Navegação</h4>
+        <a href="index.html">Início</a>
+        <a href="Cursos.html">Cursos</a>
+        <a href="ContatoSuporte.html">Contato e Suporte</a>
+        <a href="Sobre Nós.html">Sobre Nós</a>
+      </div>
+      <div class="coluna">
+        <h4>Institucional</h4>
+        <a href="Termos de Uso.html">Termos de Uso</a>
+        <a href="Política de Privacidade.html">Política de Privacidade</a>
+        <a href="Declaração de Acessibilidade.html">Declaração de Acessibilidade</a>
+      </div>
+      <div class="coluna">
+        <h4>Contato e Suporte</h4>
+        <a href="Regras da Comunidade.html">Regras da Comunidade</a>
+        <a href="ContatoSuporte.html">Fale Conosco</a>
+        <div class="footer-linha redes">
+          <div class="coluna">
+            <h4>Redes Sociais</h4>
+            <a href="https://www.instagram.com/techsenior_tcc/" target="_blank" rel="noopener noreferrer">
+              <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+              Instagram
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <div class="copyright">
+      © 2026 TechSênior • Projeto desenvolvido para o Trabalho de Conclusão de Curso (TCC) do Curso Técnico em Desenvolvimento de Sistemas.<br />
+      Desenvolvido pela equipe TechSênior.
+    </div>
+
+    <nav class="bottom-nav" aria-label="Navegação principal">
+      <a href="index.html"><i class="fa-solid fa-house" aria-hidden="true"></i><span>Início</span></a>
+      <a href="Cursos.html"><i class="fa-solid fa-book-open" aria-hidden="true"></i><span>Cursos</span></a>
+      <a href="ContatoSuporte.html"><i class="fa-solid fa-headset" aria-hidden="true"></i><span>Suporte</span></a>
+      <button type="button" id="abrirContaMobile" aria-controls="sidebar" aria-expanded="false">
+        <i class="fa-solid fa-user" aria-hidden="true"></i><span>Perfil</span>
+      </button>
+    </nav>
+
+    <script type="module" src="Script - Java/Padrão.js"></script>
     <script type="module" src="Script - Java/Admin.js"></script>
-  <script type="module" src="Script - Java/Padrão.js"></script>
-<script type="module" src="Script - Java/AdminSuporte.js"></script></body>
+    <script type="module" src="Script - Java/AdminSuporte.js"></script>
+  </body>
 </html>

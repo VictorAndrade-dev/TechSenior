@@ -228,7 +228,8 @@ async function carregarCursoComProgresso(uid, curso) {
 
   return {
     ...curso,
-    iniciado: progresso.iniciado === true,
+    iniciado: progresso.iniciado === true
+      && (modulosConcluidos > 0 || progresso.moduloAtual > 0 || progresso.percentual > 0 || progresso.cursoConcluido === true),
     cursoConcluido: progresso.cursoConcluido === true,
     modulosConcluidos,
     percentual,
@@ -237,12 +238,8 @@ async function carregarCursoComProgresso(uid, curso) {
 }
 
 function renderizarCursos(cursos, possuiFalhas) {
-  const iniciados = cursos.filter(
-    (curso) => curso.iniciado || curso.percentual > 0 || curso.cursoConcluido,
-  );
-  const novos = cursos.filter(
-    (curso) => !curso.iniciado && curso.percentual === 0 && !curso.cursoConcluido,
-  );
+  const iniciados = cursos.filter((curso) => curso.iniciado);
+  const novos = cursos.filter((curso) => !curso.iniciado);
 
   atualizarResumo(iniciados);
   preencherListaCursos(
@@ -417,29 +414,121 @@ if (btnSair) {
 
 async function carregarFrequencia(uid) {
   const resumo = document.getElementById("resumoFrequencia");
+  const botaoSemana = document.getElementById("verSemana");
+  const botaoCalendario = document.getElementById("verCalendario");
+  const visualizacaoSemana = document.getElementById("visualizacaoSemana");
+  const visualizacaoCalendario = document.getElementById("visualizacaoCalendario");
+  let modo = "semana";
+  const selecionarModo = (novoModo) => {
+    modo = novoModo;
+    const semanaAtiva = modo === "semana";
+    visualizacaoSemana.hidden = !semanaAtiva;
+    visualizacaoCalendario.hidden = semanaAtiva;
+    botaoSemana.setAttribute("aria-pressed", String(semanaAtiva));
+    botaoCalendario.setAttribute("aria-pressed", String(!semanaAtiva));
+    renderizarResumo();
+  };
+  let dadosFrequencia;
+  const pluralizarDia = (quantidade) => `${quantidade} ${quantidade === 1 ? "dia" : "dias"}`;
+  const renderizarResumo = () => {
+    if (!dadosFrequencia) return;
+    const quantidade = modo === "semana" ? dadosFrequencia.diasAtivos : dadosFrequencia.diasAtivosNoMes;
+    const periodo = modo === "semana" ? "nesta semana" : "neste mês";
+    resumo.textContent = `${pluralizarDia(quantidade)} de estudo ${periodo} • Sequência atual: ${pluralizarDia(dadosFrequencia.sequencia)}.${!dadosFrequencia.estudouHoje && dadosFrequencia.sequencia ? " Estude hoje para manter sua sequência." : ""}`;
+  };
+  botaoSemana.addEventListener("click", () => selecionarModo("semana"));
+  botaoCalendario.addEventListener("click", () => selecionarModo("calendario"));
+  selecionarModo("semana");
   try {
     const atividades = await listarAtividade(uid);
-    const { semana, sequencia, diasAtivos, estudouHoje } = resumirAtividade(atividades);
-    resumo.textContent = diasAtivos + " dias ativos nos últimos 7 dias • Sequência atual: " + sequencia + " dias." + (!estudouHoje && sequencia ? " Estude hoje para manter sua sequência." : "");
+    dadosFrequencia = resumirAtividade(atividades);
+    const { semana, diasDoMes, sequencia, diasAtivos, diasAtivosNoMes, estudouHoje } = dadosFrequencia;
+    renderizarResumo();
     const container = document.getElementById("semanaEstudos");
     container.replaceChildren();
+    const nomesDias = ["SEG", "TER", "QUA", "QUI", "SEX", "SÁB", "DOM"];
     for (const dia of semana) {
       const item = document.createElement("div");
-      item.className = "dia-estudo" + (dia.ativo ? " ativo" : "");
-      item.textContent = dia.data.toLocaleDateString("pt-BR", {weekday: "short"}) + " " + (dia.ativo ? "✓" : "—");
-      item.setAttribute("aria-label", dia.data.toLocaleDateString("pt-BR") + (dia.ativo ? ": dia ativo" : ": sem atividade"));
+      item.className = "dia-estudo" + (dia.ativo ? " ativo" : "") + (dia.hoje ? " hoje" : "");
+      const nomeDia = nomesDias[(dia.data.getDay() + 6) % 7];
+      const rotulo = document.createElement("span");
+      rotulo.className = "dia-estudo-nome";
+      rotulo.textContent = nomeDia;
+      const estado = document.createElement("span");
+      estado.className = "dia-estudo-estado";
+      estado.textContent = dia.ativo ? "✓" : "○";
+      estado.setAttribute("aria-hidden", "true");
+      item.append(rotulo, estado);
+      if (dia.hoje) {
+        const hoje = document.createElement("span");
+        hoje.className = "dia-estudo-hoje";
+        hoje.textContent = "Hoje";
+        item.append(hoje);
+      }
+      const dataLegivel = dia.data.toLocaleDateString("pt-BR", { day: "numeric", month: "long" });
+      item.setAttribute("aria-label", `${nomeDia}, ${dataLegivel}${dia.hoje ? ", hoje" : ""}: ${dia.ativo ? "houve estudo" : "sem atividade de estudo"}`);
       container.append(item);
     }
+
+    const hoje = new Date();
+    const tituloMes = document.getElementById("mesCalendario");
+    tituloMes.textContent = hoje.toLocaleDateString("pt-BR", { month: "long", year: "numeric" });
+    const calendario = document.getElementById("calendarioEstudos");
+    calendario.replaceChildren();
+    nomesDias.forEach((nome) => {
+      const cabecalho = document.createElement("span");
+      cabecalho.className = "calendario-cabecalho";
+      cabecalho.setAttribute("role", "columnheader");
+      cabecalho.textContent = nome;
+      calendario.append(cabecalho);
+    });
+    const primeiroDia = diasDoMes[0].data;
+    const espacosAntes = (primeiroDia.getDay() + 6) % 7;
+    for (let indice = 0; indice < espacosAntes; indice++) {
+      const vazio = document.createElement("span");
+      vazio.className = "calendario-dia fora-mes";
+      vazio.setAttribute("role", "gridcell");
+      vazio.setAttribute("aria-hidden", "true");
+      calendario.append(vazio);
+    }
+    for (const dia of diasDoMes) {
+      const celula = document.createElement("span");
+      celula.className = "calendario-dia" + (dia.ativo ? " ativo" : "") + (dia.hoje ? " hoje" : "");
+      celula.setAttribute("role", "gridcell");
+      celula.textContent = String(dia.data.getDate());
+      if (dia.ativo) {
+        const check = document.createElement("span");
+        check.className = "calendario-check";
+        check.textContent = "✓";
+        check.setAttribute("aria-hidden", "true");
+        celula.append(check);
+      }
+      const dataLegivel = dia.data.toLocaleDateString("pt-BR", { day: "numeric", month: "long" });
+      celula.setAttribute("aria-label", `${dataLegivel}${dia.hoje ? ", hoje" : ""}: ${dia.ativo ? "houve estudo" : "sem atividade de estudo"}`);
+      calendario.append(celula);
+    }
+
     const ultima = document.getElementById("ultimaAtividade");
     ultima.replaceChildren();
     if (!atividades.length) { ultima.textContent = "Seu histórico começa quando você estudar um curso. Vamos começar?"; return; }
     const atividade = atividades[0];
     const texto = document.createElement("p");
     const data = atividade.ultimoAcesso?.toDate?.();
-    texto.textContent = (atividade.cursoNome || "Curso") + " • " + (atividade.moduloNome || "Módulo " + (atividade.moduloAtual + 1)) + (data ? " • " + data.toLocaleString("pt-BR") : "");
+    const curso = document.createElement("strong");
+    curso.className = "ultima-atividade-curso";
+    curso.textContent = atividade.cursoNome || "Curso";
+    const modulo = document.createElement("span");
+    modulo.textContent = atividade.moduloNome || "Módulo " + (atividade.moduloAtual + 1);
+    const dataTexto = document.createElement("time");
+    if (data) {
+      dataTexto.dateTime = data.toISOString();
+      dataTexto.textContent = data.toLocaleString("pt-BR");
+    }
+    texto.append(curso, modulo, dataTexto);
     const link = document.createElement("a");
+    link.className = "btn-card-curso";
     link.href = "Curso.html?id=" + encodeURIComponent(atividade.cursoId);
-    link.textContent = "Continuar";
+    link.textContent = "Continuar curso →";
     ultima.append(texto, link);
   } catch (erro) { console.error(erro); resumo.textContent = "Não foi possível carregar sua atividade. Tente atualizar a página."; }
 }

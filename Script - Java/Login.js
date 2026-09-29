@@ -47,14 +47,18 @@ if (formLogin) {
   formLogin.addEventListener("submit", async (evento) => {
     evento.preventDefault();
 
-    const email = document.getElementById("email").value;
+    const email = document.getElementById("email").value.trim();
 
     const senhaUsuario = document.getElementById("senha").value;
 
-    // Validação simples
     if (email === "" || senhaUsuario === "") {
-      mostrarMensagem("Preencha todos os campos antes de continuar.", "erro");
+      mostrarMensagem("Preencha seu e-mail e sua senha para continuar.", "erro");
 
+      return;
+    }
+    if (!document.getElementById("email").validity.valid) {
+      mostrarMensagem("Digite um e-mail válido.", "erro");
+      document.getElementById("email").focus();
       return;
     }
 
@@ -144,9 +148,9 @@ if (btnGoogle) {
       }
 
       if (erro.code === "auth/popup-blocked") {
-        alert("O navegador bloqueou a janela do Google.");
+        mostrarMensagem("O navegador bloqueou a janela de acesso do Google. Permita a janela e tente novamente.", "erro");
       } else {
-        alert("Não foi possível entrar com o Google.");
+        mostrarMensagem("Não foi possível entrar com o Google. Tente novamente.", "erro");
       }
     } finally {
       btnGoogle.disabled = false;
@@ -155,7 +159,16 @@ if (btnGoogle) {
 }
 
 function mostrarMensagem(texto, tipo) {
-  mensagem.textContent = texto;
+  mensagem.replaceChildren();
+  if (texto) {
+    const icone = document.createElement("span");
+    icone.setAttribute("aria-hidden", "true");
+    icone.textContent = tipo === "sucesso" ? "✓" : tipo === "informacao" ? "ℹ" : "⚠";
+    const conteudo = document.createElement("span");
+    conteudo.textContent = texto;
+    mensagem.append(icone, conteudo);
+  }
   mensagem.className =
     tipo ? `mensagem ${tipo}` : "mensagem";
+  mensagem.setAttribute("role", tipo === "erro" ? "alert" : "status");
 }

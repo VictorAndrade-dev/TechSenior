@@ -21,6 +21,21 @@ import {
 const mostrarSenha = document.getElementById("mostrarSenha");
 const senha = document.getElementById("senha");
 const validarSenha = configurarValidacaoSenha(senha, document.getElementById("confirmarSenha"));
+const mensagemCadastro = document.getElementById("mensagemCadastro");
+
+function mostrarMensagemCadastro(texto, tipo) {
+  mensagemCadastro.replaceChildren();
+  if (texto) {
+    const icone = document.createElement("span");
+    icone.setAttribute("aria-hidden", "true");
+    icone.textContent = tipo === "sucesso" ? "✓" : tipo === "informacao" ? "ℹ" : "⚠";
+    const conteudo = document.createElement("span");
+    conteudo.textContent = texto;
+    mensagemCadastro.append(icone, conteudo);
+  }
+  mensagemCadastro.className = texto ? `mensagem auth-feedback ${tipo}` : "mensagem auth-feedback";
+  mensagemCadastro.setAttribute("role", tipo === "erro" ? "alert" : "status");
+}
 
 if (mostrarSenha) {
 
@@ -60,7 +75,11 @@ if (formCadastro) {
   formCadastro.addEventListener("submit", async (evento) => {
 
     evento.preventDefault();
-    if (!validarSenha()) { formCadastro.reportValidity(); return; }
+    if (!validarSenha()) {
+      mostrarMensagemCadastro("Confira as regras da senha e confirme que as duas senhas são iguais.", "erro");
+      senha.focus();
+      return;
+    }
 
 
     // ======================================
@@ -98,7 +117,7 @@ if (formCadastro) {
       confirmarSenha === ""
     ) {
 
-      alert("Preencha todos os campos antes de continuar.");
+      mostrarMensagemCadastro("Preencha todos os campos antes de continuar.", "erro");
 
       return;
 
@@ -107,7 +126,7 @@ if (formCadastro) {
 
     if (senhaUsuario !== confirmarSenha) {
 
-      alert("As senhas não são iguais.");
+      mostrarMensagemCadastro("As senhas não são iguais.", "erro");
 
       return;
 
@@ -116,8 +135,9 @@ if (formCadastro) {
 
     if (!aceitarTermos) {
 
-      alert(
+      mostrarMensagemCadastro(
         "É necessário aceitar os Termos de Uso e a Política de Privacidade."
+        , "erro"
       );
 
       return;
@@ -174,7 +194,7 @@ if (formCadastro) {
       // CADASTRO FINALIZADO
       // ======================================
 
-      alert("Cadastro realizado com sucesso!");
+      mostrarMensagemCadastro("Cadastro realizado com sucesso! Redirecionando para o login.", "sucesso");
 
       window.location.href = "Login.html";
 
@@ -225,27 +245,19 @@ if (formCadastro) {
 
       if (erro.code === "auth/email-already-in-use") {
 
-        alert(
-          "Este e-mail já está cadastrado."
-        );
+        mostrarMensagemCadastro("Já existe uma conta com este e-mail.", "erro");
 
       } else if (erro.code === "auth/invalid-email") {
 
-        alert(
-          "Digite um e-mail válido."
-        );
+        mostrarMensagemCadastro("Digite um e-mail válido.", "erro");
 
       } else if (erro.code === "auth/weak-password") {
 
-        alert(
-          "A senha é muito fraca. Confira as regras indicadas no formulário."
-        );
+        mostrarMensagemCadastro("A senha ainda não atende a todos os requisitos indicados.", "erro");
 
       } else {
 
-        alert(
-          "Não foi possível realizar o cadastro. Tente novamente."
-        );
+        mostrarMensagemCadastro("Não foi possível criar sua conta. Tente novamente.", "erro");
 
       }
 
@@ -341,15 +353,11 @@ if (btnGoogle) {
           "auth/popup-blocked"
         ) {
 
-          alert(
-            "O navegador bloqueou a janela do Google."
-          );
+          mostrarMensagemCadastro("O navegador bloqueou a janela de acesso do Google. Permita a janela e tente novamente.", "erro");
 
         } else {
 
-          alert(
-            "Não foi possível continuar com o Google."
-          );
+          mostrarMensagemCadastro("Não foi possível continuar com o Google. Tente novamente.", "erro");
 
         }
 

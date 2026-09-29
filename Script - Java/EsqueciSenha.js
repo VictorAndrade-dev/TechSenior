@@ -37,8 +37,7 @@ formRecuperacao.addEventListener(
 
 
     // Limpa mensagem anterior
-    mensagem.textContent = "";
-    mensagem.className = "mensagem";
+    mostrarMensagem("", "");
 
 
     // ========================================
@@ -123,7 +122,16 @@ formRecuperacao.addEventListener(
       // TRATAMENTO DE ERROS
       // ======================================
 
-      if (erro.code === "auth/invalid-email") {
+      if (erro.code === "auth/user-not-found" || erro.code === "auth/invalid-credential") {
+
+        mostrarMensagem(
+          "Se este e-mail estiver cadastrado, você receberá as instruções para recuperar sua senha.",
+          "sucesso"
+        );
+
+      }
+
+      else if (erro.code === "auth/invalid-email") {
 
         mostrarMensagem(
           "Digite um e-mail válido.",
@@ -185,9 +193,16 @@ function mostrarMensagem(
   tipo
 ) {
 
-  mensagem.textContent = texto;
-
-  mensagem.className =
-    `mensagem ${tipo}`;
+  mensagem.replaceChildren();
+  if (texto) {
+    const icone = document.createElement("span");
+    icone.setAttribute("aria-hidden", "true");
+    icone.textContent = tipo === "sucesso" ? "✓" : tipo === "informacao" ? "ℹ" : "⚠";
+    const conteudo = document.createElement("span");
+    conteudo.textContent = texto;
+    mensagem.append(icone, conteudo);
+  }
+  mensagem.className = texto ? `mensagem auth-feedback ${tipo}` : "mensagem auth-feedback";
+  mensagem.setAttribute("role", tipo === "erro" ? "alert" : "status");
 
 }

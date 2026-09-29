@@ -145,10 +145,27 @@
             </section>
 
             <section class="frequencia-estudos" aria-labelledby="tituloFrequencia">
-<h2 id="tituloFrequencia">Sua frequência de estudos</h2>
-<p id="resumoFrequencia" role="status">Carregando atividade...</p>
-<div id="semanaEstudos" class="semana-estudos"></div>
-<h3>Última atividade</h3><div id="ultimaAtividade"></div>
+              <div class="frequencia-layout">
+                <div class="frequencia-painel">
+                  <h2 id="tituloFrequencia">Sua frequência de estudos</h2>
+                  <div class="frequencia-abas" role="group" aria-label="Visualização da frequência">
+                    <button type="button" id="verSemana" aria-pressed="true">Semana</button>
+                    <button type="button" id="verCalendario" aria-pressed="false">Calendário</button>
+                  </div>
+                  <p id="resumoFrequencia" role="status">Carregando atividade...</p>
+                  <section id="visualizacaoSemana" aria-label="Frequência nesta semana">
+                    <div id="semanaEstudos" class="semana-estudos" role="list" aria-label="Segunda a domingo"></div>
+                  </section>
+                  <section id="visualizacaoCalendario" aria-label="Frequência neste mês" hidden>
+                    <h3 id="mesCalendario"></h3>
+                    <div id="calendarioEstudos" class="calendario-estudos" role="grid" aria-label="Calendário mensal de estudos"></div>
+                  </section>
+                </div>
+                <section class="ultima-atividade-painel" aria-labelledby="tituloUltimaAtividade">
+                  <h3 id="tituloUltimaAtividade">Última atividade</h3>
+                  <div id="ultimaAtividade"></div>
+                </section>
+              </div>
 </section>
 <section class="meus-cursos" aria-labelledby="tituloMeusCursos">
               <div class="secao-cabecalho">

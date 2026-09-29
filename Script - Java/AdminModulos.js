@@ -5,7 +5,7 @@ import {
   configurarModais,
   configurarCamposComLimite,
   atualizarContadoresCampos,
-  escapeHtml
+  escapeHtml,
 } from "./AdminComum.js";
 
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
@@ -237,10 +237,7 @@ function mostrarModulos(modulos) {
   modulos.forEach((modulo, indice) => {
     const card = document.createElement("article");
 
-    card.classList.add(
-      "curso-admin",
-      "modulo-admin-card"
-    );
+    card.classList.add("curso-admin", "modulo-admin-card");
 
     card.innerHTML = `
       <div class="curso-icone modulo-numero">
@@ -345,10 +342,17 @@ function mostrarModulos(modulos) {
       .addEventListener("click", async () => {
         if (
           prompt(
-            `Excluir o módulo "${modulo.nome}"? Esta ação não pode ser desfeita. Digite EXCLUIR para confirmar.`,
+            `Excluir o módulo "${modulo.nome}"?
+
+            Esta ação também excluirá permanentemente:
+            - conteúdos do módulo;
+            - quiz, questões e alternativas relacionadas.
+
+            Módulos que possuem progresso de usuários não podem ser excluídos.
+
+            Digite EXCLUIR para confirmar.`,
           ) !== "EXCLUIR"
-        )
-          return;
+        ) return;
         await bloquearModulos(async () => {
           try {
             await excluirModulo({ id: modulo.id });
@@ -356,9 +360,17 @@ function mostrarModulos(modulos) {
           } catch (erro) {
             console.error("Erro ao excluir módulo:", erro);
 
-            alert(
-              "Não foi possível excluir o módulo. Atualize a página e tente novamente.",
-            );
+            const mensagemErro = String(erro?.message || erro);
+
+            if (mensagemErro.includes("possui progresso de usuários")) {
+              alert(
+                "Este módulo possui progresso de usuários e não pode ser excluído."
+              );
+            } else {
+              alert(
+                "Não foi possível excluir o módulo. Atualize a página e tente novamente."
+              );
+            }
           }
         });
       });
@@ -486,9 +498,7 @@ function abrirModalModulo() {
 
   atualizarTextosDoModal();
 
-  atualizarContadoresCampos(
-    modalModulo
-  );
+  atualizarContadoresCampos(modalModulo);
 
   modalModulo.hidden = false;
 
@@ -496,10 +506,7 @@ function abrirModalModulo() {
 }
 
 function abrirEdicaoModulo(moduloId) {
-  const modulo =
-    modulosCarregados.find(
-      (item) => item.id === moduloId
-    );
+  const modulo = modulosCarregados.find((item) => item.id === moduloId);
 
   if (!modulo) {
     alert("Módulo não encontrado.");
@@ -508,19 +515,13 @@ function abrirEdicaoModulo(moduloId) {
   moduloEmEdicao = modulo;
   formModulo.reset();
 
-  nomeModulo.value =
-    modulo.nome || "";
+  nomeModulo.value = modulo.nome || "";
 
-  descricaoModulo.value =
-    modulo.descricao || "";
+  descricaoModulo.value = modulo.descricao || "";
 
-  preencherDuracaoModulo(
-    modulo.duracaoMinutos
-  );
+  preencherDuracaoModulo(modulo.duracaoMinutos);
   atualizarTextosDoModal();
-  atualizarContadoresCampos(
-    modalModulo
-  );
+  atualizarContadoresCampos(modalModulo);
 
   modalModulo.hidden = false;
   nomeModulo.focus();
@@ -536,9 +537,7 @@ function fecharModalModulo() {
   duracaoModuloMinutos.value = 0;
 
   atualizarTextosDoModal();
-  atualizarContadoresCampos(
-    modalModulo
-  );
+  atualizarContadoresCampos(modalModulo);
 }
 
 function atualizarTextosDoModal() {
@@ -599,7 +598,6 @@ duracaoModulo.addEventListener("change", () => {
     duracaoModuloMinutos.value = 0;
   }
 });
-
 
 formModulo.addEventListener("submit", async (evento) => {
   evento.preventDefault();

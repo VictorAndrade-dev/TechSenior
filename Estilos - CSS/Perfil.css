@@ -378,15 +378,38 @@ html[data-tema="escuro"] .perfil :is(.btn-card-curso, .btn-config:not(.secundari
 .btn-sair:hover:not(:disabled) { border-color: var(--perigo); background: color-mix(in srgb, var(--perigo) 10%, var(--surface)); }
 .btn-sair:disabled { opacity: 1; background: var(--bg); color: var(--text-muted); cursor: wait; }
 
-/* Frequência e atividade: sete dias em tablet, quatro + três no celular. */
+/* Frequência e última atividade */
 .perfil .frequencia-estudos { margin-top: 2rem; padding: 1.5rem; border: 1px solid var(--border); border-radius: 1rem; background: var(--surface); }
+.perfil .frequencia-layout { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(15rem, 1fr); gap: 1.5rem; align-items: start; }
+.perfil .frequencia-painel, .perfil .ultima-atividade-painel { min-width: 0; }
 .perfil .frequencia-estudos h2 { font-size: clamp(1.4rem, 2.5vw, 1.8rem); color: var(--heading); line-height: 1.35; }
 .perfil .frequencia-estudos h3 { margin-top: 1.25rem; font-size: 1.1rem; color: var(--heading); }
 .perfil .frequencia-estudos p { font-size: 1rem; line-height: 1.65; margin-top: .65rem; }
-.perfil .semana-estudos { grid-template-columns: repeat(7, minmax(0, 1fr)); gap: .5rem; }
-.perfil .dia-estudo { display: grid; place-items: center; min-width: 0; padding: .75rem .25rem; background: var(--bg); color: var(--text); font-size: .95rem; overflow-wrap: anywhere; }
-.perfil .dia-estudo.ativo { background: var(--accent-soft); border-color: var(--perfil-sucesso); }
-.perfil #ultimaAtividade a { display: inline-flex; align-items: center; min-height: 44px; color: var(--primary); text-underline-offset: .2em; }
+.perfil .frequencia-abas { display: inline-flex; gap: .25rem; margin-top: 1rem; padding: .25rem; border: 1px solid var(--border); border-radius: .75rem; background: var(--bg); }
+.perfil .frequencia-abas button { min-height: 2.75rem; padding: .55rem 1rem; border: 2px solid transparent; border-radius: .55rem; background: transparent; color: var(--text); font: inherit; font-weight: 700; cursor: pointer; }
+.perfil .frequencia-abas button[aria-pressed="true"] { background: var(--primary); color: var(--action-text); }
+.perfil .frequencia-abas button:focus-visible { outline: 3px solid var(--foco); outline-offset: 2px; }
+.perfil .semana-estudos { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: .5rem; }
+.perfil .dia-estudo { display: grid; align-content: center; justify-items: center; gap: .3rem; min-width: 0; min-height: 5.5rem; padding: .65rem .2rem; border: 1px solid var(--border); border-radius: .65rem; background: var(--bg); color: var(--text); font-size: .9rem; line-height: 1.3; text-align: center; overflow-wrap: anywhere; }
+.perfil .dia-estudo-nome { font-weight: 700; letter-spacing: .02em; }
+.perfil .dia-estudo-estado { color: var(--text-muted); font-size: 1.25rem; font-weight: 700; }
+.perfil .dia-estudo.ativo { border-color: var(--perfil-sucesso); background: var(--accent-soft); color: var(--perfil-texto); }
+.perfil .dia-estudo.ativo .dia-estudo-estado { color: var(--perfil-sucesso); }
+.perfil .dia-estudo.hoje { box-shadow: inset 0 -3px 0 var(--primary); }
+.perfil .dia-estudo-hoje { color: var(--perfil-azul-escuro); font-size: .75rem; font-weight: 700; }
+.perfil .calendario-estudos { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: .3rem; margin-top: .75rem; }
+.perfil .calendario-cabecalho { padding: .35rem 0; color: var(--text-muted); font-size: .8rem; font-weight: 700; text-align: center; }
+.perfil .calendario-dia { position: relative; display: grid; min-width: 0; min-height: 2.65rem; place-items: center; border: 1px solid transparent; border-radius: .5rem; background: var(--bg); color: var(--text); font-size: .9rem; }
+.perfil .calendario-dia.ativo { border-color: var(--perfil-sucesso); background: var(--accent-soft); color: var(--perfil-texto); font-weight: 700; }
+.perfil .calendario-check { position: absolute; top: 0; right: .15rem; color: var(--perfil-sucesso); font-size: .7rem; }
+.perfil .calendario-dia.hoje { outline: 2px solid var(--primary); outline-offset: 1px; }
+.perfil .calendario-dia.fora-mes { visibility: hidden; background: transparent; }
+.perfil .ultima-atividade-painel { padding: 1rem; border: 1px solid var(--border); border-radius: .85rem; background: var(--bg); }
+.perfil .ultima-atividade-painel h3 { margin-top: 0; }
+.perfil #ultimaAtividade p { display: grid; gap: .45rem; margin: .75rem 0 1rem; overflow-wrap: anywhere; }
+.perfil .ultima-atividade-curso { color: var(--text); }
+.perfil #ultimaAtividade time { color: var(--text-muted); font-size: .95rem; }
+.perfil #ultimaAtividade .btn-card-curso { min-height: 3rem; }
 /* Exclusão de conta: os controles e o dialog nativo mantêm seus hooks. */
 .zona-perigo { width: calc(100% - 2rem); max-width: 75rem; margin: 0 auto 2rem; padding: 1.25rem; border: 1px solid var(--border); border-left: 4px solid var(--perigo); border-radius: .75rem; background: var(--surface); font-size: 1rem; }
 .zona-perigo h2 { font-size: 1.25rem; line-height: 1.4; }
@@ -401,7 +424,8 @@ html[data-tema="escuro"] .perfil :is(.btn-card-curso, .btn-config:not(.secundari
 #dialogExcluirConta .acoes-conta button { flex: 1 1 12rem; white-space: normal; }
 #confirmarExclusao, #abrirExcluirConta { border: 1px solid var(--perigo); color: var(--perigo); background: var(--surface); }
 #dialogExcluirConta :focus-visible, .zona-perigo :focus-visible { outline: 3px solid var(--foco); outline-offset: 3px; }
-@media (max-width: 600px) { .perfil .semana-estudos { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (max-width: 700px) { .perfil .frequencia-layout { grid-template-columns: 1fr; } }
+@media (max-width: 600px) { .perfil .semana-estudos { grid-template-columns: repeat(7, minmax(0, 1fr)); gap: .25rem; } .perfil .dia-estudo { min-height: 4.5rem; padding: .4rem .1rem; font-size: .78rem; } .perfil .dia-estudo-estado { font-size: 1rem; } .perfil .dia-estudo-hoje { font-size: .65rem; } .perfil .frequencia-abas { display: grid; width: 100%; grid-template-columns: 1fr 1fr; } }
 
 @media (prefers-reduced-motion: reduce) {
   .estado-perfil > i { animation: none; }

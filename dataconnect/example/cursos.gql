@@ -741,11 +741,15 @@ mutation ExcluirCurso(
   $id: UUID!
 ) @auth(level: USER) @transaction {
 
-  query
+    query
     @redact
     @check(
       expr: "response.query.usuarios.size() == 1"
       message: "Administrador não encontrado."
+    )
+    @check(
+      expr: "response.query.historicoCurso.size() == 0 && response.query.certificadosCurso.size() == 0"
+      message: "Este curso possui histórico de usuários e não pode ser excluído. Desative o curso."
     ) {
 
     usuarios(
@@ -782,6 +786,24 @@ mutation ExcluirCurso(
         expr: "this == false"
         message: "Apenas cursos em rascunho podem ser excluídos."
       )
+    }
+
+    historicoCurso: usuarioCursos(
+      where: {
+        cursoId: { eq: $id }
+      }
+      limit: 1
+    ) {
+      cursoId
+    }
+
+    certificadosCurso: certificados(
+      where: {
+        cursoId: { eq: $id }
+      }
+      limit: 1
+    ) {
+      cursoId
     }
   }
 
@@ -855,11 +877,15 @@ mutation ExcluirQuestaoQuiz($id: UUID!) @auth(level: USER) @transaction {
 
 mutation ExcluirModulo($id: UUID!) @auth(level: USER) @transaction {
 
-  query
+    query
     @redact
     @check(
       expr: "response.query.usuarios.size() == 1"
       message: "Administrador não encontrado."
+    )
+    @check(
+      expr: "response.query.progressoModulo.size() == 0 && response.query.cursosNoModulo.size() == 0"
+      message: "Este módulo possui progresso de usuários e não pode ser excluído."
     ) {
 
     usuarios(
@@ -874,6 +900,24 @@ mutation ExcluirModulo($id: UUID!) @auth(level: USER) @transaction {
           message: "Apenas administradores podem realizar esta operação."
         )
       }
+    }
+
+    progressoModulo: usuarioModulos(
+      where: {
+        moduloId: { eq: $id }
+      }
+      limit: 1
+    ) {
+      moduloId
+    }
+
+    cursosNoModulo: usuarioCursos(
+      where: {
+        moduloAtualId: { eq: $id }
+      }
+      limit: 1
+    ) {
+      moduloAtualId
     }
   }
 

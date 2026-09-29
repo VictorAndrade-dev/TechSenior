@@ -8,7 +8,8 @@ export function avaliarSenha(senha) {
     ["Sem espaços", senha.length > 0 && !/\s/.test(senha)],
   ];
   const pontos = regras.filter(([, valida]) => valida).length;
-  return { regras, valida: pontos === 6, forca: pontos === 6 ? "Forte" : pontos >= 4 ? "Razoável" : pontos >= 2 ? "Fraca" : "Muito fraca" };
+  const nivel = pontos === 6 ? "forte" : pontos >= 4 ? "media" : "fraca";
+  return { regras, valida: pontos === 6, nivel };
 }
 
 export function configurarValidacaoSenha(senha, confirmacao) {
@@ -27,8 +28,16 @@ export function configurarValidacaoSenha(senha, confirmacao) {
     const resultado = avaliarSenha(senha.value);
     painel.replaceChildren();
     const titulo = document.createElement("p");
-    titulo.textContent = `Força da senha: ${resultado.forca}`;
+    titulo.className = `senha-nivel ${resultado.nivel}`;
+    titulo.id = "nivelSenha";
+    titulo.textContent = `Senha ${resultado.nivel === "media" ? "média" : resultado.nivel}`;
     painel.append(titulo);
+    const progresso = document.createElement("progress");
+    progresso.className = `senha-progresso ${resultado.nivel}`;
+    progresso.max = 6;
+    progresso.value = pontosDaSenha(resultado.regras);
+    progresso.setAttribute("aria-label", `${titulo.textContent}; ${progresso.value} de 6 requisitos atendidos`);
+    painel.append(progresso);
     for (const [texto, valida] of resultado.regras) {
       const linha = document.createElement("p");
       linha.textContent = `${valida ? "✓" : "○"} ${texto}`;
@@ -47,4 +56,8 @@ export function configurarValidacaoSenha(senha, confirmacao) {
   confirmacao.addEventListener("input", atualizar);
   atualizar();
   return atualizar;
+}
+
+function pontosDaSenha(regras) {
+  return regras.filter(([, valida]) => valida).length;
 }

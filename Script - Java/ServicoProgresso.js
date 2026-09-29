@@ -69,7 +69,12 @@ export async function carregarProgressoCurso(uid, cursoId, totalModulos) {
     ? dados.moduloAtual
     : 0;
 
-  return { ...dadosTesteFinal(dados), iniciado: true, moduloAtual, modulosConcluidos };
+  const iniciado = modulosConcluidos.some(Boolean)
+    || moduloAtual > 0
+    || (Number.isFinite(dados.percentual) && dados.percentual > 0)
+    || dados.cursoConcluido === true
+    || dados.testeFinalAprovado === true;
+  return { ...dadosTesteFinal(dados), iniciado, moduloAtual, modulosConcluidos };
 }
 
 // Transação preserva a melhor nota e evita perder incrementos entre abas.

@@ -1678,7 +1678,7 @@ body.home :is(.curso-card, .estatistica, .depoimento-card):hover {
 }
 
 body.home .curso-card {
-  text-align: left;
+  text-align: center;
 }
 
 body.home .curso-card .destaque-imagem {
@@ -1720,6 +1720,8 @@ body.home .cta {
     #25c985 100%
   );
   box-shadow: var(--shadow);
+  width: min(100% - 2.5rem, 1100px);
+  margin-inline: auto;
 }
 
 html[data-tema="escuro"] body.home .cta {

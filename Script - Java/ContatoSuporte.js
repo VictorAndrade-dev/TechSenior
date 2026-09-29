@@ -1,45 +1,236 @@
+// ============================================================
+// IMPORTAÇÕES
+// ============================================================
+
 import { auth } from "./Firebase-config.js";
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+import {
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
 import { enviarSuporte } from "./ServicoSuporte.js";
-for (const duvida of document.querySelectorAll(".duvida")) {
+
+
+// ============================================================
+// ELEMENTOS DA PÁGINA
+// ============================================================
+
+// Dúvidas frequentes
+const duvidas = document.querySelectorAll(".duvida");
+
+// Formulário de contato
+const form = document.getElementById("formContato");
+const feedback = document.getElementById("mensagemFeedback");
+const btnEnviar = document.getElementById("btnEnviar");
+
+// Campos do formulário
+const campoNome = document.getElementById("nome");
+const campoEmail = document.getElementById("email");
+const campoAssunto = document.getElementById("assunto");
+const campoMensagem = document.getElementById("mensagem");
+
+// Botão principal da página
+const btnComecar = document.getElementById("btnComecar");
+
+
+// ============================================================
+// DÚVIDAS FREQUENTES
+// ============================================================
+
+duvidas.forEach((duvida) => {
   const botao = duvida.querySelector(".duvida-pergunta");
-  botao?.addEventListener("click", () => {
-    const ativa = duvida.classList.toggle("ativa");
-    botao.setAttribute("aria-expanded", String(ativa));
-    const resposta = duvida.querySelector(".duvida-resposta");
-    if (resposta) resposta.hidden = !ativa;
-  });
   const resposta = duvida.querySelector(".duvida-resposta");
-  if (resposta) resposta.hidden = true;
-}
-const form = document.getElementById("formContato"), feedback = document.getElementById("mensagemFeedback"), enviar = document.getElementById("btnEnviar");
+
+  if (!botao || !resposta) return;
+
+  // Estado inicial
+  resposta.style.maxHeight = "0";
+  resposta.setAttribute("aria-hidden", "true");
+
+  botao.addEventListener("click", () => {
+    const estaAberta = duvida.classList.toggle("ativa");
+
+    botao.setAttribute("aria-expanded", String(estaAberta));
+    resposta.setAttribute("aria-hidden", String(!estaAberta));
+
+    if (estaAberta) {
+      // Abre suavemente até a altura real do conteúdo.
+      resposta.style.maxHeight = `${resposta.scrollHeight}px`;
+    } else {
+      // Fecha suavemente.
+      resposta.style.maxHeight = "0";
+    }
+  });
+});
+
+
+// ============================================================
+// CONFIGURAÇÃO DO FORMULÁRIO
+// ============================================================
+
+// Informa ao leitor de tela que as mensagens de feedback
+// devem ser anunciadas quando forem atualizadas.
 feedback.setAttribute("role", "status");
-document.getElementById("assunto").maxLength = 120;
-document.getElementById("mensagem").maxLength = 5000;
+
+// Limites dos campos.
+campoAssunto.maxLength = 120;
+campoMensagem.maxLength = 5000;
+
+
+// ============================================================
+// ESTADO DE AUTENTICAÇÃO
+// ============================================================
+
 onAuthStateChanged(auth, (usuario) => {
-  for (const [id, valor] of [["nome", usuario?.displayName || ""], ["email", usuario?.email || ""]]) {
-    const campo = document.getElementById(id);
-    if (campo) { campo.value = valor; campo.readOnly = true; campo.required = false; }
+  // Preenche automaticamente nome e e-mail
+  // quando o usuário estiver autenticado.
+  if (usuario) {
+    campoNome.value = usuario.displayName || "";
+    campoEmail.value = usuario.email || "";
+
+    campoNome.readOnly = true;
+    campoEmail.readOnly = true;
+
+    campoNome.required = false;
+    campoEmail.required = false;
   }
-  enviar.disabled = !usuario;
+
+  // O envio só fica disponível para usuários autenticados.
+  btnEnviar.disabled = !usuario;
+
+  // Mensagem exibida de acordo com o estado da sessão.
   if (!usuario) {
     feedback.textContent = "Entre na sua conta para enviar uma solicitação. ";
-    const link = document.createElement("a"); link.href = "Login.html"; link.textContent = "Entrar"; feedback.append(link);
-  } else feedback.textContent = "Sua solicitação será vinculada à sua conta.";
+
+    const linkLogin = document.createElement("a");
+
+    linkLogin.href = "Login.html";
+    linkLogin.textContent = "Entrar";
+
+    feedback.append(linkLogin);
+
+    return;
+  }
+
+  feedback.textContent =
+    "Sua solicitação será vinculada à sua conta.";
 });
+
+
+// ============================================================
+// ENVIO DO FORMULÁRIO
+// ============================================================
+
 form.addEventListener("submit", async (evento) => {
   evento.preventDefault();
-  if (enviar.disabled) return;
-  enviar.disabled = true; feedback.className = "mensagem-feedback"; feedback.textContent = "Enviando...";
+
+  // Impede o envio caso o usuário não esteja autenticado.
+  if (btnEnviar.disabled) return;
+
+  // Desativa o botão enquanto a solicitação é processada.
+  btnEnviar.disabled = true;
+
+  feedback.className = "mensagem-feedback";
+  feedback.textContent = "Enviando...";
+
   try {
-    await enviarSuporte(document.getElementById("assunto").value, document.getElementById("mensagem").value);
-    feedback.textContent = "Solicitação enviada com sucesso. Nossa equipe recebeu sua mensagem.";
+    // Envia os dados para o serviço de suporte.
+    await enviarSuporte(
+      campoAssunto.value,
+      campoMensagem.value
+    );
+
+    // Exibe mensagem de sucesso.
+    feedback.textContent =
+      "Solicitação enviada com sucesso. Nossa equipe recebeu sua mensagem.";
+
     feedback.classList.add("sucesso");
-    document.getElementById("assunto").value = ""; document.getElementById("mensagem").value = "";
+
+    // Limpa os campos após o envio.
+    campoAssunto.value = "";
+    campoMensagem.value = "";
+
   } catch (erro) {
-    console.error(erro); feedback.textContent = "Não foi possível enviar a solicitação. Confira os campos e tente novamente. Sua mensagem foi mantida.";
+    console.error("Erro ao enviar solicitação:", erro);
+
+    // Exibe mensagem de erro.
+    feedback.textContent =
+      "Não foi possível enviar a solicitação. Confira os campos e tente novamente. Sua mensagem foi mantida.";
+
     feedback.classList.add("erro");
-  } finally { enviar.disabled = !auth.currentUser; }
+
+  } finally {
+    // O botão volta a ficar disponível somente
+    // se ainda houver um usuário autenticado.
+    btnEnviar.disabled = !auth.currentUser;
+  }
 });
-const comecar = document.getElementById("btnComecar");
-comecar?.addEventListener("click", () => { location.href = auth.currentUser ? "Cursos.html" : "Login.html"; });
+
+
+// ============================================================
+// BOTÃO "COMEÇAR AGORA"
+// ============================================================
+
+btnComecar?.addEventListener("click", () => {
+  // Usuário autenticado → Cursos
+  // Usuário não autenticado → Login
+  window.location.href = auth.currentUser
+    ? "Cursos.html"
+    : "Login.html";
+});
+
+// ==========================================
+// FAQ
+// ==========================================
+
+const accordions =
+  document.querySelectorAll(
+    ".accordion"
+  );
+
+
+accordions.forEach(
+  (accordion) => {
+
+    accordion.addEventListener(
+      "click",
+      () => {
+
+        const resposta =
+          accordion.nextElementSibling;
+
+        if (!resposta) {
+          return;
+        }
+
+
+        const estaAberto =
+          accordion.classList.contains(
+            "active"
+          );
+
+
+        accordion.classList.toggle(
+          "active"
+        );
+
+
+        if (estaAberto) {
+
+          resposta.classList.remove(
+            "aberta"
+          );
+
+        } else {
+
+          resposta.classList.add(
+            "aberta"
+          );
+
+        }
+
+      }
+    );
+
+  }
+);

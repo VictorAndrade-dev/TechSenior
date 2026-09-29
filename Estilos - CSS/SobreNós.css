@@ -337,6 +337,12 @@ html[data-tema="escuro"] .pagina-sobre .hero .btn-principal {
   object-fit: cover;
 }
 
+.cta {
+  width: calc(100% - 6rem);
+  max-width: 1100px;
+  margin: 4rem auto;
+}
+
 .pagina-sobre .membro h3 { margin: 1rem 0 0.2rem; font-size: 1.25rem; }
 .pagina-sobre .membro .cargo { display: block; min-height: 2.8em; color: var(--accent); font-size: 0.95rem; font-weight: 700; line-height: 1.4; }
 .pagina-sobre .membro p { margin: 0.75rem 0 0; font-size: 0.98rem; text-align: left; }

@@ -241,3 +241,14 @@ topo.addEventListener("click", () => window.scrollTo({
   top: 0,
   behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
 }));
+
+// ============================================================
+// LINK "FALE CONOSCO" DO RODAPÉ
+// ============================================================
+
+const linkFaleConosco = [...document.querySelectorAll("footer a")]
+  .find((link) => link.textContent.trim() === "Fale Conosco");
+
+if (linkFaleConosco) {
+  linkFaleConosco.href = "ContatoSuporte.html#formulario-contato";
+}

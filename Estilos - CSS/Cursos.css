@@ -182,7 +182,7 @@ body.cursos-page.nav-v2 .card {
 
   box-shadow: var(--shadow);
 
-  text-align: left;
+  text-align: center;
 }
 
 body.cursos-page.nav-v2 .card:hover {
@@ -711,6 +711,8 @@ body.cursos-page.nav-v2 .beneficio {
   background: var(--surface);
 
   box-shadow: var(--shadow);
+
+  text-align: center;
 }
 
 body.cursos-page.nav-v2 .beneficio:hover {
@@ -880,6 +882,11 @@ body.cursos-page.nav-v2 .resposta p {
   text-align: left;
 }
 
+body.cursos-page.nav-v2 .cta {
+  width: calc(100% - 6rem);
+  max-width: 1100px;
+  margin: 4rem auto;
+}
 
 /* ==================================================
    TABLET
@@ -1145,17 +1152,6 @@ body.cursos-page.nav-v2 .resposta p {
   body.cursos-page.nav-v2 .cta {
     flex-direction: column;
     align-items: center;
-
-    gap: 1.4rem;
-
-    margin:
-      3rem
-      1rem;
-
-    padding:
-      2rem
-      1.25rem;
-
     text-align: center;
   }
 

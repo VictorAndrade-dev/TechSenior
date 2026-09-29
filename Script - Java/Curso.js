@@ -61,6 +61,12 @@ let alternativasErradasTentadas = new Set();
 const quizModulo =
   document.getElementById("quizModulo");
 
+const estadoCarregamentoCurso =
+  document.getElementById("estadoCarregamentoCurso");
+
+const cursoLayout =
+  document.getElementById("cursoLayout");
+
 const quizPergunta =
   document.getElementById("quizPergunta");
 
@@ -173,7 +179,11 @@ onAuthStateChanged(auth, async (usuario) => {
 
     await inicializarCurso(usuario);
 
+    ocultarCarregamentoCurso();
+
   } catch (erro) {
+
+    ocultarCarregamentoCurso();
 
     console.error(
       "Erro ao carregar o curso:",
@@ -185,6 +195,12 @@ onAuthStateChanged(auth, async (usuario) => {
   }
 
 });
+
+function ocultarCarregamentoCurso() {
+  estadoCarregamentoCurso.hidden = true;
+  cursoLayout.hidden = false;
+  cursoLayout.setAttribute("aria-busy", "false");
+}
 
 
 // ==========================================

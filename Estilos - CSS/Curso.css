@@ -80,6 +80,55 @@ html[data-tema="escuro"] .pagina-curso {
   margin: 0 auto;
 }
 
+.curso-layout[hidden] { display: none; }
+
+.estado-carregamento-curso {
+  display: grid;
+  min-height: 24rem;
+  align-content: center;
+  justify-items: center;
+  gap: 1rem;
+  width: min(100%, 54rem);
+  margin: 0 auto;
+  padding: 2rem;
+  border: 0.0625rem solid var(--curso-borda);
+  border-radius: var(--curso-raio);
+  background: var(--curso-branco);
+  color: var(--curso-texto);
+  text-align: center;
+}
+
+.estado-carregamento-curso p {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.skeleton-curso {
+  display: grid;
+  width: min(100%, 32rem);
+  gap: 0.75rem;
+}
+
+.skeleton-curso span {
+  display: block;
+  height: 1rem;
+  border-radius: 999rem;
+  background: var(--curso-azul-claro);
+}
+
+.skeleton-curso span:first-child { width: 100%; height: 1.5rem; }
+.skeleton-curso span:nth-child(2) { width: 82%; }
+.skeleton-curso span:last-child { width: 64%; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .skeleton-curso span { animation: curso-skeleton-pulse 1.6s ease-in-out infinite alternate; }
+}
+
+@keyframes curso-skeleton-pulse {
+  to { opacity: 0.55; }
+}
+
 .coluna-esquerda,
 .conteudo-aula,
 .coluna-direita { min-width: 0; }

@@ -106,7 +106,21 @@
     <!-- ========================================== -->
 
     <main class="pagina-curso">
-      <div class="curso-layout">
+      <div
+        class="estado-carregamento-curso"
+        id="estadoCarregamentoCurso"
+        role="status"
+        aria-live="polite"
+      >
+        <p>Carregando curso...</p>
+        <div class="skeleton-curso" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <div class="curso-layout" id="cursoLayout" hidden aria-busy="true">
         <!-- ====================================== -->
         <!-- COLUNA ESQUERDA -->
         <!-- ====================================== -->
@@ -125,9 +139,7 @@
           <section class="card-progresso">
             <h2>Seu progresso neste curso</h2>
 
-            <div class="porcentagem-progresso" id="porcentagemProgresso">
-              0%
-            </div>
+            <div class="porcentagem-progresso" id="porcentagemProgresso"></div>
 
             <div
               class="barra-progresso"
@@ -140,7 +152,7 @@
               <div class="progresso-preenchido" id="progressoPreenchido"></div>
             </div>
 
-            <p id="textoProgresso">0 de 6 módulos concluídos</p>
+            <p id="textoProgresso"></p>
           </section>
 
           <!-- MÓDULOS -->
@@ -148,75 +160,6 @@
           <section class="lista-modulos" id="modulosContainer">
             <h2>Módulos do curso</h2>
 
-            <!-- MÓDULO 1 -->
-
-            <button class="modulo ativo" type="button">
-              <div class="numero-modulo">1</div>
-
-              <div class="informacoes-modulo">
-                <strong> 1. Conhecendo o celular </strong>
-
-                <span> Em andamento </span>
-              </div>
-
-              <i class="fa-solid fa-chevron-right"></i>
-            </button>
-
-            <!-- MÓDULO 2 -->
-
-            <button class="modulo bloqueado" type="button">
-              <div class="numero-modulo">2</div>
-
-              <div class="informacoes-modulo">
-                <strong> 2. Fazendo ligações </strong>
-
-                <span> Ainda não iniciado </span>
-              </div>
-
-              <i class="fa-solid fa-lock"></i>
-            </button>
-
-            <!-- MÓDULO 3 -->
-
-            <button class="modulo bloqueado" type="button">
-              <div class="numero-modulo">3</div>
-
-              <div class="informacoes-modulo">
-                <strong> 3. Enviando mensagens </strong>
-
-                <span> Bloqueado </span>
-              </div>
-
-              <i class="fa-solid fa-lock"></i>
-            </button>
-
-            <!-- MÓDULO 4 -->
-
-            <button class="modulo bloqueado" type="button">
-              <div class="numero-modulo">4</div>
-
-              <div class="informacoes-modulo">
-                <strong> 4. Tirando fotos </strong>
-
-                <span> Bloqueado </span>
-              </div>
-
-              <i class="fa-solid fa-lock"></i>
-            </button>
-
-            <!-- MÓDULO 5 -->
-
-            <button class="modulo bloqueado" type="button">
-              <div class="numero-modulo">5</div>
-
-              <div class="informacoes-modulo">
-                <strong> 5. Usando a internet </strong>
-
-                <span> Bloqueado </span>
-              </div>
-
-              <i class="fa-solid fa-lock"></i>
-            </button>
           </section>
 
           <!-- AJUDA -->
@@ -244,37 +187,14 @@
           <!-- CABEÇALHO DA AULA -->
 
           <div class="cabecalho-aula">
-            <span class="identificacao-modulo" id="identificacaoModulo">
-              MÓDULO 1 DE 6
-            </span>
+            <span class="identificacao-modulo" id="identificacaoModulo"></span>
 
-            <h1 id="tituloAula">Conhecendo o celular</h1>
+            <h1 id="tituloAula"></h1>
 
             <p class="descricao-aula" id="descricaoAula"></p>
           </div>
 
-          <div id="conteudoPrincipal" class="conteudo-principal">
-            <!-- INTRODUÇÃO -->
-
-            <section class="secao-aula">
-              <div class="titulo-conteudo">
-                <i class="fa-solid fa-book-open"></i>
-
-                <h2>Introdução</h2>
-              </div>
-
-              <p>O conteúdo será carregado...</p>
-            </section>
-
-            <!-- IMAGEM -->
-
-            <div class="imagem-aula">
-              <img
-                src="Imagens/CelularCurso.png"
-                alt="Ilustração de um celular"
-              />
-            </div>
-          </div>
+          <div id="conteudoPrincipal" class="conteudo-principal"></div>
 
           <!-- DICA -->
 
@@ -390,10 +310,7 @@
               <h2>Sobre o módulo</h2>
             </div>
 
-            <p id="sobreModulo">
-              Neste módulo você vai aprender as partes do celular e as funções
-              básicas para começar a usar seu smartphone com mais confiança.
-            </p>
+            <p id="sobreModulo"></p>
           </section>
 
           <!-- DICA IMPORTANTE -->
@@ -404,10 +321,7 @@
               <h2>Dica importante</h2>
             </div>
 
-            <p id="dicaImportante">
-              Não tenha pressa! Aprender um pouco por dia já faz uma grande
-              diferença.
-            </p>
+            <p id="dicaImportante"></p>
           </section>
 
           <!-- ATENÇÃO -->
@@ -418,10 +332,7 @@
               <h2>Atenção</h2>
             </div>
 
-            <p id="atencaoModulo">
-              Cada celular pode ter um visual diferente, mas as funções
-              principais são as mesmas.
-            </p>
+            <p id="atencaoModulo"></p>
           </section>
 
           <!-- VOCÊ SABIA? -->
@@ -432,10 +343,7 @@
               <h2>Você sabia?</h2>
             </div>
 
-            <p id="voceSabia">
-              Você pode personalizar a tela inicial colocando os aplicativos que
-              mais usa em lugares de fácil acesso!
-            </p>
+            <p id="voceSabia"></p>
           </section>
 
           <!-- LEMBRE-SE -->
@@ -447,10 +355,7 @@
               <h2>Lembre-se</h2>
             </div>
 
-            <p id="lembreteModulo">
-              Você pode voltar a esta aula sempre que quiser. O importante é não
-              desistir!
-            </p>
+            <p id="lembreteModulo"></p>
           </section>
         </aside>
       </div>

@@ -182,7 +182,8 @@ body.cursos-page.nav-v2 .card {
 
   box-shadow: var(--shadow);
 
-  text-align: left;
+  text-align: center;
+  align-items: center;
 }
 
 body.cursos-page.nav-v2 .card:hover {
@@ -231,6 +232,15 @@ body.cursos-page.nav-v2 .card p {
 
   font-size: 1.05rem;
   line-height: 1.6;
+  width: 100%;
+}
+
+body.cursos-page.nav-v2 .hero-titulo-linha { display: block; }
+
+body.cursos-page.nav-v2 .hero-texto h1 { overflow-wrap: normal; }
+
+@media (max-width: 767px) {
+  body.cursos-page.nav-v2 .hero-texto h1 { max-width: 100%; }
 }
 
 
@@ -711,7 +721,10 @@ body.cursos-page.nav-v2 .beneficio {
   background: var(--surface);
 
   box-shadow: var(--shadow);
+  text-align: center;
 }
+
+body.cursos-page.nav-v2 .beneficio > i { display: block; }
 
 body.cursos-page.nav-v2 .beneficio:hover {
   transform: translateY(-4px);
@@ -1148,9 +1161,8 @@ body.cursos-page.nav-v2 .resposta p {
 
     gap: 1.4rem;
 
-    margin:
-      3rem
-      1rem;
+    width: min(100% - 2.5rem, 1100px);
+    margin: 3rem auto;
 
     padding:
       2rem
@@ -1272,4 +1284,17 @@ body.cursos-page.nav-v2 .resposta p {
 
     justify-items: start;
   }
+}
+
+body.cursos-page.nav-v2 .beneficio {
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+body.cursos-page.nav-v2 .beneficio:hover {
+  box-shadow: 0 12px 28px color-mix(in srgb, var(--heading) 12%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.cursos-page.nav-v2 .beneficio { transition: none; }
+  body.cursos-page.nav-v2 .beneficio:hover { transform: none; }
 }

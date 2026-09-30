@@ -85,6 +85,13 @@ html[data-tema="escuro"] .pagina-contato .hero-comunidade {
   border-radius: 0.9rem;
   background: var(--surface);
   box-shadow: 0 8px 22px color-mix(in srgb, var(--heading) 7%, transparent);
+  transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.pagina-contato .duvida:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--primary) 35%, var(--border));
+  box-shadow: 0 12px 26px color-mix(in srgb, var(--heading) 12%, transparent);
 }
 
 .pagina-contato .duvida-pergunta {
@@ -127,13 +134,16 @@ html[data-tema="escuro"] .pagina-contato .hero-comunidade {
 }
 
 .pagina-contato .contato-introducao {
-  max-width: 70rem;
+  max-width: 50rem;
+  margin-inline: auto;
   padding: clamp(1.5rem, 4vw, 2.5rem);
   border: 1px solid var(--border);
   border-left: 0.4rem solid var(--accent);
   border-radius: 1.1rem;
   background: var(--accent-soft);
 }
+
+.pagina-contato .contato-introducao h2 { text-align: center; }
 
 .pagina-contato .contato-introducao h2 { margin: 0 0 0.65rem; font-size: clamp(1.65rem, 3vw, 2.25rem); }
 .pagina-contato .contato-introducao p { max-width: 68ch; margin: 0 0 1.25rem; color: var(--text); text-align: left; }
@@ -149,7 +159,10 @@ html[data-tema="escuro"] .pagina-contato .hero-comunidade {
   color: #fff;
   font-weight: 700;
   text-decoration: none;
+  margin-inline: auto;
 }
+
+.pagina-contato .contato-introducao { text-align: center; }
 
 .pagina-contato .btn-contato:hover { background: color-mix(in srgb, var(--accent) 84%, #000); }
 
@@ -166,13 +179,13 @@ html[data-tema="escuro"] .pagina-contato .btn-contato {
 
 .pagina-contato .formulario-contato .container {
   display: grid;
-  grid-template-columns: minmax(15rem, 0.65fr) minmax(0, 1.35fr);
-  align-items: start;
-  gap: clamp(2rem, 5vw, 5rem);
-  max-width: 75rem;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.75rem;
+  max-width: 50rem;
 }
 
-.pagina-contato .formulario-contato .titulo-secao { margin: 1rem 0 0; }
+.pagina-contato .formulario-contato .titulo-secao { margin: 0; text-align: center; }
+.pagina-contato .formulario-contato .titulo-secao p { text-align: center; }
 
 .pagina-contato #formContato {
   display: grid;
@@ -183,6 +196,11 @@ html[data-tema="escuro"] .pagina-contato .btn-contato {
   border-radius: 1.25rem;
   background: var(--surface);
   box-shadow: var(--shadow);
+}
+
+.pagina-contato .cta {
+  width: min(100% - 2.5rem, 1100px);
+  margin: 4rem auto;
 }
 
 .pagina-contato .campo { display: grid; gap: 0.45rem; min-width: 0; }
@@ -265,6 +283,11 @@ html[data-tema="escuro"] .pagina-contato .btn-contato {
 
 html[data-tema="escuro"] .pagina-contato .btn-enviar:not(:disabled) {
   color: #061f2e;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pagina-contato .duvida { transition: none; }
+  .pagina-contato .duvida:hover { transform: none; }
 }
 
 /* 7. Responsividade */

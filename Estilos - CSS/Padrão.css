@@ -1004,6 +1004,8 @@ html[data-tema="escuro"] body.nav-v2 main {
 }
 
 body.nav-v2 > header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   min-height: 5.25rem;
   padding: 0.45rem clamp(1.25rem, 5vw, 5rem);
   background: color-mix(in srgb, var(--surface) 94%, transparent);
@@ -1018,6 +1020,7 @@ html[data-tema="escuro"] body.nav-v2 > header {
 }
 
 body.nav-v2 > header .logo {
+  justify-self: start;
   width: auto;
   height: auto;
   overflow: visible;
@@ -1026,13 +1029,14 @@ body.nav-v2 > header .logo {
 
 body.nav-v2 > header .logo img {
   width: auto;
-  height: 4.75rem;
+  height: 5rem;
   max-width: 14rem;
   object-fit: contain;
   transform: none;
 }
 
 body.nav-v2 > header nav {
+  justify-self: center;
   align-items: center;
   gap: clamp(0.9rem, 2vw, 1.75rem);
 }
@@ -1069,6 +1073,7 @@ body.nav-v2 > header nav a[aria-current="page"] {
 }
 
 body.nav-v2 > header .btn-login {
+  justify-self: end;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1390,6 +1395,7 @@ html[data-tema="escuro"] #btnAcessibilidade {
 
   body.nav-v2 > header {
     position: relative;
+    display: flex;
     justify-content: center;
     min-height: 4.6rem;
     padding: 0.35rem 1rem;
@@ -1403,11 +1409,18 @@ html[data-tema="escuro"] #btnAcessibilidade {
 
   body.nav-v2 > header .logo {
     margin: 0;
+    flex: 0 0 auto;
   }
 
   body.nav-v2 > header .logo img {
     width: 11rem;
     height: 3.75rem;
+  }
+
+  body.home .sobre-texto .btn-principal {
+    display: flex;
+    align-self: center;
+    margin-inline: auto;
   }
 
   body.nav-v2 > header .logo {
@@ -1675,10 +1688,18 @@ html[data-tema="escuro"] body.home :is(.curso-card, .estatistica, .depoimento-ca
 body.home :is(.curso-card, .estatistica, .depoimento-card):hover {
   transform: translateY(-5px);
   border-color: color-mix(in srgb, var(--accent) 42%, var(--border));
+  box-shadow: 0 12px 28px color-mix(in srgb, var(--heading) 12%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.home :is(.curso-card, .estatistica, .depoimento-card),
+  body.home .curso-card a { transition: none; }
+  body.home :is(.curso-card, .estatistica, .depoimento-card):hover,
+  body.home .curso-card a:hover { transform: none; }
 }
 
 body.home .curso-card {
-  text-align: left;
+  text-align: center;
 }
 
 body.home .curso-card .destaque-imagem {
@@ -1688,9 +1709,26 @@ body.home .curso-card .destaque-imagem {
 body.home .curso-card a {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  align-self: center;
   min-height: 2.75rem;
+  padding: 0.55rem 1rem;
+  border: 1px solid var(--primary);
+  border-radius: 0.75rem;
+  background: transparent;
   color: var(--primary);
-  text-underline-offset: 0.22em;
+  text-decoration: none;
+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+body.home .curso-card a:hover {
+  background: color-mix(in srgb, var(--primary) 12%, var(--surface));
+  color: var(--primary);
+}
+
+body.home .curso-card a:focus-visible {
+  outline: 0.1875rem solid var(--primary);
+  outline-offset: 0.2rem;
 }
 
 body.home .estatisticas {
@@ -1705,13 +1743,18 @@ body.home .depoimento-card {
   display: flex;
   flex-direction: column;
   gap: 0.9rem;
+  align-items: center;
+  text-align: center;
 }
 
 body.home .depoimento-card p {
   margin: 0;
 }
 
+body.home .depoimento-card .usuario { justify-content: center; text-align: left; }
+
 body.home .cta {
+  margin-inline: auto;
   overflow: hidden;
   position: relative;
   background: linear-gradient(
@@ -1721,6 +1764,8 @@ body.home .cta {
   );
   box-shadow: var(--shadow);
 }
+
+body.home .cta { width: min(100% - 2.5rem, 1100px); }
 
 html[data-tema="escuro"] body.home .cta {
   background: linear-gradient(
@@ -1950,8 +1995,8 @@ html[data-tema="escuro"] body.home .copyright {
 
   body.home > header .logo img {
     width: auto;
-    height: 4rem;
-    max-width: none;
+    height: 5rem;
+    max-width: 14rem;
     object-fit: contain;
     transform: none;
   }
@@ -2232,7 +2277,8 @@ body.nav-v2 .cta {
 
   overflow: hidden;
 
-  max-width: 1500px;
+  width: min(100% - 2.5rem, 1100px);
+  max-width: 1100px;
   margin: 4rem auto;
   padding: 2.25rem 2.5rem;
 

@@ -34,6 +34,11 @@
 }
 
 /* 2. Hero */
+.pagina-sobre .cta {
+  width: min(100% - 2.5rem, 1100px);
+  margin: 4rem auto;
+}
+
 .pagina-sobre .hero {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(22rem, 0.95fr);
@@ -306,6 +311,14 @@ html[data-tema="escuro"] .pagina-sobre .hero .btn-principal {
   background: var(--surface);
   text-align: center;
   box-shadow: var(--shadow);
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.pagina-sobre .ods-card:hover,
+.pagina-sobre .membro:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--accent) 42%, var(--border));
+  box-shadow: 0 12px 28px color-mix(in srgb, var(--heading) 12%, transparent);
 }
 
 .pagina-sobre .ods-card img { width: 100%; aspect-ratio: 1; border-radius: 0.65rem; object-fit: cover; }
@@ -328,6 +341,12 @@ html[data-tema="escuro"] .pagina-sobre .hero .btn-principal {
   border-radius: 1rem;
   background: var(--surface);
   box-shadow: var(--shadow);
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pagina-sobre :is(.ods-card, .membro) { transition: none; }
+  .pagina-sobre :is(.ods-card, .membro):hover { transform: none; }
 }
 
 .pagina-sobre .membro img {
@@ -349,7 +368,7 @@ html[data-tema="escuro"] .pagina-sobre .hero .btn-principal {
   .pagina-sobre :is(.valores-cards, .impacto-cards) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .pagina-sobre :is(.valor-card, .impacto-card):last-child { grid-column: 1 / -1; }
   .pagina-sobre .ods-container { grid-template-columns: minmax(0, 1fr); }
-  .pagina-sobre .ods-cards { grid-template-columns: repeat(2, minmax(9rem, 1fr)); max-width: 30rem; }
+  .pagina-sobre .ods-cards { grid-template-columns: repeat(2, minmax(9rem, 12rem)); justify-content: center; max-width: 30rem; margin-inline: auto; }
   .pagina-sobre .integrantes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
@@ -376,7 +395,7 @@ html[data-tema="escuro"] .pagina-sobre .hero .btn-principal {
 }
 
 @media (max-width: 420px) {
-  .pagina-sobre .ods-cards { grid-template-columns: minmax(0, 1fr); max-width: 15rem; }
+  .pagina-sobre .ods-cards { grid-template-columns: minmax(0, 15rem); justify-content: center; max-width: 100%; margin-inline: auto; }
   .pagina-sobre .missao-card,
   .pagina-sobre :is(.valor-card, .impacto-card) { padding: 1.25rem; }
 }

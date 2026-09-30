@@ -38,6 +38,9 @@ const DURACAO_MAXIMA = 1440; // 24 horas
 // ==========================================
 
 const listaCursosAdmin = document.getElementById("listaCursosAdmin");
+const pesquisaCursosAdmin = document.getElementById("pesquisaCursosAdmin");
+const filtroStatusCursosAdmin = document.getElementById("filtroStatusCursosAdmin");
+const ordenacaoCursosAdmin = document.getElementById("ordenacaoCursosAdmin");
 
 const estadoCarregamento = document.getElementById("estadoCarregamento");
 
@@ -152,7 +155,7 @@ async function carregarCursos() {
 
     atualizarResumo(cursos);
 
-    mostrarCursos(cursos);
+    aplicarFiltrosECriterios();
 
     estadoCarregamento.hidden = true;
 
@@ -171,11 +174,17 @@ async function carregarCursos() {
 // ==========================================
 
 function atualizarResumo(cursos) {
-  const publicados = cursos.filter((curso) => curso.ativo && curso.publicado);
+  const publicados = cursos.filter(
+    (curso) => obterValorStatusCurso(curso) === "publicado",
+  );
 
-  const rascunhos = cursos.filter((curso) => curso.ativo && !curso.publicado);
+  const rascunhos = cursos.filter(
+    (curso) => obterValorStatusCurso(curso) === "rascunho",
+  );
 
-  const desativados = cursos.filter((curso) => !curso.ativo);
+  const desativados = cursos.filter(
+    (curso) => obterValorStatusCurso(curso) === "desativado",
+  );
 
   totalCursos.textContent = cursos.length;
 
@@ -190,13 +199,75 @@ function atualizarResumo(cursos) {
 // MOSTRAR CURSOS
 // ==========================================
 
+function normalizarTextoPesquisa(valor) {
+  return String(valor || "")
+    .trim()
+    .replace(/\s+/g, " ")
+    .toLocaleLowerCase("pt-BR");
+}
+
+function aplicarFiltrosECriterios() {
+  const termo = normalizarTextoPesquisa(pesquisaCursosAdmin.value);
+  const statusSelecionado = filtroStatusCursosAdmin.value;
+  const criterio = ordenacaoCursosAdmin.value;
+
+  const cursosFiltrados = cursosCarregados.filter((curso) => {
+    const textoCurso = normalizarTextoPesquisa(
+      `${curso.nome || ""} ${curso.descricao || ""}`,
+    );
+    const correspondePesquisa = !termo || textoCurso.includes(termo);
+    const correspondeStatus =
+      statusSelecionado === "todos" ||
+      obterValorStatusCurso(curso) === statusSelecionado;
+
+    return correspondePesquisa && correspondeStatus;
+  });
+
+  cursosFiltrados.sort((cursoA, cursoB) => {
+    if (criterio === "az" || criterio === "za") {
+      const comparacao = String(cursoA.nome || "").localeCompare(
+        String(cursoB.nome || ""),
+        "pt-BR",
+        { sensitivity: "base" },
+      );
+
+      return criterio === "az" ? comparacao : -comparacao;
+    }
+
+    const dataA = Date.parse(cursoA.criadoEm || "");
+    const dataB = Date.parse(cursoB.criadoEm || "");
+    const dataValidaA = Number.isFinite(dataA);
+    const dataValidaB = Number.isFinite(dataB);
+
+    if (dataValidaA !== dataValidaB) {
+      return dataValidaA ? -1 : 1;
+    }
+
+    if (!dataValidaA) {
+      return 0;
+    }
+
+    return criterio === "antigos" ? dataA - dataB : dataB - dataA;
+  });
+
+  mostrarCursos(cursosFiltrados);
+}
+
+pesquisaCursosAdmin.addEventListener("input", aplicarFiltrosECriterios);
+filtroStatusCursosAdmin.addEventListener("change", aplicarFiltrosECriterios);
+ordenacaoCursosAdmin.addEventListener("change", aplicarFiltrosECriterios);
+
 function mostrarCursos(cursos) {
   listaCursosAdmin.innerHTML = "";
 
   if (cursos.length === 0) {
+    const mensagemVazia = cursosCarregados.length
+      ? "Nenhum curso encontrado."
+      : "Nenhum curso cadastrado.";
+
     listaCursosAdmin.innerHTML = `
       <div class="mensagem">
-        Nenhum curso cadastrado.
+        ${mensagemVazia}
       </div>
     `;
 
@@ -208,7 +279,7 @@ function mostrarCursos(cursos) {
 
     const status = obterStatusCurso(curso);
 
-    card.classList.add("curso-admin");
+    card.classList.add("curso-admin", "curso-lista-item");
 
     card.dataset.id = curso.id;
 
@@ -226,15 +297,7 @@ function mostrarCursos(cursos) {
       <div class="curso-info">
 
         <div class="curso-titulo">
-
-          <h3>
-            ${escapeHtml(curso.nome)}
-          </h3>
-
-          <span class="status ${status.classe}">
-            ${status.texto}
-          </span>
-
+          <h3>${escapeHtml(curso.nome)}</h3>
         </div>
 
         <p>
@@ -253,35 +316,34 @@ function mostrarCursos(cursos) {
             ${formatarDuracao(curso.cargaHoraria)}
           </span>
 
-          <span>
-            <i class="fa-solid fa-layer-group"></i>
-            Gerenciar conteúdo
-          </span>
-
         </div>
 
       </div>
 
-      <div class="curso-acoes">
+      <div class="curso-operacoes">
+        <span class="status ${status.classe}">
+          ${status.texto}
+        </span>
 
-        <button
-          class="btn-modulos"
-          data-id="${curso.id}"
-          type="button"
-        >
-         <i class="fa-solid fa-layer-group"></i>
-          Gerenciar módulos
-        </button>
+        <div class="curso-acoes">
+          <button
+            class="btn-modulos"
+            data-id="${curso.id}"
+            type="button"
+          >
+            <i class="fa-solid fa-layer-group"></i>
+            Gerenciar módulos
+          </button>
 
-        <button
-          class="btn-editar"
-          data-id="${curso.id}"
-          type="button"
-        >
-          <i class="fa-solid fa-pen"></i>
-          Editar
-        </button>
-
+          <button
+            class="btn-editar"
+            data-id="${curso.id}"
+            type="button"
+          >
+            <i class="fa-solid fa-pen"></i>
+            Editar
+          </button>
+        </div>
       </div>
     `;
 
@@ -344,24 +406,14 @@ function abrirPaginaModulos(id) {
 // ==========================================
 
 function obterStatusCurso(curso) {
-  if (!curso.ativo) {
-    return {
-      texto: "Desativado",
-      classe: "desativado",
-    };
-  }
-
-  if (curso.publicado) {
-    return {
-      texto: "Publicado",
-      classe: "publicado",
-    };
-  }
-
-  return {
-    texto: "Rascunho",
-    classe: "rascunho",
+  const status = obterValorStatusCurso(curso);
+  const apresentacao = {
+    publicado: { texto: "Publicado", classe: "publicado" },
+    rascunho: { texto: "Rascunho", classe: "rascunho" },
+    desativado: { texto: "Desativado", classe: "desativado" },
   };
+
+  return apresentacao[status];
 }
 
 function obterValorStatusCurso(curso) {

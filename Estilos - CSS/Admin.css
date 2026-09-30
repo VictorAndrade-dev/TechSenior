@@ -13,7 +13,6 @@
   font-size: 1rem;
   overflow-x: clip;
 }
-
 html[data-tema="escuro"] .admin-page {
   --admin-success: #70e1ad;
   --admin-success-soft: rgba(85, 214, 156, 0.13);
@@ -23,7 +22,6 @@ html[data-tema="escuro"] .admin-page {
   --admin-danger-soft: rgba(255, 123, 114, 0.13);
   --admin-info-soft: rgba(110, 168, 255, 0.13);
 }
-
 .admin-page [hidden] { display: none !important; }
 .admin-page :is(button, input, select, textarea) { font: inherit; }
 .admin-page :is(button, a, input, select, textarea):focus-visible {
@@ -31,31 +29,27 @@ html[data-tema="escuro"] .admin-page {
   outline-offset: 3px;
 }
 .admin-page button:disabled { cursor: not-allowed; opacity: 0.52; }
-
 /* O shell já contém o link Administração marcado como atual. */
 .admin-page > header nav [data-link-admin],
 .admin-page #drawerAdmin { display: none !important; }
-
 /* 2. Layout geral e navegação contextual */
 .menu-admin,
 .conteudo-admin {
-  width: min(1500px, calc(100% - 3rem));
+  width: min(100% - 2.5rem, 1320px);
   margin-inline: auto;
 }
-
 .menu-admin {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.25rem;
+  gap: 1rem;
   margin-top: 1.5rem;
-  padding: 0.85rem 1rem;
+  padding: 0.75rem 0.9rem;
   border: 1px solid var(--border);
   border-radius: 1rem;
   background: var(--surface);
   box-shadow: 0 8px 24px rgba(15, 46, 78, 0.06);
 }
-
 .admin-brand,
 .admin-brand > div,
 .menu-admin nav,
@@ -78,7 +72,7 @@ html[data-tema="escuro"] .admin-page {
 .menu-item {
   min-height: 44px;
   gap: 0.5rem;
-  padding: 0.65rem 0.9rem;
+  padding: 0.55rem 0.8rem;
   border-radius: 0.7rem;
   color: var(--text);
   font-size: 0.9rem;
@@ -95,16 +89,15 @@ html[data-tema="escuro"] .admin-page .menu-admin .menu-item:is(:hover, .ativo) {
   min-height: 50vh;
   margin-block: 1.25rem 4rem;
 }
-
 /* 3. Cabeçalhos de página */
 .cabecalho-admin {
   position: static;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  gap: 2rem;
+  gap: 1.25rem;
   margin: 0 0 1.25rem;
-  padding: clamp(1.4rem, 3vw, 2.25rem);
+  padding: clamp(1.15rem, 2.2vw, 1.65rem);
   border: 1px solid var(--border);
   border-radius: 1.25rem;
   background: linear-gradient(135deg, var(--surface), color-mix(in srgb, var(--primary) 5%, var(--surface)));
@@ -125,7 +118,7 @@ html[data-tema="escuro"] .admin-page .menu-admin .menu-item:is(:hover, .ativo) {
   max-width: 30ch;
   margin: 0.35rem 0 0.55rem;
   color: var(--heading);
-  font-size: clamp(1.75rem, 3vw, 2.65rem);
+  font-size: clamp(1.65rem, 2.5vw, 2.25rem);
   line-height: 1.15;
   overflow-wrap: anywhere;
 }
@@ -136,14 +129,17 @@ html[data-tema="escuro"] .admin-page .menu-admin .menu-item:is(:hover, .ativo) {
   align-items: center;
   min-height: 44px;
   gap: 0.55rem;
-  margin-bottom: 0.8rem;
+  margin: 0 0 1rem;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 0.7rem;
+  background: var(--surface);
   color: var(--primary);
   font-size: 0.92rem;
   font-weight: 700;
   text-decoration: none;
 }
-.link-voltar:hover { text-decoration: underline; text-underline-offset: 0.22rem; }
-
+.link-voltar:hover { border-color: color-mix(in srgb, var(--primary) 45%, var(--border)); background: var(--admin-info-soft); }
 /* 4. Cards e painéis */
 .resumo-cursos {
   display: grid;
@@ -156,8 +152,8 @@ html[data-tema="escuro"] .admin-page .menu-admin .menu-item:is(:hover, .ativo) {
   display: flex;
   min-width: 0;
   align-items: center;
-  gap: 1rem;
-  padding: 1.2rem;
+  gap: 0.75rem;
+  padding: 1rem;
   border: 1px solid var(--border);
   border-radius: 1rem;
   background: var(--surface);
@@ -178,24 +174,63 @@ html[data-tema="escuro"] .admin-page .menu-admin .menu-item:is(:hover, .ativo) {
 .resumo-card > div:last-child { display: grid; min-width: 0; }
 .resumo-card span,
 .resumo-card small { color: var(--text-muted); }
-.resumo-card span { font-size: 0.88rem; font-weight: 600; }
-.resumo-card strong { color: var(--heading); font-size: 1.75rem; line-height: 1.25; }
-.resumo-card small { font-size: 0.76rem; overflow-wrap: anywhere; }
+.resumo-card span { font-size: 0.95rem; font-weight: 600; line-height: 1.35; }
+.resumo-card strong { color: var(--heading); font-size: 1.6rem; line-height: 1.25; }
+.resumo-card small { color: var(--text); font-size: 0.9rem; line-height: 1.4; overflow-wrap: anywhere; }
 .resumo-publicados .resumo-icone { background: var(--admin-success-soft); color: var(--admin-success); }
 .resumo-rascunhos .resumo-icone { background: var(--admin-warning-soft); color: var(--admin-warning); }
 .resumo-desativados .resumo-icone { background: var(--admin-danger-soft); color: var(--admin-danger); }
-
 .secao-cursos,
 #suporteAdmin,
 .resumo-modulo-admin {
   min-width: 0;
   margin-top: 1.25rem;
-  padding: clamp(1.25rem, 2.5vw, 2rem);
+  padding: clamp(1.1rem, 1.8vw, 1.5rem);
   border: 1px solid var(--border);
   border-radius: 1.15rem;
   background: var(--surface);
   box-shadow: 0 8px 28px rgba(15, 46, 78, 0.06);
 }
+.painel-modulo { padding: clamp(1rem, 1.8vw, 1.4rem); }
+.secao-lista-cursos { min-width: 0; }
+.cabecalho-lista-cursos { align-items: flex-start; }
+.titulo-lista-cursos { min-width: 0; }
+.filtros-cursos {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: minmax(12rem, 1.2fr) minmax(11rem, 0.9fr) minmax(10rem, 0.85fr);
+  align-items: start;
+  gap: 0.65rem;
+}
+.pesquisa-curso-admin {
+  display: grid;
+  min-width: 0;
+  min-height: 44px;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 0.68rem;
+  background: var(--surface-elevated);
+  color: var(--text-muted);
+}
+.pesquisa-curso-admin:focus-within { border-color: var(--primary); box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 16%, transparent); }
+.pesquisa-curso-admin input {
+  width: 100%;
+  min-width: 0;
+  min-height: 42px;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+}
+.pesquisa-curso-admin input::placeholder { color: var(--text-muted); opacity: 0.9; }
+.pesquisa-curso-admin input:focus-visible { outline: 0; }
+.filtro-curso-admin { min-width: 0; margin: 0; }
+.filtro-curso-admin select { width: 100%; min-width: 0; }
 .titulo-secao,
 .titulo-secao-com-acao,
 .editor-secao-cabecalho,
@@ -226,8 +261,8 @@ html[data-tema="escuro"] .admin-page .menu-admin .menu-item:is(:hover, .ativo) {
 .editor-secao-icone { width: 3.25rem; height: 3.25rem; font-size: 1.25rem; }
 .icone-quiz,
 .teste-final-icone { background: var(--admin-warning-soft); color: var(--admin-warning); }
-.resumo-modulo-admin { display: flex; align-items: center; gap: 1.25rem; }
-.resumo-modulo-icone { width: 3.5rem; height: 3.5rem; font-size: 1.35rem; }
+.resumo-modulo-admin { display: flex; align-items: center; gap: 0.9rem; }
+.resumo-modulo-icone { width: 3rem; height: 3rem; font-size: 1.15rem; }
 .resumo-modulo-conteudo { min-width: 0; }
 .dados-modulo { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 0.65rem; }
 .dados-modulo span {
@@ -241,14 +276,46 @@ html[data-tema="escuro"] .admin-page .menu-admin .menu-item:is(:hover, .ativo) {
   color: var(--text-muted);
   font-size: 0.83rem;
 }
-
+#estadoQuiz.resumo-quiz-admin {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.55rem;
+  margin: 0 0 0.75rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+.indicador-teste-final {
+  display: grid;
+  min-width: 0;
+  min-height: 3.4rem;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--surface-elevated);
+}
+.indicador-teste-final > i {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+  border-radius: 0.55rem;
+  background: var(--admin-info-soft);
+  color: var(--primary);
+}
+.indicador-teste-final > span { display: grid; min-width: 0; gap: 0.1rem; }
+.indicador-teste-final small { color: var(--text-muted); font-size: 0.84rem; line-height: 1.35; }
+.indicador-teste-final strong { color: var(--heading); font-size: 1.05rem; line-height: 1.25; overflow-wrap: anywhere; }
+.indicador-teste-final.is-completo > i { background: var(--admin-success-soft); color: var(--admin-success); }
+.indicador-teste-final.is-incompleto > i { background: var(--admin-warning-soft); color: var(--admin-warning); }
 /* 5. Listas e itens gerenciáveis */
 .lista-cursos,
 .lista-questoes,
-.alternativas-admin,
-#listaSuporte { display: grid; min-width: 0; gap: 1rem; }
+#listaSuporte { display: grid; min-width: 0; gap: 0.75rem; }
 .curso-admin,
-.questao-admin,
 .solicitacao-suporte {
   min-width: 0;
   border: 1px solid var(--border);
@@ -258,12 +325,41 @@ html[data-tema="escuro"] .admin-page .menu-admin .menu-item:is(:hover, .ativo) {
 .curso-admin {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
-  gap: 1.1rem;
-  padding: 1.15rem;
+  gap: 0.85rem;
+  padding: 1rem;
 }
+#listaCursosAdmin > .curso-lista-item {
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.8rem 1rem;
+  border-radius: 0.85rem;
+}
+#listaCursosAdmin > .curso-lista-item .curso-icone { width: 3.5rem; height: 3.5rem; font-size: 1.15rem; }
+#listaCursosAdmin > .curso-lista-item .curso-titulo { align-items: center; }
+#listaCursosAdmin > .curso-lista-item .curso-titulo h3 { margin: 0; font-size: 1rem; }
+#listaCursosAdmin > .curso-lista-item .curso-info > p {
+  display: -webkit-box;
+  max-width: 72ch;
+  margin-top: 0.25rem;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-height: 1.45;
+  white-space: normal;
+}
+#listaCursosAdmin > .curso-lista-item .curso-detalhes { margin-top: 0.45rem; }
+#listaCursosAdmin > .curso-lista-item .curso-operacoes {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.55rem;
+}
+#listaCursosAdmin > .curso-lista-item .curso-acoes { justify-content: flex-end; gap: 0.45rem; margin: 0; }
+#listaCursosAdmin > .curso-lista-item .curso-acoes > button { white-space: nowrap; }
 .curso-icone,
-.modulo-numero,
-.questao-numero {
+.modulo-numero {
   display: grid;
   flex: 0 0 auto;
   place-items: center;
@@ -273,27 +369,19 @@ html[data-tema="escuro"] .admin-page .menu-admin .menu-item:is(:hover, .ativo) {
 }
 .curso-icone { width: 3.2rem; height: 3.2rem; font-size: 1.2rem; }
 .modulo-numero { align-content: center; width: 4.2rem; min-height: 4.2rem; padding: 0.4rem; line-height: 1.1; }
+.modulo-admin-card .modulo-numero { width: 3.4rem; min-height: 3.4rem; }
 .modulo-numero span { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; }
 .modulo-numero strong { font-size: 1.35rem; }
-.curso-info,
-.questao-conteudo,
-.alternativa-conteudo { min-width: 0; }
-.curso-titulo,
-.questao-topo,
-.alternativa-topo,
-.cabecalho-alternativas {
+.curso-info { min-width: 0; }
+.curso-titulo {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: 0.75rem;
 }
 .curso-titulo h3,
-.questao-topo h3,
 .solicitacao-suporte h3 { color: var(--heading); font-size: 1.06rem; line-height: 1.4; overflow-wrap: anywhere; }
 .curso-info > p,
-.questao-pergunta,
-.alternativa-texto,
-.alternativa-explicacao,
 .suporte-mensagem {
   margin-top: 0.5rem;
   color: var(--text-muted);
@@ -301,14 +389,11 @@ html[data-tema="escuro"] .admin-page .menu-admin .menu-item:is(:hover, .ativo) {
   overflow-wrap: anywhere;
   white-space: pre-wrap;
 }
-.curso-detalhes { display: flex; flex-wrap: wrap; gap: 0.55rem 1rem; margin-top: 0.8rem; color: var(--text-muted); font-size: 0.82rem; }
+.curso-detalhes { display: flex; flex-wrap: wrap; gap: 0.45rem 0.85rem; margin-top: 0.6rem; color: var(--text-muted); font-size: 0.82rem; }
 .curso-detalhes span { display: inline-flex; align-items: center; gap: 0.4rem; }
 .status,
 .etiqueta-conteudo,
-.badge-status,
-.badge-correta,
-.badge-incorreta,
-.contador-alternativas {
+.badge-status {
   display: inline-flex;
   align-items: center;
   width: fit-content;
@@ -321,36 +406,232 @@ html[data-tema="escuro"] .admin-page .menu-admin .menu-item:is(:hover, .ativo) {
   line-height: 1.2;
 }
 .status.publicado,
-.badge-status.completa,
-.badge-correta { background: var(--admin-success-soft); color: var(--admin-success); }
+.badge-status.completa { background: var(--admin-success-soft); color: var(--admin-success); }
 .status.rascunho,
-.badge-status,
-.contador-alternativas { background: var(--admin-warning-soft); color: var(--admin-warning); }
-.status.desativado,
-.badge-incorreta { background: var(--admin-danger-soft); color: var(--admin-danger); }
+.badge-status { background: var(--admin-warning-soft); color: var(--admin-warning); }
+.status.desativado { background: var(--admin-danger-soft); color: var(--admin-danger); }
 .etiqueta-conteudo { background: var(--admin-info-soft); color: var(--primary); }
-.questao-admin { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 1rem; padding: 1.25rem; }
-.questao-numero { width: 2.75rem; height: 2.75rem; font-weight: 700; }
-.bloco-acoes-questao,
-.bloco-alternativas { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); }
-.texto-ajuda-questao,
-.mensagem-alternativas,
-.estado-vazio-alternativas { margin-top: 0.75rem; color: var(--text-muted); font-size: 0.85rem; }
-.cabecalho-alternativas { align-items: center; margin-bottom: 0.75rem; }
-.cabecalho-alternativas h4 { color: var(--heading); font-size: 0.95rem; }
-.alternativa-admin {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 1rem;
-  padding: 1rem;
-  border: 1px solid var(--border);
-  border-left: 4px solid var(--border);
-  border-radius: 0.8rem;
-  background: var(--surface);
+/* Quiz Admin: uma hierarquia compacta, compartilhada por módulo e teste final. */
+main.conteudo-editor-quiz-admin {
+  width: min(calc(100% - 3rem), 1240px);
+  max-width: 1240px;
 }
-.alternativa-correta { border-left-color: var(--admin-success); background: color-mix(in srgb, var(--admin-success-soft) 55%, var(--surface)); }
-.alternativa-explicacao { padding-left: 0.75rem; border-left: 3px solid var(--border); font-size: 0.88rem; }
-
+.painel-editor-quiz-admin { min-width: 0; padding: clamp(0.9rem, 1.5vw, 1.25rem); }
+.painel-editor-quiz-admin > :is(.editor-secao-cabecalho, .titulo-secao-com-acao) {
+  margin-bottom: 0.85rem;
+}
+.painel-editor-quiz-admin .acoes-cabecalho { justify-content: flex-end; }
+.lista-questoes { gap: 0.7rem; }
+.questao-admin,
+.alternativa-admin {
+  box-sizing: border-box;
+  min-width: 0;
+  max-width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 0.8rem;
+  background: var(--surface-elevated);
+  color: var(--text);
+}
+.questao-admin { display: grid; gap: 0.65rem; padding: 0.85rem; }
+.questao-admin__cabecalho,
+.questao-admin__identificacao,
+.questao-admin__alternativas-cabecalho {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+}
+.questao-admin__identificacao { justify-content: flex-start; }
+.questao-admin__identificacao h3 { margin: 0; color: var(--heading); font-size: 1rem; line-height: 1.35; }
+.questao-admin__numero,
+.alternativa-admin__letra {
+  display: grid;
+  width: 2.1rem;
+  height: 2.1rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--primary) 20%, var(--border));
+  border-radius: 0.55rem;
+  background: var(--admin-info-soft);
+  color: var(--primary);
+  font-weight: 800;
+}
+.questao-admin__status,
+.alternativa-admin__status {
+  display: inline-flex;
+  width: fit-content;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.55rem;
+  border: 1px solid color-mix(in srgb, var(--admin-warning) 45%, var(--border));
+  border-radius: 999px;
+  background: var(--admin-warning-soft);
+  color: var(--admin-warning);
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+.questao-admin__status.is-completa,
+.alternativa-admin__status.is-correta {
+  border-color: color-mix(in srgb, var(--admin-success) 45%, var(--border));
+  background: var(--admin-success-soft);
+  color: var(--admin-success);
+}
+.alternativa-admin__status.is-incorreta { border-color: var(--border); background: var(--surface); color: var(--text-muted); }
+.questao-admin__enunciado,
+.alternativa-admin__resposta,
+.alternativa-admin__explicacao p,
+.questao-admin__ajuda,
+.questao-admin__vazio {
+  min-width: 0;
+  max-width: 100%;
+  margin: 0;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+.questao-admin__enunciado { color: var(--text); font-size: 1rem; line-height: 1.55; }
+.questao-admin__barra-acoes {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+.questao-admin__barra-acoes > :is(.btn-modulos, .btn-editar, .btn-excluir),
+.alternativa-admin__acoes > :is(.btn-editar, .btn-excluir) {
+  box-sizing: border-box;
+  width: auto;
+  min-height: 44px;
+  max-width: 100%;
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+.alternativa-admin__acoes {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+.questao-admin__ordem,
+.alternativa-admin__ordem {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  flex-wrap: nowrap;
+  gap: 0.3rem;
+}
+.questao-admin__ordem .btn-ordem,
+.alternativa-admin__ordem .btn-ordem {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
+  min-height: 44px;
+  flex: 0 0 44px;
+  padding: 0;
+}
+.questao-admin__ajuda,
+.questao-admin__vazio { color: var(--text-muted); font-size: 0.88rem; line-height: 1.45; }
+.questao-admin__ajuda strong { color: var(--heading); }
+.questao-admin__alternativas {
+  display: grid;
+  min-width: 0;
+  gap: 0.55rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--border);
+}
+.questao-admin__alternativas-cabecalho h4 { margin: 0; color: var(--heading); font-size: 0.95rem; }
+.questao-admin__alternativas-cabecalho > span {
+  flex: 0 0 auto;
+  padding: 0.2rem 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+.alternativas-admin { display: grid; min-width: 0; gap: 0.5rem; }
+.alternativa-admin { display: grid; gap: 0.5rem; padding: 0.65rem; background: var(--surface); }
+.alternativa-admin.is-correta {
+  border-color: color-mix(in srgb, var(--admin-success) 45%, var(--border));
+  border-left: 3px solid var(--admin-success);
+  background: color-mix(in srgb, var(--admin-success-soft) 24%, var(--surface));
+}
+.alternativa-admin__linha {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: 2.1rem minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 0.6rem;
+}
+.alternativa-admin__conteudo { min-width: 0; padding-top: 0.25rem; }
+.alternativa-admin__resposta { color: var(--text); line-height: 1.55; }
+.alternativa-admin__lateral {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.alternativa-admin__explicacao {
+  display: grid;
+  min-width: 0;
+  gap: 0.25rem;
+  margin-left: 2.7rem;
+  padding: 0.6rem 0.75rem;
+  border-left: 3px solid var(--primary);
+  border-radius: 0 0.5rem 0.5rem 0;
+  background: color-mix(in srgb, var(--bg) 58%, var(--surface));
+}
+.alternativa-admin__explicacao h5 {
+  margin: 0;
+  color: var(--heading);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.alternativa-admin__explicacao p { color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; }
+@media (max-width: 1100px) {
+  main.conteudo-editor-quiz-admin { width: min(calc(100% - 2.5rem), 1240px); }
+}
+@media (max-width: 900px) {
+  main.conteudo-editor-quiz-admin { width: min(calc(100% - 2rem), 1240px); }
+}
+@media (max-width: 760px) {
+  .alternativa-admin__linha { grid-template-columns: 2.1rem minmax(0, 1fr); }
+  .alternativa-admin__lateral { grid-column: 2; justify-content: flex-start; }
+}
+@media (max-width: 560px) {
+  .painel-editor-quiz-admin { padding: 0.8rem; }
+  .questao-admin__barra-acoes { justify-content: flex-start; }
+  .alternativa-admin__lateral { grid-column: 1 / -1; justify-content: space-between; }
+  .alternativa-admin__explicacao { margin-left: 0; }
+}
+@media (max-width: 480px) {
+  main.conteudo-editor-quiz-admin { width: calc(100% - 1.25rem); }
+  .questao-admin { gap: 0.6rem; padding: 0.7rem; }
+  .questao-admin__cabecalho { align-items: flex-start; }
+  .questao-admin__status { margin-top: 0.15rem; }
+  .alternativa-admin { padding: 0.55rem; }
+  .alternativa-admin__lateral { align-items: flex-start; flex-direction: column; }
+  .alternativa-admin__acoes { justify-content: flex-start; }
+}
+@media (max-width: 370px) {
+  .questao-admin__identificacao { gap: 0.45rem; }
+  .questao-admin__identificacao h3 { font-size: 0.95rem; }
+}
 /* 6. Ações e botões */
 .btn-novo,
 .btn-cancelar,
@@ -391,15 +672,11 @@ html[data-tema="escuro"] .admin-page .menu-admin .menu-item:is(:hover, .ativo) {
 .btn-excluir:hover:not(:disabled) { border-color: var(--admin-danger); }
 .curso-acoes,
 .acoes-cabecalho,
-.acoes-questao-admin,
-.acoes-alternativa,
 .acoes-formulario-direita,
 .grupo-ordem { display: flex; align-items: center; flex-wrap: wrap; gap: 0.55rem; }
-.curso-acoes,
-.acoes-questao-admin { margin-top: 1rem; }
+.curso-acoes { justify-content: flex-end; margin-top: 0.65rem; }
+.acoes-conteudo-admin { justify-content: flex-end; }
 .grupo-ordem { gap: 0.35rem; }
-.acoes-alternativa { align-content: flex-start; justify-content: flex-end; max-width: 19rem; }
-
 /* 7. Formulários */
 .campo { display: grid; min-width: 0; gap: 0.45rem; margin-bottom: 1rem; }
 .campo label,
@@ -431,7 +708,13 @@ html[data-tema="escuro"] .admin-page .menu-admin .menu-item:is(:hover, .ativo) {
 .contador-caracteres.limite-excedido,
 .erro-campo { color: var(--admin-danger); }
 .campo textarea.campo-limite-excedido { border-color: var(--admin-danger); }
-.duracao-personalizada { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+#modalNovoCurso .modal-curso form,
+#modalNovoCurso .modal-curso .campo,
+#modalNovoCurso .modal-curso :is(input, select, textarea) { min-width: 0; max-width: 100%; box-sizing: border-box; }
+#modalNovoCurso .modal-curso .linha-campos { align-items: start; gap: 0.85rem; }
+#modalNovoCurso .modal-curso .campo :is(input:not([type="checkbox"]), select) { width: 100%; }
+.duracao-personalizada { display: grid; min-width: 0; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; margin-top: 0.25rem; }
+.duracao-personalizada > .campo { margin-bottom: 0; }
 .aviso-rascunho,
 .erro-campo {
   margin-block: 0.75rem 1rem;
@@ -474,11 +757,14 @@ html[data-tema="escuro"] .admin-page .menu-admin .menu-item:is(:hover, .ativo) {
 .controle-alternativa-correta:has(input:checked) { border-color: var(--admin-success); background: var(--admin-success-soft); }
 .controle-alternativa-correta input:checked + .check-alternativa-correta { border-color: var(--admin-success); background: var(--admin-success); color: #fff; }
 .controle-alternativa-correta:has(input:focus-visible) { outline: 3px solid color-mix(in srgb, var(--primary) 45%, transparent); outline-offset: 3px; }
-.campos-imagem-conteudo { padding: 1rem; border: 1px solid var(--border); border-radius: 0.85rem; background: color-mix(in srgb, var(--bg) 65%, var(--surface)); }
-.seletor-origem-imagem { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
+.campos-imagem-conteudo { min-width: 0; max-width: 100%; padding: 0.85rem; border: 1px solid var(--border); border-radius: 0.85rem; background: color-mix(in srgb, var(--bg) 65%, var(--surface)); box-sizing: border-box; }
+.seletor-origem-imagem { display: grid; min-width: 0; max-width: 100%; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; box-sizing: border-box; }
 .btn-origem-imagem {
   display: flex;
-  min-height: 70px;
+  min-width: 0;
+  max-width: 100%;
+  width: 100%;
+  min-height: 64px;
   align-items: center;
   gap: 0.75rem;
   padding: 0.8rem;
@@ -495,13 +781,17 @@ html[data-tema="escuro"] .admin-page .menu-admin .menu-item:is(:hover, .ativo) {
 .btn-origem-imagem.ativo { border-color: var(--primary); background: var(--admin-info-soft); }
 .area-upload-imagem {
   display: grid;
-  min-height: 9rem;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  min-height: 7rem;
   place-items: center;
   align-content: center;
   gap: 0.45rem;
   padding: 1rem;
   border: 2px dashed var(--border);
   border-radius: 0.8rem;
+  box-sizing: border-box;
   background: var(--surface);
   color: var(--text);
   text-align: center;
@@ -509,43 +799,53 @@ html[data-tema="escuro"] .admin-page .menu-admin .menu-item:is(:hover, .ativo) {
 }
 .area-upload-imagem:hover { border-color: var(--primary); }
 .area-upload-imagem i { color: var(--primary); font-size: 1.7rem; }
-.area-upload-imagem span { color: var(--text-muted); font-size: 0.82rem; }
-.preview-imagem-conteudo { display: grid; gap: 0.5rem; margin-bottom: 1rem; }
+.area-upload-imagem span { color: var(--text-muted); font-size: 0.86rem; line-height: 1.4; }
+.campos-imagem-conteudo .ajuda-campo { font-size: 0.84rem; line-height: 1.45; }
+.preview-imagem-conteudo { display: grid; width: 100%; min-width: 0; max-width: 100%; gap: 0.5rem; margin-bottom: 0.75rem; box-sizing: border-box; }
 .preview-imagem-caixa {
   display: grid;
-  min-height: 10rem;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  min-height: 7rem;
   place-items: center;
   overflow: hidden;
   border: 1px solid var(--border);
   border-radius: 0.8rem;
   background: #071b27;
+  box-sizing: border-box;
 }
-.preview-imagem-caixa :is(img, video, iframe) { display: block; width: 100%; max-height: 24rem; border: 0; object-fit: contain; }
-.preview-imagem-caixa iframe { aspect-ratio: 16 / 9; }
-
+.preview-imagem-caixa :is(img, video) { display: block; width: auto; min-width: 0; max-width: 100%; max-height: min(18rem, 55dvh); height: auto; object-fit: contain; }
+.preview-imagem-caixa iframe { display: block; width: 100%; min-width: 0; max-width: 100%; max-height: 18rem; aspect-ratio: 16 / 9; border: 0; }
 /* 8. Modais */
 .modal {
   position: fixed;
   z-index: 2200;
   inset: 0;
   display: grid;
+  min-width: 0;
+  grid-template-columns: minmax(0, 1fr);
   place-items: center;
   padding: 1.25rem;
   background: rgba(4, 20, 31, 0.72);
   overflow-y: auto;
 }
 .modal-conteudo {
-  width: min(100%, 46rem);
+  width: min(46rem, 100%);
+  min-width: 0;
+  max-width: 100%;
   max-height: 90dvh;
   overflow-y: auto;
   overscroll-behavior: contain;
-  padding: clamp(1.2rem, 3vw, 2rem);
+  box-sizing: border-box;
+  padding: clamp(1.1rem, 2.4vw, 1.65rem);
   border: 1px solid var(--border);
   border-radius: 1.1rem;
   background: var(--surface);
   color: var(--text);
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.3);
 }
+.modal-conteudo :is(form, .campo, input, select, textarea) { min-width: 0; max-width: 100%; }
 .modal-cabecalho { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1.25rem; }
 .modal-cabecalho h2 { margin-top: 0.2rem; color: var(--heading); font-size: clamp(1.35rem, 2.4vw, 1.8rem); line-height: 1.25; }
 .btn-fechar {
@@ -561,7 +861,6 @@ html[data-tema="escuro"] .admin-page .menu-admin .menu-item:is(:hover, .ativo) {
   cursor: pointer;
 }
 .btn-fechar:hover { border-color: var(--primary); color: var(--primary); }
-
 /* 9. Estados e mensagens */
 .mensagem {
   padding: 0.9rem 1rem;
@@ -573,11 +872,10 @@ html[data-tema="escuro"] .admin-page .menu-admin .menu-item:is(:hover, .ativo) {
   overflow-wrap: anywhere;
 }
 .estado-quiz-admin { margin-top: 0.5rem; }
-
 /* 10. Suporte */
 #suporteAdmin { scroll-margin-top: 7rem; }
 #listaSuporte { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 1rem; }
-.solicitacao-suporte { display: grid; align-content: start; gap: 0.65rem; padding: 1.15rem; }
+.solicitacao-suporte { display: grid; align-content: start; gap: 0.55rem; padding: 1rem; }
 .solicitacao-suporte p { color: var(--text-muted); overflow-wrap: anywhere; }
 .solicitacao-suporte .suporte-mensagem {
   padding: 0.8rem;
@@ -588,25 +886,24 @@ html[data-tema="escuro"] .admin-page .menu-admin .menu-item:is(:hover, .ativo) {
 }
 .solicitacao-suporte label { display: grid; gap: 0.4rem; margin-top: 0.25rem; }
 .solicitacao-suporte button { width: fit-content; }
-
 /* 11. Responsividade */
 @media (max-width: 1200px) {
   .resumo-cursos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #estadoQuiz.resumo-quiz-admin { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   #listaSuporte { grid-template-columns: 1fr; }
 }
-
 @media (max-width: 1000px) {
   .menu-admin,
-  .conteudo-admin { width: min(100% - 2rem, 1500px); }
+  .conteudo-admin { width: min(100% - 2rem, 1320px); }
   .menu-admin { align-items: flex-start; }
   .menu-admin nav { justify-content: flex-start; }
   .cabecalho-admin,
   .editor-secao-cabecalho,
   .secao-teste-final { align-items: flex-start; }
   .curso-acoes,
-  .acoes-questao-admin { width: 100%; }
+  .cabecalho-lista-cursos { align-items: stretch; flex-direction: column; }
+  .filtros-cursos { width: 100%; }
 }
-
 @media (max-width: 767px) {
   .menu-admin,
   .conteudo-admin { width: calc(100% - 2rem); }
@@ -626,26 +923,32 @@ html[data-tema="escuro"] .admin-page .menu-admin .menu-item:is(:hover, .ativo) {
   .titulo-secao-com-acao > .btn-cancelar,
   .acoes-cabecalho,
   .acoes-cabecalho .btn-novo { width: 100%; }
+  .filtros-cursos { grid-template-columns: minmax(0, 1fr); }
   .resumo-cursos,
   .linha-campos,
   .duracao-personalizada,
   .seletor-origem-imagem { grid-template-columns: 1fr; }
-  .curso-admin,
-  .questao-admin,
-  .alternativa-admin { grid-template-columns: 1fr; }
+  #estadoQuiz.resumo-quiz-admin { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .curso-admin { grid-template-columns: 1fr; }
+  #listaCursosAdmin > .curso-lista-item { grid-template-columns: auto minmax(0, 1fr); align-items: start; }
+  #listaCursosAdmin > .curso-lista-item .curso-operacoes {
+    grid-column: 1 / -1;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
   .curso-icone,
   .modulo-numero,
-  .questao-numero { width: 3rem; min-height: 3rem; }
+  .modulo-numero { width: 3rem; min-height: 3rem; }
   .curso-titulo,
-  .questao-topo,
-  .alternativa-topo,
-  .cabecalho-alternativas { flex-wrap: wrap; }
-  .curso-acoes,
-  .acoes-questao-admin,
-  .acoes-alternativa { display: grid; max-width: none; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .curso-acoes { display: grid; max-width: none; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #listaCursosAdmin > .curso-lista-item .curso-acoes { display: flex; width: 100%; justify-content: flex-end; }
+  #listaCursosAdmin > .curso-lista-item .curso-acoes > button { width: auto; max-width: 100%; padding-inline: 0.65rem; white-space: nowrap; }
+  #listaCursosAdmin > .curso-lista-item .curso-operacoes { align-items: stretch; flex-direction: column; }
+  #listaCursosAdmin > .curso-lista-item .curso-operacoes > .status { align-self: flex-start; }
+  #listaCursosAdmin > .curso-lista-item .curso-acoes { width: 100%; }
   .curso-acoes > :is(.btn-modulos, .btn-editar, .btn-excluir),
-  .acoes-questao-admin > :is(.btn-modulos, .btn-editar, .btn-excluir),
-  .acoes-alternativa > :is(.btn-editar, .btn-excluir),
   .acoes-conteudo-admin > :is(.btn-editar, .btn-excluir) { width: 100%; }
   .grupo-ordem { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .grupo-ordem .btn-ordem { width: 100%; }
@@ -653,17 +956,13 @@ html[data-tema="escuro"] .admin-page .menu-admin .menu-item:is(:hover, .ativo) {
   .acoes-formulario > .btn-excluir,
   .acoes-formulario-direita,
   .acoes-formulario-direita > * { width: 100%; }
-  .modal { align-items: end; padding: 0.75rem; }
+  .modal { padding: 0.5rem; }
   .modal-conteudo { max-height: calc(100dvh - 1.5rem); border-radius: 1rem; }
 }
-
 @media (max-width: 420px) {
   .menu-admin,
   .conteudo-admin { width: calc(100% - 1.25rem); }
   .menu-admin nav,
-  .curso-acoes,
-  .acoes-questao-admin,
-  .acoes-alternativa { grid-template-columns: 1fr; }
   .resumo-card,
   .secao-cursos,
   #suporteAdmin,
@@ -675,7 +974,21 @@ html[data-tema="escuro"] .admin-page .menu-admin .menu-item:is(:hover, .ativo) {
   .teste-final-icone,
   .resumo-modulo-icone { width: 2.8rem; height: 2.8rem; }
 }
-
+@media (max-width: 370px) {
+  #listaCursosAdmin > .curso-lista-item .curso-acoes { display: grid; grid-template-columns: 1fr; }
+  #listaCursosAdmin > .curso-lista-item .curso-acoes > button { width: 100%; }
+}
+@media (max-width: 350px) {
+  #estadoQuiz.resumo-quiz-admin { grid-template-columns: 1fr; }
+}
+/* Botões do quiz: quebra de linha natural nas telas menores. */
+@media (max-width: 420px) {
+  .questao-admin__barra-acoes { gap: 0.4rem; }
+  .questao-admin__barra-acoes > :is(.btn-modulos, .btn-editar, .btn-excluir),
+  .alternativa-admin__acoes > :is(.btn-editar, .btn-excluir) {
+    padding-inline: 0.65rem;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   .admin-page *,
   .admin-page *::before,

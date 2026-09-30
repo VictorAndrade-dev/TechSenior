@@ -164,16 +164,39 @@ export async function iniciarEditorQuiz({ cursoId, moduloId = null }) {
     const total = questoesCarregadas.length;
     const completas = questoesCarregadas.filter(questaoCompleta).length;
     const completo = total >= 10 && total <= 15 && completas === total;
-    if (final)
-      estadoQuiz.textContent =
-        total +
-        " / 10 questões mínimas • " +
-        completas +
-        " completas • Status: " +
-        (completo ? "Completo" : "Incompleto") +
-        (total >= 15
-          ? " • Limite de 15 questões atingido."
-          : " • Máximo: 15 questões.");
+    if (final) {
+      estadoQuiz.classList.add("resumo-quiz-admin");
+      estadoQuiz.innerHTML = `
+        <div class="indicador-teste-final">
+          <i class="fa-solid fa-list-ol" aria-hidden="true"></i>
+          <span>
+            <strong>${total} / 10</strong>
+            <small>Questões cadastradas</small>
+          </span>
+        </div>
+        <div class="indicador-teste-final">
+          <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+          <span>
+            <strong>${completas}</strong>
+            <small>Questões completas</small>
+          </span>
+        </div>
+        <div class="indicador-teste-final ${completo ? "is-completo" : "is-incompleto"}">
+          <i class="fa-solid ${completo ? "fa-check" : "fa-circle-exclamation"}" aria-hidden="true"></i>
+          <span>
+            <strong>${completo ? "Completo" : "Incompleto"}</strong>
+            <small>Status do teste</small>
+          </span>
+        </div>
+        <div class="indicador-teste-final">
+          <i class="fa-solid fa-list-ol" aria-hidden="true"></i>
+          <span>
+            <strong>15</strong>
+            <small>Máximo de questões</small>
+          </span>
+        </div>
+      `;
+    }
     btnNovaQuestao.disabled = final && total >= 15;
     listaQuestoes.hidden = false;
   }
@@ -188,142 +211,99 @@ export async function iniciarEditorQuiz({ cursoId, moduloId = null }) {
 
     questoesCarregadas.forEach((questao, indiceQuestao) => {
       const card = document.createElement("article");
-      card.className = "curso-admin painel-item-admin questao-admin";
+      card.className = "questao-admin";
       card.innerHTML = `
-      <div class="questao-numero">
-        ${escapeHtml(questao.ordem)}
+      <header class="questao-admin__cabecalho">
+        <div class="questao-admin__identificacao">
+          <span class="questao-admin__numero">${escapeHtml(questao.ordem)}</span>
+          <h3>Questão ${escapeHtml(questao.ordem)}</h3>
+        </div>
+        <span class="questao-admin__status ${questaoCompleta(questao) ? "is-completa" : ""}">
+          ${questaoCompleta(questao) ? "Completa" : "Incompleta"}
+        </span>
+      </header>
+
+      <div class="questao-admin__enunciado">
+        ${escapeHtml(questao.pergunta)}
       </div>
 
-      <div class="questao-conteudo">
-
-        <div class="questao-topo">
-
-          <h3>
-            Questão ${escapeHtml(questao.ordem)}
-          </h3>
-
-          <span
-            class="badge-status ${questaoCompleta(questao) ? "completa" : ""}"
-          >
-            ${questaoCompleta(questao) ? "Completa" : "Incompleta"}
-          </span>
-
-        </div>
-
-
-        <p class="questao-pergunta">
-          ${escapeHtml(questao.pergunta)}
-        </p>
-
-
-        <div class="bloco-acoes-questao">
-
-          <div class="acoes-questao-admin">
-
-            <button
-              class="btn-modulos"
-              type="button"
-              data-acao="nova-alternativa"
-              ${
-                (alternativasPorQuestao.get(questao.id) || []).length >= 5
-                  ? "disabled"
-                  : ""
-              }
-            >
-              <i class="fa-solid fa-plus"></i>
-              Nova alternativa
-            </button>
-
-
-            <button
-              class="btn-editar"
-              type="button"
-              data-acao="editar-questao"
-            >
-              <i class="fa-solid fa-pen-to-square"></i>
-              Editar
-            </button>
-
-
-            <div class="grupo-ordem">
-
-              <button
-                class="btn-ordem"
-                type="button"
-                data-acao="subir-questao"
-                ${indiceQuestao === 0 ? "disabled" : ""}
-                aria-label="Mover questão para cima"
-                title="Mover para cima"
-              >
-                <i class="fa-solid fa-arrow-up"></i>
-              </button>
-
-              <button
-                class="btn-ordem"
-                type="button"
-                data-acao="descer-questao"
-                ${
-                  indiceQuestao === questoesCarregadas.length - 1
-                    ? "disabled"
-                    : ""
-                }
-                aria-label="Mover questão para baixo"
-                title="Mover para baixo"
-              >
-                <i class="fa-solid fa-arrow-down"></i>
-              </button>
-
-            </div>
-
-
-            <button
-              class="btn-excluir"
-              type="button"
-              data-acao="excluir-questao"
-            >
-              <i class="fa-solid fa-trash"></i>
-              Excluir
-            </button>
-
-          </div>
-
-
-          <p class="texto-ajuda-questao">
-            Para completar:
-            pelo menos <strong>2 alternativas</strong>
-            e exatamente <strong>1 correta</strong>.
-          </p>
-
-        </div>
-
-
-        <div class="bloco-alternativas">
-
-          <div class="cabecalho-alternativas">
-
-            <h4>
-              Alternativas
-            </h4>
-
-            <span class="contador-alternativas">
-              ${(alternativasPorQuestao.get(questao.id) || []).length}/5
-            </span>
-
-          </div>
-
+      <div class="questao-admin__barra-acoes">
+        <button
+          class="btn-modulos"
+          type="button"
+          data-acao="nova-alternativa"
           ${
-            (alternativasPorQuestao.get(questao.id) || []).length === 0
-              ? `
-                <p class="estado-vazio-alternativas">
-                  Esta questão ainda não possui alternativas.
-                </p>
-              `
-              : montarAlternativas(questao)
+            (alternativasPorQuestao.get(questao.id) || []).length >= 5
+              ? "disabled"
+              : ""
           }
+        >
+          <i class="fa-solid fa-plus" aria-hidden="true"></i>
+          Nova alternativa
+        </button>
 
+        <button
+          class="btn-editar"
+          type="button"
+          data-acao="editar-questao"
+        >
+          <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i>
+          Editar
+        </button>
+
+        <div class="questao-admin__ordem">
+          <button
+            class="btn-ordem"
+            type="button"
+            data-acao="subir-questao"
+            ${indiceQuestao === 0 ? "disabled" : ""}
+            aria-label="Mover questão para cima"
+            title="Mover para cima"
+          >
+            <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+          </button>
+
+          <button
+            class="btn-ordem"
+            type="button"
+            data-acao="descer-questao"
+            ${
+              indiceQuestao === questoesCarregadas.length - 1
+                ? "disabled"
+                : ""
+            }
+            aria-label="Mover questão para baixo"
+            title="Mover para baixo"
+          >
+            <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
+          </button>
         </div>
 
+        <button
+          class="btn-excluir"
+          type="button"
+          data-acao="excluir-questao"
+        >
+          <i class="fa-solid fa-trash" aria-hidden="true"></i>
+          Excluir
+        </button>
       </div>
+
+      <p class="questao-admin__ajuda">
+        Para completar: pelo menos <strong>2 alternativas</strong> e exatamente <strong>1 correta</strong>.
+      </p>
+
+      <section class="questao-admin__alternativas" aria-label="Alternativas da questão ${escapeHtml(questao.ordem)}">
+        <header class="questao-admin__alternativas-cabecalho">
+          <h4>Alternativas</h4>
+          <span>${(alternativasPorQuestao.get(questao.id) || []).length}/5</span>
+        </header>
+        ${
+          (alternativasPorQuestao.get(questao.id) || []).length === 0
+            ? '<p class="questao-admin__vazio">Esta questão ainda não possui alternativas.</p>'
+            : `<div class="alternativas-admin">${montarAlternativas(questao)}</div>`
+        }
+      </section>
     `;
 
       card
@@ -386,113 +366,78 @@ export async function iniciarEditorQuiz({ cursoId, moduloId = null }) {
   function montarAlternativas(questao) {
     const alternativas = alternativasPorQuestao.get(questao.id) || [];
     if (alternativas.length === 0) {
-      return '<p class="mensagem-alternativas">Esta questão ainda não possui alternativas.</p>';
+      return '<p class="questao-admin__vazio">Esta questão ainda não possui alternativas.</p>';
     }
 
     return alternativas
       .map(
         (alternativa, indice) => `
-    <div
-      class="alternativa-admin ${
-        alternativa.correta ? "alternativa-correta" : ""
-      }"
-    >
-
-      <div class="alternativa-conteudo">
-
-        <div class="alternativa-topo">
-
-          <p class="alternativa-texto">
-            <strong>
-              ${String.fromCharCode(65 + indice)}.
-            </strong>
-
-            ${escapeHtml(alternativa.texto)}
-          </p>
-
-          ${
-            alternativa.correta
-              ? `
-                <span class="badge-correta">
-                  <i class="fa-solid fa-check"></i>
-                  Correta
-                </span>
-              `
-              : `
-                <span class="badge-incorreta">
-                  Incorreta
-                </span>
-              `
-          }
-
+    <article class="alternativa-admin ${alternativa.correta ? "is-correta" : ""}">
+      <div class="alternativa-admin__linha">
+        <span class="alternativa-admin__letra" aria-hidden="true">${String.fromCharCode(65 + indice)}</span>
+        <div class="alternativa-admin__conteudo">
+          <div class="alternativa-admin__resposta">${escapeHtml(alternativa.texto)}</div>
         </div>
+        <div class="alternativa-admin__lateral">
+          <span class="alternativa-admin__status ${alternativa.correta ? "is-correta" : "is-incorreta"}">
+            ${alternativa.correta ? '<i class="fa-solid fa-check" aria-hidden="true"></i> Correta' : "Incorreta"}
+          </span>
+          <div class="alternativa-admin__acoes">
+            <button
+              class="btn-editar"
+              type="button"
+              data-acao="editar-alternativa"
+              data-alternativa-id="${alternativa.id}"
+            >
+              <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i>
+              Editar
+            </button>
 
-        ${
-          alternativa.explicacao
-            ? `
-              <p class="alternativa-explicacao">
-                ${escapeHtml(alternativa.explicacao)}
-              </p>
-            `
-            : ""
-        }
+            <div class="alternativa-admin__ordem">
+              <button
+                class="btn-ordem"
+                type="button"
+                data-acao="subir-alternativa"
+                data-alternativa-id="${alternativa.id}"
+                ${indice === 0 ? "disabled" : ""}
+                aria-label="Mover alternativa para cima"
+              >
+                <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+              </button>
 
-      </div>
+              <button
+                class="btn-ordem"
+                type="button"
+                data-acao="descer-alternativa"
+                data-alternativa-id="${alternativa.id}"
+                ${indice === alternativas.length - 1 ? "disabled" : ""}
+                aria-label="Mover alternativa para baixo"
+              >
+                <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
+              </button>
+            </div>
 
-
-      <div class="acoes-alternativa">
-
-        <button
-          class="btn-editar"
-          type="button"
-          data-acao="editar-alternativa"
-          data-alternativa-id="${alternativa.id}"
-        >
-          <i class="fa-solid fa-pen-to-square"></i>
-          Editar
-        </button>
-
-
-        <div class="grupo-ordem">
-
-          <button
-            class="btn-ordem"
-            type="button"
-            data-acao="subir-alternativa"
-            data-alternativa-id="${alternativa.id}"
-            ${indice === 0 ? "disabled" : ""}
-            aria-label="Mover alternativa para cima"
-          >
-            <i class="fa-solid fa-arrow-up"></i>
-          </button>
-
-          <button
-            class="btn-ordem"
-            type="button"
-            data-acao="descer-alternativa"
-            data-alternativa-id="${alternativa.id}"
-            ${indice === alternativas.length - 1 ? "disabled" : ""}
-            aria-label="Mover alternativa para baixo"
-          >
-            <i class="fa-solid fa-arrow-down"></i>
-          </button>
-
+            <button
+              class="btn-excluir"
+              type="button"
+              data-acao="excluir-alternativa"
+              data-alternativa-id="${alternativa.id}"
+            >
+              <i class="fa-solid fa-trash" aria-hidden="true"></i>
+              Excluir
+            </button>
+          </div>
         </div>
-
-
-        <button
-          class="btn-excluir"
-          type="button"
-          data-acao="excluir-alternativa"
-          data-alternativa-id="${alternativa.id}"
-        >
-          <i class="fa-solid fa-trash"></i>
-          Excluir
-        </button>
-
       </div>
-
-    </div>
+      ${
+        alternativa.explicacao && String(alternativa.explicacao).trim()
+          ? `<section class="alternativa-admin__explicacao" aria-label="Explicação da alternativa ${String.fromCharCode(65 + indice)}">
+              <h5>Explicação</h5>
+              <p>${escapeHtml(alternativa.explicacao)}</p>
+            </section>`
+          : ""
+      }
+    </article>
   `,
       )
       .join("");

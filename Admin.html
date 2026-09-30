@@ -159,14 +159,46 @@
         </article>
       </section>
 
-      <section class="secao-cursos">
-        <div class="titulo-secao">
-          <div>
+      <section class="secao-cursos secao-lista-cursos">
+        <div class="titulo-secao cabecalho-lista-cursos">
+          <div class="titulo-lista-cursos">
             <span class="etiqueta-secao"> CONTEÚDO </span>
 
             <h2>Cursos cadastrados</h2>
 
             <p>Gerencie os cursos e acesse seus módulos.</p>
+          </div>
+          <div class="filtros-cursos" role="search" aria-label="Filtrar cursos">
+            <label class="sr-only" for="pesquisaCursosAdmin">Pesquisar curso</label>
+            <div class="pesquisa-curso-admin">
+              <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+              <input
+                id="pesquisaCursosAdmin"
+                type="search"
+                placeholder="Pesquisar curso..."
+                autocomplete="off"
+              />
+            </div>
+
+            <div class="campo filtro-curso-admin">
+              <label class="sr-only" for="filtroStatusCursosAdmin">Filtrar cursos por status</label>
+              <select id="filtroStatusCursosAdmin">
+                <option value="todos">Todos os status</option>
+                <option value="publicado">Publicados</option>
+                <option value="rascunho">Rascunhos</option>
+                <option value="desativado">Desativados</option>
+              </select>
+            </div>
+
+            <div class="campo filtro-curso-admin">
+              <label class="sr-only" for="ordenacaoCursosAdmin">Ordenar cursos</label>
+              <select id="ordenacaoCursosAdmin">
+                <option value="recentes">Mais recentes</option>
+                <option value="antigos">Mais antigos</option>
+                <option value="az">Nome A–Z</option>
+                <option value="za">Nome Z–A</option>
+              </select>
+            </div>
           </div>
         </div>
 
@@ -192,7 +224,7 @@
     </main>
 
     <div id="modalNovoCurso" class="modal" hidden>
-      <div class="modal-conteudo">
+      <div class="modal-conteudo modal-curso">
         <div class="modal-cabecalho">
           <div>
             <p class="subtitulo">Novo curso</p>

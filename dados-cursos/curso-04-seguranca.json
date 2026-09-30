@@ -1,0 +1,554 @@
+{
+  "curso": {
+    "nome": "Segurança Digital e Proteção na Internet",
+    "descricao": "Aprenda cuidados com senhas, golpes, notícias falsas, compras on-line e privacidade nas redes sociais.",
+    "dificuldade": "Básico",
+    "cargaHoraria": 60,
+    "imagem": null,
+    "icone": null
+  },
+  "modulos": [
+    {
+      "nome": "Introdução à Segurança Digital",
+      "descricao": "Entenda os principais cuidados para proteger contas, dinheiro, dados e aparelhos.",
+      "ordem": 1,
+      "duracaoMinutos": null,
+      "imagem": null,
+      "quiz": null,
+      "conteudos": [
+        {
+          "tipo": "texto",
+          "titulo": "Introdução à Segurança Digital",
+          "conteudo": "O que é segurança digital?\nÉ o conjunto de cuidados usados para proteger informações, contas, dinheiro, aparelhos e conversas na internet. Muitos problemas acontecem quando criminosos enganam a própria pessoa para entregar informações, fazer pagamentos ou permitir acesso à conta.\n\nPrincipais riscos no dia a dia\nRoubo de identidade; perdas financeiras; roubo de senhas; exposição de dados pessoais; acesso indevido às contas.\n\nUma regra importante\nQuando uma mensagem, ligação ou página causar pressa, medo ou preocupação, pare por alguns instantes antes de decidir. Golpistas podem tentar fazer você agir rapidamente para impedir a verificação.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 1
+        },
+        {
+          "tipo": "dica",
+          "titulo": "Dica",
+          "conteudo": "Se uma mensagem causar pressa, medo ou preocupação, faça uma pausa antes de agir e verifique a informação.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 2
+        },
+        {
+          "tipo": "importante",
+          "titulo": "Importante",
+          "conteudo": "Um nome conhecido, uma foto ou o símbolo de uma empresa não comprovam quem enviou a mensagem. Confirme a origem.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 3
+        }
+      ]
+    },
+    {
+      "nome": "Senhas e Acessos Seguros",
+      "descricao": "Crie senhas melhores e proteja códigos, dispositivos e acessos.",
+      "ordem": 2,
+      "duracaoMinutos": null,
+      "imagem": null,
+      "quiz": null,
+      "conteudos": [
+        {
+          "tipo": "texto",
+          "titulo": "Senhas e Acessos Seguros",
+          "conteudo": "Por que as senhas são importantes?\nA senha protege e-mail, redes sociais, lojas e aplicativos e deve ser tratada como informação pessoal.\n\nO que evitar ao criar uma senha?\nEvite data de nascimento, nome completo, nomes de familiares, telefone, sequências como 123456 e palavras simples. Evite reutilizar a mesma senha em várias contas.\n\nComo criar uma senha mais segura?\nUse uma combinação difícil de adivinhar e, quando possível, uma senha mais longa. Não utilize como senha um exemplo apresentado no curso.\n\nNunca compartilhe sua senha ou código de segurança\nCódigos enviados por SMS, e-mail ou aplicativo são pessoais. Nunca informe senha ou código a quem entrar em contato por telefone, mensagem ou rede social.\n\nGerenciadores de senhas\nAlguns celulares e navegadores salvam e preenchem senhas. Proteja o próprio celular com senha, PIN ou outro bloqueio.\n\nBiometria\nImpressão digital e reconhecimento facial podem facilitar o desbloqueio. Mesmo com biometria, mantenha senha ou PIN configurado.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 1
+        },
+        {
+          "tipo": "dica",
+          "titulo": "Dica",
+          "conteudo": "Crie uma senha longa e diferente para cada conta. Evite nomes, datas e sequências fáceis de descobrir.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 2
+        },
+        {
+          "tipo": "importante",
+          "titulo": "Importante",
+          "conteudo": "Não informe senhas ou códigos a quem entrar em contato pedindo esses dados. Códigos de confirmação podem permitir acesso à sua conta.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 3
+        }
+      ]
+    },
+    {
+      "nome": "Identificando e Evitando Golpes Frequentes",
+      "descricao": "Aprenda a reconhecer falso Pix, falso familiar, links e falso suporte.",
+      "ordem": 3,
+      "duracaoMinutos": null,
+      "imagem": null,
+      "quiz": null,
+      "conteudos": [
+        {
+          "tipo": "texto",
+          "titulo": "Identificando e Evitando Golpes Frequentes",
+          "conteudo": "Golpe do falso Pix\nNão confie apenas em uma imagem de comprovante. Abra o banco, confira saldo ou extrato, verifique se o dinheiro entrou e só depois confirme a entrega.\n\nFalso parente ou número novo\nSe um número desconhecido usar foto de familiar e pedir Pix urgente, não pague nem forneça dados. Confirme pelo número ou meio de contato que você já conhece.\n\nLinks suspeitos e mensagens falsas\nMensagens podem falar de encomenda, bloqueio de conta, CPF, prêmio ou cobrança. Em vez de clicar no link, procure o aplicativo ou site oficial por conta própria.\n\nGolpe do falso suporte técnico\nUm suposto funcionário pode pedir senha, código, transferência, instalação de aplicativo ou acesso ao aparelho. Não siga a orientação inesperada. Encerre o contato e procure a empresa por um canal oficial.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 1
+        },
+        {
+          "tipo": "dica",
+          "titulo": "Dica",
+          "conteudo": "Antes de entregar um produto, confira o recebimento no extrato do seu banco. Uma imagem de comprovante não basta.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 2
+        },
+        {
+          "tipo": "importante",
+          "titulo": "Importante",
+          "conteudo": "Se uma ligação inesperada pedir que você instale aplicativos, informe senhas ou faça transferências, encerre o contato e procure a empresa por um canal oficial.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 3
+        }
+      ]
+    },
+    {
+      "nome": "Notícias Falsas e Informações na Internet",
+      "descricao": "Verifique informações antes de acreditar ou compartilhar.",
+      "ordem": 4,
+      "duracaoMinutos": null,
+      "imagem": null,
+      "quiz": null,
+      "conteudos": [
+        {
+          "tipo": "texto",
+          "titulo": "Notícias Falsas e Informações na Internet",
+          "conteudo": "O que são notícias falsas?\nSão informações incorretas ou enganosas apresentadas como verdadeiras. Podem circular em redes sociais, mensagens e sites e tentar provocar medo, raiva ou preocupação.\n\nSinais que merecem atenção\nTítulo alarmante; urgência para compartilhar; pedido para “repassar para todos”; ausência de fonte; imagens ou frases fora de contexto; vantagem exagerada; afirmações importantes sem evidência. Esses sinais indicam necessidade de verificar, mas não provam sozinhos que algo é falso.\n\nComo conferir uma informação?\nPare, leia tudo, descubra quem publicou, pesquise em outras fontes confiáveis, compare e, se não conseguir confirmar, não compartilhe. Para saúde, segurança, serviços públicos e eleições, procure fontes oficiais ou veículos confiáveis.\n\nA regra dos 10 segundos\nDiante de mensagem urgente ou assustadora, faça uma pequena pausa antes de clicar ou compartilhar.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 1
+        },
+        {
+          "tipo": "dica",
+          "titulo": "Dica",
+          "conteudo": "Leia a mensagem inteira, procure quem publicou e compare a informação com outras fontes confiáveis.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 2
+        },
+        {
+          "tipo": "importante",
+          "titulo": "Importante",
+          "conteudo": "Pedidos para “repassar para todos” não comprovam que uma notícia é verdadeira. Se não conseguir confirmar, não compartilhe.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 3
+        }
+      ]
+    },
+    {
+      "nome": "Compras Seguras na Internet",
+      "descricao": "Confira sites, lojas e pagamentos antes de comprar.",
+      "ordem": 5,
+      "duracaoMinutos": null,
+      "imagem": null,
+      "quiz": null,
+      "conteudos": [
+        {
+          "tipo": "texto",
+          "titulo": "Compras Seguras na Internet",
+          "conteudo": "Comprar pela internet pode ser prático, mas é importante verificar o site, a loja e a forma de pagamento.\n\nO que é HTTPS?\nHTTPS ajuda a proteger a comunicação entre aparelho e site. O cadeado ou HTTPS, sozinho, não garante que a loja seja verdadeira, pois sites fraudulentos também podem utilizá-lo.\n\nComo verificar uma loja?\nConfira o endereço do site, informações da empresa, avaliações, reclamações, preços muito abaixo do normal e dados de contato. Evite links recebidos de desconhecidos ou mensagens inesperadas.\n\nFormas de pagamento\nCartão virtual pode evitar informar os dados do cartão físico. Em Pix ou boleto, confira valor, nome do recebedor e se os dados correspondem à pessoa ou empresa correta. Não pague apenas por pressão ou urgência.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 1
+        },
+        {
+          "tipo": "dica",
+          "titulo": "Dica",
+          "conteudo": "Confira o endereço do site, os dados da empresa e as avaliações de outros compradores antes de decidir pela compra.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 2
+        },
+        {
+          "tipo": "importante",
+          "titulo": "Importante",
+          "conteudo": "HTTPS ajuda a proteger a conexão, mas não garante que uma loja seja verdadeira. Sites falsos também podem utilizá-lo.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 3
+        }
+      ]
+    },
+    {
+      "nome": "Privacidade nas Redes Sociais",
+      "descricao": "Controle quem vê suas publicações e reduza a exposição de dados.",
+      "ordem": 6,
+      "duracaoMinutos": null,
+      "imagem": null,
+      "quiz": null,
+      "conteudos": [
+        {
+          "tipo": "texto",
+          "titulo": "Privacidade nas Redes Sociais",
+          "conteudo": "Redes sociais permitem conversar, compartilhar fotos e acompanhar notícias, mas é importante escolher o que tornar público.\n\nConfigurações de privacidade\nDependendo da rede, você pode escolher público, amigos, seguidores ou apenas você. Revise as configurações e escolha quem poderá visualizar suas publicações.\n\nCuidado com perfis falsos\nDesconfie de pedidos de pessoas desconhecidas, perfis parecidos com os de amigos, pedidos inesperados de dinheiro, solicitações de dados pessoais e perfis recém-criados com poucas informações. Confirme identidades por outro meio.\n\nO que evitar compartilhar?\nEvite fotos de documentos, informações pessoais desnecessárias, placas de veículos, detalhes de onde mora e informações sobre quando a casa estará vazia. Uma publicação pode ser salva ou compartilhada mesmo depois de apagada.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 1
+        },
+        {
+          "tipo": "dica",
+          "titulo": "Dica",
+          "conteudo": "Revise as configurações de privacidade e escolha quem poderá visualizar suas publicações.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 2
+        },
+        {
+          "tipo": "importante",
+          "titulo": "Importante",
+          "conteudo": "Antes de publicar uma foto, observe se aparecem documentos, endereço ou detalhes da sua rotina. Proteja essas informações.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 3
+        }
+      ]
+    },
+    {
+      "nome": "Exercícios Práticos: Situações do Dia a Dia",
+      "descricao": "Aplique os cuidados de segurança em situações simuladas.",
+      "ordem": 7,
+      "duracaoMinutos": null,
+      "imagem": null,
+      "quiz": null,
+      "conteudos": [
+        {
+          "tipo": "texto",
+          "titulo": "Exercícios Práticos: Situações do Dia a Dia",
+          "conteudo": "Situação 1 – O prêmio inesperado\nUma mensagem diz que você ganhou um vale-compras e precisa clicar em um link. A atitude correta é pesquisar e verificar a informação antes de agir.\n\nSituação 2 – O familiar com número novo\nUm número desconhecido usa foto de familiar e pede Pix urgente. Confirme a identidade por um número ou meio de contato que você já conhece.\n\nSituação 3 – A ligação do suposto banco\nUma pessoa diz ser do banco e pede que você instale um aplicativo. Encerre a ligação e procure o banco por um canal oficial.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 1
+        },
+        {
+          "tipo": "dica",
+          "titulo": "Dica",
+          "conteudo": "Em cada situação, observe o que a pessoa pede e se tenta fazer você agir com pressa.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 2
+        },
+        {
+          "tipo": "importante",
+          "titulo": "Importante",
+          "conteudo": "As situações são simulações. Não faça pagamentos nem compartilhe dados pessoais para testar o que aprendeu.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 3
+        }
+      ]
+    }
+  ],
+  "testeFinal": {
+    "questoes": [
+      {
+        "pergunta": "Você recebe uma mensagem informando que sua conta bancária será bloqueada e pedindo para clicar em um link e informar seus dados. Qual é a atitude mais segura?",
+        "ordem": 1,
+        "alternativas": [
+          {
+            "texto": "Clicar imediatamente no link para evitar o bloqueio.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 1
+          },
+          {
+            "texto": "Responder à mensagem pedindo mais informações.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 2
+          },
+          {
+            "texto": "Encaminhar a mensagem para familiares para saber se eles também receberam.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 3
+          },
+          {
+            "texto": "Não clicar no link e procurar o banco por meio de um canal oficial para verificar a informação.",
+            "correta": true,
+            "explicacao": "Mensagens que provocam medo ou pressa podem ser golpes. Não use o link recebido para verificar o problema; procure o banco por um canal oficial.",
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "Você recebe uma mensagem dizendo que ganhou um vale-compras e precisa clicar em um link para receber o prêmio. O que você deve fazer?",
+        "ordem": 2,
+        "alternativas": [
+          {
+            "texto": "Clicar rapidamente para não perder o prêmio.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 1
+          },
+          {
+            "texto": "Responder à mensagem informando seus dados.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 2
+          },
+          {
+            "texto": "Pesquisar e verificar a informação antes de tomar qualquer atitude.",
+            "correta": true,
+            "explicacao": "Um prêmio inesperado pode ser uma tentativa de golpe. Verifique a informação por canais oficiais, sem clicar no link nem informar dados à mensagem recebida.",
+            "ordem": 3
+          },
+          {
+            "texto": "Enviar a mensagem para seus contatos para avisá-los.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "Um número desconhecido utiliza a fotografia de um familiar e diz que trocou de telefone. Em seguida, pede um Pix com urgência. O que você deve fazer?",
+        "ordem": 3,
+        "alternativas": [
+          {
+            "texto": "Fazer o Pix imediatamente.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 1
+          },
+          {
+            "texto": "Pedir os dados do cartão da pessoa.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 2
+          },
+          {
+            "texto": "Confirmar a identidade do familiar por um número ou meio de contato que você já conhece.",
+            "correta": true,
+            "explicacao": "Uma fotografia pode ser copiada e não comprova quem está falando. Antes de enviar dinheiro, confirme a situação pelo número antigo ou por outro contato conhecido.",
+            "ordem": 3
+          },
+          {
+            "texto": "Enviar seu código de confirmação para comprovar que você é familiar.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "Uma pessoa liga dizendo ser funcionária do seu banco. Ela afirma que existe uma compra suspeita e pede que você instale um aplicativo para resolver o problema. O que você deve fazer?",
+        "ordem": 4,
+        "alternativas": [
+          {
+            "texto": "Instalar o aplicativo indicado.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 1
+          },
+          {
+            "texto": "Informar sua senha para cancelar a compra.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 2
+          },
+          {
+            "texto": "Fazer uma transferência para uma conta “segura”.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 3
+          },
+          {
+            "texto": "Encerrar a ligação e procurar o banco utilizando um canal oficial.",
+            "correta": true,
+            "explicacao": "Não instale aplicativos, informe senhas ou faça transferências seguindo uma ligação inesperada. Encerre o contato e verifique a situação diretamente com o banco.",
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "Qual atitude ajuda a proteger suas contas com senhas mais seguras?",
+        "ordem": 5,
+        "alternativas": [
+          {
+            "texto": "Usar a mesma senha simples em todas as contas para não esquecer.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 1
+          },
+          {
+            "texto": "Criar uma senha longa e difícil de adivinhar, sem reutilizá-la em outras contas.",
+            "correta": true,
+            "explicacao": "Prefira uma senha longa e difícil de adivinhar. Use combinações próprias e senhas diferentes entre contas; evite informações pessoais e exemplos publicados.",
+            "ordem": 2
+          },
+          {
+            "texto": "Usar somente sua data de nascimento.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 3
+          },
+          {
+            "texto": "Copiar exatamente uma senha de exemplo apresentada em um curso.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "Uma pessoa entra em contato dizendo ser do suporte e pede o código de confirmação que chegou ao seu celular. Qual é a atitude mais segura?",
+        "ordem": 6,
+        "alternativas": [
+          {
+            "texto": "Não informar o código e verificar a situação pelos canais oficiais do serviço.",
+            "correta": true,
+            "explicacao": "Um código de confirmação pode permitir o acesso a uma conta ou a autorização de uma ação. Não o compartilhe com quem entra em contato pedindo essa informação.",
+            "ordem": 1
+          },
+          {
+            "texto": "Informar o código porque ele dura pouco tempo.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 2
+          },
+          {
+            "texto": "Enviar o código junto com sua senha para facilitar o atendimento.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 3
+          },
+          {
+            "texto": "Publicar o código em um grupo para pedir ajuda.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "Você recebeu uma notícia alarmante que pede para “repassar para todos”, mas não informa a fonte. O que deve fazer antes de compartilhar?",
+        "ordem": 7,
+        "alternativas": [
+          {
+            "texto": "Ler a mensagem, identificar a origem e comparar a informação com fontes confiáveis.",
+            "correta": true,
+            "explicacao": "Uma mensagem alarmante ou sem fonte precisa ser verificada. Procure a origem e compare com fontes confiáveis; se não conseguir confirmar, não compartilhe.",
+            "ordem": 1
+          },
+          {
+            "texto": "Compartilhar primeiro e verificar somente se alguém reclamar.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 2
+          },
+          {
+            "texto": "Considerar a notícia verdadeira porque foi enviada por um conhecido.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 3
+          },
+          {
+            "texto": "Considerar a notícia verdadeira porque tem muitas letras maiúsculas.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "Uma loja virtual usa HTTPS no endereço. Isso, sozinho, garante que a loja seja verdadeira e confiável?",
+        "ordem": 8,
+        "alternativas": [
+          {
+            "texto": "Sim, porque nenhum site fraudulento consegue usar HTTPS.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 1
+          },
+          {
+            "texto": "Não. HTTPS ajuda a proteger a comunicação, mas a loja e o endereço também precisam ser verificados.",
+            "correta": true,
+            "explicacao": "HTTPS ajuda a proteger a comunicação com o site. Uma loja falsa também pode utilizá-lo; confira o endereço, os dados da empresa e sua reputação antes de comprar.",
+            "ordem": 2
+          },
+          {
+            "texto": "Sim, porque HTTPS garante a entrega de qualquer compra.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 3
+          },
+          {
+            "texto": "Não, porque HTTPS significa que a conexão está sem proteção.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "Você vendeu um produto e recebeu uma imagem de um comprovante de Pix. O que deve conferir antes de entregar o produto?",
+        "ordem": 9,
+        "alternativas": [
+          {
+            "texto": "Se o pagamento realmente entrou na conta, consultando a movimentação no extrato do aplicativo do seu banco.",
+            "correta": true,
+            "explicacao": "Uma imagem de comprovante pode ser falsificada. Confira a movimentação do pagamento no extrato do seu banco antes de entregar o produto.",
+            "ordem": 1
+          },
+          {
+            "texto": "Somente se a imagem do comprovante está nítida.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 2
+          },
+          {
+            "texto": "Somente se o comprovante tem a mesma cor do aplicativo do banco.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 3
+          },
+          {
+            "texto": "Se a pessoa escreveu que está com pressa para receber o produto.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "Antes de publicar uma foto em uma rede social, qual atitude ajuda a proteger sua privacidade?",
+        "ordem": 10,
+        "alternativas": [
+          {
+            "texto": "Deixar tudo público sem conferir o conteúdo da foto.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 1
+          },
+          {
+            "texto": "Confiar que apagar a publicação depois elimina todas as cópias feitas por outras pessoas.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 2
+          },
+          {
+            "texto": "Verificar se a foto mostra documentos ou dados pessoais e revisar quem poderá ver a publicação.",
+            "correta": true,
+            "explicacao": "Uma foto pode revelar documentos, endereço e outros dados. Confira a imagem e as opções de privacidade; outras pessoas podem salvar ou compartilhar uma publicação.",
+            "ordem": 3
+          },
+          {
+            "texto": "Mostrar sua senha na foto se o perfil estiver configurado como privado.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 4
+          }
+        ]
+      }
+    ]
+  }
+}

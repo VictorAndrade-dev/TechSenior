@@ -1,0 +1,124 @@
+{
+  "curso": {
+    "nome": "Nome do curso",
+    "descricao": "Descrição opcional",
+    "dificuldade": "Nível",
+    "cargaHoraria": 60,
+    "imagem": null,
+    "icone": null
+  },
+  "modulos": [
+    {
+      "nome": "Nome do módulo",
+      "descricao": null,
+      "ordem": 1,
+      "duracaoMinutos": null,
+      "imagem": null,
+      "conteudos": [
+        {
+          "tipo": "Tipo do conteúdo",
+          "titulo": "Título opcional",
+          "conteudo": "Texto ou instrução opcional",
+          "url": null,
+          "altTexto": null,
+          "ordem": 1
+        }
+      ],
+      "quiz": null
+    }
+  ],
+  "testeFinal": {
+    "questoes": [
+      {
+        "pergunta": "[EXEMPLO] Enunciado ilustrativo 1",
+        "ordem": 1,
+        "alternativas": [
+          {
+            "texto": "Texto da alternativa",
+            "correta": true,
+            "explicacao": null,
+            "ordem": 1
+          },
+          {
+            "texto": "Outra alternativa",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 2
+          }
+        ]
+      },
+      {
+        "pergunta": "[EXEMPLO] Enunciado ilustrativo 2",
+        "ordem": 2,
+        "alternativas": [
+          { "texto": "Alternativa ilustrativa correta", "correta": true, "explicacao": null, "ordem": 1 },
+          { "texto": "Alternativa ilustrativa incorreta", "correta": false, "explicacao": null, "ordem": 2 }
+        ]
+      },
+      {
+        "pergunta": "[EXEMPLO] Enunciado ilustrativo 3",
+        "ordem": 3,
+        "alternativas": [
+          { "texto": "Alternativa ilustrativa correta", "correta": true, "explicacao": null, "ordem": 1 },
+          { "texto": "Alternativa ilustrativa incorreta", "correta": false, "explicacao": null, "ordem": 2 }
+        ]
+      },
+      {
+        "pergunta": "[EXEMPLO] Enunciado ilustrativo 4",
+        "ordem": 4,
+        "alternativas": [
+          { "texto": "Alternativa ilustrativa correta", "correta": true, "explicacao": null, "ordem": 1 },
+          { "texto": "Alternativa ilustrativa incorreta", "correta": false, "explicacao": null, "ordem": 2 }
+        ]
+      },
+      {
+        "pergunta": "[EXEMPLO] Enunciado ilustrativo 5",
+        "ordem": 5,
+        "alternativas": [
+          { "texto": "Alternativa ilustrativa correta", "correta": true, "explicacao": null, "ordem": 1 },
+          { "texto": "Alternativa ilustrativa incorreta", "correta": false, "explicacao": null, "ordem": 2 }
+        ]
+      },
+      {
+        "pergunta": "[EXEMPLO] Enunciado ilustrativo 6",
+        "ordem": 6,
+        "alternativas": [
+          { "texto": "Alternativa ilustrativa correta", "correta": true, "explicacao": null, "ordem": 1 },
+          { "texto": "Alternativa ilustrativa incorreta", "correta": false, "explicacao": null, "ordem": 2 }
+        ]
+      },
+      {
+        "pergunta": "[EXEMPLO] Enunciado ilustrativo 7",
+        "ordem": 7,
+        "alternativas": [
+          { "texto": "Alternativa ilustrativa correta", "correta": true, "explicacao": null, "ordem": 1 },
+          { "texto": "Alternativa ilustrativa incorreta", "correta": false, "explicacao": null, "ordem": 2 }
+        ]
+      },
+      {
+        "pergunta": "[EXEMPLO] Enunciado ilustrativo 8",
+        "ordem": 8,
+        "alternativas": [
+          { "texto": "Alternativa ilustrativa correta", "correta": true, "explicacao": null, "ordem": 1 },
+          { "texto": "Alternativa ilustrativa incorreta", "correta": false, "explicacao": null, "ordem": 2 }
+        ]
+      },
+      {
+        "pergunta": "[EXEMPLO] Enunciado ilustrativo 9",
+        "ordem": 9,
+        "alternativas": [
+          { "texto": "Alternativa ilustrativa correta", "correta": true, "explicacao": null, "ordem": 1 },
+          { "texto": "Alternativa ilustrativa incorreta", "correta": false, "explicacao": null, "ordem": 2 }
+        ]
+      },
+      {
+        "pergunta": "[EXEMPLO] Enunciado ilustrativo 10",
+        "ordem": 10,
+        "alternativas": [
+          { "texto": "Alternativa ilustrativa correta", "correta": true, "explicacao": null, "ordem": 1 },
+          { "texto": "Alternativa ilustrativa incorreta", "correta": false, "explicacao": null, "ordem": 2 }
+        ]
+      }
+    ]
+  }
+}

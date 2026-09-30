@@ -1,0 +1,528 @@
+{
+  "curso": {
+    "nome": "WhatsApp, E-mail e Comunicação Digital",
+    "descricao": "Aprenda a se comunicar pelo WhatsApp e e-mail, enviar arquivos, fazer chamadas e reconhecer cuidados de segurança.",
+    "dificuldade": "Básico",
+    "cargaHoraria": 60,
+    "imagem": null,
+    "icone": null
+  },
+  "modulos": [
+    {
+      "nome": "WhatsApp: O que é e Primeiros Passos",
+      "descricao": "Conheça o WhatsApp, configure a conta e aprenda a encontrar contatos.",
+      "ordem": 1,
+      "duracaoMinutos": null,
+      "imagem": null,
+      "quiz": null,
+      "conteudos": [
+        {
+          "tipo": "texto",
+          "titulo": "WhatsApp: O que é e Primeiros Passos",
+          "conteudo": "O que é o WhatsApp?\nO WhatsApp é um aplicativo de comunicação para celular. Ele permite enviar mensagens, fotos, vídeos e áudios, além de fazer chamadas de voz e vídeo pela internet. Para usar esses recursos, o celular precisa estar conectado à internet por Wi-Fi ou dados móveis.\n\nCriando sua conta\nNa primeira vez que abrir o WhatsApp, será necessário configurar sua conta. O aplicativo poderá solicitar número de telefone, código de confirmação, nome e foto de perfil. O código de confirmação confirma que o número pertence a você e nunca deve ser compartilhado. Algumas telas podem aparecer de maneira diferente dependendo do celular e da versão do WhatsApp.\n\nConhecendo a tela principal\nConversas mostra as conversas com pessoas e grupos. Atualizações reúne os Status publicados pelos contatos. Ligações mostra chamadas de voz e vídeo realizadas ou recebidas.\n\nEncontrando seus contatos\n1. Procure o botão de Nova conversa.\n2. Toque nesse botão.\n3. Procure o nome da pessoa.\n4. Toque no nome para abrir a conversa.\nImportante: converse pelo WhatsApp com pessoas que você conhece e confia.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 1
+        },
+        {
+          "tipo": "dica",
+          "titulo": "Dica",
+          "conteudo": "Você pode escolher a foto de perfil depois. Faça o cadastro com calma e confira o número informado.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 2
+        },
+        {
+          "tipo": "importante",
+          "titulo": "Importante",
+          "conteudo": "O código de confirmação do WhatsApp é pessoal. Não o envie a outras pessoas, mesmo que elas digam ser do suporte.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 3
+        }
+      ]
+    },
+    {
+      "nome": "Conversando: Mensagens, Áudios e Arquivos",
+      "descricao": "Aprenda a enviar textos, emojis, áudios, fotos, documentos e localização.",
+      "ordem": 2,
+      "duracaoMinutos": null,
+      "imagem": null,
+      "quiz": null,
+      "conteudos": [
+        {
+          "tipo": "texto",
+          "titulo": "Conversando: Mensagens, Áudios e Arquivos",
+          "conteudo": "Enviando uma mensagem de texto\n1. Abra a conversa.\n2. Toque no espaço de mensagem.\n3. Digite sua mensagem.\n4. Toque em Enviar. A aparência dos botões pode mudar de acordo com o celular.\n\nUsando emojis\nToque no espaço de mensagem, procure o símbolo de carinha sorridente, escolha o emoji e envie.\n\nEnviando uma mensagem de voz\nLocalize o microfone, pressione enquanto fala e solte para enviar. Em algumas versões é possível bloquear a gravação para não manter o botão pressionado.\n\nEnviando fotos\nUse o botão de anexar, escolha Galeria ou Fotos, localize a imagem e confirme o envio.\n\nEnviando um documento\nUse o botão de anexar, escolha Documento, localize o arquivo e confirme. Um PDF é um exemplo comum de documento.\n\nCompartilhando a localização\nA localização permite informar onde o celular está. Abra a conversa, toque em anexar, escolha Localização, confira as informações e confirme. Não compartilhe sua localização com pessoas desconhecidas ou em quem você não confia.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 1
+        },
+        {
+          "tipo": "dica",
+          "titulo": "Dica",
+          "conteudo": "Quando preferir falar em vez de digitar, você pode enviar um áudio. Comece com uma mensagem curta.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 2
+        },
+        {
+          "tipo": "importante",
+          "titulo": "Importante",
+          "conteudo": "Antes de enviar uma foto ou arquivo, confira a conversa e o item escolhido para evitar enviar algo à pessoa errada.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 3
+        },
+        {
+          "tipo": "importante",
+          "titulo": "Importante",
+          "conteudo": "Sua localização mostra onde você está. Compartilhe essa informação somente com pessoas de confiança.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 4
+        }
+      ]
+    },
+    {
+      "nome": "Ligações e Grupos",
+      "descricao": "Aprenda a fazer chamadas e participar de conversas em grupo.",
+      "ordem": 3,
+      "duracaoMinutos": null,
+      "imagem": null,
+      "quiz": null,
+      "conteudos": [
+        {
+          "tipo": "texto",
+          "titulo": "Ligações e Grupos",
+          "conteudo": "O que são as chamadas do WhatsApp?\nChamada de voz permite conversar ouvindo a outra pessoa. Chamada de vídeo permite conversar vendo a outra pessoa pela câmera. As chamadas utilizam internet e podem consumir dados móveis.\n\nFazendo uma chamada de voz\nAbra a conversa, toque no símbolo de telefone, aguarde a pessoa atender e use o botão de finalizar para encerrar.\n\nFazendo uma chamada de vídeo\nAbra a conversa, toque no símbolo de câmera de vídeo, aguarde a pessoa atender e finalize pelo botão correspondente. Procure um local confortável e com conexão adequada.\n\nO que são grupos?\nUm grupo reúne várias pessoas na mesma conversa e pode ser usado por famílias, amigos, condomínios, escolas e outras comunidades.\n\nCriando um grupo\nNa área de Conversas, toque em Nova conversa, escolha Novo grupo, selecione as pessoas, defina um nome e confirme.\n\nEntrando em um grupo\nUm administrador pode adicionar você diretamente ou enviar um link de convite. Só entre quando conhecer quem enviou o convite ou souber quem participa.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 1
+        },
+        {
+          "tipo": "dica",
+          "titulo": "Dica",
+          "conteudo": "Combine a chamada com a pessoa antes de ligar, para que ela possa atender com calma.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 2
+        },
+        {
+          "tipo": "importante",
+          "titulo": "Importante",
+          "conteudo": "As mensagens enviadas em um grupo podem ser vistas pelos participantes. Confira o grupo antes de publicar.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 3
+        }
+      ]
+    },
+    {
+      "nome": "Segurança no WhatsApp",
+      "descricao": "Reconheça golpes e use recursos de proteção do WhatsApp.",
+      "ordem": 4,
+      "duracaoMinutos": null,
+      "imagem": null,
+      "quiz": null,
+      "conteudos": [
+        {
+          "tipo": "texto",
+          "titulo": "Segurança no WhatsApp",
+          "conteudo": "O que são golpes?\nUm golpe tenta enganar uma pessoa para conseguir dinheiro, informações pessoais, acesso a contas ou outros benefícios. Observe com atenção antes de responder, clicar em links ou enviar dinheiro.\n\nFalso familiar ou conhecido\nSe alguém disser que trocou de número e pedir dinheiro com urgência, não envie imediatamente. Confirme a identidade pelo número antigo ou por outro meio já conhecido.\n\nCuidado com links suspeitos\nNão clique em links desconhecidos ou suspeitos. Evite informar senhas, dados bancários, documentos ou informações pessoais em páginas abertas por mensagens inesperadas.\n\nVerificação em duas etapas\nAbra Configurações, procure Conta ou Verificação em duas etapas, ative a função, crie o código solicitado e cadastre um e-mail de recuperação quando disponível. Nunca informe seus códigos a outras pessoas.\n\nBloqueando um contato\nAbra a conversa, toque no nome, procure Bloquear e confirme.\n\nDenunciando um contato\nA denúncia informa ao WhatsApp sobre comportamento suspeito. Bloquear impede o contato; denunciar envia informações ao WhatsApp para análise.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 1
+        },
+        {
+          "tipo": "dica",
+          "titulo": "Dica",
+          "conteudo": "Ative a verificação em duas etapas nas configurações da conta para acrescentar uma camada de proteção ao seu WhatsApp.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 2
+        },
+        {
+          "tipo": "importante",
+          "titulo": "Importante",
+          "conteudo": "Se alguém disser que trocou de número e pedir dinheiro, confirme a identidade pelo contato antigo antes de fazer qualquer pagamento.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 3
+        }
+      ]
+    },
+    {
+      "nome": "E-mail e Gmail",
+      "descricao": "Entenda o e-mail e pratique leitura, envio e anexos no Gmail.",
+      "ordem": 5,
+      "duracaoMinutos": null,
+      "imagem": null,
+      "quiz": null,
+      "conteudos": [
+        {
+          "tipo": "texto",
+          "titulo": "E-mail e Gmail",
+          "conteudo": "O que é um e-mail?\nE-mail é uma forma de enviar e receber mensagens pela internet. Pode ser usado para conversar, receber documentos e comprovantes, realizar cadastros e enviar arquivos. Um endereço identifica a conta, como seu.nome@gmail.com.\n\nO que é o Gmail?\nGmail é um serviço de e-mail do Google e pode ser acessado pelo aplicativo ou navegador.\n\nCriando uma conta do Gmail\nAbra o Gmail ou a página oficial, escolha Criar conta, informe os dados solicitados, escolha um endereço, crie uma senha segura e siga as instruções. As etapas podem mudar. A senha é pessoal.\n\nConhecendo a Caixa de Entrada\nAbra o Gmail, localize a Caixa de Entrada e toque na mensagem que deseja ler.\n\nEnviando um e-mail\nUse Escrever, informe o destinatário no campo Para, escreva um Assunto, digite a mensagem, confira e envie.\n\nO que é um anexo?\nUm anexo é um arquivo enviado junto com o e-mail. Use o clipe de papel, escolha o arquivo, aguarde o anexo, confira se é o correto e envie. Confira também se o destinatário está correto.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 1
+        },
+        {
+          "tipo": "dica",
+          "titulo": "Dica",
+          "conteudo": "Escreva um assunto curto e claro, como “Fotos da família”, para ajudar a pessoa a entender sua mensagem.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 2
+        },
+        {
+          "tipo": "importante",
+          "titulo": "Importante",
+          "conteudo": "Antes de enviar, confira o endereço de e-mail e o arquivo anexado. Uma letra diferente no endereço pode mudar o destinatário.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 3
+        }
+      ]
+    },
+    {
+      "nome": "Exercícios Práticos e Avaliação",
+      "descricao": "Pratique envio de foto, chamada de vídeo e e-mail com segurança.",
+      "ordem": 6,
+      "duracaoMinutos": null,
+      "imagem": null,
+      "quiz": null,
+      "conteudos": [
+        {
+          "tipo": "texto",
+          "titulo": "Exercícios Práticos e Avaliação",
+          "conteudo": "Exercício 1 – Enviando uma foto\nAbra uma conversa com uma pessoa de confiança e pratique o envio de uma foto. Confira a conversa, a foto escolhida e se deseja compartilhar aquela imagem.\n\nExercício 2 – Fazendo uma chamada de vídeo\nCombine previamente com uma pessoa de confiança e faça uma chamada. Observe como iniciar e encerrar, como sua imagem aparece e como o som funciona.\n\nExercício 3 – Enviando um e-mail\nAbra o Gmail e escreva uma mensagem curta para você mesmo ou uma pessoa de confiança. Escreva um assunto, digite uma mensagem, anexe uma imagem simples, confira o destinatário e o arquivo e envie.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 1
+        },
+        {
+          "tipo": "dica",
+          "titulo": "Dica",
+          "conteudo": "Envie primeiro um e-mail para você mesmo, para praticar o assunto, o texto e o anexo.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 2
+        },
+        {
+          "tipo": "importante",
+          "titulo": "Importante",
+          "conteudo": "Pratique com uma foto ou arquivo sem informações sensíveis. Preserve documentos, senhas e dados bancários.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 3
+        }
+      ]
+    }
+  ],
+  "testeFinal": {
+    "questoes": [
+      {
+        "pergunta": "Você recebeu uma mensagem de uma pessoa dizendo que é um familiar, mas ela afirma que trocou de número e pede dinheiro com urgência. O que você deve fazer?",
+        "ordem": 1,
+        "alternativas": [
+          {
+            "texto": "Enviar o dinheiro rapidamente para ajudar o familiar.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 1
+          },
+          {
+            "texto": "Pedir o código de confirmação do WhatsApp para ter certeza de quem está falando.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 2
+          },
+          {
+            "texto": "Entrar em contato com o familiar pelo número antigo ou por outro meio conhecido para confirmar a situação antes de enviar qualquer dinheiro.",
+            "correta": true,
+            "explicacao": "Um nome ou uma foto não confirma a identidade de alguém. Antes de enviar dinheiro, fale com o familiar por um contato que você já conhece.",
+            "ordem": 3
+          },
+          {
+            "texto": "Clicar nos links enviados pela pessoa para descobrir se a história é verdadeira.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "Para enviar mensagens e fazer chamadas pelo WhatsApp, o que o celular precisa ter?",
+        "ordem": 2,
+        "alternativas": [
+          {
+            "texto": "Uma conexão com a internet por Wi-Fi ou dados móveis.",
+            "correta": true,
+            "explicacao": "As mensagens e chamadas do WhatsApp utilizam a internet. O celular pode acessar essa conexão pelo Wi-Fi ou pelos dados móveis.",
+            "ordem": 1
+          },
+          {
+            "texto": "O brilho da tela no nível máximo.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 2
+          },
+          {
+            "texto": "O modo silencioso ativado.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 3
+          },
+          {
+            "texto": "A bateria carregada exatamente a 100%.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "Você quer conversar pelo WhatsApp com uma pessoa que também usa o aplicativo e está na agenda do celular. Qual é uma forma de começar?",
+        "ordem": 3,
+        "alternativas": [
+          {
+            "texto": "Abrir o Gmail e procurar a pessoa na Caixa de Entrada.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 1
+          },
+          {
+            "texto": "Alterar a foto do seu perfil e aguardar a conversa aparecer.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 2
+          },
+          {
+            "texto": "Abrir a área de Atualizações e procurar uma chamada.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 3
+          },
+          {
+            "texto": "Tocar em Nova conversa, procurar o contato e tocar no nome dele.",
+            "correta": true,
+            "explicacao": "O botão de Nova conversa permite procurar contatos e abrir uma conversa. O símbolo e a posição do botão podem variar conforme a versão do aplicativo.",
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "Qual é a diferença entre uma mensagem de voz e uma chamada de voz no WhatsApp?",
+        "ordem": 4,
+        "alternativas": [
+          {
+            "texto": "A mensagem de voz é ouvida ao vivo; a chamada é uma gravação para ouvir depois.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 1
+          },
+          {
+            "texto": "A mensagem de voz é uma gravação que a pessoa pode ouvir depois; a chamada permite conversar ao vivo.",
+            "correta": true,
+            "explicacao": "Uma mensagem de voz fica gravada na conversa e pode ser ouvida depois. Na chamada de voz, as pessoas conversam ao mesmo tempo.",
+            "ordem": 2
+          },
+          {
+            "texto": "A mensagem de voz só pode ser ouvida enquanto as duas pessoas estão na mesma ligação.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 3
+          },
+          {
+            "texto": "As duas são gravações e não permitem uma conversa ao vivo.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "Você quer enviar um arquivo PDF pelo WhatsApp. Qual caminho apresentado no curso pode ser utilizado?",
+        "ordem": 5,
+        "alternativas": [
+          {
+            "texto": "Abrir a conversa, tocar em Anexar e escolher Localização.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 1
+          },
+          {
+            "texto": "Abrir a conversa e tocar no botão de chamada de vídeo.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 2
+          },
+          {
+            "texto": "Abrir a conversa, tocar em Anexar, escolher Documento e selecionar o arquivo.",
+            "correta": true,
+            "explicacao": "A opção Documento, acessada pelo botão de anexar, permite selecionar um arquivo. Antes de enviar, confira se escolheu o documento e a conversa corretos.",
+            "ordem": 3
+          },
+          {
+            "texto": "Abrir a conversa, tocar em Anexar e escolher um contato.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "Antes de compartilhar sua localização pelo WhatsApp, qual cuidado você deve ter?",
+        "ordem": 6,
+        "alternativas": [
+          {
+            "texto": "Conferir a conversa e compartilhar somente com uma pessoa de confiança.",
+            "correta": true,
+            "explicacao": "A localização informa onde você está. Confira o destinatário e compartilhe esse dado somente com pessoas de confiança.",
+            "ordem": 1
+          },
+          {
+            "texto": "Enviar a localização a qualquer número que pedir.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 2
+          },
+          {
+            "texto": "Publicar a localização em todos os grupos para facilitar o contato.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 3
+          },
+          {
+            "texto": "Informar sua senha junto com a localização.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "O que é um grupo no WhatsApp?",
+        "ordem": 7,
+        "alternativas": [
+          {
+            "texto": "Uma pasta que guarda fotos apenas no seu celular.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 1
+          },
+          {
+            "texto": "Uma chamada que só permite a participação de duas pessoas.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 2
+          },
+          {
+            "texto": "Um endereço de e-mail usado para receber documentos.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 3
+          },
+          {
+            "texto": "Uma conversa que reúne várias pessoas no mesmo espaço.",
+            "correta": true,
+            "explicacao": "Um grupo reúne várias pessoas em uma conversa. Ele pode ser usado por famílias, amigos e outras comunidades para compartilhar mensagens.",
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "Para que serve a verificação em duas etapas do WhatsApp?",
+        "ordem": 8,
+        "alternativas": [
+          {
+            "texto": "Para aumentar o tamanho das fotos recebidas.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 1
+          },
+          {
+            "texto": "Para adicionar uma camada extra de proteção à conta.",
+            "correta": true,
+            "explicacao": "A verificação em duas etapas acrescenta proteção com um código ou senha pessoal. Mantenha essa informação em segredo e não compartilhe os códigos de confirmação recebidos.",
+            "ordem": 2
+          },
+          {
+            "texto": "Para permitir que qualquer pessoa use seu número sem confirmação.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 3
+          },
+          {
+            "texto": "Para substituir todas as mensagens por e-mails.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "Ao escrever um e-mail no Gmail, em qual campo você informa o endereço da pessoa que receberá a mensagem?",
+        "ordem": 9,
+        "alternativas": [
+          {
+            "texto": "Para.",
+            "correta": true,
+            "explicacao": "O campo Para identifica o destinatário. O campo Assunto resume o motivo da mensagem, e o espaço maior é usado para escrever o texto.",
+            "ordem": 1
+          },
+          {
+            "texto": "Assunto.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 2
+          },
+          {
+            "texto": "No espaço do texto da mensagem.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 3
+          },
+          {
+            "texto": "No nome do arquivo anexado.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "O que é um anexo em um e-mail?",
+        "ordem": 10,
+        "alternativas": [
+          {
+            "texto": "A frase que explica o assunto da mensagem.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 1
+          },
+          {
+            "texto": "O endereço de quem enviou o e-mail.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 2
+          },
+          {
+            "texto": "Uma senha necessária para abrir o Gmail.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 3
+          },
+          {
+            "texto": "Um arquivo enviado junto com a mensagem, como uma foto ou um PDF.",
+            "correta": true,
+            "explicacao": "Um anexo é um arquivo enviado com o e-mail. Antes de enviar, confira se o arquivo está correto e se o endereço do destinatário é o desejado.",
+            "ordem": 4
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,486 @@
+{
+  "curso": {
+    "nome": "Conhecendo e Usando o Celular",
+    "descricao": "Aprenda os primeiros passos para usar o celular, reconhecer seus botões, utilizar gestos na tela, ajustar configurações de conforto, conectar-se à internet e organizar aplicativos.",
+    "dificuldade": "Básico",
+    "cargaHoraria": 60,
+    "imagem": null,
+    "icone": null
+  },
+  "modulos": [
+    {
+      "nome": "Conhecendo o Celular e seus Botões",
+      "descricao": "Conheça os botões físicos, a tela inicial, os aplicativos e as formas básicas de ligar, desligar e desbloquear o celular.",
+      "ordem": 1,
+      "duracaoMinutos": null,
+      "imagem": null,
+      "quiz": null,
+      "conteudos": [
+        {
+          "tipo": "texto",
+          "titulo": "Conhecendo o celular",
+          "conteudo": "O celular, também chamado de smartphone, é um aparelho que pode ser usado para fazer ligações, enviar mensagens, tirar fotos, acessar a internet e utilizar aplicativos.\n\nGrande parte das funções é realizada tocando na tela, mas o celular também possui alguns botões físicos.\n\nBotões físicos\nBotão de ligar e desligar: é usado para acender ou apagar a tela. Também pode ser utilizado para ligar ou desligar o celular.\nBotões de volume: são usados para aumentar ou diminuir o som do celular.\n\nComo ligar o celular\n1. Localize o botão de ligar e desligar.\n2. Mantenha o botão pressionado por alguns segundos.\n3. Solte o botão quando a tela acender.\n4. Aguarde o celular iniciar.\n\nComo apagar a tela\n1. Pressione uma vez o botão de ligar e desligar.\n2. A tela ficará apagada.\nIsso não significa que o celular foi desligado. O aparelho continuará ligado e poderá receber chamadas e mensagens. Para acender a tela novamente, pressione uma vez o mesmo botão.\n\nComo desligar o celular\n1. Mantenha o botão de ligar e desligar pressionado por alguns segundos.\n2. Quando aparecer um menu na tela, procure a opção Desligar.\n3. Toque em Desligar.\n4. Aguarde até a tela apagar completamente.\nA forma de desligar pode mudar de acordo com o modelo do celular.\n\nComo desbloquear o celular\nDepois de acender a tela, pode ser necessário desbloquear o aparelho. Dependendo do celular, você poderá deslizar o dedo, tocar na tela, digitar uma senha ou PIN, desenhar um padrão, usar impressão digital ou reconhecimento facial.\n\nA tela inicial\nDepois de desbloquear o celular, você verá a tela inicial. Ela é a principal tela do aparelho e normalmente apresenta os aplicativos usados com frequência.\n\nO que são aplicativos?\nAplicativos, também chamados de apps, são programas que realizam diferentes funções no celular. Exemplos: Câmera, Relógio, Telefone e WhatsApp. Eles são representados por pequenos desenhos chamados de ícones.\n\nInformações na parte superior da tela\nGeralmente aparecem horário, nível da bateria, sinal da rede móvel, conexão Wi-Fi e notificações.\n\nNavegação pelo celular\nAs principais funções são Início, Voltar e Aplicativos recentes. Os símbolos e a forma de navegar podem mudar conforme o modelo e as configurações.\n\nPrática do módulo\n1. Identifique o botão de ligar e desligar.\n2. Identifique os botões de volume.\n3. Acenda e apague a tela.\n4. Encontre a tela inicial.\n5. Identifique pelo menos três aplicativos.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 1
+        },
+        {
+          "tipo": "dica",
+          "titulo": "Dica",
+          "conteudo": "Comece localizando o botão de ligar e os botões de volume antes de praticar.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 2
+        },
+        {
+          "tipo": "importante",
+          "titulo": "Importante",
+          "conteudo": "Apagar a tela não desliga o celular. O aparelho continua ligado e pode receber chamadas e mensagens.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 3
+        }
+      ]
+    },
+    {
+      "nome": "Como Tocar na Tela: Gestos Básicos",
+      "descricao": "Aprenda os principais gestos usados na tela do celular e pratique com fotos.",
+      "ordem": 2,
+      "duracaoMinutos": null,
+      "imagem": null,
+      "quiz": null,
+      "conteudos": [
+        {
+          "tipo": "texto",
+          "titulo": "Gestos básicos",
+          "conteudo": "A tela do celular é sensível ao toque dos dedos. Por isso, é possível realizar diferentes ações apenas tocando ou movimentando o dedo sobre ela.\n\n1. Toque simples\nEncoste o dedo suavemente na tela e retire-o rapidamente. Pode ser usado para abrir um aplicativo, selecionar uma opção ou pressionar um botão.\n\n2. Toque longo\nMantenha o dedo pressionado sobre um item por alguns segundos, sem arrastá-lo. Pode abrir opções adicionais ou permitir que um item seja movimentado. Em uma área vazia da tela inicial, alguns celulares podem abrir Papel de parede, Widgets ou Configurações da tela inicial. Se não quiser alterar nada, volte ou feche o menu sem confirmar alterações.\n\n3. Arrastar\nToque em um item, mantenha o dedo pressionado e mova-o para outro local antes de soltá-lo.\n\n4. Deslizar\nColoque o dedo sobre a tela e deslize-o para cima, para baixo ou para os lados. Esse gesto pode percorrer páginas, visualizar aplicativos e passar para outra parte de uma tela.\n\n5. Pinça para ampliar ou diminuir\nPara aumentar uma imagem, coloque dois dedos sobre ela e afaste-os. Para diminuir, aproxime os dedos.\n\nConhecendo a Galeria ou o aplicativo Fotos\nAs fotos ficam em um aplicativo que pode se chamar Galeria, Fotos ou ter outro nome. Procure o aplicativo, abra-o e escolha uma foto. Se não estiver na tela inicial, deslize para cima para visualizar outros aplicativos.\n\nPrática do módulo\nAbra uma foto. Aumente a imagem usando dois dedos, diminua a imagem e deslize para visualizar outras partes.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 1
+        },
+        {
+          "tipo": "importante",
+          "titulo": "Importante",
+          "conteudo": "Um toque longo em uma área vazia pode abrir opções da tela inicial. Se não quiser mudar nada, volte sem confirmar alterações.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 2
+        },
+        {
+          "tipo": "dica",
+          "titulo": "Dica",
+          "conteudo": "Use uma foto para praticar os gestos: afaste dois dedos para ampliar e aproxime-os para diminuir.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 3
+        }
+      ]
+    },
+    {
+      "nome": "Configurações Básicas de Conforto Visual e Som",
+      "descricao": "Ajuste brilho, tamanho das letras, volume, modos de som e tempo de tela.",
+      "ordem": 3,
+      "duracaoMinutos": null,
+      "imagem": null,
+      "quiz": null,
+      "conteudos": [
+        {
+          "tipo": "texto",
+          "titulo": "Configurações de conforto",
+          "conteudo": "O celular possui configurações que podem deixá-lo mais confortável e adequado às suas necessidades. Neste módulo, você aprenderá a ajustar o brilho, o tamanho das letras, o volume e os modos de som.\n\nO que são as Configurações?\nSão uma área do celular onde você pode alterar diversas opções. O ícone geralmente tem formato de engrenagem. Procure-o e toque uma vez.\n\nAjustando o brilho da tela\n1. Deslize o dedo de cima para baixo.\n2. Procure a barra ou símbolo de brilho.\n3. Mova o controle para aumentar ou diminuir a iluminação.\nEm alguns aparelhos, pode ser necessário deslizar novamente para visualizar todos os controles.\n\nAumentando o tamanho das letras\n1. Abra Configurações.\n2. Procure Tela, Visor, Tamanho da fonte ou Acessibilidade.\n3. Procure a opção relacionada ao tamanho do texto.\n4. Aumente até ficar confortável para leitura.\nOs nomes e a localização das opções podem variar.\n\nAjustando o volume\nUse os botões laterais de aumentar (+) e diminuir (-) volume.\n\nConhecendo os modos de som\nO modo com som permite que o aparelho toque normalmente. O modo de vibração faz o celular vibrar sem emitir o toque normal. O modo silencioso reduz ou desativa sons de chamadas e notificações.\n\nComo colocar no silencioso ou vibração\nPressione um botão de volume, observe os controles, procure o símbolo de som, sino ou alto-falante e toque para alternar entre os modos. Também podem existir atalhos rápidos.\n\nTempo para a tela desligar\nAbra Configurações, procure Tela ou Visor, encontre Tempo limite da tela ou opção semelhante e escolha um período adequado.\n\nPrática do módulo\nAbra Configurações; ajuste brilho, tamanho das letras e volume; localize os modos de som e a configuração do tempo de tela.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 1
+        },
+        {
+          "tipo": "dica",
+          "titulo": "Dica",
+          "conteudo": "Ajuste o brilho conforme a luz do ambiente e escolha um nível confortável para seus olhos.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 2
+        },
+        {
+          "tipo": "importante",
+          "titulo": "Importante",
+          "conteudo": "Os nomes dos menus podem variar. Procure opções como Tela, Visor ou Acessibilidade para ajustar o tamanho das letras.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 3
+        }
+      ]
+    },
+    {
+      "nome": "Conectando à Internet: Wi-Fi e Dados Móveis",
+      "descricao": "Entenda a diferença entre Wi-Fi e dados móveis e aprenda a conectar o celular à internet.",
+      "ordem": 4,
+      "duracaoMinutos": null,
+      "imagem": null,
+      "quiz": null,
+      "conteudos": [
+        {
+          "tipo": "texto",
+          "titulo": "Wi-Fi e dados móveis",
+          "conteudo": "Para utilizar aplicativos como WhatsApp, assistir a vídeos ou pesquisar informações na internet, o celular precisa estar conectado à internet. Existem duas formas comuns: Wi-Fi e dados móveis.\n\nO que é Wi-Fi?\nO Wi-Fi conecta o celular à internet por uma rede sem fio. Pode existir em casa, casas de familiares, escolas e estabelecimentos. Quando conectado ao Wi-Fi, normalmente o celular não utiliza a franquia de dados móveis do plano.\n\nO que são dados móveis?\nPermitem acessar a internet usando a rede da operadora, como Claro, TIM ou Vivo. São úteis fora de uma rede Wi-Fi e podem consumir a franquia mensal do plano.\n\nComo conectar ao Wi-Fi\n1. Deslize o dedo de cima para baixo.\n2. Procure o símbolo do Wi-Fi.\n3. Toque nele ou mantenha-o pressionado para abrir as configurações.\n4. Escolha a rede desejada.\n5. Digite a senha, se solicitada.\n6. Toque em Conectar.\nQuando funcionar, o símbolo do Wi-Fi aparecerá na parte superior da tela.\n\nDica de segurança\nEvite redes Wi-Fi públicas desconhecidas ao realizar tarefas com informações importantes, como acessar contas bancárias.\n\nPrática do módulo\nLocalize o Wi-Fi, confira se está ativado e identifique o nome da rede à qual o celular está conectado.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 1
+        },
+        {
+          "tipo": "dica",
+          "titulo": "Dica",
+          "conteudo": "Antes de abrir um aplicativo que usa internet, confira se o celular está conectado à rede desejada.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 2
+        },
+        {
+          "tipo": "importante",
+          "titulo": "Importante",
+          "conteudo": "Para acessar o banco, prefira uma conexão de confiança. Evite redes Wi-Fi públicas desconhecidas.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 3
+        }
+      ]
+    },
+    {
+      "nome": "Organização da Tela Inicial",
+      "descricao": "Organize aplicativos, crie pastas, remova ícones e entenda as atualizações de aplicativos.",
+      "ordem": 5,
+      "duracaoMinutos": null,
+      "imagem": null,
+      "quiz": null,
+      "conteudos": [
+        {
+          "tipo": "texto",
+          "titulo": "Organizando a tela inicial",
+          "conteudo": "Manter a tela inicial organizada facilita encontrar os aplicativos que você mais utiliza.\n\nMovendo aplicativos\n1. Mantenha o dedo pressionado sobre o ícone.\n2. Arraste-o para o local desejado.\n3. Solte o dedo.\nA forma pode variar conforme o celular.\n\nCriando pastas\nVocê pode juntar aplicativos semelhantes. Em muitos aparelhos, mantenha um aplicativo pressionado, arraste-o sobre outro, solte para criar a pasta e dê um nome, se a opção estiver disponível.\n\nRemovendo um aplicativo da tela inicial\n1. Mantenha o dedo pressionado sobre o ícone.\n2. Procure “Remover da tela inicial”.\n3. Toque nessa opção.\nIsso normalmente remove apenas o ícone; o aplicativo continua instalado. Não escolha “Desinstalar” se quiser apenas retirar o ícone.\n\nAtualizando aplicativos\nAtualizações podem trazer melhorias, correções e novos recursos. No Android, podem ser feitas pela Google Play Store; no iPhone, pela App Store. Dependendo das configurações, podem ocorrer automaticamente ou precisar ser feitas manualmente.\n\nPrática do módulo\nEscolha dois aplicativos usados com frequência, coloque-os em posição fácil de encontrar, crie uma pasta para aplicativos semelhantes e verifique se há atualização disponível.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 1
+        },
+        {
+          "tipo": "dica",
+          "titulo": "Dica",
+          "conteudo": "Deixe os aplicativos mais usados em um lugar fácil de encontrar e reúna os semelhantes em pastas.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 2
+        },
+        {
+          "tipo": "importante",
+          "titulo": "Importante",
+          "conteudo": "Remover da tela inicial retira apenas o ícone. Desinstalar remove o aplicativo do celular; confira a opção antes de tocar.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 3
+        }
+      ]
+    }
+  ],
+  "testeFinal": {
+    "questoes": [
+      {
+        "pergunta": "Você acabou de receber um celular novo e quer começar a utilizá-lo. Qual das opções apresenta uma sequência correta de ações que você aprendeu neste curso?",
+        "ordem": 1,
+        "alternativas": [
+          {
+            "texto": "Desligar o Wi-Fi, apagar todos os aplicativos e aumentar o volume para o máximo.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 1
+          },
+          {
+            "texto": "Ligar o celular, desbloqueá-lo, localizar os aplicativos, ajustar configurações como brilho e tamanho da letra e conectar-se a uma rede Wi-Fi.",
+            "correta": true,
+            "explicacao": "Primeiro, ligue e desbloqueie o celular. Depois, localize os aplicativos e ajuste as opções para usar o aparelho com conforto. Uma conexão permite utilizar os recursos que precisam de internet.",
+            "ordem": 2
+          },
+          {
+            "texto": "Manter o botão de volume pressionado para desligar o celular e utilizar o modo silencioso para aumentar o brilho da tela.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 3
+          },
+          {
+            "texto": "Abrir a câmera, tocar longamente na tela inicial e desligar o celular sempre que quiser acessar a internet.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "Você pressiona uma vez o botão de ligar e desligar, e a tela apaga. O que normalmente acontece com o celular?",
+        "ordem": 2,
+        "alternativas": [
+          {
+            "texto": "Ele desliga completamente e deixa de receber chamadas.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 1
+          },
+          {
+            "texto": "Ele apaga os aplicativos que estavam abertos.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 2
+          },
+          {
+            "texto": "A tela apaga, mas o aparelho continua ligado e pode receber chamadas e mensagens.",
+            "correta": true,
+            "explicacao": "Uma pressão rápida no botão normalmente apaga a tela. Isso é diferente de desligar o aparelho pelo menu de desligamento.",
+            "ordem": 3
+          },
+          {
+            "texto": "Ele desativa a internet até ser ligado novamente.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "O som de um vídeo está muito alto. Qual ação pode diminuir o volume?",
+        "ordem": 3,
+        "alternativas": [
+          {
+            "texto": "Aumentar o brilho da tela.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 1
+          },
+          {
+            "texto": "Aumentar o tamanho das letras.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 2
+          },
+          {
+            "texto": "Pressionar o botão de aumentar volume (+).",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 3
+          },
+          {
+            "texto": "Pressionar o botão de diminuir volume (-).",
+            "correta": true,
+            "explicacao": "O botão de diminuir volume (-) reduz o som. Brilho e tamanho das letras são ajustes da tela e não controlam o áudio.",
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "Você quer abrir as opções adicionais de um ícone na tela inicial. Qual gesto costuma permitir isso?",
+        "ordem": 4,
+        "alternativas": [
+          {
+            "texto": "Manter o dedo sobre o ícone por alguns segundos, sem arrastá-lo.",
+            "correta": true,
+            "explicacao": "O toque longo consiste em manter o dedo pressionado sobre um item. Ele pode abrir um menu de opções; o resultado varia conforme o aparelho e o aplicativo.",
+            "ordem": 1
+          },
+          {
+            "texto": "Tocar rapidamente no ícone uma única vez.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 2
+          },
+          {
+            "texto": "Deslizar o dedo por toda a tela sem parar sobre o ícone.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 3
+          },
+          {
+            "texto": "Afastar dois dedos sobre a tela.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "Você abriu uma foto na Galeria ou no aplicativo Fotos e quer vê-la maior. Qual gesto pode ampliar a imagem?",
+        "ordem": 5,
+        "alternativas": [
+          {
+            "texto": "Aproximar dois dedos sobre a foto.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 1
+          },
+          {
+            "texto": "Tocar no botão de diminuir volume.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 2
+          },
+          {
+            "texto": "Colocar dois dedos sobre a foto e afastá-los.",
+            "correta": true,
+            "explicacao": "Para ampliar uma foto, coloque dois dedos sobre ela e afaste-os. Aproximar os dedos costuma diminuir a imagem.",
+            "ordem": 3
+          },
+          {
+            "texto": "Deslizar a foto para o lado para abrir outra imagem.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "As letras do celular estão pequenas e difíceis de ler. Qual ajuste você deve procurar?",
+        "ordem": 6,
+        "alternativas": [
+          {
+            "texto": "O volume das notificações.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 1
+          },
+          {
+            "texto": "O tamanho da fonte ou do texto nas Configurações, em opções como Tela ou Acessibilidade.",
+            "correta": true,
+            "explicacao": "A opção de tamanho da fonte ou do texto aumenta as letras. O nome e a localização desse ajuste podem variar conforme o modelo do celular.",
+            "ordem": 2
+          },
+          {
+            "texto": "O nome da rede Wi-Fi.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 3
+          },
+          {
+            "texto": "A organização das pastas de aplicativos.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "A tela está clara demais para o ambiente em que você está. Qual ajuste ajuda a deixá-la mais confortável?",
+        "ordem": 7,
+        "alternativas": [
+          {
+            "texto": "Aumentar o volume do aparelho.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 1
+          },
+          {
+            "texto": "Alterar a senha do Wi-Fi.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 2
+          },
+          {
+            "texto": "Mover os aplicativos para uma pasta.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 3
+          },
+          {
+            "texto": "Diminuir o brilho pelo controle de brilho da tela.",
+            "correta": true,
+            "explicacao": "O brilho controla a iluminação da tela. Ajuste-o para um nível confortável, levando em conta a luz do ambiente.",
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "Qual alternativa explica corretamente a diferença entre Wi-Fi e dados móveis?",
+        "ordem": 8,
+        "alternativas": [
+          {
+            "texto": "O Wi-Fi usa uma rede sem fio; os dados móveis usam a rede da operadora de celular.",
+            "correta": true,
+            "explicacao": "O Wi-Fi conecta o celular a uma rede sem fio, como a de casa. Os dados móveis usam a rede da operadora e podem consumir a franquia do plano.",
+            "ordem": 1
+          },
+          {
+            "texto": "O Wi-Fi usa sempre a franquia da operadora; os dados móveis usam apenas o roteador de casa.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 2
+          },
+          {
+            "texto": "O Wi-Fi serve somente para ligações; os dados móveis servem somente para fotos.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 3
+          },
+          {
+            "texto": "Os dados móveis só funcionam quando o celular também está conectado ao Wi-Fi.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "O menu de um aplicativo oferece as opções “Remover da tela inicial” e “Desinstalar”. Você quer retirar apenas o ícone daquela tela e manter o aplicativo instalado. Qual opção deve escolher?",
+        "ordem": 9,
+        "alternativas": [
+          {
+            "texto": "Desinstalar.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 1
+          },
+          {
+            "texto": "Remover da tela inicial.",
+            "correta": true,
+            "explicacao": "Remover da tela inicial retira o ícone daquela tela e mantém o aplicativo instalado. Desinstalar remove o aplicativo do aparelho.",
+            "ordem": 2
+          },
+          {
+            "texto": "Desligar o celular.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 3
+          },
+          {
+            "texto": "Apagar os dados do aplicativo.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "Em muitos celulares, como você pode criar uma pasta para reunir dois aplicativos na tela inicial?",
+        "ordem": 10,
+        "alternativas": [
+          {
+            "texto": "Abrir os dois aplicativos ao mesmo tempo.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 1
+          },
+          {
+            "texto": "Diminuir o brilho da tela e fechar os aplicativos.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 2
+          },
+          {
+            "texto": "Manter um ícone pressionado, arrastá-lo sobre o outro e soltá-lo.",
+            "correta": true,
+            "explicacao": "Em muitos aparelhos, arrastar um ícone sobre outro cria uma pasta. A forma de organizar e nomear a pasta pode variar conforme o celular.",
+            "ordem": 3
+          },
+          {
+            "texto": "Desinstalar os dois aplicativos e instalá-los novamente.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 4
+          }
+        ]
+      }
+    ]
+  }
+}

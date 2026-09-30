@@ -1,0 +1,460 @@
+{
+  "curso": {
+    "nome": "Serviços Digitais do Governo, Saúde e Banco",
+    "descricao": "Aprenda a utilizar Gov.br, Meu SUS Digital e serviços bancários com Pix de forma cuidadosa.",
+    "dificuldade": "Básico",
+    "cargaHoraria": 60,
+    "imagem": null,
+    "icone": null
+  },
+  "modulos": [
+    {
+      "nome": "Gov.br: Sua Conta de Acesso aos Serviços do Governo",
+      "descricao": "Aprenda a acessar, criar e recuperar sua conta Gov.br com segurança.",
+      "ordem": 1,
+      "duracaoMinutos": null,
+      "imagem": null,
+      "quiz": null,
+      "conteudos": [
+        {
+          "tipo": "texto",
+          "titulo": "Gov.br: Sua Conta de Acesso aos Serviços do Governo",
+          "conteudo": "O que é o Gov.br?\nÉ a conta digital usada para acessar diversos serviços públicos do Governo Federal pela internet. Uma única conta pode dar acesso a serviços relacionados a documentos, trabalho, benefícios, impostos e outros serviços públicos.\n\nAcessando o Gov.br\nNo celular, procure e abra o aplicativo Gov.br e, se ainda não tiver conta, procure a opção de criação. Também é possível acessar pelo site oficial do Governo Federal.\n\nCriando sua conta\nO sistema pode solicitar CPF e outras formas de confirmação de identidade. Siga as instruções do aplicativo ou site oficial.\n\nCriando uma senha\nCrie uma senha que não seja fácil de adivinhar e não a compartilhe. Não use exemplos apresentados em cursos ou materiais de estudo.\n\nEntrando na conta\nAbra o aplicativo ou site oficial, informe CPF e senha e faça etapas adicionais de confirmação quando solicitadas.\n\nComo recuperar a senha\nNa tela de entrada, informe o CPF, escolha recuperar ou redefinir a senha e siga o método de confirmação. Podem existir opções como código de verificação ou reconhecimento facial. Nunca informe códigos de confirmação a pessoas que entrarem em contato.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 1
+        },
+        {
+          "tipo": "dica",
+          "titulo": "Dica",
+          "conteudo": "Se acessar pelo navegador, guarde o endereço do site oficial nos favoritos para encontrá-lo com mais facilidade depois.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 2
+        },
+        {
+          "tipo": "importante",
+          "titulo": "Importante",
+          "conteudo": "Faça a recuperação pelo aplicativo ou site oficial. Não envie sua senha nem códigos a pessoas que ofereçam ajuda por mensagem.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 3
+        }
+      ]
+    },
+    {
+      "nome": "Saúde Digital: Meu SUS Digital",
+      "descricao": "Consulte informações de saúde disponíveis no Meu SUS Digital.",
+      "ordem": 2,
+      "duracaoMinutos": null,
+      "imagem": null,
+      "quiz": null,
+      "conteudos": [
+        {
+          "tipo": "texto",
+          "titulo": "Saúde Digital: Meu SUS Digital",
+          "conteudo": "O que é o Meu SUS Digital?\nÉ a plataforma oficial do Sistema Único de Saúde para acessar determinados serviços e informações pela internet. Substituiu o antigo Conecte SUS. A quantidade de informações depende dos registros existentes nos sistemas de saúde.\n\nCarteira de vacinação\nAbra o Meu SUS Digital, acesse com a conta Gov.br quando solicitado, procure a área de vacinação e consulte os registros disponíveis. Quando houver comprovante, podem existir opções de visualização ou obtenção do documento. Mantenha também documentos físicos quando necessários.\n\nConsultando informações de saúde\nDependendo dos registros, podem aparecer atendimentos, medicamentos e outros serviços. Os dados não aparecem necessariamente da mesma forma para todas as pessoas.\n\nAgendamentos\nAlguns municípios e serviços integrados permitem consultar atendimentos ou agendamentos. A disponibilidade depende da integração. Se algo não aparecer, isso não significa necessariamente que o atendimento não exista; em dúvida, procure a unidade de saúde.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 1
+        },
+        {
+          "tipo": "dica",
+          "titulo": "Dica",
+          "conteudo": "Use o aplicativo para consultar os registros disponíveis e mantenha sua carteira de vacinação física guardada.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 2
+        },
+        {
+          "tipo": "importante",
+          "titulo": "Importante",
+          "conteudo": "Se um registro ou agendamento não aparecer, confirme com a unidade de saúde. A informação pode depender dos sistemas integrados.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 3
+        }
+      ]
+    },
+    {
+      "nome": "Bancos Digitais e Pix",
+      "descricao": "Use aplicativos bancários e Pix conferindo cada informação antes de confirmar.",
+      "ordem": 3,
+      "duracaoMinutos": null,
+      "imagem": null,
+      "quiz": null,
+      "conteudos": [
+        {
+          "tipo": "texto",
+          "titulo": "Bancos Digitais e Pix",
+          "conteudo": "Usando o banco pelo celular\nAplicativos bancários podem permitir consultar saldo e extrato, realizar pagamentos e transferências, usar Pix e consultar cartões. Como envolvem dinheiro, confira cada informação antes de confirmar.\n\nO que é o Pix?\nÉ um sistema de pagamentos instantâneos criado pelo Banco Central do Brasil e permite transferências e pagamentos rápidos.\n\nO que é uma chave Pix?\nÉ uma informação que identifica uma conta no Pix e pode ser CPF, celular, e-mail ou chave aleatória.\n\nComo funciona uma transferência por Pix?\nAbra o banco, procure Pix, escolha transferência ou pagamento, informe a chave, digite o valor, confira os dados, confirme somente se estiver tudo correto e use o método de autenticação solicitado.\n\nConfira o destinatário\nAntes de confirmar, confira nome, instituição financeira, valor e demais informações. Se algo estiver diferente, não confirme antes de verificar.\n\nConsultando o extrato\nO extrato mostra dinheiro que entrou e saiu, pagamentos, transferências e Pix. Consulte regularmente para perceber movimentações desconhecidas.\n\nPagando contas\nAo pagar por código de barras ou números, confira valor, vencimento quando disponível e beneficiário antes de confirmar.\n\nSegurança bancária\nNunca compartilhe senha do banco, código de confirmação, senha do cartão ou dados de autenticação. Se alguém disser ser do banco e pedir esses dados, encerre o contato e procure um canal oficial. Não transfira dinheiro por pressão ou urgência.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 1
+        },
+        {
+          "tipo": "dica",
+          "titulo": "Dica",
+          "conteudo": "Consulte o extrato regularmente para acompanhar entradas e saídas. Se encontrar uma movimentação desconhecida, procure o banco por um canal oficial.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 2
+        },
+        {
+          "tipo": "importante",
+          "titulo": "Importante",
+          "conteudo": "Antes de confirmar um Pix, confira o nome do destinatário, a instituição e o valor. Se algo estiver diferente do esperado, verifique antes de continuar.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 3
+        },
+        {
+          "tipo": "importante",
+          "titulo": "Importante",
+          "conteudo": "Sua senha bancária e seus códigos de confirmação são pessoais. Não os compartilhe com quem ligar ou enviar mensagens pedindo essas informações.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 4
+        }
+      ]
+    },
+    {
+      "nome": "Exercícios Práticos",
+      "descricao": "Pratique o reconhecimento das telas e etapas sem expor senhas nem movimentar dinheiro real.",
+      "ordem": 4,
+      "duracaoMinutos": null,
+      "imagem": null,
+      "quiz": null,
+      "conteudos": [
+        {
+          "tipo": "texto",
+          "titulo": "Exercícios Práticos",
+          "conteudo": "Exercício 1 – Conhecendo o Gov.br\nAbra o aplicativo ou serviço oficial com orientação de uma pessoa de confiança. Observe a tela de entrada, o campo de CPF, as opções após o acesso e a busca por serviços. Não compartilhe senha ou códigos.\n\nExercício 2 – Conhecendo o Meu SUS Digital\nAcesse e observe as informações disponíveis, como vacinação, registros de saúde e outros serviços. A disponibilidade pode variar.\n\nExercício 3 – Simulação de um Pix\nNão é necessário enviar dinheiro real. Use demonstração, material do professor ou tela de treinamento. Observe a sequência Pix → Transferência → Chave Pix → Valor → Conferência dos dados → Confirmação e identifique valor, destinatário, instituição e o momento da confirmação.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 1
+        },
+        {
+          "tipo": "dica",
+          "titulo": "Dica",
+          "conteudo": "Use uma demonstração ou tela de treinamento para aprender a sequência do Pix. Você pode praticar sem enviar dinheiro de verdade.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 2
+        },
+        {
+          "tipo": "importante",
+          "titulo": "Importante",
+          "conteudo": "Durante a prática, mantenha senhas e códigos em segredo. Peça orientação sem entregar o acesso à sua conta.  ## Referências de apoio  Os cards foram preparados com base nos conteúdos e avisos do PDF Organização_Cursos_-_TCC.pdf. Conceitos de segurança, serviços públicos e aplicativos foram conferidos nas fontes oficiais consultadas durante a preparação dos materiais, em 30/09/2026.  - [CERT.br/NIC.br - Cartilha de Segurança para Internet](https://cartilha.cert.br/fasciculos/) - [Banco Central do Brasil - Sobre o Pix](https://bcb.gov.br/estabilidadefinanceira/pix-sobre) - [Ministério da Saúde - Meu SUS Digital: perguntas e respostas](https://www.gov.br/saude/pt-br/composicao/seidigi/meususdigital/perguntas-e-respostas/cidadao) - [Governo Digital - Recuperar senha da conta gov.br](https://www.gov.br/governodigital/pt-br/acessibilidade-e-usuario/atendimento-gov.br/duvidas-na-conta-gov.br/recuperar-senha-da-conta-gov.br) - [WhatsApp - Verificação em duas etapas](https://faq.whatsapp.com/1278661612895630/?cms_platform=web&locale=pt_BR) - [Google Fotos - Conferir seu backup](https://support.google.com/photos/answer/9343402?hl=pt-BR) - [Google Fotos - Excluir fotos e vídeos](https://support.google.com/photos/answer/6128858?co=GENIE.Platform%3DAndroid&hl=pt-BR) - [Chromium - HTTPS e o significado do indicador de conexão](https://blog.chromium.org/2023/05/an-update-on-lock-icon.html?hl=en_GB)",
+          "url": null,
+          "altTexto": null,
+          "ordem": 3
+        }
+      ]
+    }
+  ],
+  "testeFinal": {
+    "questoes": [
+      {
+        "pergunta": "Você precisa realizar um Pix para uma pessoa. Depois de informar a chave e o valor, o aplicativo mostra o nome do destinatário. O que você deve fazer antes de confirmar?",
+        "ordem": 1,
+        "alternativas": [
+          {
+            "texto": "Confirmar rapidamente, porque o Pix é instantâneo.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 1
+          },
+          {
+            "texto": "Enviar a senha do banco para o destinatário conferir os dados.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 2
+          },
+          {
+            "texto": "Conferir o nome do destinatário, o valor e as demais informações antes de autorizar a operação.",
+            "correta": true,
+            "explicacao": "Antes de autorizar um Pix, confira o destinatário, o valor e as demais informações. Se algo estiver diferente do esperado, verifique a situação antes de confirmar.",
+            "ordem": 3
+          },
+          {
+            "texto": "Pedir para outra pessoa informar sua senha para confirmar o pagamento.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "Para que serve a conta gov.br?",
+        "ordem": 2,
+        "alternativas": [
+          {
+            "texto": "Para acessar diferentes serviços públicos digitais com uma única conta.",
+            "correta": true,
+            "explicacao": "A conta gov.br permite entrar em diversos serviços públicos digitais. Você não precisa criar uma conta diferente para cada serviço que utiliza esse acesso.",
+            "ordem": 1
+          },
+          {
+            "texto": "Para substituir a conta de qualquer banco.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 2
+          },
+          {
+            "texto": "Para instalar todos os aplicativos pagos gratuitamente.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 3
+          },
+          {
+            "texto": "Para enviar mensagens pelo WhatsApp sem usar a internet.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "Você esqueceu a senha da conta gov.br. Qual caminho deve seguir?",
+        "ordem": 3,
+        "alternativas": [
+          {
+            "texto": "Enviar seu CPF e sua senha antiga a qualquer pessoa que oferecer ajuda por mensagem.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 1
+          },
+          {
+            "texto": "Criar uma conta utilizando o CPF de outra pessoa.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 2
+          },
+          {
+            "texto": "Usar como senha a primeira combinação encontrada em um vídeo.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 3
+          },
+          {
+            "texto": "Abrir o aplicativo ou site oficial, informar o CPF e seguir a opção de recuperação de senha.",
+            "correta": true,
+            "explicacao": "A recuperação deve ser feita pelo aplicativo ou site oficial. Siga as formas de confirmação de identidade apresentadas pelo próprio serviço.",
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "Uma pessoa envia uma mensagem pedindo sua senha e um código de confirmação para “liberar um serviço do governo”. Como você deve agir?",
+        "ordem": 4,
+        "alternativas": [
+          {
+            "texto": "Enviar as informações se a mensagem tiver o símbolo do governo.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 1
+          },
+          {
+            "texto": "Não compartilhar a senha nem o código e verificar o serviço pelos canais oficiais.",
+            "correta": true,
+            "explicacao": "Um símbolo ou uma mensagem não comprova que o contato seja oficial. Não entregue senhas ou códigos a quem pede essas informações; confira o serviço por canais oficiais.",
+            "ordem": 2
+          },
+          {
+            "texto": "Enviar o código, mas esconder apenas a primeira letra da senha.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 3
+          },
+          {
+            "texto": "Pedir que a pessoa repasse a mensagem a outros contatos para confirmar.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "Qual conta é utilizada para entrar no Meu SUS Digital?",
+        "ordem": 5,
+        "alternativas": [
+          {
+            "texto": "A conta do Spotify.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 1
+          },
+          {
+            "texto": "A conta do WhatsApp.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 2
+          },
+          {
+            "texto": "A conta gov.br.",
+            "correta": true,
+            "explicacao": "O acesso ao Meu SUS Digital é realizado com a conta gov.br. As informações exibidas dependem dos registros disponíveis nos sistemas de saúde.",
+            "ordem": 3
+          },
+          {
+            "texto": "A conta do aplicativo do banco.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "Uma vacina que consta na sua carteira física não aparece no Meu SUS Digital. Qual atitude é adequada?",
+        "ordem": 6,
+        "alternativas": [
+          {
+            "texto": "Concluir que você nunca recebeu a vacina.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 1
+          },
+          {
+            "texto": "Apagar a conta gov.br para criar o registro da vacina.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 2
+          },
+          {
+            "texto": "Descartar a carteira física porque só o aplicativo pode comprovar a vacinação.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 3
+          },
+          {
+            "texto": "Conservar a carteira física e procurar a unidade onde foi vacinado para conferir o registro.",
+            "correta": true,
+            "explicacao": "Uma informação ausente no aplicativo não prova que a vacina não foi aplicada. Guarde a carteira física e procure a unidade de vacinação para verificar o registro.",
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "Você quer conferir o dinheiro que entrou e saiu da sua conta. Qual informação deve procurar no aplicativo do banco?",
+        "ordem": 7,
+        "alternativas": [
+          {
+            "texto": "O extrato da conta.",
+            "correta": true,
+            "explicacao": "O extrato mostra movimentações da conta, como pagamentos e transferências. Consultá-lo ajuda a identificar entradas, saídas e operações que você não reconhece.",
+            "ordem": 1
+          },
+          {
+            "texto": "Somente o saldo disponível no momento.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 2
+          },
+          {
+            "texto": "A lista de chaves Pix cadastradas.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 3
+          },
+          {
+            "texto": "A lista dos cartões vinculados à conta.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "O que é uma chave Pix?",
+        "ordem": 8,
+        "alternativas": [
+          {
+            "texto": "Uma senha que precisa ser enviada para a pessoa que vai pagar.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 1
+          },
+          {
+            "texto": "Uma informação que identifica uma conta para receber Pix, como CPF, e-mail, celular ou chave aleatória.",
+            "correta": true,
+            "explicacao": "A chave Pix identifica uma conta para o recebimento de pagamentos. Ela não é a senha do banco nem um código de confirmação.",
+            "ordem": 2
+          },
+          {
+            "texto": "O código usado para desbloquear a tela do celular.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 3
+          },
+          {
+            "texto": "Um arquivo que substitui o extrato bancário.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "Você vai pagar uma conta pelo aplicativo do banco. Depois de ler o código de barras, o que deve fazer?",
+        "ordem": 9,
+        "alternativas": [
+          {
+            "texto": "Confirmar sem conferir porque o código de barras elimina qualquer possibilidade de erro.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 1
+          },
+          {
+            "texto": "Verificar apenas se a tela está com brilho suficiente.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 2
+          },
+          {
+            "texto": "Informar sua senha a quem enviou a cobrança para que essa pessoa faça a conferência.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 3
+          },
+          {
+            "texto": "Conferir o valor, o beneficiário e o vencimento, quando disponível, antes de autorizar.",
+            "correta": true,
+            "explicacao": "Antes de pagar, confira o valor e o beneficiário, que é quem receberá o pagamento. Verifique também o vencimento, quando exibido, e só confirme depois da conferência.",
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "Para aprender a sequência de um Pix durante uma atividade do curso, o que você pode fazer?",
+        "ordem": 10,
+        "alternativas": [
+          {
+            "texto": "Enviar dinheiro para uma chave desconhecida só para testar.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 1
+          },
+          {
+            "texto": "Usar uma demonstração ou tela de treinamento, sem enviar dinheiro de verdade.",
+            "correta": true,
+            "explicacao": "Uma demonstração permite aprender a sequência e identificar os dados que devem ser conferidos. Não é necessário fazer uma transferência real para praticar. ## Fontes de apoio para conferência Base principal: **Organização_Cursos_-_TCC.pdf**, fornecido para o projeto. As páginas do PDF estão indicadas em cada curso; as questões reaproveitadas possuem indicação de origem. As fontes abaixo foram consultadas em 30/09/2026 para conferir conceitos e orientações. São referências de apoio ao material, não conteúdo adicional obrigatório dos cursos. - [CERT.br/NIC.br - Fascículos da Cartilha de Segurança para Internet](https://cartilha.cert.br/fasciculos/) — Curso 2, questões 1 e 6; Curso 4, cuidados com golpes, senhas e privacidade; Curso 5, questão 4. - [CERT.br/NIC.br - Banco via Internet](https://cartilha.cert.br/fasciculos/banco-via-internet/fasciculo-banco-via-internet-alta.pdf) — Curso 4, contatos que pedem senhas, códigos ou instalação de aplicativos; Curso 5, segurança bancária. - [WhatsApp - Sobre a verificação em duas etapas](https://faq.whatsapp.com/1278661612895630/?cms_platform=web&locale=pt_BR) — Curso 2, questão 8. - [Meta/WhatsApp - Recursos de segurança da conta, atualização de agosto de 2026](https://about.fb.com/br/news/2026/08/um-bilhao-de-pessoas-ja-estao-protegidas-com-chaves-de-acesso-no-whatsapp-e-com-outros-recursos-de-seguranca-da-conta/) — Curso 2, questão 8: proteção adicional por código ou senha pessoal. - [Google Fotos - Conferir seu backup](https://support.google.com/photos/answer/9343402?hl=pt-BR) — Curso 3, questão 5. - [Google Fotos - Excluir fotos e vídeos](https://support.google.com/photos/answer/6128858?co=GENIE.Platform%3DAndroid&hl=pt-BR) — Curso 3, questão 6. - [YouTube - Inscrever-se em canais](https://support.google.com/youtube/answer/4489286?co=GENIE.Platform%3DAndroid&hl=pt-BR) — Curso 3, questão 4. - [Google Chrome - Criar, encontrar e editar favoritos](https://support.google.com/chrome/answer/188842?co=GENIE.Platform%3DAndroid&hl=pt-BR) — Curso 3, questão 9. - [Chromium - HTTPS e o significado do indicador de conexão](https://blog.chromium.org/2023/05/an-update-on-lock-icon.html?hl=en_GB) — Curso 4, questão 8. - [Banco Central do Brasil - Sobre o Pix](https://bcb.gov.br/estabilidadefinanceira/pix-sobre) — Curso 5, questão 8. - [Banco Central do Brasil - Perguntas frequentes sobre Pix](https://www.bcb.gov.br/meubc/faqs/s/pix) — Curso 5, questão 1. - [Governo Digital - Conta gov.br](https://www.gov.br/governodigital/pt-br/identidade/conta-gov-br) — Curso 5, questão 2. - [Governo Digital - Recuperar senha da conta gov.br](https://www.gov.br/governodigital/pt-br/acessibilidade-e-usuario/atendimento-gov.br/duvidas-na-conta-gov.br/recuperar-senha-da-conta-gov.br) — Curso 5, questão 3. - [Ministério da Saúde - Perguntas e respostas sobre Meu SUS Digital](https://www.gov.br/saude/pt-br/composicao/seidigi/meususdigital/perguntas-e-respostas/cidadao) — Curso 5, questões 5 e 6.",
+            "ordem": 2
+          },
+          {
+            "texto": "Compartilhar sua senha com a turma para que todos pratiquem na sua conta.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 3
+          },
+          {
+            "texto": "Confirmar qualquer transferência e pedir a devolução depois.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 4
+          }
+        ]
+      }
+    ]
+  }
+}

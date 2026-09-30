@@ -1,0 +1,536 @@
+{
+  "curso": {
+    "nome": "Aplicativos para Informação, Entretenimento e Serviços",
+    "descricao": "Aprenda a usar aplicativos para mapas, vídeos, fotos, música, navegação na internet e instalação de aplicativos.",
+    "dificuldade": "Básico",
+    "cargaHoraria": 60,
+    "imagem": null,
+    "icone": null
+  },
+  "modulos": [
+    {
+      "nome": "Google Maps: Encontrando Caminhos e Locais",
+      "descricao": "Use o Google Maps para pesquisar lugares, rotas e transporte.",
+      "ordem": 1,
+      "duracaoMinutos": null,
+      "imagem": null,
+      "quiz": null,
+      "conteudos": [
+        {
+          "tipo": "texto",
+          "titulo": "Google Maps: Encontrando Caminhos e Locais",
+          "conteudo": "O que é o Google Maps?\nÉ um aplicativo de mapas para pesquisar lugares, encontrar endereços e descobrir caminhos. Pode localizar farmácias, hospitais, supermercados, restaurantes, pontos de ônibus e outros endereços. Utiliza internet e localização do celular.\n\nPesquisando um local\nAbra o Maps, toque na barra de pesquisa, digite o lugar ou endereço, pesquise e confira o resultado no mapa.\n\nO que é uma rota?\nUma rota é o caminho até um destino. Depois de encontrar o local, toque em Rotas, confira origem e destino e escolha o meio de deslocamento: carro, a pé ou transporte público, conforme disponibilidade.\n\nIniciando uma rota\nConfira o caminho e o tempo estimado, toque em Iniciar quando disponível e siga as orientações. O tempo é uma estimativa e pode mudar.\n\nConsultando horários de transporte público\nPesquise o destino, toque em Rotas, escolha transporte público e confira as opções. Os horários podem ser estimados e sofrer alterações.\n\nCompartilhando sua localização\nNa foto ou inicial de perfil, procure Compartilhamento de localização, escolha o período e a pessoa, confira e confirme. Compartilhe somente com pessoas de confiança.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 1
+        },
+        {
+          "tipo": "dica",
+          "titulo": "Dica",
+          "conteudo": "Confira o ponto de partida, o destino e o meio de transporte antes de iniciar o caminho.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 2
+        },
+        {
+          "tipo": "importante",
+          "titulo": "Importante",
+          "conteudo": "O tempo da rota é uma estimativa, e os horários do transporte podem mudar. Confira as informações antes de sair.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 3
+        }
+      ]
+    },
+    {
+      "nome": "YouTube: Assistindo e Encontrando Vídeos",
+      "descricao": "Pesquise vídeos e use controles, canais, curtidas e legendas.",
+      "ordem": 2,
+      "duracaoMinutos": null,
+      "imagem": null,
+      "quiz": null,
+      "conteudos": [
+        {
+          "tipo": "texto",
+          "titulo": "YouTube: Assistindo e Encontrando Vídeos",
+          "conteudo": "O que é o YouTube?\nÉ uma plataforma de vídeos com receitas, aulas, notícias, exercícios, música, documentários, programas e entretenimento. Alguns conteúdos ou recursos podem exigir pagamento ou assinatura.\n\nPesquisando um vídeo\nAbra o YouTube, toque na pesquisa, digite o assunto, confira os resultados e abra o vídeo desejado.\n\nAssistindo a um vídeo\nUse os controles para reproduzir ou pausar, controlar som, avançar, voltar e usar tela cheia.\n\nInscrevendo-se em um canal\nUm canal reúne os vídeos de uma pessoa, empresa ou organização. Tocar em Inscrever-se facilita acompanhar novos vídeos e não significa comprar conteúdo.\n\nCurtindo um vídeo\nUse o botão Gostei para registrar que gostou do conteúdo.\n\nAtivando legendas\nToque na tela, procure CC ou a opção de legendas e ative quando disponível. Nem todos os vídeos possuem legendas.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 1
+        },
+        {
+          "tipo": "dica",
+          "titulo": "Dica",
+          "conteudo": "Se o vídeo tiver legendas, ative o botão CC para acompanhar as falas por texto.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 2
+        },
+        {
+          "tipo": "importante",
+          "titulo": "Importante",
+          "conteudo": "Inscrever-se em um canal ajuda a acompanhar seus vídeos. Essa ação é diferente de contratar uma assinatura paga.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 3
+        }
+      ]
+    },
+    {
+      "nome": "Google Fotos: Organizando suas Memórias",
+      "descricao": "Visualize, compartilhe, organize e exclua fotos com atenção.",
+      "ordem": 3,
+      "duracaoMinutos": null,
+      "imagem": null,
+      "quiz": null,
+      "conteudos": [
+        {
+          "tipo": "texto",
+          "titulo": "Google Fotos: Organizando suas Memórias",
+          "conteudo": "O que é o Google Fotos?\nÉ um aplicativo para visualizar, organizar e compartilhar fotos e vídeos. Dependendo da conta e das configurações, pode fazer cópias de segurança na conta do Google.\n\nVisualizando suas fotos\nAbra o Google Fotos, encontre a imagem e toque nela. As fotos podem aparecer por data ou categorias.\n\nCompartilhando uma foto\nAbra a foto, toque em Compartilhar, escolha o aplicativo e a pessoa, confira foto e destinatário e envie.\n\nCriando álbuns\nUm álbum reúne fotos do mesmo assunto, como Família, Aniversário ou Viagem. Procure a opção de adicionar ou organizar fotos em álbuns.\n\nApagando uma foto\nAbra a foto, toque na lixeira, leia a mensagem e confirme somente se tiver certeza. Se houver sincronização, a exclusão pode afetar outros dispositivos ou serviços; preserve uma cópia de fotos importantes.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 1
+        },
+        {
+          "tipo": "dica",
+          "titulo": "Dica",
+          "conteudo": "Crie álbuns com nomes fáceis de reconhecer, como “Família” ou “Viagens”, para encontrar suas fotos com mais facilidade.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 2
+        },
+        {
+          "tipo": "importante",
+          "titulo": "Importante",
+          "conteudo": "Confira se a cópia de segurança da foto foi concluída antes de contar com ela para preservar suas imagens.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 3
+        },
+        {
+          "tipo": "importante",
+          "titulo": "Importante",
+          "conteudo": "Excluir uma foto pode apagá-la da conta e de outros aparelhos vinculados. Leia o aviso antes de confirmar.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 4
+        }
+      ]
+    },
+    {
+      "nome": "Spotify: Músicas e Podcasts",
+      "descricao": "Aprenda a buscar músicas, playlists e podcasts no Spotify.",
+      "ordem": 4,
+      "duracaoMinutos": null,
+      "imagem": null,
+      "quiz": null,
+      "conteudos": [
+        {
+          "tipo": "texto",
+          "titulo": "Spotify: Músicas e Podcasts",
+          "conteudo": "O que é o Spotify?\nÉ um aplicativo de áudio para músicas, podcasts e outros conteúdos. Podcast é um programa em áudio dividido em episódios. Alguns recursos dependem do tipo de conta ou assinatura.\n\nPesquisando uma música\nAbra o Spotify, use Buscar, digite cantor, música ou estilo e escolha o conteúdo.\n\nReproduzindo uma música\nToque na música ou no botão de reprodução e use os controles para pausar, continuar ou avançar.\n\nAjustando o volume\nUse os botões laterais do celular ou os controles de áudio do aplicativo.\n\nCriando uma playlist\nEncontre a música, abra as opções, escolha Adicionar à playlist e selecione uma lista existente ou crie uma nova.\n\nOuvindo podcasts\nUse Buscar, digite o assunto, escolha um podcast e episódio e toque em reproduzir.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 1
+        },
+        {
+          "tipo": "dica",
+          "titulo": "Dica",
+          "conteudo": "Dê à sua playlist um nome fácil de lembrar, como “Minhas favoritas”, e reúna as músicas de que você gosta.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 2
+        },
+        {
+          "tipo": "importante",
+          "titulo": "Importante",
+          "conteudo": "Alguns recursos dependem do tipo de conta ou assinatura. Confira as condições e qualquer cobrança antes de contratar.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 3
+        }
+      ]
+    },
+    {
+      "nome": "Google Chrome: Navegando na Internet",
+      "descricao": "Use o navegador para pesquisar, salvar favoritos e baixar arquivos.",
+      "ordem": 5,
+      "duracaoMinutos": null,
+      "imagem": null,
+      "quiz": null,
+      "conteudos": [
+        {
+          "tipo": "texto",
+          "titulo": "Google Chrome: Navegando na Internet",
+          "conteudo": "O que é um navegador?\nÉ um aplicativo para acessar páginas e serviços da internet. O Google Chrome permite pesquisar informações, acessar sites, ler notícias e consultar serviços.\n\nFazendo uma pesquisa\nAbra o Chrome, toque na barra de endereço, digite a pesquisa e confira os resultados. Também é possível digitar diretamente o endereço de um site.\n\nO que são favoritos?\nFavoritos guardam endereços de páginas para encontrá-las novamente. Abra o site, procure o menu e a opção Favoritos ou estrela e salve a página.\n\nBaixando arquivos\nBaixar significa copiar um arquivo da internet para o dispositivo. Downloads podem incluir documentos, imagens e PDFs. Pelo Chrome, abra o menu e procure Downloads. Não baixe arquivos de sites desconhecidos ou suspeitos.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 1
+        },
+        {
+          "tipo": "dica",
+          "titulo": "Dica",
+          "conteudo": "Salve nos favoritos os sites que você visita com frequência para encontrá-los mais facilmente depois.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 2
+        },
+        {
+          "tipo": "importante",
+          "titulo": "Importante",
+          "conteudo": "Baixe arquivos apenas de fontes em que você confia. Se um site ou arquivo parecer suspeito, não faça o download.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 3
+        }
+      ]
+    },
+    {
+      "nome": "Google Play Store: Encontrando e Instalando Aplicativos",
+      "descricao": "Encontre, confira, instale, atualize e remova aplicativos.",
+      "ordem": 6,
+      "duracaoMinutos": null,
+      "imagem": null,
+      "quiz": null,
+      "conteudos": [
+        {
+          "tipo": "texto",
+          "titulo": "Google Play Store: Encontrando e Instalando Aplicativos",
+          "conteudo": "O que é a Google Play Store?\nÉ a loja de aplicativos utilizada em muitos celulares Android. Permite encontrar, instalar e atualizar aplicativos. No iPhone, a loja utilizada é a App Store.\n\nProcurando um aplicativo\nAbra a Play Store, toque na pesquisa, digite o nome, confira os resultados e abra o aplicativo desejado.\n\nConferindo o aplicativo antes de instalar\nObserve nome, desenvolvedor, descrição, avaliações e quantidade de instalações quando disponível. Cuidado com nomes e imagens muito parecidos com aplicativos conhecidos.\n\nInstalando um aplicativo\nToque em Instalar, aguarde e abra quando terminar. Leia as solicitações de permissões antes de permitir acesso.\n\nAtualizando aplicativos\nAbra a Play Store, toque na foto ou inicial, procure o gerenciamento de aplicativos e confira atualizações disponíveis.\n\nDesinstalando um aplicativo\nPressione o ícone, procure Desinstalar e confirme, ou use as configurações do celular. Verifique antes se existem dados que precisam ser guardados.\n\nExercícios Práticos\nDesafio 1: pesquise “Farmácia” no Google Maps e observe os resultados.\nDesafio 2: pesquise no YouTube uma música ou conteúdo de que gostava e procure legendas.\nDesafio 3: escolha uma foto no Google Fotos e compartilhe com uma pessoa de confiança, conferindo foto e destinatário.\nDesafio 4: na Play Store, procure um aplicativo simples, confira nome e desenvolvedor e instale somente se estiver seguro de que é o correto.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 1
+        },
+        {
+          "tipo": "dica",
+          "titulo": "Dica",
+          "conteudo": "Reserve um momento para verificar se há atualizações dos aplicativos que você usa.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 2
+        },
+        {
+          "tipo": "importante",
+          "titulo": "Importante",
+          "conteudo": "Nomes e ícones parecidos podem confundir. Confira o desenvolvedor, a descrição e as avaliações antes de instalar.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 3
+        },
+        {
+          "tipo": "importante",
+          "titulo": "Importante",
+          "conteudo": "Desinstalar pode apagar dados guardados apenas no celular. Confira se precisa salvar alguma informação antes de remover o aplicativo.",
+          "url": null,
+          "altTexto": null,
+          "ordem": 4
+        }
+      ]
+    }
+  ],
+  "testeFinal": {
+    "questoes": [
+      {
+        "pergunta": "Você quer encontrar uma farmácia próxima de onde está e descobrir como chegar até ela. Qual opção apresenta uma maneira correta de fazer isso?",
+        "ordem": 1,
+        "alternativas": [
+          {
+            "texto": "Abrir o Google Fotos, procurar uma foto de uma farmácia e tocar nela para iniciar uma rota.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 1
+          },
+          {
+            "texto": "Abrir o Google Maps, pesquisar por “Farmácia”, escolher um resultado e tocar em “Rotas” para consultar o caminho.",
+            "correta": true,
+            "explicacao": "O Google Maps permite pesquisar lugares e consultar rotas. Confira o estabelecimento e escolha o meio de transporte adequado antes de seguir o caminho.",
+            "ordem": 2
+          },
+          {
+            "texto": "Abrir o Spotify, pesquisar por “Farmácia” e iniciar uma chamada de voz para o estabelecimento.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 3
+          },
+          {
+            "texto": "Abrir a Play Store, pesquisar por “Farmácia” e instalar qualquer aplicativo que aparecer primeiro.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "O Google Maps informa que uma viagem levará 20 minutos. Como você deve entender esse tempo?",
+        "ordem": 2,
+        "alternativas": [
+          {
+            "texto": "É um tempo exato que nunca pode mudar.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 1
+          },
+          {
+            "texto": "É a garantia de que o estabelecimento estará aberto quando você chegar.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 2
+          },
+          {
+            "texto": "É o tempo necessário para o celular baixar um mapa.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 3
+          },
+          {
+            "texto": "É uma estimativa que pode mudar conforme o trânsito e outras condições do trajeto.",
+            "correta": true,
+            "explicacao": "O tempo de uma rota é estimado. Trânsito, condições da estrada e mudanças no transporte podem alterar a duração da viagem.",
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "Você está assistindo a um vídeo no YouTube e quer acompanhar as falas por texto. Qual recurso deve procurar?",
+        "ordem": 3,
+        "alternativas": [
+          {
+            "texto": "O botão CC ou a opção Legendas, quando estiver disponível.",
+            "correta": true,
+            "explicacao": "As legendas mostram textos relacionados às falas e aos sons do vídeo. Procure CC ou Legendas; nem todos os vídeos oferecem esse recurso.",
+            "ordem": 1
+          },
+          {
+            "texto": "O botão Gostei.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 2
+          },
+          {
+            "texto": "A opção de compartilhar o vídeo.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 3
+          },
+          {
+            "texto": "O botão Inscrever-se.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "Você encontrou um canal do YouTube de que gostou e tocou em Inscrever-se. O que essa ação significa?",
+        "ordem": 4,
+        "alternativas": [
+          {
+            "texto": "Você comprou automaticamente todos os vídeos do canal.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 1
+          },
+          {
+            "texto": "Você enviou todos os seus vídeos pessoais ao dono do canal.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 2
+          },
+          {
+            "texto": "Você passou a acompanhar o canal; essa ação, por si só, não é uma compra.",
+            "correta": true,
+            "explicacao": "Inscrever-se ajuda a acompanhar os vídeos de um canal. Essa ação é diferente de contratar uma assinatura paga ou comprar conteúdo.",
+            "ordem": 3
+          },
+          {
+            "texto": "Você iniciou uma chamada de vídeo com o dono do canal.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "Para contar com uma cópia de segurança de uma foto no Google Fotos, qual cuidado você deve ter?",
+        "ordem": 5,
+        "alternativas": [
+          {
+            "texto": "Presumir que toda foto já está copiada apenas porque o aplicativo está instalado.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 1
+          },
+          {
+            "texto": "Verificar a conta utilizada, as configurações de cópia de segurança (backup) e se a cópia daquela foto foi concluída.",
+            "correta": true,
+            "explicacao": "Instalar o Google Fotos não garante que todas as imagens estejam copiadas. Confira o backup, que é a cópia de segurança, e se a foto foi salva na conta.",
+            "ordem": 2
+          },
+          {
+            "texto": "Apagar a foto antes de verificar qualquer configuração.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 3
+          },
+          {
+            "texto": "Enviar sua senha do Google para todas as pessoas com quem compartilha fotos.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "Você vai apagar uma foto importante pelo Google Fotos. Qual é o cuidado mais adequado?",
+        "ordem": 6,
+        "alternativas": [
+          {
+            "texto": "Confirmar a exclusão sem ler a mensagem exibida.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 1
+          },
+          {
+            "texto": "Apagar a foto e verificar somente depois se ainda precisa dela.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 2
+          },
+          {
+            "texto": "Presumir que a exclusão nunca afeta fotos disponíveis em outros dispositivos.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 3
+          },
+          {
+            "texto": "Ler o aviso, verificar se quer mesmo apagar a foto e guardar uma cópia se precisar dela.",
+            "correta": true,
+            "explicacao": "A exclusão pode afetar a foto na conta e em dispositivos vinculados. Antes de confirmar, leia o aviso e verifique se há uma cópia que você deseja conservar.",
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "Você quer reunir suas músicas preferidas em uma lista no Spotify. Qual recurso pode usar?",
+        "ordem": 7,
+        "alternativas": [
+          {
+            "texto": "Uma playlist, que é uma lista de músicas escolhidas por você.",
+            "correta": true,
+            "explicacao": "Uma playlist reúne músicas em uma lista. Você pode criar uma e adicionar as músicas que deseja ouvir.",
+            "ordem": 1
+          },
+          {
+            "texto": "Uma rota, que indica um caminho até um destino.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 2
+          },
+          {
+            "texto": "Um favorito do Chrome, que guarda o endereço de um site.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 3
+          },
+          {
+            "texto": "Um álbum do Google Fotos, que reúne fotografias.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "No Spotify, você encontrou um programa de entrevistas dividido em episódios de áudio. Como esse tipo de conteúdo é chamado no curso?",
+        "ordem": 8,
+        "alternativas": [
+          {
+            "texto": "Pasta de aplicativos.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 1
+          },
+          {
+            "texto": "Álbum de fotografias.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 2
+          },
+          {
+            "texto": "Podcast.",
+            "correta": true,
+            "explicacao": "Um podcast é um programa em áudio dividido em episódios. Ele pode tratar de entrevistas, histórias, notícias e muitos outros assuntos.",
+            "ordem": 3
+          },
+          {
+            "texto": "Mensagem de e-mail.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "Você quer encontrar novamente um site que costuma visitar no Google Chrome. Para que serve adicioná-lo aos favoritos?",
+        "ordem": 9,
+        "alternativas": [
+          {
+            "texto": "Para guardar o endereço da página e acessá-la com mais facilidade depois.",
+            "correta": true,
+            "explicacao": "Os favoritos guardam endereços de páginas para facilitar novos acessos. Salvar um site não é uma garantia de que seu conteúdo seja confiável.",
+            "ordem": 1
+          },
+          {
+            "texto": "Para garantir que todas as informações daquele site sejam verdadeiras.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 2
+          },
+          {
+            "texto": "Para instalar o site como um aplicativo bancário.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 3
+          },
+          {
+            "texto": "Para apagar o histórico e todas as senhas do navegador.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 4
+          }
+        ]
+      },
+      {
+        "pergunta": "Você pesquisou um aplicativo na Play Store e encontrou resultados com nomes parecidos. O que deve fazer antes de instalar?",
+        "ordem": 10,
+        "alternativas": [
+          {
+            "texto": "Escolher o primeiro resultado sem abrir suas informações.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 1
+          },
+          {
+            "texto": "Conferir o nome, o desenvolvedor, a descrição e as avaliações para identificar o aplicativo correto.",
+            "correta": true,
+            "explicacao": "Aplicativos diferentes podem ter nomes ou ícones parecidos. Confira as informações e quem é o desenvolvedor antes de instalar.",
+            "ordem": 2
+          },
+          {
+            "texto": "Escolher apenas pela cor do ícone.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 3
+          },
+          {
+            "texto": "Instalar todos os resultados para descobrir depois qual é o correto.",
+            "correta": false,
+            "explicacao": null,
+            "ordem": 4
+          }
+        ]
+      }
+    ]
+  }
+}

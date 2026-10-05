@@ -431,7 +431,7 @@ html[data-tema="escuro"] .perfil :is(.btn-card-curso, .btn-config:not(.secundari
   .estado-perfil > i { animation: none; }
 }
 
-@media (max-width: 62.5rem) {
+@media (max-width: 68.75rem) {
   .cards-cursos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .resumo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 

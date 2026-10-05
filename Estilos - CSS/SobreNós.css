@@ -361,9 +361,11 @@ html[data-tema="escuro"] .pagina-sobre .hero .btn-principal {
 .pagina-sobre .membro p { margin: 0.75rem 0 0; font-size: 0.98rem; text-align: left; }
 
 /* 8. Responsividade */
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
   .pagina-sobre .hero,
-  .pagina-sobre .historia-container { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; }
+  .pagina-sobre .historia-container { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+  .pagina-sobre .hero-texto h1 { max-width: 22ch; }
+  .pagina-sobre :is(.hero-img, .historia-imagem) { width: 100%; max-width: 42rem; margin-inline: auto; }
   .pagina-sobre .hero-texto h1 { font-size: clamp(2.5rem, 7vw, 4rem); }
   .pagina-sobre :is(.valores-cards, .impacto-cards) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .pagina-sobre :is(.valor-card, .impacto-card):last-child { grid-column: 1 / -1; }

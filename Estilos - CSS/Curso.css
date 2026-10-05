@@ -582,7 +582,7 @@ html[data-tema="escuro"]
   }
 }
 
-@media (min-width: 62.5625rem) and (max-width: 75rem) {
+@media (min-width: 68.8125rem) and (max-width: 75rem) {
   .curso-layout { grid-template-columns: minmax(15rem, 17rem) minmax(0, 1fr); }
   .conteudo-aula { padding: 1.75rem; }
   .coluna-direita {
@@ -593,7 +593,7 @@ html[data-tema="escuro"]
   }
 }
 
-@media (max-width: 62.5rem) {
+@media (max-width: 68.75rem) {
   .pagina-curso { padding: 1.25rem 1rem 3rem; }
   .curso-layout { grid-template-columns: minmax(0, 1fr); }
   .coluna-esquerda,

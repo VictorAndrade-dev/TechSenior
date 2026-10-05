@@ -566,7 +566,7 @@ html[data-tamanho-fonte="120"] {
    RESPONSIVO - TABLET
 ======================================== */
 
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
   nav {
     display: none;
   }
@@ -581,7 +581,7 @@ html[data-tamanho-fonte="120"] {
    RESPONSIVO - MOBILE
 ======================================== */
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   section {
     padding: 70px 6%;
   }
@@ -872,7 +872,7 @@ html[data-tema="escuro"] :is(body, main, footer, .copyright, .hero, .sobre-inici
 html[data-tema="escuro"] :is(input, textarea, select, .input-box, .resumo-card, .config-card, .card-curso, .curso-card, .duvida, .depoimento-card, .card-redefinicao, .teste-card) { background: var(--superficie); color: var(--texto-forte); border-color: var(--borda); }
 html[data-tema="escuro"] :is(p, .sidebar-nav a, nav a, .email-perfil, .tipo-conta) { color: var(--texto); }
 html[data-tema="escuro"] a:not([class*="btn"]):not(.menu-item) { color: #b3ceff; }
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
   body > header { min-height: 4.5rem; padding: .4rem 1rem; gap: .75rem; }
   body > header nav, body > header .btn-login { display: none; }
   body > header .logo { margin-right: auto; }
@@ -903,7 +903,7 @@ html[data-tema="escuro"] :is(.btn-principal, .btn-login, .btn-card, .btn-card-cu
 html[data-tema="escuro"] .btn-config.secundario { color: var(--texto-forte); }
 html[data-tema="escuro"] :is(.secao-tag, .menu-toggle, .input-box > i, .mostrar-senha, .duvida-pergunta i) { color: #b3ceff; }
 html[data-tema="escuro"] :is(.cta, .estatisticas) p { color: #fff; }
-@media (min-width: 1001px) { body > header nav { flex-wrap: wrap; justify-content: center; gap: .6rem 1.2rem; } body > header .btn-login { max-width: 18rem; } }
+@media (min-width: 1101px) { body > header nav { flex-wrap: wrap; justify-content: center; gap: .6rem 1.2rem; } body > header .btn-login { max-width: 18rem; } }
 html[data-tema="escuro"] {
  --admin-bg: #111b29; --admin-surface: #1c293a; --admin-surface-soft: #24354a;
  --admin-border: #52637b; --admin-border-strong: #8b9db5;
@@ -1302,7 +1302,7 @@ html[data-tema="escuro"] #btnAcessibilidade {
 
 
 /* Desktop */
-@media (min-width: 1001px) {
+@media (min-width: 1101px) {
   body.nav-v2 #opcoesAcessibilidade {
     width: min(27rem, calc(100vw - 2rem));
   }
@@ -1336,7 +1336,7 @@ html[data-tema="escuro"] #btnAcessibilidade {
   font-size: 1.35rem;
 }
 
-@media (min-width: 1001px) {
+@media (min-width: 1101px) {
   body.nav-v2 .menu-toggle,
   body.nav-v2 .sidebar,
   body.nav-v2 .overlay {
@@ -1344,8 +1344,40 @@ html[data-tema="escuro"] #btnAcessibilidade {
   }
 }
 
-@media (min-width: 768px) and (max-width: 1000px) {
+@media (min-width: 768px) and (max-width: 1100px) {
+  body.nav-v2 {
+    --controle-flutuante-tamanho: 3.5rem;
+    --controle-flutuante-espaco: 1rem;
+    --controle-flutuante-base: calc(1.35rem + env(safe-area-inset-bottom));
+    --controle-flutuante-direita: calc(1.35rem + env(safe-area-inset-right));
+  }
+
+  body.nav-v2 #painelAcessibilidade {
+    bottom: var(--controle-flutuante-base);
+    right: var(--controle-flutuante-direita);
+  }
+
+  body.nav-v2 :is(#btnAcessibilidade, #voltarTopo) {
+    width: var(--controle-flutuante-tamanho);
+    height: var(--controle-flutuante-tamanho);
+  }
+
+  body.nav-v2 #voltarTopo {
+    /* As posições antigas têm !important; manter a prioridade só neste intervalo. */
+    right: var(--controle-flutuante-direita) !important;
+    bottom: calc(var(--controle-flutuante-base) + var(--controle-flutuante-tamanho) + var(--controle-flutuante-espaco)) !important;
+  }
+
+  body.nav-v2 #opcoesAcessibilidade {
+    /* O painel aberto começa acima dos dois controles, incluindo seus focos. */
+    bottom: calc(100% + var(--controle-flutuante-tamanho) + 2 * var(--controle-flutuante-espaco));
+    max-height: min(75dvh, calc(100dvh - var(--controle-flutuante-base) - 2 * var(--controle-flutuante-tamanho) - 2 * var(--controle-flutuante-espaco) - 1rem));
+  }
+
   body.nav-v2 > header {
+    /* Dois elementos visíveis: o grid de desktop deixava o menu no centro. */
+    display: flex;
+    justify-content: space-between;
     min-height: 4.75rem;
   }
 
@@ -1833,7 +1865,7 @@ html[data-tema="escuro"] body.home .copyright {
   color: var(--text-muted);
 }
 
-@media (min-width: 1001px) {
+@media (min-width: 1101px) {
   body.home .hero {
     display: grid;
     grid-template-columns: minmax(0, 1.05fr) minmax(28rem, 0.95fr);
@@ -1877,7 +1909,7 @@ html[data-tema="escuro"] body.home .copyright {
 }
 
 
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
   body.home .hero,
   body.home .sobre-container {
     text-align: left;
@@ -1885,6 +1917,7 @@ html[data-tema="escuro"] body.home .copyright {
 
   body.home .hero-texto,
   body.home .sobre-texto {
+    width: 100%;
     max-width: 46rem;
   }
 
@@ -1907,6 +1940,12 @@ html[data-tema="escuro"] body.home .copyright {
   body.home .depoimentos-container {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
+
+/* Faixa intermediária: leitura ampla, sem o limite de título do desktop. */
+@media (min-width: 768px) and (max-width: 1100px) {
+  body.home .hero-texto h1 { max-width: 22ch; }
+  body.home .hero-texto h1 br { display: none; }
 }
 
 @media (max-width: 767px) {
@@ -1973,7 +2012,7 @@ html[data-tema="escuro"] body.home .copyright {
 }
 
 
-@media (min-width: 1001px) {
+@media (min-width: 1101px) {
   body.nav-v2 #painelAcessibilidade {
     right: 1.5rem;
     bottom: 1.5rem;
@@ -1985,7 +2024,7 @@ html[data-tema="escuro"] body.home .copyright {
   }
 }
 
-@media (min-width: 1001px) {
+@media (min-width: 1101px) {
   body.home > header .logo {
     width: auto;
     height: auto;
@@ -2003,7 +2042,7 @@ html[data-tema="escuro"] body.home .copyright {
 }
 
 /* SOBRE — AJUSTE DESKTOP */
-@media (min-width: 1001px) {
+@media (min-width: 1101px) {
   body.home .sobre-inicio {
     padding:
       clamp(4.5rem, 6vw, 6rem)
@@ -2200,7 +2239,7 @@ html[data-tema="escuro"] body.nav-v2 footer {
   background: var(--surface);
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
   body.nav-v2 footer {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -2354,7 +2393,7 @@ body.nav-v2 .cta .btn-principal i {
 }
 
 /* TABLET — CTA V2 */
-@media (min-width: 768px) and (max-width: 1000px) {
+@media (min-width: 768px) and (max-width: 1100px) {
   body.nav-v2 .cta {
     flex-direction: column;
     align-items: center;
@@ -2459,7 +2498,7 @@ body.nav-v2 .cta .btn-principal i {
 }
 
 /* GARANTE NAVBAR V2 NO DESKTOP */
-@media (min-width: 1001px) {
+@media (min-width: 1101px) {
   body.nav-v2 > header nav {
     display: flex !important;
     align-items: center;

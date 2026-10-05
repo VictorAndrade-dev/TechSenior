@@ -423,7 +423,7 @@
    RESPONSIVIDADE
 ========================== */
 
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
   .hero,
   .sobre-container {
     flex-direction: column;

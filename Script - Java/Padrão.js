@@ -95,7 +95,7 @@ if (sidebar && overlay) {
   });
   sidebar.querySelectorAll("a").forEach((link) => link.addEventListener("click", fecharMenu));
   window.addEventListener("resize", () => {
-    if (innerWidth > 1000 && sidebar.classList.contains("active")) fecharMenu();
+    if (innerWidth > 1100 && sidebar.classList.contains("active")) fecharMenu();
   });
 }
 

@@ -951,52 +951,83 @@ function adicionarTextoFormatado(
   container,
   texto
 ) {
-
   if (!texto) {
     return;
   }
 
+  // Apenas os marcadores suportados geram elementos; HTML permanece texto.
+  function adicionarNegrito(elemento, linha) {
+    const trechos = /\*\*([^*]+)\*\*/g;
+    let inicio = 0;
 
-  const paragrafos =
-    String(texto)
-      .split(/\n{2,}/);
-
-
-  paragrafos.forEach(
-    (paragrafo) => {
-
-      const p =
-        document.createElement("p");
-
-      const linhas =
-        paragrafo.split("\n");
-
-
-      linhas.forEach(
-        (linha, indice) => {
-
-          if (indice > 0) {
-
-            p.appendChild(
-              document.createElement("br")
-            );
-
-          }
-
-          p.appendChild(
-            document.createTextNode(
-              linha
-            )
-          );
-
-        }
+    for (const trecho of linha.matchAll(trechos)) {
+      elemento.appendChild(
+        document.createTextNode(linha.slice(inicio, trecho.index))
       );
 
-
-      container.appendChild(p);
-
+      const strong = document.createElement("strong");
+      strong.textContent = trecho[1];
+      elemento.appendChild(strong);
+      inicio = trecho.index + trecho[0].length;
     }
-  );
+
+    elemento.appendChild(document.createTextNode(linha.slice(inicio)));
+  }
+
+  let paragrafo = null;
+  let lista = null;
+
+  const linhas = String(texto).replace(/\r\n?/g, "\n").split("\n");
+
+  linhas.forEach((linha) => {
+    if (!linha.trim()) {
+      paragrafo = null;
+      lista = null;
+      return;
+    }
+
+    const subtitulo = linha.match(/^##\s+(.+)$/);
+    const itemNumerado = linha.match(/^\d+\.\s+(.+)$/);
+    const itemSimples = linha.match(/^-\s+(.+)$/);
+
+    if (subtitulo) {
+      paragrafo = null;
+      lista = null;
+      const h3 = document.createElement("h3");
+      h3.className = "subtitulo-texto";
+      adicionarNegrito(h3, subtitulo[1]);
+      container.appendChild(h3);
+      return;
+    }
+
+    if (itemNumerado || itemSimples) {
+      paragrafo = null;
+      const tipo = itemNumerado ? "ol" : "ul";
+
+      if (!lista || lista.localName !== tipo) {
+        lista = document.createElement(tipo);
+        lista.className = "lista-texto";
+        container.appendChild(lista);
+      }
+
+      const item = document.createElement("li");
+      adicionarNegrito(item, (itemNumerado || itemSimples)[1]);
+      lista.appendChild(item);
+      return;
+    }
+
+    lista = null;
+
+    // Mantém as quebras simples dos conteúdos antigos dentro do parágrafo.
+    if (!paragrafo) {
+      paragrafo = document.createElement("p");
+      container.appendChild(paragrafo);
+    } else {
+      paragrafo.appendChild(document.createElement("br"));
+    }
+
+    adicionarNegrito(paragrafo, linha);
+  });
 }
 
 function extrairIdYoutube(url) {

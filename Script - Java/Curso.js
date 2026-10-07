@@ -2,6 +2,7 @@ import { escapeHtml } from "./AdminComum.js";
 import { registrarAtividade } from "./ServicoAtividade.js";
 import { auth } from "./Firebase-config.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+import { QueryFetchPolicy } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-data-connect.js";
 import {
   carregarProgressoCurso,
   salvarProgressoCurso,
@@ -40,6 +41,12 @@ let cursoAtual = null;
 let modulos = [];
 let moduloAtual = 0;
 let modulosConcluidos = [];
+let assinaturaConteudos = null;
+let moduloConteudosId = null;
+let versaoCarregamentoModulo = 0;
+let verificacaoConteudosEmAndamento = false;
+let intervaloConteudos = null;
+let cursoInicializado = false;
 
 let questoesQuiz = [];
 let indiceQuestaoQuiz = 0;
@@ -244,7 +251,75 @@ async function inicializarCurso(usuario) {
 
   await verificarTesteFinalDisponivel();
 
+  cursoInicializado = true;
+  iniciarAtualizacaoConteudos();
+
 }
+
+function criarAssinaturaConteudos(conteudos) {
+  return JSON.stringify(conteudos.map(({ id, tipo, titulo, conteudo, url, altTexto, ordem }) =>
+    [id, tipo, titulo, conteudo, url, altTexto, ordem]
+  ));
+}
+
+async function atualizarConteudosModuloAtual() {
+  const modulo = modulos[moduloAtual];
+  if (!cursoInicializado || document.hidden || !auth.currentUser ||
+      verificacaoConteudosEmAndamento || !modulo || moduloConteudosId !== modulo.id) {
+    return;
+  }
+
+  const versao = versaoCarregamentoModulo;
+  verificacaoConteudosEmAndamento = true;
+  try {
+    const resultado = await listarConteudosDoModulo(
+      { moduloId: modulo.id },
+      { fetchPolicy: QueryFetchPolicy.SERVER_ONLY }
+    );
+    // A versão também protege a troca A -> B -> A durante uma consulta.
+    if (!cursoInicializado || versao !== versaoCarregamentoModulo ||
+        modulos[moduloAtual]?.id !== modulo.id || moduloConteudosId !== modulo.id) {
+      return;
+    }
+
+    const conteudos = resultado.data.conteudoModulos;
+    if (!Array.isArray(conteudos)) {
+      throw new Error("Resposta de conteúdos inválida.");
+    }
+    const assinatura = criarAssinaturaConteudos(conteudos);
+    if (assinatura === assinaturaConteudos) return;
+
+    renderizarConteudos(conteudos);
+    assinaturaConteudos = assinatura;
+    document.dispatchEvent(new Event("techsenior:parar-leitura"));
+  } catch (erro) {
+    console.warn("Não foi possível atualizar os conteúdos do módulo.", erro);
+  } finally {
+    verificacaoConteudosEmAndamento = false;
+  }
+}
+
+function iniciarAtualizacaoConteudos() {
+  if (!cursoInicializado || intervaloConteudos !== null) return;
+  intervaloConteudos = window.setInterval(atualizarConteudosModuloAtual, 30000);
+}
+
+function pararAtualizacaoConteudos() {
+  window.clearInterval(intervaloConteudos);
+  intervaloConteudos = null;
+  versaoCarregamentoModulo++;
+}
+
+window.addEventListener("focus", atualizarConteudosModuloAtual);
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) atualizarConteudosModuloAtual();
+});
+window.addEventListener("pagehide", pararAtualizacaoConteudos);
+window.addEventListener("beforeunload", pararAtualizacaoConteudos);
+window.addEventListener("pageshow", () => {
+  iniciarAtualizacaoConteudos();
+  atualizarConteudosModuloAtual();
+});
 
 async function carregarCurso() {
 
@@ -463,6 +538,8 @@ async function carregarModulo(indice) {
   }
 
   moduloAtual = indice;
+  const versao = ++versaoCarregamentoModulo;
+  moduloConteudosId = null;
 
   const modulo =
     modulos[indice];
@@ -479,6 +556,8 @@ async function carregarModulo(indice) {
 
   const conteudos =
     resultadoConteudos.data?.conteudoModulos || [];
+
+  if (versao !== versaoCarregamentoModulo || modulos[moduloAtual]?.id !== modulo.id) return;
 
 
   // ========================================
@@ -502,6 +581,8 @@ async function carregarModulo(indice) {
   // ========================================
 
   renderizarConteudos(conteudos);
+  assinaturaConteudos = criarAssinaturaConteudos(conteudos);
+  moduloConteudosId = modulo.id;
   salvarPosicaoCurso(auth.currentUser.uid, cursoId, indice, modulos.length).catch((erro) => console.warn("Não foi possível salvar a posição do curso.", erro));
   document.dispatchEvent(new Event("techsenior:parar-leitura"));
   registrarAtividade(cursoId, indice, cursoAtual?.nome || "", modulo.nome || "").catch((erro) => {

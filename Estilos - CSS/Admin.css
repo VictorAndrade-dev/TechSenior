@@ -29,6 +29,14 @@ html[data-tema="escuro"] .admin-page {
   outline-offset: 3px;
 }
 .admin-page button:disabled { cursor: not-allowed; opacity: 0.52; }
+/* Fundo sólido somente no header global; mantém o empilhamento sticky existente. */
+body.admin-page > header {
+  background: var(--surface);
+  backdrop-filter: none;
+}
+html[data-tema="escuro"] body.admin-page > header {
+  background: var(--surface);
+}
 /* O shell já contém o link Administração marcado como atual. */
 .admin-page > header nav [data-link-admin],
 .admin-page #drawerAdmin { display: none !important; }
@@ -433,6 +441,8 @@ main.conteudo-editor-quiz-admin {
   color: var(--text);
 }
 .questao-admin { display: grid; gap: 0.65rem; padding: 0.85rem; }
+/* O header de uma questão não deve herdar o sticky da navbar global. */
+.questao-admin__cabecalho { position: static; z-index: auto; }
 .questao-admin__cabecalho,
 .questao-admin__identificacao,
 .questao-admin__alternativas-cabecalho {
@@ -469,7 +479,7 @@ main.conteudo-editor-quiz-admin {
   border-radius: 999px;
   background: var(--admin-warning-soft);
   color: var(--admin-warning);
-  font-size: 0.78rem;
+  font-size: 0.86rem;
   font-weight: 700;
   line-height: 1.25;
 }
@@ -491,7 +501,7 @@ main.conteudo-editor-quiz-admin {
   overflow-wrap: anywhere;
   white-space: pre-wrap;
 }
-.questao-admin__enunciado { color: var(--text); font-size: 1rem; line-height: 1.55; }
+.questao-admin__enunciado { color: var(--text); font-size: 1.05rem; line-height: 1.55; }
 .questao-admin__barra-acoes {
   display: flex;
   width: 100%;
@@ -509,6 +519,7 @@ main.conteudo-editor-quiz-admin {
   max-width: 100%;
   flex: 0 0 auto;
   white-space: nowrap;
+  font-size: 0.9rem;
 }
 .alternativa-admin__acoes {
   display: flex;
@@ -540,7 +551,7 @@ main.conteudo-editor-quiz-admin {
   padding: 0;
 }
 .questao-admin__ajuda,
-.questao-admin__vazio { color: var(--text-muted); font-size: 0.88rem; line-height: 1.45; }
+.questao-admin__vazio { color: var(--text-muted); font-size: 0.95rem; line-height: 1.45; }
 .questao-admin__ajuda strong { color: var(--heading); }
 .questao-admin__alternativas {
   display: grid;
@@ -549,7 +560,7 @@ main.conteudo-editor-quiz-admin {
   padding-top: 0.65rem;
   border-top: 1px solid var(--border);
 }
-.questao-admin__alternativas-cabecalho h4 { margin: 0; color: var(--heading); font-size: 0.95rem; }
+.questao-admin__alternativas-cabecalho h4 { margin: 0; color: var(--heading); font-size: 1rem; }
 .questao-admin__alternativas-cabecalho > span {
   flex: 0 0 auto;
   padding: 0.2rem 0.55rem;
@@ -557,7 +568,7 @@ main.conteudo-editor-quiz-admin {
   border-radius: 999px;
   background: var(--surface);
   color: var(--text-muted);
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   font-weight: 700;
 }
 .alternativas-admin { display: grid; min-width: 0; gap: 0.5rem; }
@@ -575,7 +586,7 @@ main.conteudo-editor-quiz-admin {
   gap: 0.6rem;
 }
 .alternativa-admin__conteudo { min-width: 0; padding-top: 0.25rem; }
-.alternativa-admin__resposta { color: var(--text); line-height: 1.55; }
+.alternativa-admin__resposta { color: var(--text); font-size: 1.05rem; line-height: 1.55; }
 .alternativa-admin__lateral {
   display: flex;
   min-width: 0;
@@ -597,12 +608,12 @@ main.conteudo-editor-quiz-admin {
 .alternativa-admin__explicacao h5 {
   margin: 0;
   color: var(--heading);
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   font-weight: 800;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
-.alternativa-admin__explicacao p { color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; }
+.alternativa-admin__explicacao p { color: var(--text-muted); font-size: 0.98rem; line-height: 1.6; }
 @media (max-width: 1100px) {
   main.conteudo-editor-quiz-admin { width: min(calc(100% - 2.5rem), 1240px); }
 }

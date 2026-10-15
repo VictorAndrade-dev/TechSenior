@@ -367,6 +367,10 @@ html[data-tema="escuro"] .pagina-curso {
 .secao-aula p,
 .bloco-destaque-texto p { max-width: 68ch; margin: 0.75rem 0; color: var(--curso-texto); font-size: 1.05rem; line-height: 1.8; overflow-wrap: anywhere; }
 
+.subtitulo-texto { max-width: 68ch; margin: 1.25rem 0 0.75rem; color: var(--curso-texto); font-size: clamp(1.15rem, 2vw, 1.35rem); font-weight: 700; line-height: 1.5; overflow-wrap: anywhere; }
+.lista-texto { max-width: 68ch; margin: 0.75rem 0; padding-inline-start: 2rem; color: var(--curso-texto); font-size: 1.05rem; line-height: 1.8; overflow-wrap: anywhere; }
+.lista-texto li + li { margin-top: 0.5rem; }
+
 .estado-carregamento { display: flex; min-height: 12rem; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; color: var(--curso-texto-suave); text-align: center; }
 .estado-carregamento i { color: var(--curso-azul); font-size: 2rem; }
 .estado-carregamento p { margin: 0; font-size: 1rem; }
@@ -628,6 +632,7 @@ html[data-tema="escuro"]
   .conteudo-aula { padding: 1.25rem 1rem; }
   .secao-aula p,
   .bloco-destaque-texto p,
+  .lista-texto,
   .descricao-aula { font-size: 1rem; }
   .bloco-destaque,
   .quiz-modulo,

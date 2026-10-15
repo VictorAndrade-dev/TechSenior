@@ -1,4 +1,5 @@
 import { auth } from "./Firebase-config.js";
+import { formatarDuracao, somarDuracaoModulos } from "./Duracao.js";
 
 import {
   listarCursos,
@@ -86,6 +87,7 @@ const modalCursoProgressoPreenchimento =
 let usuarioAtual = null;
 let focoAntesModal;
 let cursoSelecionado = null;
+let versaoEstrutura = 0;
 
 
 
@@ -288,9 +290,7 @@ async function abrirModalCurso(curso) {
 
 
   modalCursoDuracao.textContent =
-    curso.cargaHoraria
-      ? `${curso.cargaHoraria} min`
-      : "Não informada";
+    "Duração a definir";
 
 
   prepararEstruturaModal();
@@ -354,9 +354,16 @@ async function carregarEstruturaCurso(
     return;
   }
 
+  const versao = ++versaoEstrutura;
+  const usuario = usuarioAtual;
+  const carregamentoAtual = () => versao === versaoEstrutura &&
+    cursoSelecionado?.id === curso.id && usuarioAtual === usuario;
+  modalCursoDuracao.textContent = "Duração a definir";
+
 
   // A consulta de módulos exige autenticação.
   if (!usuarioAtual) {
+    prepararEstruturaModal();
     modalCursoQuantidadeModulos.textContent =
       "Após entrar";
 
@@ -385,8 +392,7 @@ async function carregarEstruturaCurso(
     // Evita atualizar o modal errado
     // caso outro curso tenha sido aberto.
     if (
-      cursoSelecionado?.id !==
-      curso.id
+      !carregamentoAtual()
     ) {
       return;
     }
@@ -394,6 +400,9 @@ async function carregarEstruturaCurso(
 
     const modulos =
       resultado.data?.modulos || [];
+
+    modalCursoDuracao.textContent =
+      formatarDuracao(somarDuracaoModulos(modulos));
 
 
     modalCursoQuantidadeModulos.textContent =
@@ -409,15 +418,14 @@ async function carregarEstruturaCurso(
 
     const progresso =
       await carregarProgressoCurso(
-        usuarioAtual.uid,
+        usuario.uid,
         curso.id,
         modulos.length
       );
 
 
     if (
-      cursoSelecionado?.id !==
-      curso.id
+      !carregamentoAtual()
     ) {
       return;
     }
@@ -435,6 +443,7 @@ async function carregarEstruturaCurso(
     );
 
   } catch (erro) {
+    if (!carregamentoAtual()) return;
     console.error(
       "Erro ao carregar estrutura do curso:",
       erro

@@ -1,4 +1,5 @@
 import { escapeHtml } from "./AdminComum.js";
+import { formatarTempoEstimado } from "./Duracao.js";
 import { registrarAtividade } from "./ServicoAtividade.js";
 import { auth } from "./Firebase-config.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
@@ -490,6 +491,11 @@ function renderizarModulos() {
           ${status}
         </span>
 
+        <span class="duracao-modulo">
+          <i class="fa-regular fa-clock" aria-hidden="true"></i>
+          ${formatarTempoEstimado(modulo.duracaoMinutos)}
+        </span>
+
       </div>
 
       <i class="fa-solid ${icone}"></i>
@@ -574,6 +580,10 @@ async function carregarModulo(indice) {
 
   descricaoAula.textContent =
     modulo.descricao || "";
+
+  document.getElementById("tempoEstimadoAula").textContent =
+    formatarTempoEstimado(modulo.duracaoMinutos);
+  document.getElementById("duracaoAula").hidden = false;
 
 
   // ========================================
@@ -2247,6 +2257,7 @@ async function verificarTesteFinalDisponivel() {
 // ==========================================
 
 function mostrarErroCurso() {
+  document.getElementById("duracaoAula").hidden = true;
 
   modulosContainer.innerHTML = `
 
@@ -2270,6 +2281,7 @@ function mostrarErroCurso() {
 // ==========================================
 
 function mostrarMensagemSemModulos() {
+  document.getElementById("duracaoAula").hidden = true;
 
   modulosContainer.innerHTML = `
 

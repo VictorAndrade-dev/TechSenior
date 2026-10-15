@@ -296,6 +296,9 @@ html[data-tema="escuro"] .pagina-curso {
 
 .informacoes-modulo strong { color: inherit; font-size: 0.95rem; font-weight: 600; line-height: 1.45; }
 .informacoes-modulo span { color: var(--curso-texto-suave); font-size: 0.95rem; line-height: 1.45; }
+.duracao-aula { color: var(--curso-texto-suave); font-size: 1rem; overflow-wrap: anywhere; }
+.duracao-aula i,
+.duracao-modulo i { margin-inline-end: 0.3em; }
 .modulo.ativo .informacoes-modulo span { color: var(--curso-azul-escuro); font-weight: 600; }
 .modulo:has(> i.fa-check) .informacoes-modulo span { color: var(--curso-verde); font-weight: 600; }
 .modulo > i { flex: 0 0 auto; color: var(--curso-azul); font-size: 1rem; }

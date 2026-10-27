@@ -513,7 +513,7 @@ function renderizarModulos() {
         "click",
         () => {
 
-          carregarModulo(indice);
+          carregarModulo(indice, { orientarLeitura: true });
 
         }
       );
@@ -534,7 +534,7 @@ function renderizarModulos() {
 // CARREGAR MÓDULO SELECIONADO
 // ==========================================
 
-async function carregarModulo(indice) {
+async function carregarModulo(indice, { orientarLeitura = false } = {}) {
 
   if (
     indice < 0 ||
@@ -606,6 +606,8 @@ async function carregarModulo(indice) {
 
   await carregarQuizModulo(modulo);
 
+  if (versao !== versaoCarregamentoModulo || modulos[moduloAtual]?.id !== modulo.id) return;
+
 
   // ========================================
   // COLUNA LATERAL
@@ -656,6 +658,26 @@ async function carregarModulo(indice) {
 
   renderizarModulos();
 
+  if (orientarLeitura) posicionarInicioAula();
+
+}
+
+function posicionarInicioAula() {
+  const cabecalhoAula = document.querySelector(".cabecalho-aula");
+  if (!cabecalhoAula) return;
+
+  const cabecalhoPagina = document.querySelector("body > header");
+  const posicao = cabecalhoPagina && getComputedStyle(cabecalhoPagina).position;
+  const alturaCabecalho = posicao === "sticky" || posicao === "fixed"
+    ? cabecalhoPagina.getBoundingClientRect().height
+    : 0;
+
+  // O foco anuncia a nova aula sem iniciar uma segunda rolagem.
+  tituloAula.focus({ preventScroll: true });
+  window.scrollTo({
+    top: Math.max(0, window.scrollY + cabecalhoAula.getBoundingClientRect().top - alturaCabecalho - 16),
+    behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
+  });
 }
 
 
@@ -2031,13 +2053,9 @@ btnAulaAnterior.addEventListener(
     }
 
     carregarModulo(
-      moduloAtual - 1
+      moduloAtual - 1,
+      { orientarLeitura: true }
     );
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
 
   }
 );
@@ -2132,7 +2150,8 @@ btnProximaAula.addEventListener(
     atualizarProgresso();
 
     await carregarModulo(
-      moduloAtual
+      moduloAtual,
+      { orientarLeitura: true }
     );
 
     // ======================================

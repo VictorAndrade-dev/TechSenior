@@ -447,6 +447,12 @@ a {
     0 12px 28px rgba(15, 46, 78, 0.2);
 }
 
+/* Rótulos completos e controles confortáveis, inclusive com letras ampliadas. */
+body #painelAcessibilidade #btnAcessibilidade { display: flex; align-items: center; gap: .5rem; width: auto; height: auto; min-height: 44px; max-width: 15rem; padding: .75rem; border-radius: .75rem; font-size: 1rem; }
+.acessibilidade-controles .a11y-grupo button { flex: 1 1 9rem; white-space: normal; overflow-wrap: anywhere; min-width: 44px; }
+.acessibilidade-controles :focus-visible, .tutorial-acesso:focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; }
+body:has(#painelModulos[open], #tutorialTechSenior[open]) > .sidebar { visibility: hidden; transition: none; }
+
 html[data-tema="escuro"] #btnAcessibilidade {
   background: var(--surface-elevated);
   color: var(--primary);

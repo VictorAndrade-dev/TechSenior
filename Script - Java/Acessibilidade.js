@@ -62,8 +62,9 @@ export function configurarAcessibilidade(sidebar, destinoDrawer) {
   const painel = document.createElement("div");
   painel.id = "painelAcessibilidade";
   painel.innerHTML = `
-    <button type="button" id="btnAcessibilidade" aria-expanded="false" aria-controls="opcoesAcessibilidade" aria-label="Abrir opções de acessibilidade" title="Acessibilidade">
+    <button type="button" id="btnAcessibilidade" aria-expanded="false" aria-controls="opcoesAcessibilidade" aria-label="Ajustar letras e cores" title="Ajustar letras e cores">
       <i class="fa-solid fa-universal-access" aria-hidden="true"></i>
+      <span>Ajustar letras e cores</span>
     </button>
     <div id="opcoesAcessibilidade" hidden></div>`;
   document.body.append(painel);
@@ -72,24 +73,24 @@ export function configurarAcessibilidade(sidebar, destinoDrawer) {
   const controles = document.createElement("div");
   controles.className = "acessibilidade-controles";
   controles.innerHTML = `
-    <h2>Acessibilidade</h2>
+    <h2>Ajustar letras e cores</h2>
     <section class="a11y-secao" aria-labelledby="a11yTexto">
-      <h3 id="a11yTexto">Texto <output id="escalaTexto"></output></h3>
+      <h3 id="a11yTexto">Tamanho das letras <output id="escalaTexto"></output></h3>
       <div class="a11y-grupo">
-        <button type="button" data-fonte="menos" aria-label="Diminuir texto">A−</button>
-        <button type="button" data-fonte="normal" aria-label="Restaurar texto para 100%">A</button>
-        <button type="button" data-fonte="mais" aria-label="Aumentar texto">A+</button>
+        <button type="button" data-fonte="menos">Diminuir letras</button>
+        <button type="button" data-fonte="normal">Letras padrão</button>
+        <button type="button" data-fonte="mais">Aumentar letras</button>
       </div>
     </section>
     <section class="a11y-secao" aria-labelledby="a11yTema">
-      <h3 id="a11yTema">Aparência</h3>
+      <h3 id="a11yTema">Cores do site</h3>
       <div class="a11y-grupo">
-        <button type="button" data-tema="claro">Claro</button>
-        <button type="button" data-tema="escuro">Escuro</button>
+        <button type="button" data-tema="claro">Fundo claro</button>
+        <button type="button" data-tema="escuro">Fundo escuro</button>
       </div>
     </section>
     <section class="a11y-secao" aria-labelledby="a11yLeitura">
-      <h3 id="a11yLeitura">Leitura por voz</h3>
+      <h3 id="a11yLeitura">Ouvir o texto</h3>
       <div class="a11y-grupo">
         <button type="button" id="ouvirPagina">
           <i class="fa-solid fa-volume-high" aria-hidden="true"></i>
@@ -106,11 +107,11 @@ export function configurarAcessibilidade(sidebar, destinoDrawer) {
       </div>
     </section>
     <section class="a11y-secao" aria-labelledby="a11yVelocidade">
-      <h3 id="a11yVelocidade">Velocidade</h3>
+      <h3 id="a11yVelocidade">Velocidade da leitura</h3>
       <div class="a11y-grupo">
-        <button type="button" data-velocidade="0.8">0.8x</button>
-        <button type="button" data-velocidade="1">1x</button>
-        <button type="button" data-velocidade="1.2">1.2x</button>
+        <button type="button" data-velocidade="0.8">Mais devagar</button>
+        <button type="button" data-velocidade="1">Normal</button>
+        <button type="button" data-velocidade="1.2">Mais rápido</button>
       </div>
     </section>
     <p id="estadoVoz" class="a11y-status" role="status" aria-live="polite"></p>`;

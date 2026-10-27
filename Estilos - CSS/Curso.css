@@ -1,9 +1,10 @@
 /* 1. Variáveis locais e base */
-.pagina-curso {
+.curso-page {
   --curso-azul: var(--primary, #1f5fc4);
   --curso-azul-escuro: var(--primary-hover, #174eac);
   --curso-azul-claro: color-mix(in srgb, var(--primary, #1f5fc4) 9%, var(--surface, #fff));
   --curso-verde: var(--accent, #147a63);
+  --curso-verde-acao: #147a63;
   --curso-verde-claro: var(--accent-soft, #edf8f4);
   --curso-amarelo: #9a5a08;
   --curso-amarelo-claro: #fff8e8;
@@ -18,6 +19,9 @@
   --curso-sombra: var(--shadow, 0 16px 38px rgba(15, 46, 78, 0.09));
   --curso-em-acao: #fff;
   --curso-raio: 1rem;
+}
+
+.pagina-curso {
   min-height: calc(100vh - 6.25rem);
   padding: 1.5rem clamp(1rem, 2.5vw, 2.5rem) 3.5rem;
   overflow-x: clip;
@@ -28,7 +32,7 @@
   line-height: 1.7;
 }
 
-html[data-tema="escuro"] .pagina-curso {
+html[data-tema="escuro"] .curso-page {
   --curso-azul: var(--primary, #6ea8ff);
   --curso-azul-escuro: #b9d2ff;
   --curso-azul-claro: rgba(110, 168, 255, 0.11);
@@ -72,7 +76,7 @@ html[data-tema="escuro"] .pagina-curso {
 /* 2. Layout */
 .curso-layout {
   display: grid;
-  grid-template-columns: minmax(15.5rem, 17rem) minmax(0, 1fr) minmax(14rem, 15rem);
+  grid-template-columns: minmax(15rem, 17rem) minmax(0, 1fr) minmax(13rem, 14rem);
   align-items: start;
   gap: clamp(1rem, 1.6vw, 1.5rem);
   width: 100%;
@@ -81,6 +85,24 @@ html[data-tema="escuro"] .pagina-curso {
 }
 
 .curso-layout[hidden] { display: none; }
+
+.curso-resumo {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(11rem, auto) minmax(15rem, 1fr) minmax(11rem, auto);
+  align-items: center;
+  gap: 1rem;
+  padding: .75rem 1rem;
+  border: 1px solid var(--curso-borda);
+  border-radius: .875rem;
+  background: var(--curso-branco);
+}
+.curso-resumo .btn-voltar { width: auto; padding: .5rem; font-weight: 500; }
+.curso-resumo .card-ajuda { min-height: 44px; margin: 0; padding: .5rem; border: 0; background: transparent; gap: .5rem; }
+.curso-resumo .icone-ajuda { flex-basis: 1.75rem; width: 1.75rem; height: 1.75rem; font-size: .9rem; }
+.curso-resumo .texto-ajuda strong { font-size: .95rem; font-weight: 500; }
+.curso-resumo .texto-ajuda span { font-size: .875rem; }
+.curso-resumo .card-ajuda > i { display: none; }
 
 .estado-carregamento-curso {
   display: grid;
@@ -169,15 +191,19 @@ html[data-tema="escuro"] .pagina-curso {
 
 /* 4. Progresso */
 .card-progresso {
-  margin-top: 0.75rem;
-  padding: 1.125rem;
-  border: 0.0625rem solid var(--curso-borda);
-  border-radius: 0.875rem;
-  background: var(--curso-verde-claro);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: .25rem 1rem;
+  margin: 0;
+  padding: .5rem .75rem;
+  border-radius: .5rem;
+  background: var(--curso-fundo);
 }
 
 .card-progresso h2 {
-  margin: 0 0 0.75rem;
+  grid-column: 1;
+  margin: 0;
   color: var(--curso-texto);
   font-size: 1rem;
   font-weight: 600;
@@ -185,21 +211,24 @@ html[data-tema="escuro"] .pagina-curso {
 }
 
 .porcentagem-progresso {
-  margin-bottom: 0.625rem;
-  color: var(--curso-verde);
-  font-size: clamp(2rem, 3vw, 2.5rem);
-  font-weight: 700;
-  line-height: 1;
+  grid-column: 2;
+  grid-row: 3;
+  color: var(--curso-texto);
+  font-size: 1.125rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.4;
 }
 
 .barra-progresso {
   width: 100%;
-  height: 0.75rem;
-  margin-bottom: 0.75rem;
+  grid-column: 1;
+  grid-row: 3;
+  height: .375rem;
+  margin: .25rem 0 0;
   overflow: hidden;
-  border: 0.0625rem solid var(--curso-borda);
   border-radius: 999rem;
-  background: color-mix(in srgb, var(--curso-verde) 15%, var(--curso-branco));
+  background: var(--curso-borda);
 }
 
 .progresso-preenchido {
@@ -211,9 +240,11 @@ html[data-tema="escuro"] .pagina-curso {
 }
 
 .card-progresso p {
+  grid-column: 1;
+  grid-row: 2;
   margin: 0;
   color: var(--curso-texto-suave);
-  font-size: 0.95rem;
+  font-size: .875rem;
   line-height: 1.5;
 }
 
@@ -221,8 +252,8 @@ html[data-tema="escuro"] .pagina-curso {
 .lista-modulos {
   display: flex;
   flex-direction: column;
-  gap: 0.625rem;
-  margin-top: 1.25rem;
+  gap: .375rem;
+  margin-top: .5rem;
 }
 
 .lista-modulos h2 {
@@ -238,8 +269,8 @@ html[data-tema="escuro"] .pagina-curso {
   align-items: center;
   gap: 0.75rem;
   width: 100%;
-  min-height: 4.75rem;
-  padding: 0.75rem;
+  min-height: 4.25rem;
+  padding: .625rem;
   border: 0.0625rem solid var(--curso-borda);
   border-radius: 0.75rem;
   background: var(--curso-branco);
@@ -249,39 +280,39 @@ html[data-tema="escuro"] .pagina-curso {
   transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
-.modulo:hover:not(:disabled) { border-color: var(--curso-azul); background: var(--curso-azul-claro); }
+.modulo:hover:not(:disabled) { background: var(--curso-fundo); }
 
 .modulo.ativo {
-  border-color: var(--curso-azul);
-  background: var(--curso-azul-claro);
-  box-shadow: inset 0.25rem 0 var(--curso-azul);
+  border-color: var(--curso-borda);
+  background: var(--curso-verde-claro);
+  box-shadow: inset .2rem 0 var(--curso-verde);
 }
 
-.modulo:has(> i.fa-check) { border-color: var(--curso-verde); background: var(--curso-verde-claro); }
+.modulo:has(> i.fa-check):not(.ativo) { background: var(--curso-branco); }
+.modulo.ativo:hover:not(:disabled) { background: var(--curso-verde-claro); }
 
 .modulo.bloqueado {
   border-style: dashed;
-  background: var(--curso-azul-claro);
+  background: var(--curso-fundo);
   color: var(--curso-texto-suave);
   cursor: not-allowed;
 }
 
 .numero-modulo {
   display: grid;
-  flex: 0 0 2.375rem;
-  width: 2.375rem;
-  height: 2.375rem;
+  flex: 0 0 2rem;
+  width: 2rem;
+  height: 2rem;
   place-items: center;
   border: 0.0625rem solid var(--curso-borda);
   border-radius: 50%;
-  background: var(--curso-azul-claro);
+  background: var(--curso-fundo);
   color: var(--curso-texto);
   font-size: 0.95rem;
   font-weight: 700;
 }
 
-.modulo.ativo .numero-modulo { border-color: var(--curso-azul); background: var(--curso-azul); color: var(--curso-em-acao); }
-.modulo:has(> i.fa-check) .numero-modulo { border-color: var(--curso-verde); background: var(--curso-verde); color: var(--curso-em-acao); }
+.modulo.ativo .numero-modulo { border-color: var(--curso-verde-acao); color: #fff; background: var(--curso-verde-acao); }
 
 .informacoes-modulo {
   display: flex;
@@ -294,13 +325,13 @@ html[data-tema="escuro"] .pagina-curso {
 .informacoes-modulo strong,
 .informacoes-modulo span { overflow-wrap: anywhere; }
 
-.informacoes-modulo strong { color: inherit; font-size: 0.95rem; font-weight: 600; line-height: 1.45; }
-.informacoes-modulo span { color: var(--curso-texto-suave); font-size: 0.95rem; line-height: 1.45; }
+.informacoes-modulo strong { color: inherit; font-size: .95rem; font-weight: 500; line-height: 1.45; }
+.informacoes-modulo span { color: var(--curso-texto-suave); font-size: .875rem; line-height: 1.45; }
+.modulo.ativo .informacoes-modulo strong { font-weight: 600; }
 .duracao-aula { color: var(--curso-texto-suave); font-size: 1rem; overflow-wrap: anywhere; }
 .duracao-aula i,
 .duracao-modulo i { margin-inline-end: 0.3em; }
-.modulo.ativo .informacoes-modulo span { color: var(--curso-azul-escuro); font-weight: 600; }
-.modulo:has(> i.fa-check) .informacoes-modulo span { color: var(--curso-verde); font-weight: 600; }
+.modulo.ativo .informacoes-modulo span { color: var(--curso-texto); }
 .modulo > i { flex: 0 0 auto; color: var(--curso-azul); font-size: 1rem; }
 .modulo:has(> i.fa-check) > i { color: var(--curso-verde); }
 .modulo.bloqueado > i { color: var(--curso-texto-suave); }
@@ -329,7 +360,7 @@ html[data-tema="escuro"] .pagina-curso {
 .card-ajuda > i { color: var(--curso-azul); }
 
 /* 6. Conteúdo central */
-.conteudo-aula { padding: clamp(1.5rem, 3vw, 2.75rem); }
+.conteudo-aula { width: 100%; max-width: 64rem; margin-inline: auto; padding: clamp(1.5rem, 3vw, 2.75rem); }
 .cabecalho-aula { padding-bottom: 1.5rem; border-bottom: 0.0625rem solid var(--curso-borda); }
 
 .identificacao-modulo {
@@ -644,3 +675,64 @@ html[data-tema="escuro"]
   .quiz-icone { flex-basis: 2.625rem; width: 2.625rem; height: 2.625rem; }
   .opcao-quiz { align-items: flex-start; min-height: 4rem; padding: 0.875rem; }
 }
+
+/* Navegação dos módulos: a mesma lista é movida para um diálogo no celular. */
+#alternarModulos, #abrirModulos, #fecharModulos {
+  min-height: 44px; min-width: 44px; padding: .5rem;
+  border: 1px solid transparent; border-radius: .65rem;
+  background: transparent; color: var(--text); font: inherit; cursor: pointer;
+}
+.modulos-titulo { display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
+.modulos-titulo h2 { margin: 0; font-size: 1rem; font-weight: 600; line-height: 1.4; }
+#alternarModulos { flex: 0 0 44px; }
+#alternarModulos:hover, #fecharModulos:hover { background: var(--bg); }
+.rotulo-modulos { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+#abrirModulos { display: none; }
+#painelModulos {
+  position: fixed; inset: 0 auto 0 0; margin: 0; width: min(90vw, 26rem);
+  height: 100dvh; max-height: 100dvh; padding: 1rem 1rem calc(1rem + env(safe-area-inset-bottom));
+  border-radius: 0 1rem 1rem 0; background: var(--surface); color: var(--text);
+}
+#painelModulos[open] { animation: entrada-modulos .18s ease-out; }
+#painelModulos::backdrop { background: rgb(0 0 0 / .55); }
+.modulos-painel-cabecalho { display: flex; gap: .75rem; align-items: center; justify-content: space-between; padding-bottom: .5rem; border-bottom: 1px solid var(--border); }
+.modulos-painel-cabecalho h2 { margin: 0; font-size: 1.125rem; font-weight: 600; }
+#painelModulos .lista-modulos { margin: .625rem 0 0; padding: 0; gap: .375rem; }
+#painelModulos .modulo { font: inherit; }
+#painelModulos .lista-modulos > h2 { display: none; }
+#painelModulos :focus-visible, #abrirModulos:focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; }
+@keyframes entrada-modulos { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+@media (min-width: 1001px) {
+  .curso-layout { grid-template-areas: "resumo resumo resumo" "modulos aula extras"; }
+  .curso-resumo { grid-area: resumo; }
+  .coluna-esquerda { grid-area: modulos; }
+  .conteudo-aula { grid-area: aula; }
+  .coluna-direita { grid-area: extras; }
+  .curso-layout.modulos-recolhidos { grid-template-columns: 4rem minmax(0, 1fr); grid-template-areas: "resumo resumo" "modulos aula" "modulos extras"; max-width: 72rem; }
+  .modulos-recolhidos .coluna-esquerda { position: sticky; top: 6.5rem; display: flex; flex-direction: column; align-items: center; gap: .5rem; padding: .5rem; max-height: calc(100dvh - 8rem); overflow-y: auto; scrollbar-width: thin; scrollbar-gutter: auto; }
+  .modulos-recolhidos .modulos-titulo h2 { display: none; }
+  .modulos-recolhidos .lista-modulos { width: 100%; margin: 0; gap: .375rem; }
+  .modulos-recolhidos .modulo { justify-content: center; min-height: 44px; padding: .25rem; border-color: transparent; border-radius: 50%; }
+  .modulos-recolhidos .modulo .informacoes-modulo, .modulos-recolhidos .modulo > i { display: none; }
+  .modulos-recolhidos .modulo .numero-modulo { flex-basis: 2rem; width: 2rem; height: 2rem; }
+  .modulos-recolhidos .modulo.ativo { box-shadow: none; outline: 2px solid var(--curso-verde); outline-offset: -2px; }
+  .modulos-recolhidos .modulo:focus-visible { outline: 3px solid var(--primary); outline-offset: -3px; }
+  .modulos-recolhidos .modulo:has(> i.fa-check):not(.ativo) .numero-modulo { border-color: var(--curso-verde); }
+  .modulos-recolhidos .coluna-direita { position: static; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); width: 100%; max-width: 64rem; margin-inline: auto; }
+}
+@media (min-width: 1001px) and (max-width: 1280px) {
+  .curso-layout { grid-template-columns: 15rem minmax(0, 1fr); grid-template-areas: "resumo resumo" "modulos aula" "modulos extras"; }
+  .coluna-direita { position: static; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
+}
+@media (max-width: 1000px) {
+  .curso-resumo { grid-template-columns: minmax(0, 1fr) auto; gap: .5rem; padding: .625rem; }
+  .curso-resumo .card-progresso { grid-column: 1 / -1; grid-row: 2; }
+  .curso-resumo .card-ajuda { grid-column: 2; grid-row: 1; }
+  .curso-resumo .texto-ajuda span { display: none; }
+  .curso-resumo .btn-voltar { min-height: 44px; font-size: .875rem; gap: .5rem; }
+  .curso-page .coluna-esquerda { display: none; }
+  #abrirModulos:not([hidden]) { display: grid; place-items: center; position: fixed; left: max(.75rem, env(safe-area-inset-left)); bottom: var(--modulos-base, calc(6rem + env(safe-area-inset-bottom))); z-index: 975; width: 52px; height: 52px; padding: 0; border: 0; border-radius: 50%; background: var(--curso-verde-acao); color: #fff; font-size: 1.25rem; box-shadow: 0 3px 12px rgb(15 46 78 / .16); }
+  body.curso-page footer, body.curso-page > .copyright { display: none; }
+  .curso-page .pagina-curso { padding-bottom: 5rem; min-height: 0; }
+}
+@media (prefers-reduced-motion: reduce) { #painelModulos[open] { animation: none; } }

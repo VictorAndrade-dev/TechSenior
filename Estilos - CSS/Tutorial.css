@@ -1,0 +1,31 @@
+#tutorialTechSenior {
+  position: fixed; inset: 1rem auto auto 1rem; margin: 0;
+  width: min(22rem, calc(100vw - 1.5rem)); max-height: calc(100dvh - 1.5rem);
+  padding: 0; overflow: visible; border: 0; background: transparent; color: var(--text);
+}
+#tutorialTechSenior::backdrop { background: rgb(0 0 0 / .28); }
+.tutorial-cartao { box-sizing: border-box; max-height: inherit; overflow-y: auto; overscroll-behavior: contain; padding: 1rem; border: 1px solid var(--border); border-radius: .875rem; background: var(--surface); box-shadow: var(--shadow); }
+#tutorialTitulo { color: var(--heading); font-size: 1.2rem; line-height: 1.35; margin: .375rem 0; }
+#tutorialTexto { font-size: 1rem; line-height: 1.5; margin: .625rem 0; }
+#tutorialProgresso { color: var(--text-muted); font-size: .875rem; font-weight: 500; margin: 0; }
+#tutorialProgresso:empty { display: none; }
+#tutorialAcoes { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .75rem; }
+#tutorialAcoes button, .tutorial-acesso { min-height: 44px; padding: .5rem .65rem; border: 1px solid var(--border); border-radius: .5rem; background: var(--surface); color: var(--text); font: inherit; cursor: pointer; white-space: normal; text-align: start; }
+#tutorialAcoes button:hover, .tutorial-acesso:hover { background: var(--bg); }
+#tutorialTechSenior :focus-visible, .tutorial-institucional :focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; }
+#tutorialContexto { display: block; min-height: 44px; color: var(--primary); text-decoration: underline; }
+#tutorialContexto[hidden], #tutorialDestaque[hidden] { display: none; }
+#tutorialDestaque { box-sizing: border-box; position: fixed; pointer-events: none; border: 2px solid var(--accent); border-radius: .6rem; box-shadow: 0 0 0 3px var(--surface); z-index: -1; }
+.tutorial-acesso { margin-block: .75rem; font-size: 1rem; }
+/* A ação de orientação acompanha os links do rodapé e da navegação. */
+footer .tutorial-acesso, .sidebar .tutorial-acesso {
+  display: block; width: fit-content; max-width: 100%; min-height: 44px;
+  margin: 0; padding: .5rem 0; border: 0; border-radius: .2rem;
+  background: transparent; color: inherit; font: inherit; font-size: 1rem; font-weight: 400; line-height: 1.5;
+}
+footer .tutorial-acesso:hover, .sidebar .tutorial-acesso:hover { background: transparent; color: var(--primary); text-decoration: underline; text-underline-offset: .2em; }
+body.nav-v2 footer .coluna .tutorial-acesso { margin-top: .65rem; padding: 0; color: var(--text-muted); font-size: 1rem; line-height: 1.45; text-decoration: none; }
+body.nav-v2 footer .coluna .tutorial-acesso:hover { color: var(--accent); text-decoration: underline; }
+.tutorial-institucional summary { min-height: 44px; cursor: pointer; padding-block: .65rem; }
+.tutorial-institucional a { display: block; min-height: 44px; padding-block: .5rem; }
+@media (prefers-reduced-motion: reduce) { #tutorialTechSenior *, #tutorialDestaque { animation: none; transition: none; scroll-behavior: auto; } }

@@ -40,6 +40,7 @@ function fecharMenu() {
 
 function abrirMenu(gatilho) {
   if (!sidebar || !overlay) return;
+  document.dispatchEvent(new CustomEvent("techsenior:abrir-modal", { detail: sidebar }));
   focoAnterior = gatilho || document.activeElement;
   sidebar.inert = false;
   sidebar.classList.add("active");
@@ -227,6 +228,14 @@ onAuthStateChanged(auth, async (usuario) => {
 });
 
 configurarAcessibilidade(sidebar, drawerPreferencias);
+
+document.addEventListener("techsenior:abrir-modal", (evento) => {
+  if (evento.detail !== sidebar && sidebar?.classList.contains("active")) fecharMenu();
+  const opcoes = document.getElementById("opcoesAcessibilidade");
+  if (opcoes) opcoes.hidden = true;
+  document.getElementById("btnAcessibilidade")?.setAttribute("aria-expanded", "false");
+});
+import("./Tutorial.js");
 
 const topo = document.createElement("button");
 topo.id = "voltarTopo";

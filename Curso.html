@@ -125,7 +125,7 @@
         <!-- COLUNA ESQUERDA -->
         <!-- ====================================== -->
 
-        <aside class="coluna-esquerda">
+        <div class="curso-resumo" aria-label="Resumo e atalhos do curso">
           <!-- VOLTAR PARA OS CURSOS -->
 
           <a href="Cursos.html" class="btn-voltar">
@@ -137,7 +137,9 @@
           <!-- PROGRESSO -->
 
           <section class="card-progresso">
-            <h2>Seu progresso neste curso</h2>
+            <h2>Seu progresso</h2>
+
+            <p id="textoProgresso"></p>
 
             <div class="porcentagem-progresso" id="porcentagemProgresso"></div>
 
@@ -151,14 +153,6 @@
             >
               <div class="progresso-preenchido" id="progressoPreenchido"></div>
             </div>
-
-            <p id="textoProgresso"></p>
-          </section>
-
-          <!-- MÓDULOS -->
-
-          <section class="lista-modulos" id="modulosContainer">
-            <h2>Módulos do curso</h2>
 
           </section>
 
@@ -177,6 +171,14 @@
 
             <i class="fa-solid fa-chevron-right"></i>
           </a>
+        </div>
+
+        <aside class="coluna-esquerda" aria-label="Navegação dos módulos">
+          <div class="modulos-titulo">
+            <h2>Módulos do curso</h2>
+            <button type="button" id="alternarModulos" aria-expanded="true" aria-controls="modulosContainer" aria-label="Recolher módulos" title="Recolher módulos"><i class="fa-solid fa-angles-left" aria-hidden="true"></i><span class="rotulo-modulos">Recolher módulos</span></button>
+          </div>
+          <section class="lista-modulos" id="modulosContainer" aria-label="Módulos do curso"></section>
         </aside>
 
         <!-- ====================================== -->
@@ -465,6 +467,11 @@
     <!-- JAVASCRIPT -->
     <!-- ========================================== -->
 
+    <button type="button" id="abrirModulos" aria-label="Abrir módulos do curso" title="Abrir módulos do curso" aria-controls="painelModulos" aria-expanded="false" hidden><i class="fa-solid fa-book-open" aria-hidden="true"></i></button>
+    <dialog id="painelModulos" aria-labelledby="tituloPainelModulos">
+      <div class="modulos-painel-cabecalho"><h2 id="tituloPainelModulos">Módulos do curso</h2><button type="button" id="fecharModulos" aria-label="Fechar módulos">✕</button></div>
+    </dialog>
+    <script type="module" src="Script - Java/NavegacaoModulos.js"></script>
     <script type="module" src="Script - Java/Padrão.js"></script>
     <script type="module" src="Script - Java/Curso.js"></script>
   </body>

@@ -5,7 +5,9 @@ html[data-tema="escuro"] .pagina-teste { --action-text: #061f2e; --success-text:
 .pagina-teste h1 { font-size: clamp(1.85rem, 3.5vw, 2.65rem); line-height: 1.25; margin: .75rem 0; }
 .pagina-teste p { font-size: 1rem; line-height: 1.7; }
 #perguntaTeste, #tituloResultado { scroll-margin-top: 9rem; }
-#voltarCurso { display: inline-flex; align-items: center; min-height: 44px; margin-bottom: 1rem; color: var(--primary); text-underline-offset: .2em; }
+#voltarCurso { display: inline-flex; align-items: center; justify-content: center; gap: .65rem; min-height: 48px; max-width: 100%; padding: .7rem 1rem; margin-bottom: 1rem; border: 2px solid var(--primary); border-radius: .75rem; background: var(--surface); color: var(--primary); font-weight: 600; text-decoration: none; }
+#voltarCurso:hover { background: var(--bg); border-color: var(--primary-hover); }
+#voltarCurso:focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; }
 #nomeCurso, #numeroQuestao { width: fit-content; max-width: 100%; padding: .4rem .75rem; margin-bottom: 1rem; border-radius: .65rem; color: var(--success-text); background: var(--accent-soft); font-size: 1rem; font-weight: 600; }
 #nomeCurso:empty { display: none; }
 #mensagemTeste { margin: 1rem 0; color: var(--text-muted); }

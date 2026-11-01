@@ -40,6 +40,7 @@ function fecharMenu() {
 
 function abrirMenu(gatilho) {
   if (!sidebar || !overlay) return;
+  document.dispatchEvent(new CustomEvent("techsenior:abrir-modal", { detail: sidebar }));
   focoAnterior = gatilho || document.activeElement;
   sidebar.inert = false;
   sidebar.classList.add("active");
@@ -53,7 +54,7 @@ function abrirMenu(gatilho) {
     estadosInert.set(elemento, elemento.inert);
     elemento.inert = true;
   }
-  setTimeout(() => closeMenu?.focus({ preventScroll: true }), 250);
+  closeMenu?.focus({ preventScroll: true });
 }
 
 if (sidebar && overlay) {
@@ -77,7 +78,7 @@ if (sidebar && overlay) {
       return;
     }
     if (evento.key !== "Tab") return;
-    const controles = [...sidebar.querySelectorAll("a[href], button, select, input")]
+    const controles = [...sidebar.querySelectorAll("a[href], button, select, input, summary")]
       .filter((elemento) => !elemento.disabled && elemento.getClientRects().length);
     const primeiro = controles[0];
     const ultimo = controles.at(-1);
@@ -227,6 +228,14 @@ onAuthStateChanged(auth, async (usuario) => {
 });
 
 configurarAcessibilidade(sidebar, drawerPreferencias);
+
+document.addEventListener("techsenior:abrir-modal", (evento) => {
+  if (evento.detail !== sidebar && sidebar?.classList.contains("active")) fecharMenu();
+  const opcoes = document.getElementById("opcoesAcessibilidade");
+  if (opcoes) opcoes.hidden = true;
+  document.getElementById("btnAcessibilidade")?.setAttribute("aria-expanded", "false");
+});
+import("./Tutorial.js");
 
 const topo = document.createElement("button");
 topo.id = "voltarTopo";

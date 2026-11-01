@@ -54,7 +54,7 @@ function abrirMenu(gatilho) {
     estadosInert.set(elemento, elemento.inert);
     elemento.inert = true;
   }
-  setTimeout(() => closeMenu?.focus({ preventScroll: true }), 250);
+  closeMenu?.focus({ preventScroll: true });
 }
 
 if (sidebar && overlay) {
@@ -78,7 +78,7 @@ if (sidebar && overlay) {
       return;
     }
     if (evento.key !== "Tab") return;
-    const controles = [...sidebar.querySelectorAll("a[href], button, select, input")]
+    const controles = [...sidebar.querySelectorAll("a[href], button, select, input, summary")]
       .filter((elemento) => !elemento.disabled && elemento.getClientRects().length);
     const primeiro = controles[0];
     const ultimo = controles.at(-1);

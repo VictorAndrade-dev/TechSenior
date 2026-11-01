@@ -1,21 +1,46 @@
 #tutorialTechSenior {
+  --tutorial-safe-top: env(safe-area-inset-top, 0px);
+  --tutorial-safe-right: env(safe-area-inset-right, 0px);
+  --tutorial-safe-bottom: env(safe-area-inset-bottom, 0px);
+  --tutorial-safe-left: env(safe-area-inset-left, 0px);
   position: fixed; inset: 1rem auto auto 1rem; margin: 0;
-  width: min(22rem, calc(100vw - 1.5rem)); max-height: calc(100dvh - 1.5rem);
+  width: min(25rem, calc(100vw - 1.5rem)); max-width: none; max-height: calc(100dvh - 1.5rem);
   padding: 0; overflow: visible; border: 0; background: transparent; color: var(--text);
 }
-#tutorialTechSenior::backdrop { background: rgb(0 0 0 / .28); }
-.tutorial-cartao { box-sizing: border-box; max-height: inherit; overflow-y: auto; overscroll-behavior: contain; padding: 1rem; border: 1px solid var(--border); border-radius: .875rem; background: var(--surface); box-shadow: var(--shadow); }
-#tutorialTitulo { color: var(--heading); font-size: 1.2rem; line-height: 1.35; margin: .375rem 0; }
-#tutorialTexto { font-size: 1rem; line-height: 1.5; margin: .625rem 0; }
-#tutorialProgresso { color: var(--text-muted); font-size: .875rem; font-weight: 500; margin: 0; }
+#tutorialTechSenior::backdrop { background: transparent; }
+html.tutorial-aberto { overflow: hidden; overscroll-behavior: none; }
+html.tutorial-aberto #listaCursos .card { transition: none !important; }
+#tutorialSombra { position: fixed; inset: 0; width: 100vw; height: 100dvh; z-index: -3; pointer-events: all; }
+#tutorialSombra path { fill: rgb(0 0 0 / .36); }
+.tutorial-cartao { box-sizing: border-box; display: flex; flex-direction: column; max-height: inherit; overflow: hidden; padding: 1.5rem; border: 1px solid var(--border); border-radius: 1rem; background: var(--surface); box-shadow: 0 12px 36px rgb(0 0 0 / .18); }
+.tutorial-cabecalho { display: flex; flex: 0 0 auto; align-items: start; justify-content: space-between; gap: .75rem; margin-bottom: 1rem; }
+.tutorial-corpo { display: flow-root; flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; scroll-padding-block: .25rem; }
+#tutorialFechar { flex: 0 0 auto; min-width: 44px; min-height: 44px; padding: .5rem; margin: -.375rem -.375rem 0 0; border: 0; border-radius: .5rem; background: var(--surface); color: var(--text-muted); font: inherit; font-size: 1rem; cursor: pointer; text-decoration: underline; text-underline-offset: .2em; }
+#tutorialFechar:hover { background: var(--bg); }
+#tutorialTitulo { color: var(--heading); font-size: 1.25rem; line-height: 1.4; margin: 0; }
+#tutorialTexto { font-size: 1.125rem; line-height: 1.6; margin: .75rem 0 0; }
+#tutorialProgresso { color: var(--text-muted); font-size: 1rem; font-weight: 500; margin: 0; }
 #tutorialProgresso:empty { display: none; }
-#tutorialAcoes { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .75rem; }
+#tutorialEtapas { display: flex; gap: .375rem; margin: .5rem 0 0; }
+#tutorialEtapas span { width: .4375rem; height: .4375rem; border: 1px solid var(--text-muted); border-radius: 50%; }
+#tutorialEtapas span.feito { background: var(--text-muted); }
+#tutorialEtapas span.atual { width: 1.125rem; border-radius: 999px; border-color: var(--primary); background: var(--primary); }
+#tutorialReabrir { margin: 1rem 0 0; color: var(--text-muted); font-size: 1rem; line-height: 1.5; }
+#tutorialAcoes { display: flex; flex: 0 0 auto; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; background: var(--surface); }
+.tutorial-em-etapas #tutorialAcoes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.tutorial-em-etapas #tutorialAcoes .tutorial-primario { grid-column: 2; }
+#tutorialAcoes button { min-height: 48px; text-align: center; }
 #tutorialAcoes button, .tutorial-acesso { min-height: 44px; padding: .5rem .65rem; border: 1px solid var(--border); border-radius: .5rem; background: var(--surface); color: var(--text); font: inherit; cursor: pointer; white-space: normal; text-align: start; }
 #tutorialAcoes button:hover, .tutorial-acesso:hover { background: var(--bg); }
-#tutorialTechSenior :focus-visible, .tutorial-institucional :focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; }
-#tutorialContexto { display: block; min-height: 44px; color: var(--primary); text-decoration: underline; }
-#tutorialContexto[hidden], #tutorialDestaque[hidden] { display: none; }
-#tutorialDestaque { box-sizing: border-box; position: fixed; pointer-events: none; border: 2px solid var(--accent); border-radius: .6rem; box-shadow: 0 0 0 3px var(--surface); z-index: -1; }
+#tutorialAcoes .tutorial-primario { background: var(--primary); border-color: var(--primary); color: #fff; font-weight: 600; }
+#tutorialAcoes .tutorial-primario:hover { background: var(--primary-hover); border-color: var(--primary-hover); }
+html[data-tema="escuro"] #tutorialAcoes .tutorial-primario { background: #6ea8ff; border-color: #6ea8ff; color: #061f2e; }
+html[data-tema="escuro"] #tutorialAcoes .tutorial-primario:hover { background: #8bb9ff; border-color: #8bb9ff; }
+#tutorialTechSenior :focus-visible, .sidebar :is(.tutorial-institucional, .orientacao-menu) :focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; }
+#tutorialContexto { display: block; min-height: 44px; margin-top: .75rem; color: var(--primary); font-size: 1rem; text-decoration: underline; }
+#tutorialContexto[hidden], #tutorialDestaque[hidden], #tutorialEtapas[hidden], #tutorialReabrir[hidden], #tutorialConexao[hidden] { display: none; }
+#tutorialDestaque { box-sizing: border-box; position: fixed; pointer-events: none; border: 2px solid var(--primary); border-radius: .6rem; z-index: -2; }
+#tutorialConexao { position: fixed; width: 12px; height: 12px; transform: rotate(45deg); background: var(--surface); border: 1px solid var(--border); pointer-events: none; z-index: -1; }
 .tutorial-acesso { margin-block: .75rem; font-size: 1rem; }
 /* A ação de orientação acompanha os links do rodapé e da navegação. */
 footer .tutorial-acesso, .sidebar .tutorial-acesso {
@@ -26,6 +51,31 @@ footer .tutorial-acesso, .sidebar .tutorial-acesso {
 footer .tutorial-acesso:hover, .sidebar .tutorial-acesso:hover { background: transparent; color: var(--primary); text-decoration: underline; text-underline-offset: .2em; }
 body.nav-v2 footer .coluna .tutorial-acesso { margin-top: .65rem; padding: 0; color: var(--text-muted); font-size: 1rem; line-height: 1.45; text-decoration: none; }
 body.nav-v2 footer .coluna .tutorial-acesso:hover { color: var(--accent); text-decoration: underline; }
-.tutorial-institucional summary { min-height: 44px; cursor: pointer; padding-block: .65rem; }
-.tutorial-institucional a { display: block; min-height: 44px; padding-block: .5rem; }
+.sidebar { box-sizing: border-box; min-width: 0; overflow-x: clip; }
+.sidebar :is(.orientacao-menu, .tutorial-institucional, #drawerPreferencias, .acessibilidade-controles, .a11y-grupo) { box-sizing: border-box; min-width: 0; max-width: 100%; }
+.sidebar .orientacao-menu { padding: 1rem 0; border-top: 1px solid var(--border); }
+.sidebar .orientacao-menu h2 { margin: 0; color: var(--heading); font-size: 1rem; font-weight: 600; line-height: 1.4; }
+.sidebar .orientacao-menu p { margin: .375rem 0 .625rem; color: var(--text-muted); font-size: .875rem; line-height: 1.5; }
+.sidebar .orientacao-menu button { display: block; box-sizing: border-box; width: 100%; max-width: 100%; min-height: 44px; padding: .625rem .75rem; margin: .375rem 0 0; border: 1px solid var(--border); border-radius: .625rem; background: var(--surface); color: var(--text); font: inherit; font-size: 1rem; text-align: left; overflow-wrap: anywhere; cursor: pointer; }
+.sidebar .orientacao-menu button:hover { background: var(--bg); }
+.sidebar .tutorial-institucional { padding: .5rem 0; border-top: 1px solid var(--border); color: var(--text); }
+.sidebar #drawerPreferencias { border-top: 0; }
+.sidebar .tutorial-institucional summary { display: flex; align-items: center; gap: .5rem; min-height: 44px; padding: .375rem .5rem; cursor: pointer; list-style: none; border-radius: .5rem; }
+.sidebar .tutorial-institucional summary::-webkit-details-marker { display: none; }
+.sidebar .tutorial-institucional summary > i:first-child { flex: 0 0 1.25rem; text-align: center; }
+.sidebar .tutorial-institucional summary > span { display: grid; flex: 1; min-width: 0; gap: .25rem; }
+.sidebar .tutorial-institucional summary strong { font-size: 1rem; font-weight: 600; line-height: 1.4; }
+.sidebar .tutorial-institucional summary small { color: var(--text-muted); font-size: .8125rem; line-height: 1.5; }
+.sidebar .tutorial-institucional summary > i { color: var(--primary); }
+.sidebar .tutorial-institucional summary > .informacoes-seta { display: grid; flex: 0 0 44px; width: 44px; height: 44px; place-items: center; margin-inline-end: -.375rem; border-radius: .5rem; font-size: .875rem; }
+.sidebar .tutorial-institucional summary:hover { background: var(--bg); }
+.sidebar .tutorial-institucional[open] .informacoes-seta { transform: rotate(180deg); }
+.sidebar .informacoes-grupo { margin-top: .5rem; }
+.sidebar .informacoes-grupo:first-child { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: .25rem; }
+.sidebar .informacoes-grupo h3 { grid-column: 1 / -1; margin: 0 0 .125rem; color: var(--text-muted); font-size: .8125rem; font-weight: 600; line-height: 1.5; }
+.sidebar .tutorial-institucional .informacoes-link,
+.sidebar .tutorial-institucional .informacoes-link:visited { display: flex; align-items: center; gap: .375rem; min-height: 44px; padding: .375rem .5rem; border-radius: .375rem; color: var(--text); font-size: .9375rem; line-height: 1.5; text-decoration: none; overflow-wrap: anywhere; }
+.sidebar .tutorial-institucional .informacoes-link:hover { color: var(--primary); background: var(--bg); text-decoration: underline; text-underline-offset: .2em; }
+.sidebar .acessibilidade-controles .a11y-secao { padding-block: .55rem; border-top: 0; }
+html[data-tema="escuro"] .sidebar .acessibilidade-controles button:disabled { opacity: 1; color: var(--text-muted); border-style: dashed; }
 @media (prefers-reduced-motion: reduce) { #tutorialTechSenior *, #tutorialDestaque { animation: none; transition: none; scroll-behavior: auto; } }

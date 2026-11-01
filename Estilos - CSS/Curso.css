@@ -32,7 +32,9 @@
   line-height: 1.7;
 }
 
-html[data-tema="escuro"] .curso-page {
+html[data-tema="escuro"] body.curso-page {
+  --text: #eef4f8;
+  --text-muted: #c7d4de;
   --curso-azul: var(--primary, #6ea8ff);
   --curso-azul-escuro: #b9d2ff;
   --curso-azul-claro: rgba(110, 168, 255, 0.11);
@@ -50,6 +52,9 @@ html[data-tema="escuro"] .curso-page {
   --curso-superficie-elevada: var(--surface-elevated, #10384a);
   --curso-em-acao: #061f2e;
 }
+
+/* Mantém respostas e navegação desabilitadas legíveis, sem mudar seus estados. */
+html[data-tema="escuro"] .curso-page :is(.modulo, .opcao-quiz, .btn-aula, .btn-proxima-questao):disabled { opacity: 1; }
 
 .pagina-curso *,
 .pagina-curso *::before,
@@ -89,7 +94,7 @@ html[data-tema="escuro"] .curso-page {
 .curso-resumo {
   grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: minmax(11rem, auto) minmax(15rem, 1fr) minmax(11rem, auto);
+  grid-template-columns: minmax(11rem, auto) minmax(0, 1fr) minmax(11rem, auto);
   align-items: center;
   gap: 1rem;
   padding: .75rem 1rem;
@@ -194,11 +199,13 @@ html[data-tema="escuro"] .curso-page {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  gap: .25rem 1rem;
+  gap: .375rem .875rem;
+  min-width: 0;
   margin: 0;
-  padding: .5rem .75rem;
-  border-radius: .5rem;
-  background: var(--curso-fundo);
+  padding: .75rem;
+  border: 1px solid var(--curso-borda);
+  border-radius: .75rem;
+  background: var(--curso-branco);
 }
 
 .card-progresso h2 {
@@ -212,10 +219,10 @@ html[data-tema="escuro"] .curso-page {
 
 .porcentagem-progresso {
   grid-column: 2;
-  grid-row: 3;
-  color: var(--curso-texto);
-  font-size: 1.125rem;
-  font-weight: 600;
+  grid-row: 1 / 4;
+  color: var(--curso-verde-acao);
+  font-size: clamp(1.75rem, 2.5vw, 2.25rem);
+  font-weight: 700;
   font-variant-numeric: tabular-nums;
   line-height: 1.4;
 }
@@ -224,18 +231,18 @@ html[data-tema="escuro"] .curso-page {
   width: 100%;
   grid-column: 1;
   grid-row: 3;
-  height: .375rem;
-  margin: .25rem 0 0;
+  height: 12px;
+  margin: 0;
   overflow: hidden;
   border-radius: 999rem;
-  background: var(--curso-borda);
+  background: var(--curso-azul-claro);
 }
 
 .progresso-preenchido {
   width: 0;
   height: 100%;
   border-radius: inherit;
-  background: var(--curso-verde);
+  background: var(--curso-verde-acao);
   transition: width 0.3s ease;
 }
 
@@ -247,6 +254,7 @@ html[data-tema="escuro"] .curso-page {
   font-size: .875rem;
   line-height: 1.5;
 }
+html[data-tema="escuro"] .card-progresso :is(.porcentagem-progresso, .progresso-preenchido) { --curso-verde-acao: var(--accent); }
 
 /* 5. Módulos */
 .lista-modulos {
@@ -266,6 +274,8 @@ html[data-tema="escuro"] .curso-page {
 
 .modulo {
   display: flex;
+  /* A lista rola; os cards mantêm a altura necessária para todo o conteúdo. */
+  flex: 0 0 auto;
   align-items: center;
   gap: 0.75rem;
   width: 100%;
@@ -686,33 +696,68 @@ html[data-tema="escuro"]
 .modulos-titulo h2 { margin: 0; font-size: 1rem; font-weight: 600; line-height: 1.4; }
 #alternarModulos { flex: 0 0 44px; }
 #alternarModulos:hover, #fecharModulos:hover { background: var(--bg); }
+#fecharModulos { display: grid; place-items: center; flex: 0 0 48px; width: 48px; height: 48px; padding: 0; border: 0; color: var(--heading); font-size: 1.75rem; line-height: 1; }
+#fecharModulos:active { background: var(--accent-soft); }
+html[data-tema="escuro"] #fecharModulos { color: var(--primary); }
 .rotulo-modulos { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 #abrirModulos { display: none; }
 #painelModulos {
   position: fixed; inset: 0 auto 0 0; margin: 0; width: min(90vw, 26rem);
-  height: 100dvh; max-height: 100dvh; padding: 1rem 1rem calc(1rem + env(safe-area-inset-bottom));
+  height: 100dvh; max-height: 100dvh; padding: 1rem 1rem 0;
+  box-sizing: border-box; overflow: hidden;
   border-radius: 0 1rem 1rem 0; background: var(--surface); color: var(--text);
 }
-#painelModulos[open] { animation: entrada-modulos .18s ease-out; }
+#painelModulos[open] { display: flex; flex-direction: column; animation: entrada-modulos .18s ease-out; }
 #painelModulos::backdrop { background: rgb(0 0 0 / .55); }
-.modulos-painel-cabecalho { display: flex; gap: .75rem; align-items: center; justify-content: space-between; padding-bottom: .5rem; border-bottom: 1px solid var(--border); }
+.modulos-painel-cabecalho { display: flex; flex: 0 0 auto; gap: .75rem; align-items: start; justify-content: space-between; padding-bottom: .75rem; border-bottom: 1px solid var(--border); background: var(--surface); }
+.modulos-painel-cabecalho > div { min-width: 0; }
+#resumoPainelModulos { margin: .25rem 0 0; color: var(--text-muted); font-size: .875rem; line-height: 1.5; }
+#resumoPainelModulos:empty { display: none; }
 .modulos-painel-cabecalho h2 { margin: 0; font-size: 1.125rem; font-weight: 600; }
-#painelModulos .lista-modulos { margin: .625rem 0 0; padding: 0; gap: .375rem; }
-#painelModulos .modulo { font: inherit; }
+#painelModulos .lista-modulos { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; scroll-padding-block: .5rem; margin: 0; padding: .625rem .25rem calc(1rem + env(safe-area-inset-bottom)); gap: .375rem; }
+#painelModulos .modulo { flex: 0 0 auto; font: inherit; min-height: 64px; padding: .5rem .625rem; gap: .625rem; }
+#painelModulos .informacoes-modulo { gap: .0625rem; }
+#painelModulos .informacoes-modulo > span:not(.duracao-modulo) { font-size: .8125rem; }
 #painelModulos .lista-modulos > h2 { display: none; }
 #painelModulos :focus-visible, #abrirModulos:focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; }
 @keyframes entrada-modulos { from { transform: translateX(-100%); } to { transform: translateX(0); } }
 @media (min-width: 1001px) {
+  .coluna-esquerda {
+    position: sticky;
+    top: 6.5rem;
+    display: flex;
+    flex-direction: column;
+    align-self: start;
+    max-height: calc(100dvh - 8rem);
+    min-height: 0;
+    overflow: hidden;
+    scrollbar-gutter: auto;
+  }
+  .coluna-esquerda .modulos-titulo {
+    position: static;
+    flex: 0 0 auto;
+    padding-bottom: .5rem;
+    background: var(--curso-branco);
+  }
+  .coluna-esquerda .lista-modulos {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
+    margin-top: 0;
+    padding: .5rem;
+  }
   .curso-layout { grid-template-areas: "resumo resumo resumo" "modulos aula extras"; }
   .curso-resumo { grid-area: resumo; }
   .coluna-esquerda { grid-area: modulos; }
   .conteudo-aula { grid-area: aula; }
   .coluna-direita { grid-area: extras; }
   .curso-layout.modulos-recolhidos { grid-template-columns: 4rem minmax(0, 1fr); grid-template-areas: "resumo resumo" "modulos aula" "modulos extras"; max-width: 72rem; }
-  .modulos-recolhidos .coluna-esquerda { position: sticky; top: 6.5rem; display: flex; flex-direction: column; align-items: center; gap: .5rem; padding: .5rem; max-height: calc(100dvh - 8rem); overflow-y: auto; scrollbar-width: thin; scrollbar-gutter: auto; }
+  .modulos-recolhidos .coluna-esquerda { align-items: center; gap: .5rem; padding: .5rem; scrollbar-width: thin; }
   .modulos-recolhidos .modulos-titulo h2 { display: none; }
-  .modulos-recolhidos .lista-modulos { width: 100%; margin: 0; gap: .375rem; }
-  .modulos-recolhidos .modulo { justify-content: center; min-height: 44px; padding: .25rem; border-color: transparent; border-radius: 50%; }
+  .modulos-recolhidos .lista-modulos { width: 100%; margin: 0; padding: .25rem 0; gap: .375rem; scrollbar-gutter: auto; scrollbar-width: thin; }
+  .modulos-recolhidos .modulo { justify-content: center; min-height: 44px; padding: .25rem 0; border-color: transparent; border-radius: 50%; }
   .modulos-recolhidos .modulo .informacoes-modulo, .modulos-recolhidos .modulo > i { display: none; }
   .modulos-recolhidos .modulo .numero-modulo { flex-basis: 2rem; width: 2rem; height: 2rem; }
   .modulos-recolhidos .modulo.ativo { box-shadow: none; outline: 2px solid var(--curso-verde); outline-offset: -2px; }

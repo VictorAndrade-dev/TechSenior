@@ -469,7 +469,13 @@
 
     <button type="button" id="abrirModulos" aria-label="Abrir módulos do curso" title="Abrir módulos do curso" aria-controls="painelModulos" aria-expanded="false" hidden><i class="fa-solid fa-book-open" aria-hidden="true"></i></button>
     <dialog id="painelModulos" aria-labelledby="tituloPainelModulos">
-      <div class="modulos-painel-cabecalho"><h2 id="tituloPainelModulos">Módulos do curso</h2><button type="button" id="fecharModulos" aria-label="Fechar módulos">✕</button></div>
+      <div class="modulos-painel-cabecalho">
+        <div>
+          <h2 id="tituloPainelModulos">Módulos do curso</h2>
+          <p id="resumoPainelModulos"></p>
+        </div>
+        <button type="button" id="fecharModulos" aria-label="Fechar módulos">✕</button>
+      </div>
     </dialog>
     <script type="module" src="Script - Java/NavegacaoModulos.js"></script>
     <script type="module" src="Script - Java/Padrão.js"></script>

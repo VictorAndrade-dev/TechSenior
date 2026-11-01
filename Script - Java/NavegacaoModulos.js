@@ -6,6 +6,12 @@ const alternar = document.getElementById("alternarModulos");
 const abrir = document.getElementById("abrirModulos");
 const painel = document.getElementById("painelModulos");
 const fechar = document.getElementById("fecharModulos");
+const resumoProgresso = document.getElementById("textoProgresso");
+const resumoPainel = document.getElementById("resumoPainelModulos");
+// Apresenta o mesmo resumo calculado pelo curso, sem recalcular sua conclusão.
+const atualizarResumo = () => { resumoPainel.textContent = resumoProgresso.textContent; };
+new MutationObserver(atualizarResumo).observe(resumoProgresso, { childList: true, subtree: true, characterData: true });
+atualizarResumo();
 const rotulo = alternar.querySelector(".rotulo-modulos");
 const icone = alternar.querySelector("i");
 const lugar = document.createComment("Posição original da lista de módulos");
